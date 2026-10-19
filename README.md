@@ -40,11 +40,16 @@ Do not merge the two projects' installation instructions: WonderMac describes 32
 
 ## How to make it intelligent
 
-Recommended architecture, not yet built:
+Bill's direction, confirmed 2026-10-19: a **Mac OS 9 shell/wrapper with an underlying intelligent AI/robotics system**, combining the classic experience with modern capabilities.
 
-**RayCue screen and controls ↔ modern Linux host ↔ Mac OS 9.0.4 in SheepShaver.**
+Proposed architecture, not yet built:
 
-The modern side handles voice, memory and AI. An OS 9 app can display conversation and receive selected actions. Initially the model could run on Bill's existing Mac over the home network, keeping the clock light. Standalone operation would require a separate compute, power and thermal decision.
+- **Everyday desktop:** a modern interface styled like Mac OS 9, with classic windows, menus and icons. Its own apps can expose conversation, memory, alarms, camera and robot status.
+- **Authentic classic apps:** a separate SheepShaver session running OS 9.0.4, reachable from that desktop. The everyday interface need not wait on emulation.
+- **Intelligence underneath:** modern services for conversation, voice, memory and perception. The model could initially run on Bill's existing Mac over the home network. Standalone operation needs a separate compute, power and thermal decision.
+- **Movement underneath:** a dedicated controller carries out bounded actions and maintains limits and stopping independently of both desktop and AI.
+
+Example experience to explore: ask the Mac to remember something, see it as a note in a classic-looking window, open a vintage app, and eventually ask it to approach. These are design examples, not implemented features. The wrapper's implementation technology has not been selected.
 
 [AgentBridge](https://github.com/SeanFDZ/agentbridge) is a promising connector for opening apps, reading windows, typing and exchanging clipboard text. Its README marks PowerPC/SheepShaver support **builds, untested**. Its table also lists OS 9.2.2 beside SheepShaver; that does not override SheepShaver's 9.0.4 limit. First proof: ping, read a window, and type into SimpleText under 9.0.4. Keep robot motion outside this classic-app connector.
 
@@ -74,6 +79,6 @@ Use the modern brain for intentions, and a dedicated controller for joint timing
 
 ## Proposed sequence
 
-First prove OS 9.0.4 and one AI interaction on a bench. Then confirm the clock's internals and settle the enclosure parts. Build the stationary talking Mac. Measure its finished weight. Finally choose and test the walking base around that payload.
+First prove the modern classic-looking shell and one AI interaction on a bench, then measure real OS 9.0.4 emulation separately. Confirm the clock's internals and settle the enclosure parts. Build the stationary talking Mac. Measure its finished weight. Finally choose and test the walking base around that payload.
 
-The next information needed from Bill is the exact clock model or clear exterior/label photos, plus whether real OS 9 applications or chiefly its appearance matters. The current working assumption is real OS 9 plus AI, following his request.
+The next physical information needed from Bill is the exact clock model or clear exterior/label photos. The combined shell-plus-intelligence direction is settled; specific classic apps and how much autonomy the robot should have remain design details.
