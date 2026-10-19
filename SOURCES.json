@@ -1,0 +1,45 @@
+{
+  "checked_at": "2026-10-19T10:52:06-07:00",
+  "purpose": "Reference material only; no installer or runtime code executed.",
+  "repositories": [
+    {
+      "directory": "sources/wondermac",
+      "url": "https://github.com/ThisDoesNotCompute/wondermac.git",
+      "revision": "55c07d894065fd99181d7ab9272a284b91ee95d3",
+      "commit_date": "2026-03-28T14:51:17-05:00",
+      "shallow": true,
+      "clean": true,
+      "executed": false
+    },
+    {
+      "directory": "sources/macintosh-mini",
+      "url": "https://github.com/wr/macintosh-mini.git",
+      "revision": "56f3c149e440933a6befe86be015a200386dd170",
+      "commit_date": "2026-10-18T00:30:33-04:00",
+      "shallow": true,
+      "clean": true,
+      "executed": false
+    },
+    {
+      "directory": "sources/agentbridge",
+      "url": "https://github.com/SeanFDZ/agentbridge.git",
+      "revision": "26b030514620bf4fdcf591c4cf83d9a682eb0722",
+      "commit_date": "2026-04-20T08:02:29-05:00",
+      "shallow": true,
+      "clean": true,
+      "executed": false
+    }
+  ],
+  "existing_local_references": [
+    {
+      "directory": "../continuum-hexapod",
+      "revision": "0131c35f40a235210bb31c1818e1d9b483547d2f",
+      "modified_by_this_session": false
+    },
+    {
+      "directory": "../Freenove_Big_Hexapod_Robot_Kit_for_Raspberry_Pi",
+      "revision": "35b561a979355e3e16a30784bab02a3aeb8cb5df",
+      "modified_by_this_session": false
+    }
+  ]
+}
