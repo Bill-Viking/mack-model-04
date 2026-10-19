@@ -1,6 +1,6 @@
 # RayCue Mac
 
-Turn Bill's RayCue Macintosh-shaped alarm clock into an intelligent classic Mac, with a future walking body.
+Turn Bill's RayCue Macintosh-shaped alarm clock into a characterful intelligent robot that looks and behaves like a tiny classic Mac. Real vintage app use is a minor optional extra.
 
 Research checked 2026-10-19. This is a project map, not an installation or a verified electrical design. The clock's exact model and internals have not been inspected.
 
@@ -28,30 +28,32 @@ Local reference clones are under `sources/wondermac`, `sources/macintosh-mini`, 
 
 The reference build uses a Pi Zero 2 W, the **DPI** version of the Waveshare 2.8-inch panel, a microSD card, a printed bezel, an audio/control board, a small speaker and an interposer or wiring. For voice, add a microphone and an audio path selected after the display's GPIO use is known. These are candidate parts, not a purchase-ready list for Bill's uninspected unit.
 
-## Real Mac OS 9 changes the plan
+## Optional real Mac OS 9 apps
+
+Legacy-app emulation is outside the first prototype and must not drive its hardware choice. The notes below are retained for the optional feature.
 
 [SheepShaver's official documentation](https://sheepshaver.cebix.net/) supports Mac OS through **9.0.4**. It requires a matching PowerMac ROM and OS media supplied separately. OS 9.1/9.2.2 need another emulator route; they are outside this first proposal.
 
 [Basilisk II's official documentation](https://basilisk.cebix.net/) tops out at **8.1**. Macintosh Mini's references to Basilisk II running 8.5 are erroneous. Do not select its default emulator expecting OS 9.
 
-The Macintosh Mini author warns that SheepShaver is very slow on a Pi Zero. The [Zero 2 W has 512 MB RAM and a 1 GHz Cortex-A53 CPU](https://www.raspberrypi.com/products/raspberry-pi-zero-2-w/). It is a good fit reference, but responsiveness with OS 9, voice and AI has not been demonstrated here. Benchmark the intended apps before committing to that board. A more powerful computer in a robot base, or a host elsewhere on the home network, is a design alternative; neither is a proven drop-in replacement for this enclosure/display wiring.
+The Macintosh Mini author warns that SheepShaver is very slow on a Pi Zero. The [Zero 2 W has 512 MB RAM and a 1 GHz Cortex-A53 CPU](https://www.raspberrypi.com/products/raspberry-pi-zero-2-w/). It is a good fit reference, but responsiveness with OS 9, voice and AI has not been demonstrated here. If vintage app use becomes a requirement, benchmark those apps separately. Prioritize the modern shell, voice and robot functions when selecting the board. A more powerful computer in a robot base, or a host elsewhere on the home network, is a design alternative; neither is a proven drop-in replacement for this enclosure/display wiring.
 
 Do not merge the two projects' installation instructions: WonderMac describes 32-bit Pi OS, while the inspected Macintosh Mini installer targets 64-bit Pi OS.
 
 ## How to make it intelligent
 
-Bill's direction, confirmed 2026-10-19: a **Mac OS 9 shell/wrapper with an underlying intelligent AI/robotics system**, combining the classic experience with modern capabilities.
+Bill's clarified direction, 2026-10-19: **robot first, with the appearance and personality of a little Mac running classic Mac OS**. App use would be minor. Build the Mac OS 9 shell/wrapper as the visible face of the AI/robotics system; authentic legacy software is optional and does not block progress.
 
 Proposed architecture, not yet built:
 
 - **Everyday desktop:** a modern interface styled like Mac OS 9, with classic windows, menus and icons. Its own apps can expose conversation, memory, alarms, camera and robot status.
-- **Authentic classic apps:** a separate SheepShaver session running OS 9.0.4, reachable from that desktop. The everyday interface need not wait on emulation.
+- **Optional authentic apps:** a separate SheepShaver session could run OS 9.0.4. Defer this until the robot experience works; it is not needed to create the classic Mac appearance.
 - **Intelligence underneath:** modern services for conversation, voice, memory and perception. The model could initially run on Bill's existing Mac over the home network. Standalone operation needs a separate compute, power and thermal decision.
 - **Movement underneath:** a dedicated controller carries out bounded actions and maintains limits and stopping independently of both desktop and AI.
 
-Example experience to explore: ask the Mac to remember something, see it as a note in a classic-looking window, open a vintage app, and eventually ask it to approach. These are design examples, not implemented features. The wrapper's implementation technology has not been selected.
+Example experience to explore: a listening dialog when spoken to, a little note window when it remembers something, expressive screen reactions, and eventually purposeful movement. These are design examples, not implemented features. The wrapper's implementation technology has not been selected.
 
-[AgentBridge](https://github.com/SeanFDZ/agentbridge) is a promising connector for opening apps, reading windows, typing and exchanging clipboard text. Its README marks PowerPC/SheepShaver support **builds, untested**. Its table also lists OS 9.2.2 beside SheepShaver; that does not override SheepShaver's 9.0.4 limit. First proof: ping, read a window, and type into SimpleText under 9.0.4. Keep robot motion outside this classic-app connector.
+[AgentBridge](https://github.com/SeanFDZ/agentbridge) is a promising connector for opening apps, reading windows, typing and exchanging clipboard text. Its README marks PowerPC/SheepShaver support **builds, untested**. Its table also lists OS 9.2.2 beside SheepShaver; that does not override SheepShaver's 9.0.4 limit. If this optional integration is pursued, its first proof is ping, reading a window, and typing into SimpleText under 9.0.4. Keep robot motion outside this classic-app connector.
 
 Other useful material:
 
@@ -72,13 +74,13 @@ Use the modern brain for intentions, and a dedicated controller for joint timing
 ## Hardware issues to resolve before ordering
 
 1. Confirm the RayCue model, shell dimensions and connector/charging-board revision.
-2. Select the desired OS 9 apps and measure acceptable emulator response.
+2. Measure responsiveness for the modern screen, voice and AI connection. Legacy emulation is an optional separate check.
 3. Check power properly. The inspected Macintosh Mini guide runs the Pi from roughly 4 V battery output and documents audio noise; that is not a regulated 5 V design to copy into a robot.
 4. Verify schematics and header mapping directly. The PCB README mentions pins beyond the Pi's 40-pin header, so its prose is not a wiring authority.
 5. Budget the display GPIO use, USB audio, microphone, future camera, motor controller and separate motor power together.
 
 ## Proposed sequence
 
-First prove the modern classic-looking shell and one AI interaction on a bench, then measure real OS 9.0.4 emulation separately. Confirm the clock's internals and settle the enclosure parts. Build the stationary talking Mac. Measure its finished weight. Finally choose and test the walking base around that payload.
+First define the robot character and classic Mac screen behavior. Prove one responsive voice/screen interaction on a bench. Confirm the clock's internals and establish a mass, space and power budget for the walking body before committing to hardware. Build the stationary prototype, then test a walking base with equivalent dummy weight and integrate the finished shell. Real OS 9 app emulation is a minor optional enhancement after the core experience.
 
-The next physical information needed from Bill is the exact clock model or clear exterior/label photos. The combined shell-plus-intelligence direction is settled; specific classic apps and how much autonomy the robot should have remain design details.
+The next physical information needed from Bill is the exact clock model or clear exterior/label photos. The robot-first direction and classic Mac appearance are settled. The physical body style and degree of autonomy remain design details; choosing vintage apps is not a prerequisite.
