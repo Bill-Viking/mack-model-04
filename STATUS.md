@@ -10,11 +10,14 @@ The original conversion is ThisDoesNotCompute/wondermac. wr/macintosh-mini offer
 
 README.md holds the researched links, candidate parts, architecture, source discrepancies, and next steps. SOURCES.json records reference checkout revisions. No emulator, installer, AI service or hardware was run. No Apple ROM or OS disk image was obtained. Exact RayCue hardware remains unverified.
 
+On 2026-10-19, generated and displayed the first requested walking-robot concept. Saved image and exact prompt in `concepts/`: compact ivory Mac body, four short articulated legs and a Mac OS 9-style desktop saying “Hello, Bill.” Four legs are a visual proposal, not Bill's final selection or a validated mechanical design.
+
 ## To do
 
 - [x] Find original and expanded clock conversion repos and build material.
 - [x] Identify an OS 9 emulator and AI bridge candidates.
 - [x] Find existing local robot work and public walking-control references.
+- [x] Show and save a first walking RayCue / Mac OS 9 screen concept (2026-10-19).
 - [ ] Confirm the exact RayCue model and inspect its exterior, label and internal hardware.
 - [x] Record Bill's priority: a cool intelligent robot with a classic Mac shell; app use minor (2026-10-19).
 - [ ] Define the robot character and Mac OS 9-style screen behavior; prove one responsive voice/screen interaction on a bench.
@@ -25,7 +28,7 @@ README.md holds the researched links, candidate parts, architecture, source disc
 
 ## Important
 
-- Research scope only so far; no purchase or physical modification has been authorized by a parts selection.
+- Research and visual concept work so far; no purchase or physical modification has been authorized by a parts selection.
 - Local reference clones in `sources/` are ignored separate Git repositories. Their provenance is in SOURCES.json; recreate from upstream when absent on another machine. Do not push to vendor upstreams.
 - This parent repository has no remote configured. Its research notes currently live on the Mac.
 - `private-media/` is reserved and ignored for any separately supplied ROM or OS media. It is not populated.

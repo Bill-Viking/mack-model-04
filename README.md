@@ -4,6 +4,10 @@ Turn Bill's RayCue Macintosh-shaped alarm clock into a characterful intelligent 
 
 Research checked 2026-10-19. This is a project map, not an installation or a verified electrical design. The clock's exact model and internals have not been inspected.
 
+## First visual concept
+
+[Walking Mac concept v1](concepts/raycue-walking-mac-v1.png) shows the ivory compact-Mac body on four short articulated legs, with a Mac OS 9-style desktop and a “Hello, Bill.” dialog. Generated with the built-in image tool on 2026-10-19; [full prompt](concepts/raycue-walking-mac-v1-prompt.txt). Bill requested a walking-robot concept. The four-leg layout is a visual proposal, not a confirmed body choice or a measured, validated mechanical design.
+
 ## The repos to start with
 
 | Job | Source | What it gives us |
