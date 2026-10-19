@@ -6,7 +6,20 @@ Research checked 2026-10-19. This is a project map, not an installation or a ver
 
 ## First visual concept
 
-[Walking Mac concept v1](concepts/raycue-walking-mac-v1.png) shows the ivory compact-Mac body on four short articulated legs, with a Mac OS 9-style desktop and a “Hello, Bill.” dialog. Generated with the built-in image tool on 2026-10-19; [full prompt](concepts/raycue-walking-mac-v1-prompt.txt). Bill requested a walking-robot concept. The four-leg layout is a visual proposal, not a confirmed body choice or a measured, validated mechanical design.
+[Walking Mac concept v1](concepts/raycue-walking-mac-v1.png) shows the ivory compact-Mac body on four short articulated legs, with a Mac OS 9-style desktop and a “Hello, Bill.” dialog. Generated with the built-in image tool on 2026-10-19; [full prompt](concepts/raycue-walking-mac-v1-prompt.txt). Bill accepted this pictured direction: “that's what I want to build.” Treat its compact four-leg appearance as the design target. The mechanism, motor sizes, dimensions and load capacity still need engineering; this image is not printable CAD.
+
+## Printer and materials — initial recommendation
+
+Checked 2026-10-19. A desktop FDM/FFF filament printer with a heated bed, automatic leveling and support for PLA, PETG and TPU is appropriate for the proposed separately printed housings, base and brackets. Recommended starting candidate: [Bambu Lab A1](https://us.store.bambulab.com/products/a1), 256 × 256 × 256 mm build volume. [A1 mini](https://us.store.bambulab.com/products/a1-mini), 180 × 180 × 180 mm, is a smaller alternative if every part plus its supports fits. No printer selected or purchased. Single-color printing is enough: make the ivory housings and black feet separately; AMS is optional.
+
+Proposed material use, subject to prototype testing:
+
+- PLA for fit checks and early shape prototypes.
+- Ivory PETG for housings and initial structural brackets. [Prusa's PETG guide](https://help.prusa3d.com/article/petg_2059) supports its use for mechanical parts; this does not validate our particular walking loads. Print orientation, wall thickness, joint support and creep must be checked on the actual design.
+- Black TPU for replaceable compliant feet; compare grip experimentally. [Prusa's flexible-material guide](https://help.prusa3d.com/article/flexible-materials_2057) documents its flexibility and use for soles/tires. Start with a printer-supported TPU grade and keep it dry.
+- Purchased servos, bearings/bushings, shafts, fasteners and inserts where required. The original RayCue body can be retained if inspection confirms suitable mounts.
+
+Planning allowance: roughly US$400–500 for an A1-class printer, initial filament and basic tools, excluding robot electronics/motors and tax/shipping. This is an estimate, not a verified checkout quote: direct Bambu store fetches failed, and indexed store prices were stale. A higher-temperature enclosed printer is optional if testing later calls for ASA or other engineering materials. Smooth render-like cosmetics may require finishing and paint; ordinary filament prints show layer lines.
 
 ## The repos to start with
 

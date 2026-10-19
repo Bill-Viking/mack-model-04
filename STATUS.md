@@ -10,7 +10,9 @@ The original conversion is ThisDoesNotCompute/wondermac. wr/macintosh-mini offer
 
 README.md holds the researched links, candidate parts, architecture, source discrepancies, and next steps. SOURCES.json records reference checkout revisions. No emulator, installer, AI service or hardware was run. No Apple ROM or OS disk image was obtained. Exact RayCue hardware remains unverified.
 
-On 2026-10-19, generated and displayed the first requested walking-robot concept. Saved image and exact prompt in `concepts/`: compact ivory Mac body, four short articulated legs and a Mac OS 9-style desktop saying “Hello, Bill.” Four legs are a visual proposal, not Bill's final selection or a validated mechanical design.
+On 2026-10-19, generated and displayed the first requested walking-robot concept. Saved image and exact prompt in `concepts/`: compact ivory Mac body, four short articulated legs and a Mac OS 9-style desktop saying “Hello, Bill.” Bill then accepted the pictured direction: “that's what I want to build.” Its compact four-leg appearance is the target; dimensions, mechanisms and load capacity remain unengineered.
+
+Bill asked which 3D printer would make these parts. Initial recommendation is a Bambu A1-class FDM printer, PLA fit prototypes, PETG housings/brackets and TPU feet. A1 mini is a conditional smaller option. README records specifications, material sources and the estimated budget; current checkout pricing could not be verified. No printer or purchase selected.
 
 ## To do
 
