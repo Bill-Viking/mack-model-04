@@ -1,4 +1,6 @@
-# Research notes — RayCue Mac
+# Research notes — M.A.C. Model 04
+
+The project was researched as RayCue Mac and named **M.A.C. Model 04**, or **Mack**, on 2026-10-20. RayCue remains the name of the donor clock.
 
 Turn Bill's RayCue Macintosh-shaped alarm clock into a characterful intelligent robot that looks and behaves like a tiny classic Mac. Real vintage app use is a minor optional extra.
 

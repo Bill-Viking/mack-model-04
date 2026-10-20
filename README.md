@@ -1,12 +1,22 @@
-# RayCue Mac
+# M.A.C. Model 04
 
-**A little walking Macintosh with a modern mind.**
+**Mobile Autonomous Computer · “Mack”**
 
-RayCue Mac turns a Macintosh-shaped alarm clock into an intelligent companion. It keeps the familiar beige enclosure and gives it a classic Mac OS 9-style desktop, a voice, memory, and eventually four small walking legs.
+M.A.C. Model 04, called **Mack**, turns a RayCue Macintosh-shaped alarm clock into an intelligent companion. It keeps the familiar beige enclosure and gives it a classic Mac OS 9-style desktop, a voice, memory, and eventually four small walking legs.
 
 The screen is its way of expressing itself. A conversation can appear in a classic dialog. A remembered detail can become a little note. Listening, thinking, and resting can have their own quiet desktop behaviors. The aim is a robot that feels like a tiny Mac has come to life.
 
-![RayCue build target: ivory compact Mac, four short legs, and a classic desktop saying Hello, Bill.](concepts/raycue-build-target.png)
+The formal designation has the deliberately industrial tone of an old computing instrument. “04” nods to its four legs. In conversation, it is simply Mack.
+
+> **M.A.C. MODEL 04**
+>
+> MOBILE AUTONOMOUS COMPUTER
+>
+> Ambulatory Configuration · Four-Leg Assembly
+>
+> Everyday name: **Mack**
+
+![Mack build target: ivory compact Mac, four short legs, and a classic desktop saying Hello, Bill.](concepts/raycue-build-target.png)
 
 *The exact image Bill supplied and confirmed as the build target on 2026-10-20. It defines the intended appearance; dimensions and mechanisms still require engineering.*
 
@@ -36,7 +46,7 @@ Real vintage Mac applications are an optional extra. A separate emulator may eve
 
 ## Where the project stands
 
-This is the repository foundation: concept, architecture, build plan, hardware intake sheets, and pinned upstream source material. No integrated RayCue app, working leg, or verified electrical design exists yet.
+This is the repository foundation: concept, architecture, build plan, hardware intake sheets, and pinned upstream source material. No integrated Mack app, working leg, or verified electrical design exists yet.
 
 - **Ready:** the accepted concept, source references, screen-bezel STL/STEP and editable CAD, PCB reference, and reusable robot software snapshots.
 - **Next software milestone:** a classic desktop that visibly moves through idle, listening, thinking, and speaking, then completes one voice interaction.

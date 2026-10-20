@@ -1,6 +1,6 @@
 # Upstream snapshots and notices
 
-These are selected reference files, copied unchanged at the revisions in [SOURCES.json](../SOURCES.json). They are not installed or wired into a RayCue runtime. Each source has its own SOURCE.md explaining scope and omissions.
+These are selected reference files, copied unchanged at the revisions in [SOURCES.json](../SOURCES.json). They are not installed or wired into a Mack runtime. Each source has its own SOURCE.md explaining scope and omissions.
 
 | Snapshot | License recorded from upstream |
 | --- | --- |
@@ -9,7 +9,7 @@ These are selected reference files, copied unchanged at the revisions in [SOURCE
 | [AgentBridge](agentbridge/SOURCE.md) | Modern MCP server: GPL v3. Classic client has a separate modified PolyForm Noncommercial license; only its notice is retained, not the client implementation. |
 | [Continuum Hexapod](continuum-hexapod/SOURCE.md) | No upstream LICENSE found at this revision. Bill-owned local source copied at his request for this project. No public redistribution license is asserted. |
 
-No single license is applied across these snapshots. Original RayCue work has no public license selected yet. Keep copyright and source-location notices with any later adaptations under the applicable upstream terms.
+No single license is applied across these snapshots. Original M.A.C. Model 04 work has no public license selected yet. Keep copyright and source-location notices with any later adaptations under the applicable upstream terms.
 
 Excluded from these tracked imports: Apple ROM/OS images and chimes, emulator binaries, the separately attributed Waveshare overlay, third-party render models, personal databases, credentials, machine-specific session records, and deployment scripts.
 

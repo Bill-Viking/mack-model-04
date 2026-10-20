@@ -1,4 +1,4 @@
-# Hardware workspace
+# M.A.C. Model 04 — hardware workspace
 
 The original RayCue shell and accepted four-leg appearance are the starting constraints. All dimensions and loads need measurement.
 
@@ -7,7 +7,7 @@ The original RayCue shell and accepted four-leg appearance are the starting cons
 - [Screen bezel STL](../vendor/macintosh-mini/maclock-screen-bezel/maclock-screen-bezel.stl): upstream printable frame and clips.
 - [Screen bezel STEP](../vendor/macintosh-mini/maclock-screen-bezel/maclock-screen-bezel.step): editable solids.
 - [CAD parameters](../vendor/macintosh-mini/maclock-screen-bezel/params.py) and [geometry source](../vendor/macintosh-mini/maclock-screen-bezel/bezel.py): unchanged build123d source.
-- [Breakout schematic](../vendor/macintosh-mini/maclock-pcb/maclock-breakout.kicad_sch) and [board layout](../vendor/macintosh-mini/maclock-pcb/maclock-breakout.kicad_pcb): KiCad reference, not approved RayCue wiring.
+- [Breakout schematic](../vendor/macintosh-mini/maclock-pcb/maclock-breakout.kicad_sch) and [board layout](../vendor/macintosh-mini/maclock-pcb/maclock-breakout.kicad_pcb): KiCad reference, not approved Mack wiring.
 - [Upstream build guide](../vendor/macintosh-mini/BUILD.md): read with [our corrections](../docs/references.md).
 
 The source location and CERN-OHL-S-2.0 notices travel with the CAD and PCB. Create adaptations outside `vendor/` with their required notices; leave the imported originals unchanged.

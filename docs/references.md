@@ -1,15 +1,15 @@
-# References and reuse
+# M.A.C. Model 04 — references and reuse
 
 Checked 2026-10-20. Full revisions and per-file hashes live in [SOURCES.json](../SOURCES.json). Public reference HEADs matched the existing checkouts when checked; no newer upstream commits were needed. All imports are unchanged snapshots.
 
 ## Material brought into this repository
 
-| Source | Imported material | RayCue use and limits |
+| Source | Imported material | Mack use and limits |
 | --- | --- | --- |
 | [ThisDoesNotCompute / WonderMac](https://github.com/ThisDoesNotCompute/wondermac) | [Conversion guides](../vendor/wondermac/) and GPL v2 license. | Original clock-to-Pi build background. Its Mini vMac route is not OS 9. Emulator ZIP binaries were omitted. |
 | [Wells Riley / Macintosh Mini](https://github.com/wr/macintosh-mini) | [Bezel CAD/STL/STEP](../vendor/macintosh-mini/maclock-screen-bezel/), [KiCad board](../vendor/macintosh-mini/maclock-pcb/), build guide/drawings, brightness/button code and tests, license files. | Main physical-fit reference. Verify the actual clock revision, power design, and pin map before adapting. Installer, Apple chimes, and the separately attributed Waveshare overlay were omitted. |
 | [SeanFDZ / AgentBridge](https://github.com/SeanFDZ/agentbridge) | [Protocol](../vendor/agentbridge/agentbridge-protocol-spec.md), modern TypeScript server source, package metadata, README, and license notices. | Optional classic-app integration. Classic client source and binaries were not imported. No npm install was run. |
-| [Bill / Continuum Hexapod](https://github.com/Bill-Viking/continuum-hexapod) | [Memory](../vendor/continuum-hexapod/continuum/), brain, [control supervisor](../vendor/continuum-hexapod/spine/), hardware interfaces, simulation, tests, configuration and design notes. | Candidate reuse for memory, bounded requests, mock hardware, and watchdog concepts. Six-leg geometry and limits are not RayCue settings. No data, secrets, session records, or deployment scripts were imported. |
+| [Bill / Continuum Hexapod](https://github.com/Bill-Viking/continuum-hexapod) | [Memory](../vendor/continuum-hexapod/continuum/), brain, [control supervisor](../vendor/continuum-hexapod/spine/), hardware interfaces, simulation, tests, configuration and design notes. | Candidate reuse for memory, bounded requests, mock hardware, and watchdog concepts. Six-leg geometry and limits are not Mack settings. No data, secrets, session records, or deployment scripts were imported. |
 
 The original local projects remain unchanged. The tracked snapshots travel with this repository; ignored full clones can be recreated with the source utility.
 
@@ -39,9 +39,9 @@ These links are references, not a purchase-ready selection. The prior investigat
 3. **Header numbering:** the PCB README says pins 35–47, beyond the 40-pin Pi header. Resolve wiring from the actual schematic, guide, board revision, and hardware; do not repeat that row as a pin map.
 4. **GPIO actions:** imported button code can shut down Linux and launch emulator/setup commands. It is a reference, not a service to run on this Mac.
 5. **OS assumptions:** WonderMac's 32-bit guide and Macintosh Mini's 64-bit setup are different installations. Do not combine their commands.
-6. **Performance and validation:** upstream warns that SheepShaver is slow on Pi Zero. AgentBridge PowerPC support is marked builds, untested. Neither the RayCue integration nor the imported robot tests have been demonstrated here.
+6. **Performance and validation:** upstream warns that SheepShaver is slow on Pi Zero. AgentBridge PowerPC support is marked builds, untested. Neither the Mack integration nor the imported robot tests have been demonstrated here.
 7. **Licensing:** Macintosh Mini separates hardware, software, and documentation licenses. AgentBridge's modern server and classic client have different licenses. [Vendor notices](../vendor/README.md) preserve that distinction.
 
 ## Updating a source
 
-Keep imported files unchanged. Review the new upstream revision, select files deliberately, preserve notices, and update the manifest hashes together. Run the source checks before committing. Adapted RayCue files belong outside `vendor/` and should record their source and applicable notices.
+Keep imported files unchanged. Review the new upstream revision, select files deliberately, preserve notices, and update the manifest hashes together. Run the source checks before committing. Adapted Mack files belong outside `vendor/` and should record their source and applicable notices.

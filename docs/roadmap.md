@@ -1,4 +1,4 @@
-# Build roadmap
+# M.A.C. Model 04 — build roadmap
 
 The accepted four-leg concept is the visual target. Each milestone earns the next hardware or integration decision. This is dependency order, not a calendar estimate.
 
@@ -18,4 +18,4 @@ Clock intake and the screen prototype can progress independently. CAD for the le
 
 Immediate design work: populate the [measurement sheet](../hardware/measurements.csv), sketch packaging and a mass budget, demonstrate screen states on the host, and evaluate the imported Continuum mock tests.
 
-No purchase-ready BOM, leg CAD, deployment script, or live RayCue motor driver is implied by this foundation.
+No purchase-ready BOM, leg CAD, deployment script, or live Mack motor driver is implied by this foundation.
