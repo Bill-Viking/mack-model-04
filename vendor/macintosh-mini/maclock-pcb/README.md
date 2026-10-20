@@ -1,0 +1,32 @@
+<img height="120" alt="Macintosh Mini PCB" src="https://github.com/user-attachments/assets/03bcea85-d32f-4c79-91d4-0dbffdf8b3bf" />
+
+# Macintosh Mini breakout PCB
+
+KiCad 10 project for the breakout that connects the Mac-shaped clock's front-panel parts (rotary encoder, two pushbuttons, PAM8302 audio amp, speaker) to the Pi Zero 2 W's GPIO header.
+
+Wiring it to the Pi, with pin assignments, is [step 2 of the build guide](../BUILD.md#2-connect-the-pi-to-the-screen-and-the-board). For the case-side parts you'll print, see the [3D-printed screen bezel](../maclock-screen-bezel/).
+
+Order from [PCBway](https://www.pcbway.com/project/shareproject/W654223ASS41_Untitled_kicad_pcb_95cca7e3.html). You can [use my referral code](https://pcbway.com/g/AsfKU9) to get $5 off your order, if you want.
+
+## Bill of materials
+
+To populate one board:
+
+| Ref         | Qty | Part                                      | Footprint                          | Notes                                                |
+| ----------- | --- | ----------------------------------------- | ---------------------------------- | ---------------------------------------------------- |
+| R1, R2, R3  | 3   | 1 kΩ resistor                             | 0402 (1005 metric) SMD             | Pull-ups for the two buttons + the rotary encoder    |
+| C1          | 1   | 100 nF ceramic capacitor                  | Through-hole disc, 5 mm pitch       | Audio decoupling                                     |
+| —           | 1   | **PAM8302 audio amplifier breakout**      | external module                    | Wire `A+` to Pi GPIO 19 (header pin 35); output to speaker |
+| —           | 1   | Small speaker, 8 Ω, ~0.5 W                | —                                  | Whatever fits behind the original Maclock grille     |
+| PiInput     | 1   | 1×7 pin header, 2.54 mm pitch, vertical   | through-hole                        | Plugs into Pi GPIO pins 35–47                        |
+
+### Optional (only if not reusing the Maclock's original parts)
+
+| Ref         | Qty | Part                                      | Footprint           | Notes                                              |
+| ----------- | --- | ----------------------------------------- | ------------------- | -------------------------------------------------- |
+| SW1, SW2    | 2   | SMD tactile switch (e.g. Mountain TS32735) | 4.6 × 3.5 mm SMT    | Skip if you're wiring the Maclock's existing buttons to the SW1/SW2 pads |
+| JP1         | 1   | 3-pin rotary encoder                      |   | Skip if you're wiring the Maclock's existing dial   |
+
+## License
+
+CERN-OHL-S-2.0 — see [`LICENSE`](./LICENSE). You can make, modify and sell the board. Boards you make must point to their source, and a modified design must be published under the same licence.

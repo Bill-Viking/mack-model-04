@@ -1,0 +1,18 @@
+item,value,unit,method_or_datum,notes
+clock_model,,,label,Unverified
+shell_width,,mm,maximum outside width,
+shell_depth,,mm,maximum outside depth,
+shell_height,,mm,base to highest point,
+internal_width,,mm,minimum usable clearance,
+internal_depth,,mm,minimum usable clearance,
+internal_height,,mm,minimum usable clearance,
+screen_opening_width,,mm,visible opening,
+screen_opening_height,,mm,visible opening,
+screen_mount_hole_spacing_x,,mm,hole centers; identify in photo,
+screen_mount_hole_spacing_y,,mm,hole centers; identify in photo,
+complete_clock_mass,,g,scale; record included components,
+empty_shell_mass,,g,scale; record removed components,
+display_compute_mass,,g,scale; selected assembly,
+walking_base_mass,,g,scale; selected assembly,
+battery_mass,,g,scale; selected battery,
+assembled_center_of_gravity_height,,mm,measurement method TBD,

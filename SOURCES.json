@@ -1,45 +1,726 @@
 {
-  "checked_at": "2026-10-19T10:52:06-07:00",
-  "purpose": "Reference material only; no installer or runtime code executed.",
+  "schema_version": 1,
+  "checked_at": "2026-10-20T10:34:09-07:00",
+  "purpose": "Unmodified reference snapshots; no upstream installer, runtime, or vendor test executed by this import.",
   "repositories": [
     {
+      "id": "wondermac",
       "directory": "sources/wondermac",
       "url": "https://github.com/ThisDoesNotCompute/wondermac.git",
       "revision": "55c07d894065fd99181d7ab9272a284b91ee95d3",
       "commit_date": "2026-03-28T14:51:17-05:00",
-      "shallow": true,
-      "clean": true,
-      "executed": false
+      "fetchable": true,
+      "license_note": "GPL-2.0 as declared by upstream",
+      "purpose": "Historical conversion guides; no emulator binaries.",
+      "executed": false,
+      "imports": [
+        {
+          "source": "LICENSE",
+          "path": "vendor/wondermac/LICENSE",
+          "sha256": "8177f97513213526df2cf6184d8ff986c675afb514d4e68a404010521b880643",
+          "bytes": 18092,
+          "mode": "100644"
+        },
+        {
+          "source": "README.md",
+          "path": "vendor/wondermac/README.md",
+          "sha256": "0694b198e7f63ac59eae4f604ff6117d4072dd2a580234eab3465664ad6f49fc",
+          "bytes": 1821,
+          "mode": "100644"
+        },
+        {
+          "source": "compiling-minivmac.md",
+          "path": "vendor/wondermac/compiling-minivmac.md",
+          "sha256": "693576554fbe6baaa4311f63f0346140c0c911abd4ac26198da87764d5db86be",
+          "bytes": 3285,
+          "mode": "100644"
+        },
+        {
+          "source": "prerequisites.md",
+          "path": "vendor/wondermac/prerequisites.md",
+          "sha256": "e0317ba35b0dfa7d7b3f1bbfe368a66785147e3c1373b49c242bb8b83ec6ae89",
+          "bytes": 3704,
+          "mode": "100644"
+        },
+        {
+          "source": "set-up-minivmac.md",
+          "path": "vendor/wondermac/set-up-minivmac.md",
+          "sha256": "94e0ef5c27dde802f72415e313f61a70f9e8ed61e0a1815a17c8c6ba9a3dd07d",
+          "bytes": 2928,
+          "mode": "100644"
+        },
+        {
+          "source": "whats-next.md",
+          "path": "vendor/wondermac/whats-next.md",
+          "sha256": "2b816c86bade786a0c347e9c8491ce9e88f7f7538740d7b56bc58ecd97207116",
+          "bytes": 1388,
+          "mode": "100644"
+        }
+      ],
+      "upstream_head_checked_at": "2026-10-20T10:34:09-07:00",
+      "upstream_head_at_check": "55c07d894065fd99181d7ab9272a284b91ee95d3"
     },
     {
+      "id": "macintosh-mini",
       "directory": "sources/macintosh-mini",
       "url": "https://github.com/wr/macintosh-mini.git",
       "revision": "56f3c149e440933a6befe86be015a200386dd170",
       "commit_date": "2026-10-18T00:30:33-04:00",
-      "shallow": true,
-      "clean": true,
-      "executed": false
+      "fetchable": true,
+      "license_note": "Mixed: CERN-OHL-S-2.0 hardware; GPL-3.0-or-later controls; CC-BY-SA-4.0 docs",
+      "purpose": "Bezel CAD and exports, PCB project, build docs and drawings, clock controls and tests.",
+      "executed": false,
+      "imports": [
+        {
+          "source": "BUILD.md",
+          "path": "vendor/macintosh-mini/BUILD.md",
+          "sha256": "b9581c5fcaf0d9e8e5146d6e95f335a4687cf899036b6ad755c743dc58e981f9",
+          "bytes": 15486,
+          "mode": "100644"
+        },
+        {
+          "source": "LICENSES/CC-BY-SA-4.0.txt",
+          "path": "vendor/macintosh-mini/LICENSES/CC-BY-SA-4.0.txt",
+          "sha256": "cde7883b9050a1104f4ac19a1572aafd6e5d7323b68351aaf51fbf4beba54966",
+          "bytes": 18375,
+          "mode": "100644"
+        },
+        {
+          "source": "LICENSES/CERN-OHL-S-2.0.txt",
+          "path": "vendor/macintosh-mini/LICENSES/CERN-OHL-S-2.0.txt",
+          "sha256": "d6475a84171f0cf7ff52667dea714df268fc65cea42f0bf328b0b70d4cd0ebab",
+          "bytes": 13419,
+          "mode": "100644"
+        },
+        {
+          "source": "LICENSES/GPL-3.0-or-later.txt",
+          "path": "vendor/macintosh-mini/LICENSES/GPL-3.0-or-later.txt",
+          "sha256": "fb981668c18a279e285fc4d83fba1e836cc84dd4daa73c9697d3cfd2d8aca6e0",
+          "bytes": 34674,
+          "mode": "100644"
+        },
+        {
+          "source": "LICENSES/LicenseRef-Third-Party.txt",
+          "path": "vendor/macintosh-mini/LICENSES/LicenseRef-Third-Party.txt",
+          "sha256": "39eb23917ad220a5f173e9a9ade56a5fc92e37e4744eb7135839651dd948ea74",
+          "bytes": 231,
+          "mode": "100644"
+        },
+        {
+          "source": "README.md",
+          "path": "vendor/macintosh-mini/README.md",
+          "sha256": "a12aa02f0ae699772fc82e2f9c8cd6403916a2f4abb1504a9d40959af0b6858d",
+          "bytes": 4128,
+          "mode": "100644"
+        },
+        {
+          "source": "REUSE.toml",
+          "path": "vendor/macintosh-mini/REUSE.toml",
+          "sha256": "dbe81280f39100c794c8f5b39b1754538392f40dfa86b2fdd5c9f21391433a02",
+          "bytes": 1436,
+          "mode": "100644"
+        },
+        {
+          "source": "docs/drawings/board-dark.svg",
+          "path": "vendor/macintosh-mini/docs/drawings/board-dark.svg",
+          "sha256": "b6a3eb797c6a4ce5a0c0ea7ca3a6cb3e1374da2393f4e09b2de819b1a904949a",
+          "bytes": 66036,
+          "mode": "100644"
+        },
+        {
+          "source": "docs/drawings/board.svg",
+          "path": "vendor/macintosh-mini/docs/drawings/board.svg",
+          "sha256": "95af182e9488605f27f53afc4b84dcaa58c3bcc12755c3a091b13bc3ba4628e0",
+          "bytes": 66037,
+          "mode": "100644"
+        },
+        {
+          "source": "docs/drawings/exploded-dark.svg",
+          "path": "vendor/macintosh-mini/docs/drawings/exploded-dark.svg",
+          "sha256": "43bd9054d39a7eef1ba9d0a73f4096d49e448edc8a8e9a481615953b08cca6f2",
+          "bytes": 81103,
+          "mode": "100644"
+        },
+        {
+          "source": "docs/drawings/exploded.svg",
+          "path": "vendor/macintosh-mini/docs/drawings/exploded.svg",
+          "sha256": "3622f96629192d2c512794d4831313c7de5ac1040397a3a3ba3fa5f1d25c65fe",
+          "bytes": 81104,
+          "mode": "100644"
+        },
+        {
+          "source": "docs/drawings/interposer-dark.svg",
+          "path": "vendor/macintosh-mini/docs/drawings/interposer-dark.svg",
+          "sha256": "012f61957e4bc3aa9b4b665fc4ad89a05cb399a6c88eca0d023f0ab0a800f587",
+          "bytes": 190875,
+          "mode": "100644"
+        },
+        {
+          "source": "docs/drawings/interposer.svg",
+          "path": "vendor/macintosh-mini/docs/drawings/interposer.svg",
+          "sha256": "df0c9195ba4ad841d50808cb731dba7358c86d967368badaee979b6f6bf0a1c4",
+          "bytes": 190876,
+          "mode": "100644"
+        },
+        {
+          "source": "docs/macintosh-mini-banana.webp",
+          "path": "vendor/macintosh-mini/docs/macintosh-mini-banana.webp",
+          "sha256": "53c26735d143cb76ee5fe17e820341501a34c24f5354318bc7675215c289607d",
+          "bytes": 49444,
+          "mode": "100644"
+        },
+        {
+          "source": "docs/maclock-breakout.webp",
+          "path": "vendor/macintosh-mini/docs/maclock-breakout.webp",
+          "sha256": "ce23da740d5ccc2b644adb7ce07b3d6cc2fd988cb98d7429373d53a138d473d4",
+          "bytes": 544890,
+          "mode": "100644"
+        },
+        {
+          "source": "maclock-build/README.md",
+          "path": "vendor/macintosh-mini/maclock-build/README.md",
+          "sha256": "efd262e4f752f2e61da276e125a63109716ec8b89453510f9af143b7c7ebd1a6",
+          "bytes": 14592,
+          "mode": "100644"
+        },
+        {
+          "source": "maclock-build/brightness-control.service",
+          "path": "vendor/macintosh-mini/maclock-build/brightness-control.service",
+          "sha256": "716fe8bbb1bb82734ed8068cb2489ca932a22b3253e41917091f0ea2ef93ea74",
+          "bytes": 763,
+          "mode": "100644"
+        },
+        {
+          "source": "maclock-build/brightness_control.py",
+          "path": "vendor/macintosh-mini/maclock-build/brightness_control.py",
+          "sha256": "90e9eaf4b00d1fb7bbed988f41d7210fbe24d1d1b09c60ce92eeb07a14937540",
+          "bytes": 18901,
+          "mode": "100644"
+        },
+        {
+          "source": "maclock-build/button-handler.service",
+          "path": "vendor/macintosh-mini/maclock-build/button-handler.service",
+          "sha256": "c91edecc6f4e7bf4f3e3e3d3b299ad36a6af78bb214b951635a57ca3ef3e2421",
+          "bytes": 216,
+          "mode": "100644"
+        },
+        {
+          "source": "maclock-build/button_handler.py",
+          "path": "vendor/macintosh-mini/maclock-build/button_handler.py",
+          "sha256": "64b8af388cf7dc3f844228cc0b4b6d2e6e40a7974b45408e6a0615a35f9afab9",
+          "bytes": 7585,
+          "mode": "100644"
+        },
+        {
+          "source": "maclock-build/test_brightness_control.py",
+          "path": "vendor/macintosh-mini/maclock-build/test_brightness_control.py",
+          "sha256": "158bc736c1a790662c67a066165054098086e4837c781355d21c32a64e3ffedb",
+          "bytes": 13038,
+          "mode": "100644"
+        },
+        {
+          "source": "maclock-build/test_button_handler.py",
+          "path": "vendor/macintosh-mini/maclock-build/test_button_handler.py",
+          "sha256": "b7a773b11cabcc1d4cd58d4d22ae473826f1e2d5659d81076d35260b9a01b831",
+          "bytes": 3651,
+          "mode": "100644"
+        },
+        {
+          "source": "maclock-pcb/.gitignore",
+          "path": "vendor/macintosh-mini/maclock-pcb/.gitignore",
+          "sha256": "4064d6edc0aa08633292301b59131b189dfbb07d718867412ff4ee770be3d900",
+          "bytes": 170,
+          "mode": "100644"
+        },
+        {
+          "source": "maclock-pcb/LICENSE",
+          "path": "vendor/macintosh-mini/maclock-pcb/LICENSE",
+          "sha256": "ce9bd0cab7bebd34e0d0521c77c19fddb03029d6d5e426c3a3505c5d5dfa41c8",
+          "bytes": 802,
+          "mode": "100644"
+        },
+        {
+          "source": "maclock-pcb/README.md",
+          "path": "vendor/macintosh-mini/maclock-pcb/README.md",
+          "sha256": "0c93a635466bd4be95da70f5de71f346d38c67bc3077be4f472e305d1a1ecd19",
+          "bytes": 2812,
+          "mode": "100644"
+        },
+        {
+          "source": "maclock-pcb/maclock-breakout.kicad_pcb",
+          "path": "vendor/macintosh-mini/maclock-pcb/maclock-breakout.kicad_pcb",
+          "sha256": "4213d189591e7dce6bf1186a6789dd4cac13706b9af84f9a4795e8d0f676e150",
+          "bytes": 146381,
+          "mode": "100644"
+        },
+        {
+          "source": "maclock-pcb/maclock-breakout.kicad_pro",
+          "path": "vendor/macintosh-mini/maclock-pcb/maclock-breakout.kicad_pro",
+          "sha256": "994eace0cc05f1a5d024b1386d371ee297abd7adedaf64a7ab4e2fa1c52d8ddd",
+          "bytes": 16370,
+          "mode": "100644"
+        },
+        {
+          "source": "maclock-pcb/maclock-breakout.kicad_sch",
+          "path": "vendor/macintosh-mini/maclock-pcb/maclock-breakout.kicad_sch",
+          "sha256": "eec37f4ef35f8fbdd39b84a201e20a8bf58f8fbc83518c1260d3a6ea2ac9ae5e",
+          "bytes": 24141,
+          "mode": "100644"
+        },
+        {
+          "source": "maclock-screen-bezel/LICENSE",
+          "path": "vendor/macintosh-mini/maclock-screen-bezel/LICENSE",
+          "sha256": "4a044715df1cba62c4c50d26ed55b9e38af86877f5fc563031d616227f1fc9c8",
+          "bytes": 788,
+          "mode": "100644"
+        },
+        {
+          "source": "maclock-screen-bezel/README.md",
+          "path": "vendor/macintosh-mini/maclock-screen-bezel/README.md",
+          "sha256": "be09a94906904d76798c83386deabeeefa8786737faea2f0c8701c4bc4cd8a02",
+          "bytes": 1506,
+          "mode": "100644"
+        },
+        {
+          "source": "maclock-screen-bezel/bezel.py",
+          "path": "vendor/macintosh-mini/maclock-screen-bezel/bezel.py",
+          "sha256": "37293b9da6d0d022202e1bdf86efda64f9c7671f590f0c3edda02eb38aa70b42",
+          "bytes": 2575,
+          "mode": "100644"
+        },
+        {
+          "source": "maclock-screen-bezel/build.sh",
+          "path": "vendor/macintosh-mini/maclock-screen-bezel/build.sh",
+          "sha256": "24394e9d269d3b5ec46345bdea325cdb236730c306fd7f964d5084fd592e72b7",
+          "bytes": 294,
+          "mode": "100755"
+        },
+        {
+          "source": "maclock-screen-bezel/export.py",
+          "path": "vendor/macintosh-mini/maclock-screen-bezel/export.py",
+          "sha256": "7aeeb392874453319850d22331ec8baafec4fb8c6f280339efc67f0a96bdcf2c",
+          "bytes": 679,
+          "mode": "100644"
+        },
+        {
+          "source": "maclock-screen-bezel/maclock-screen-bezel.step",
+          "path": "vendor/macintosh-mini/maclock-screen-bezel/maclock-screen-bezel.step",
+          "sha256": "ebf2e8362370f452b2acbeea05b6902d38235e18eeb0ce9459fb870ad43b1207",
+          "bytes": 259440,
+          "mode": "100644"
+        },
+        {
+          "source": "maclock-screen-bezel/maclock-screen-bezel.stl",
+          "path": "vendor/macintosh-mini/maclock-screen-bezel/maclock-screen-bezel.stl",
+          "sha256": "a769010ca5c75ab379fa600f313369661479fb27605622fd7303f5c1617f4ec9",
+          "bytes": 113884,
+          "mode": "100644"
+        },
+        {
+          "source": "maclock-screen-bezel/params.py",
+          "path": "vendor/macintosh-mini/maclock-screen-bezel/params.py",
+          "sha256": "4e56e598810a4f0963cdda076349430b45ce8a85d46bc32ad3456ad3cc3c6080",
+          "bytes": 3203,
+          "mode": "100644"
+        },
+        {
+          "source": "maclock-screen-bezel/requirements.txt",
+          "path": "vendor/macintosh-mini/maclock-screen-bezel/requirements.txt",
+          "sha256": "7bcb692b7f50572751439b729b21d8ee1019667215d4472eb87f9352ed3199fd",
+          "bytes": 18,
+          "mode": "100644"
+        },
+        {
+          "source": "maclock-screen-bezel/test_bezel.py",
+          "path": "vendor/macintosh-mini/maclock-screen-bezel/test_bezel.py",
+          "sha256": "8e3aad15b393e9c8d406def22ed7d407ce007cb27348b2c2a76d43a542958116",
+          "bytes": 3249,
+          "mode": "100644"
+        }
+      ],
+      "upstream_head_checked_at": "2026-10-20T10:34:09-07:00",
+      "upstream_head_at_check": "56f3c149e440933a6befe86be015a200386dd170"
     },
     {
+      "id": "agentbridge",
       "directory": "sources/agentbridge",
       "url": "https://github.com/SeanFDZ/agentbridge.git",
       "revision": "26b030514620bf4fdcf591c4cf83d9a682eb0722",
       "commit_date": "2026-04-20T08:02:29-05:00",
-      "shallow": true,
-      "clean": true,
-      "executed": false
+      "fetchable": true,
+      "license_note": "GPL-3.0 server; separately licensed classic client omitted",
+      "purpose": "Optional protocol and modern MCP server; not part of the first robot runtime.",
+      "executed": false,
+      "imports": [
+        {
+          "source": "LICENSE",
+          "path": "vendor/agentbridge/LICENSE",
+          "sha256": "3972dc9744f6499f0f9b2dbf76696f2ae7ad8af9b23dde66d6af86c9dfb36986",
+          "bytes": 35149,
+          "mode": "100644"
+        },
+        {
+          "source": "README.md",
+          "path": "vendor/agentbridge/README.md",
+          "sha256": "11885236126b5125ad7d7cb31548904f0846548d714ef46c17fc178213076092",
+          "bytes": 17661,
+          "mode": "100644"
+        },
+        {
+          "source": "agentbridge-protocol-spec.md",
+          "path": "vendor/agentbridge/agentbridge-protocol-spec.md",
+          "sha256": "3cc7d6dbcf4af29c18316beb7bd528dd60be7b274b1aa67164bf476f5b4dd236",
+          "bytes": 14844,
+          "mode": "100644"
+        },
+        {
+          "source": "classic-mac-src/LICENSE",
+          "path": "vendor/agentbridge/classic-mac-src/LICENSE",
+          "sha256": "69b0a6d94bee7992c570019450851829f422fd7045f65f58e1f01ce0897a8eae",
+          "bytes": 5700,
+          "mode": "100644"
+        },
+        {
+          "source": "config/fleet.json",
+          "path": "vendor/agentbridge/config/fleet.json",
+          "sha256": "eff650d5ef1b2ec06cb367a6dd5cf1d8d17c668dcbf9db97ea31f5f96e4e10ad",
+          "bytes": 18,
+          "mode": "100644"
+        },
+        {
+          "source": "package-lock.json",
+          "path": "vendor/agentbridge/package-lock.json",
+          "sha256": "523a875c709c899ce7abeccd76c23a2006f7ff0cfef7a1a71476d8af259ef6a2",
+          "bytes": 57772,
+          "mode": "100644"
+        },
+        {
+          "source": "package.json",
+          "path": "vendor/agentbridge/package.json",
+          "sha256": "7ac91371ee3384b6207dd0734bca54278251554e08734882de7a7b28f7d7f219",
+          "bytes": 1093,
+          "mode": "100644"
+        },
+        {
+          "source": "src/bridge/client.ts",
+          "path": "vendor/agentbridge/src/bridge/client.ts",
+          "sha256": "ee84d77bc6feffeb029b88744b61427f509270ffc1cec365e604a0bea04adddc",
+          "bytes": 9467,
+          "mode": "100644"
+        },
+        {
+          "source": "src/fleet.ts",
+          "path": "vendor/agentbridge/src/fleet.ts",
+          "sha256": "c9ee519de9a261996b435d5039e765d756ac5cef3abb433be5fa495209182865",
+          "bytes": 3055,
+          "mode": "100644"
+        },
+        {
+          "source": "src/server.ts",
+          "path": "vendor/agentbridge/src/server.ts",
+          "sha256": "a29ae90906714052534a302b21e276fb1e3f08c4854bf51c7311ba8d4d757882",
+          "bytes": 33678,
+          "mode": "100644"
+        },
+        {
+          "source": "src/types.ts",
+          "path": "vendor/agentbridge/src/types.ts",
+          "sha256": "b79a514fd536f1b27eb05d5a692198c39be33c3456eb49041916e760c3191972",
+          "bytes": 5233,
+          "mode": "100644"
+        },
+        {
+          "source": "tsconfig.json",
+          "path": "vendor/agentbridge/tsconfig.json",
+          "sha256": "0629a932e580e98c90f16c29e24ae2f4795c11d5b816b53802c1a3e2915c90be",
+          "bytes": 454,
+          "mode": "100644"
+        }
+      ],
+      "upstream_head_checked_at": "2026-10-20T10:34:09-07:00",
+      "upstream_head_at_check": "26b030514620bf4fdcf591c4cf83d9a682eb0722"
+    },
+    {
+      "id": "continuum-hexapod",
+      "directory": "../continuum-hexapod",
+      "url": "https://github.com/Bill-Viking/continuum-hexapod.git",
+      "revision": "0131c35f40a235210bb31c1818e1d9b483547d2f",
+      "commit_date": "2026-08-26T19:16:53-07:00",
+      "fetchable": false,
+      "license_note": "No upstream LICENSE file; Bill-owned local code copied at his request",
+      "purpose": "Memory, brain, validation, mock/simulated hardware, body adapter and tests for adaptation.",
+      "executed": false,
+      "imports": [
+        {
+          "source": "CONTINUUM_HEXAPOD_BUILD.md",
+          "path": "vendor/continuum-hexapod/CONTINUUM_HEXAPOD_BUILD.md",
+          "sha256": "16157dbff74ece44f2219157ccf55160e686d9c19ec0b297656c40427d910f4f",
+          "bytes": 19518,
+          "mode": "100644"
+        },
+        {
+          "source": "CONTINUUM_HEXAPOD_BUILD_updated.md",
+          "path": "vendor/continuum-hexapod/CONTINUUM_HEXAPOD_BUILD_updated.md",
+          "sha256": "18e8b7fc157057c3e52697c28ff09685dfb9d045dc1cfbc0d0e9eacc1d2dadd4",
+          "bytes": 15711,
+          "mode": "100644"
+        },
+        {
+          "source": "CONTINUUM_ROADMAP.md",
+          "path": "vendor/continuum-hexapod/CONTINUUM_ROADMAP.md",
+          "sha256": "06a25508a8bcc877d927a66e636750f89527bb7a26b8ed15ec86363f5f0b218e",
+          "bytes": 4129,
+          "mode": "100644"
+        },
+        {
+          "source": "brain/__init__.py",
+          "path": "vendor/continuum-hexapod/brain/__init__.py",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "bytes": 0,
+          "mode": "100644"
+        },
+        {
+          "source": "brain/brain.py",
+          "path": "vendor/continuum-hexapod/brain/brain.py",
+          "sha256": "40c8a5fd26fd4473bf1f64924da97aaf2c2ec476bbaf15327a8316efe7fc5e9d",
+          "bytes": 8000,
+          "mode": "100644"
+        },
+        {
+          "source": "continuum/__init__.py",
+          "path": "vendor/continuum-hexapod/continuum/__init__.py",
+          "sha256": "3fef4c1c01d81d6a8fb5b845455fe99be136b9c2260d35a5e30f19451e262ea9",
+          "bytes": 192,
+          "mode": "100644"
+        },
+        {
+          "source": "continuum/consolidate.py",
+          "path": "vendor/continuum-hexapod/continuum/consolidate.py",
+          "sha256": "caaa5cee3b1232cdf51735ba5d4964529c18eed8f1af10ce9d092e57f2905701",
+          "bytes": 5327,
+          "mode": "100644"
+        },
+        {
+          "source": "continuum/place_estimate.py",
+          "path": "vendor/continuum-hexapod/continuum/place_estimate.py",
+          "sha256": "c2e6c666a00cf964b3aa0abc3362d087d74194c45cb7580ac12d42184e5d1e00",
+          "bytes": 2543,
+          "mode": "100644"
+        },
+        {
+          "source": "continuum/recall.py",
+          "path": "vendor/continuum-hexapod/continuum/recall.py",
+          "sha256": "1e2769e32ecf44877c359ee37beec41db085f897cd1fef5a64a19f0db63dc28c",
+          "bytes": 2750,
+          "mode": "100644"
+        },
+        {
+          "source": "continuum/scribe.py",
+          "path": "vendor/continuum-hexapod/continuum/scribe.py",
+          "sha256": "10915527b247ffad26a4c85318eaf67d882b476e8ed61a21453d755e5cbb0343",
+          "bytes": 5517,
+          "mode": "100644"
+        },
+        {
+          "source": "continuum/store.py",
+          "path": "vendor/continuum-hexapod/continuum/store.py",
+          "sha256": "8a07246a211eb67fe9fe0edcacff19b069126a6fee6203f8eb0bd279a6066153",
+          "bytes": 2142,
+          "mode": "100644"
+        },
+        {
+          "source": "hand/__init__.py",
+          "path": "vendor/continuum-hexapod/hand/__init__.py",
+          "sha256": "b25b393bab852078fd23f676e1633bce2a502084fa3f0f44b7c3da3b4511f76b",
+          "bytes": 115,
+          "mode": "100644"
+        },
+        {
+          "source": "hand/freenove_hand.py",
+          "path": "vendor/continuum-hexapod/hand/freenove_hand.py",
+          "sha256": "bc8b7a5c9e320d3092beddc480b2dcbe7093866ddec87808e30a92167af943eb",
+          "bytes": 7574,
+          "mode": "100644"
+        },
+        {
+          "source": "hand/hand_interface.py",
+          "path": "vendor/continuum-hexapod/hand/hand_interface.py",
+          "sha256": "73ba0513fec64c9f97315a9f5e6237c80a29648d351e1f5ef743bdbb8a882466",
+          "bytes": 1935,
+          "mode": "100644"
+        },
+        {
+          "source": "hand/mock_hand.py",
+          "path": "vendor/continuum-hexapod/hand/mock_hand.py",
+          "sha256": "466201f21f5b08bf62b47331106c05cd2156b52e6ec682573e111a3bfafc11cd",
+          "bytes": 2476,
+          "mode": "100644"
+        },
+        {
+          "source": "limits.yaml",
+          "path": "vendor/continuum-hexapod/limits.yaml",
+          "sha256": "58dbe7cff8de03657d99ad573f565b9da2d49190372dc3e39073331e6baf17f0",
+          "bytes": 775,
+          "mode": "100644"
+        },
+        {
+          "source": "requirements.txt",
+          "path": "vendor/continuum-hexapod/requirements.txt",
+          "sha256": "f53ac1cc6500e0d3068eb2f6fa25aa0cf406dfb633afd306b3c1da3ae5acd565",
+          "bytes": 251,
+          "mode": "100644"
+        },
+        {
+          "source": "sim/__init__.py",
+          "path": "vendor/continuum-hexapod/sim/__init__.py",
+          "sha256": "591bbfcd5a542612a11b9dec6c139a1ac30ba3d5928ea9e282d8a0a7212b3040",
+          "bytes": 157,
+          "mode": "100644"
+        },
+        {
+          "source": "sim/render.py",
+          "path": "vendor/continuum-hexapod/sim/render.py",
+          "sha256": "0fab1eddb97c33602ac8dcbf553f0b7bfe5b3fa9e4e14549b9b3e2533181fde3",
+          "bytes": 2943,
+          "mode": "100644"
+        },
+        {
+          "source": "sim/run.py",
+          "path": "vendor/continuum-hexapod/sim/run.py",
+          "sha256": "d72aac47c16af7cf2ba130072eeea1d2887b02664181f9f42f63cc01fa48fb94",
+          "bytes": 3269,
+          "mode": "100644"
+        },
+        {
+          "source": "sim/sim_hand.py",
+          "path": "vendor/continuum-hexapod/sim/sim_hand.py",
+          "sha256": "808197c21e91df07a9b927439b203e8975e1d8703884392492429c3a390ccad4",
+          "bytes": 3359,
+          "mode": "100644"
+        },
+        {
+          "source": "sim/world.py",
+          "path": "vendor/continuum-hexapod/sim/world.py",
+          "sha256": "4f2f4bef90fe353e9a5a9c0fac9c7041b03b66d3f6ace7c603a7f82a940729d4",
+          "bytes": 9072,
+          "mode": "100644"
+        },
+        {
+          "source": "spine/__init__.py",
+          "path": "vendor/continuum-hexapod/spine/__init__.py",
+          "sha256": "28e56a145f1da9bbafa7a602f55ea031123ff8b1226e7ca43c8663e162237673",
+          "bytes": 284,
+          "mode": "100644"
+        },
+        {
+          "source": "spine/limits.py",
+          "path": "vendor/continuum-hexapod/spine/limits.py",
+          "sha256": "139ee3acf32b2746245ad816d239458c420761a8007c34ba7a6aa034c514a2f7",
+          "bytes": 2621,
+          "mode": "100644"
+        },
+        {
+          "source": "spine/schema.py",
+          "path": "vendor/continuum-hexapod/spine/schema.py",
+          "sha256": "3a9b41c2f714099caeeda8e417d892cdb744cb8c938ab1d50884180688d393bf",
+          "bytes": 1261,
+          "mode": "100644"
+        },
+        {
+          "source": "spine/spine.py",
+          "path": "vendor/continuum-hexapod/spine/spine.py",
+          "sha256": "1c74780cfbfff3ad21caf0fa314159635e90aea7538bbe8749155d1a26358e4d",
+          "bytes": 7638,
+          "mode": "100644"
+        },
+        {
+          "source": "spine/watchdog.py",
+          "path": "vendor/continuum-hexapod/spine/watchdog.py",
+          "sha256": "4c81c6db26e7fb908717a8110d71ad3419ae687dd735793c88dd3173eef1f47b",
+          "bytes": 2315,
+          "mode": "100644"
+        },
+        {
+          "source": "tests/__init__.py",
+          "path": "vendor/continuum-hexapod/tests/__init__.py",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "bytes": 0,
+          "mode": "100644"
+        },
+        {
+          "source": "tests/conftest.py",
+          "path": "vendor/continuum-hexapod/tests/conftest.py",
+          "sha256": "3143497aa9f7a9294b2348697a86c0cc6ce487617b2e5527435d55d0a5f7792c",
+          "bytes": 1358,
+          "mode": "100644"
+        },
+        {
+          "source": "tests/test_brain.py",
+          "path": "vendor/continuum-hexapod/tests/test_brain.py",
+          "sha256": "168bbca78f4ed2d734446c256a75a7da1f76b62b6f98b380ab6f08bb90dedaf5",
+          "bytes": 5440,
+          "mode": "100644"
+        },
+        {
+          "source": "tests/test_consolidate.py",
+          "path": "vendor/continuum-hexapod/tests/test_consolidate.py",
+          "sha256": "12cf4bfcd241dc988d3fcc2eb64f467fb3ce7de304e446923f538bd8faaa618d",
+          "bytes": 3222,
+          "mode": "100644"
+        },
+        {
+          "source": "tests/test_continuum.py",
+          "path": "vendor/continuum-hexapod/tests/test_continuum.py",
+          "sha256": "6fec5a993d15c8e99a3fb93fb205cf06bc8943b2a3473ff2ab17a98363dbc7d5",
+          "bytes": 4869,
+          "mode": "100644"
+        },
+        {
+          "source": "tests/test_freenove_hand.py",
+          "path": "vendor/continuum-hexapod/tests/test_freenove_hand.py",
+          "sha256": "393f80b1b72049417fe33a8956d2fcbbd2f40fc47773709bf8b6250d335342a8",
+          "bytes": 4905,
+          "mode": "100644"
+        },
+        {
+          "source": "tests/test_http_layer.py",
+          "path": "vendor/continuum-hexapod/tests/test_http_layer.py",
+          "sha256": "71966bc14fa39f24d3fc252231ca219aefb71e0ec92480031b751d4958d8091a",
+          "bytes": 2115,
+          "mode": "100644"
+        },
+        {
+          "source": "tests/test_place_estimate.py",
+          "path": "vendor/continuum-hexapod/tests/test_place_estimate.py",
+          "sha256": "95a33590bf825acfe0a1f4e5f4f9162dd3811ed87b3aff05630a43ef33567c9a",
+          "bytes": 1647,
+          "mode": "100644"
+        },
+        {
+          "source": "tests/test_sim.py",
+          "path": "vendor/continuum-hexapod/tests/test_sim.py",
+          "sha256": "bf0423a1886d2cd523754b4dbc0615d25e1bdf8b52c85330ae2d10b758b25b13",
+          "bytes": 9895,
+          "mode": "100644"
+        },
+        {
+          "source": "tests/test_verifier.py",
+          "path": "vendor/continuum-hexapod/tests/test_verifier.py",
+          "sha256": "996da8fd34bc0b0b1ecaa7535e37be0a28459ddd0fd37942af1318d1434dbd08",
+          "bytes": 6656,
+          "mode": "100644"
+        }
+      ]
     }
   ],
   "existing_local_references": [
     {
-      "directory": "../continuum-hexapod",
-      "revision": "0131c35f40a235210bb31c1818e1d9b483547d2f",
-      "modified_by_this_session": false
-    },
-    {
       "directory": "../Freenove_Big_Hexapod_Robot_Kit_for_Raspberry_Pi",
+      "url": "https://github.com/Freenove/Freenove_Big_Hexapod_Robot_Kit_for_Raspberry_Pi",
       "revision": "35b561a979355e3e16a30784bab02a3aeb8cb5df",
-      "modified_by_this_session": false
+      "modified_by_this_session": false,
+      "imported": false,
+      "reason": "Six-leg vendor hardware reference; no RayCue walking platform selected."
     }
   ]
 }

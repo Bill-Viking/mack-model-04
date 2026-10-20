@@ -1,0 +1,9 @@
+# Preserve upstream bytes and whitespace; do not reformat pinned snapshots.
+vendor/** -text -whitespace
+# Our provenance notes still receive normal whitespace checks.
+vendor/README.md whitespace
+vendor/*/SOURCE.md whitespace
+*.png binary
+*.webp binary
+*.stl binary
+*.step -text

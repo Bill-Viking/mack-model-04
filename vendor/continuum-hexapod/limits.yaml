@@ -1,0 +1,21 @@
+# Continuum Hexapod limit table — THE safety source of truth for action params.
+# Loaded by the Spine at startup. Limits live here and in Spine code only,
+# never in prompts (see CONTINUUM_HEXAPOD_BUILD.md, Safety invariants).
+walk:
+  heading_deg: {min: -180, max: 180}
+  steps: {min: 1, max: 10}
+  speed: {min: 0.2, max: 0.8}
+turn:
+  heading_deg: {min: -180, max: 180}
+look:
+  pan_deg: {min: -80, max: 80}
+  tilt_deg: {min: -30, max: 60}
+posture:
+  stance: {allowed: [normal, high, low]}
+battery:
+  cutoff_v: 6.6   # force sit-and-refuse below this
+  warn_v: 7.0     # warn in /state below this
+reflex:
+  sonar_stop_cm: 12   # obstacle inside this during walk -> immediate stop
+watchdog:
+  timeout_s: 10   # no Brain contact for this long mid-task -> posture(safe) + stop

@@ -1,0 +1,8 @@
+fastapi
+uvicorn
+pydantic>=2
+pyyaml
+pytest
+anthropic          # Brain loop + consolidation model pass (pulls in httpx,
+                   # which hexctl, HTTPSpineClient, and TestClient also use)
+pillow             # sim frame renderer (sim/render.py)

@@ -1,0 +1,15 @@
+subsystem,item,quantity,status,selection_gate,reference
+enclosure,RayCue Macintosh-shaped clock,1,Existing unit; revision unverified,Identify and measure,
+display,2.8-inch DPI LCD candidate,1,Reference only,Fit and pin map,https://www.waveshare.com/2.8inch-dpi-lcd.htm
+compute,Compute board,1,Not selected,Voice/display benchmark and power budget,
+audio,Microphone,1,Not selected,Interface and fit,
+audio,Speaker and amplifier,1,Not selected,Space and audio test,
+power,Compute regulator,,Not selected,Voltage and peak current,
+power,Robot battery and charging/protection,,Not selected,Energy budget and power design,
+motion,Local controller,1,Not selected,Actuator interface and timeout behavior,
+motion,Servos,,Not selected,Joint loads and degrees of freedom,
+mechanical,Joint bearings or bushings,,Not selected,Joint design,
+mechanical,Fasteners and inserts,,Not selected,Measured assembly and CAD,
+mechanical,Printed leg assemblies,4,Accepted visual target,One-leg proof,
+mechanical,Replaceable compliant feet,4,Candidate TPU,Grip and wear test,
+mechanical,Printed mounting base,1,Not designed,Clock measurements and mass budget,
