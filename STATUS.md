@@ -4,6 +4,8 @@
 
 Name ratified by Bill on 2026-10-20: **M.A.C. Model 04** (Mobile Autonomous Computer), everyday name **Mack**. Use the formal name for project titles and the industrial designation; use Mack in conversation and the robot personality. RayCue identifies the donor clock. The existing working folder and RayCue/Research coordination lane remain in place.
 
+On 2026-10-20 Bill asked to create a repository for Mack. Created **Bill-Viking/mack-model-04** on GitHub as a private repository and connected this local repository as its source. Canonical URL: https://github.com/Bill-Viking/mack-model-04. This request supersedes the earlier drive-only transport selection for this project. The committed introduction, concept images, documentation and pinned source library are the initial upload; ignored source checkouts and the loose duplicate PNG remain local.
+
 Bill's target is an intelligent walking companion made from his RayCue Macintosh-shaped alarm clock. It should look and feel like a little Mac with a Mac OS 9-style shell over modern voice, memory and robotics. Real vintage application use is minor and optional. Bill accepted the compact four-leg visual concept on 2026-10-19; the image is a target, not an engineered mechanism.
 
 On 2026-10-20 Bill reattached the exact image and said “this is what I want to build.” Saved that attachment unchanged as concepts/raycue-build-target.png and made it the README hero and visual baseline. Preserve the dominant beige Mac body, compact underside base, four short articulated legs, rounded dark feet, and classic desktop/dialog personality. The original generated image remains separately preserved. This confirms appearance; it does not supply measured dimensions or a validated leg mechanism.
@@ -21,6 +23,7 @@ No integrated Mack runtime, leg CAD or verified electrical design exists yet. Th
 - [x] Find original clock conversion, expanded hardware, emulator and robotics references.
 - [x] Show and save the walking Mac concept; record Bill's acceptance.
 - [x] Adopt M.A.C. Model 04 / Mack and update the introduction and project documentation.
+- [x] Create the private Bill-Viking/mack-model-04 GitHub repository and connect origin.
 - [x] Build the project introduction, architecture, roadmap and reference index.
 - [x] Import selected CAD, PCB, control, bridge and robot source with provenance and notices.
 - [x] Add and verify source-integrity and pinned-checkout restore tools.
@@ -34,7 +37,7 @@ No integrated Mack runtime, leg CAD or verified electrical design exists yet. Th
 
 ## Important
 
-- The parent repository has no remote. The hub selected drive transport on 2026-10-19 (RAY-TX series); its prior RAY-TX-001 snapshot predates this foundation. No new transfer payload is claimed here.
+- Origin is https://github.com/Bill-Viking/mack-model-04.git; keep the repository private unless Bill asks to publish it. Bill's 2026-10-20 repository request supersedes the hub's 2026-10-19 drive transport selection. The hub's carrier registry needs to follow this change; its prior RAY-TX-001 snapshot is historical and predates the foundation. No new transfer payload is claimed here.
 - Full reference clones in sources/ remain ignored separate repositories. The tracked vendor/ subsets travel with the parent. Never push to vendor upstreams.
 - Original M.A.C. Model 04 work has no public license selected. Imports retain their individual licenses. Continuum is Bill-owned local source with no upstream LICENSE at the snapshot; no public redistribution license is asserted. The differently licensed AgentBridge classic client implementation is omitted.
 - Apple ROMs, OS images, chimes and emulator binaries are not in the tracked imports. Keep media, credentials, recordings and memory databases in ignored local storage.
@@ -42,4 +45,4 @@ No integrated Mack runtime, leg CAD or verified electrical design exists yet. Th
 - Imported GPIO button code can shut down Linux or launch emulator/setup commands. Do not run it on this Mac. Imported Freenove geometry/limits are not four-leg Mack settings.
 - SheepShaver supports through 9.0.4; Basilisk II through 8.1. AgentBridge PowerPC is marked builds, untested. Source discrepancies and wiring/power concerns are documented in docs/references.md.
 - Motor limits, timeout behavior and stopping must work independently of desktop and AI. The safe response must be validated for the actual body.
-- No writes to iCloud. No purchase, hardware modification, external publication, or live robot operation occurred.
+- No writes to iCloud. No purchase, hardware modification, public publication, or live robot operation occurred.

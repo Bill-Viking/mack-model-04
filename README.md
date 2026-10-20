@@ -2,6 +2,8 @@
 
 **Mobile Autonomous Computer · “Mack”**
 
+Project repository: [Bill-Viking/mack-model-04](https://github.com/Bill-Viking/mack-model-04) (private).
+
 M.A.C. Model 04, called **Mack**, turns a RayCue Macintosh-shaped alarm clock into an intelligent companion. It keeps the familiar beige enclosure and gives it a classic Mac OS 9-style desktop, a voice, memory, and eventually four small walking legs.
 
 The screen is its way of expressing itself. A conversation can appear in a classic dialog. A remembered detail can become a little note. Listening, thinking, and resting can have their own quiet desktop behaviors. The aim is a robot that feels like a tiny Mac has come to life.
@@ -85,4 +87,4 @@ The local Continuum snapshot is included in Git and does not depend on a second 
 - Review upstream wiring and power circuits against the actual unit.
 - Keep Apple ROMs, OS disk images, credentials, and personal robot memories out of Git.
 
-Original work here has no public license selected yet. Imported material retains its own licenses; see [source notices](vendor/README.md). This local repository currently travels by the project's drive carrier and has no Git remote.
+Original work here has no public license selected yet. Imported material retains its own licenses; see [source notices](vendor/README.md). The project is maintained in the private [mack-model-04 repository](https://github.com/Bill-Viking/mack-model-04).
