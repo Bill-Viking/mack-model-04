@@ -2,6 +2,39 @@
 
 ## Now
 
+HANDOFF CAPTURE (hub button-up 2026-10-19, mechanical — verbatim tail, no model read): codex rollout-2026-10-19T10-43-29-01a15542-e3b4-7723-a847-ad64a8445eba · last message 2026-10-19T11:16:58-07:00
+  the thread's own title: ACT — RayCue/Research: Mac OS 9 and walking robot
+  lane RayCue/Research (the folder's only lane) · ASTRA · 470.9 min ago at the capture
+  the repo, read before this capture: 1 untracked, not carried: ChatGPT Image Oct 19, 2026, 11_03_05 AM.png
+  the last exchange, verbatim:
+  --- [2026-10-19T18:12:52.469Z] USER
+  that's what i wnat ot build.... what kidn of 3d priter woudo I need to make these parts
+
+  --- [2026-10-19T18:13:24.461Z] ASSISTANT
+  **RAYCUE MAC** · `MAC · ASTRA`
+
+  I’ll check which printers and materials fit these parts, including the leg housings, joints, and mounting base.
+
+  --- [2026-10-19T18:15:37.677Z] ASSISTANT
+  A regular filament printer can make the housings and brackets for this. I’d lean toward the Bambu A1 for its larger print area, using PETG for structural prototypes and flexible TPU for the feet. The moving joints would also use purchased motors, bearings, and fasteners.
+
+  --- [2026-10-19T18:16:58.156Z] ASSISTANT
+  **RAYCUE MAC** · `MAC · ASTRA`
+
+  **You need a desktop filament printer—called FDM. My pick for this project would be the Bambu Lab A1.**
+
+  It has automatic calibration, a **256 × 256 × 256 mm printing space**—about 10 inches each way—and supports the three plastics we’d start with. That gives us room to print the legs, mounting base, and covers as separate pieces. [Bambu A1](https://us.store.bambulab.com/products/a1)
+
+  Here’s how I’d make the parts:
+
+  | Part | Starting material |
+  |---|---|
+  | Early shapes and fit checks | **PLA** — easy prototype material |
+  | Beige leg housings, brackets, and base | **PETG** — a practical candidate for mechanical parts |
+  | Black, flexible feet | **TPU** — rubberl …[+1005 chars]
+  this block quotes; it does not explain. A session with a model may upgrade it to plain words (`buttonup.py capture --work-order`).
+
+
 Research started 2026-10-19 on the Mac. Bill wants to turn his RayCue Macintosh-shaped alarm clock into an intelligent robot with a classic Mac OS appearance and personality. Walking is the eventual body goal; real vintage app use is minor. The folder was empty and was not a Git repository at arrival. No existing RayCue memory folder or competing claim was found.
 
 Bill clarified the intended experience on 2026-10-19: a Mac OS 9 shell/wrapper over AI/robotics, then emphasized that app use would be minor and the main attraction is a cool robot that looks and seems to run a Mac OS app. Prioritize robot character, responsive voice/screen interaction and embodiment. Authentic classic app emulation is optional, deferred, and never a prerequisite or primary hardware-selection driver. Do not re-ask this settled priority.
