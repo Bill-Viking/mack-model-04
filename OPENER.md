@@ -1,9 +1,9 @@
 lane: RayCue/Research
-written: 2026-10-20T10:38:11-07:00
+written: 2026-10-20T10:39:54-07:00
 by: ACT — RayCue/Research: Mac OS 9 and walking robot
 on: MAC
-head: d3058f6
-status_updated: 2026-10-20T10:38:11-07:00
+head: d3be53e
+status_updated: 2026-10-20T10:39:54-07:00
 where: Repository foundation and 93 pinned source files ready
 next: machine
 depends_on: exact clock measurements for fitted hardware; software prototype can proceed
@@ -17,7 +17,7 @@ WHERE WE ARE
 
 Bill wants the accepted compact four-leg Mac concept to become an intelligent companion. The classic Mac shell is its visible personality; real vintage apps are optional. Do not re-ask that priority.
 
-1. The concept and original research are saved.
+1. Bill reattached the exact build target on 2026-10-20. It is saved as concepts/raycue-build-target.png and is now the README hero. Use its proportions, four short legs, compact base, dark feet, and classic desktop as the visual baseline. The original concept and research remain saved.
 2. README is now the introduction; architecture, roadmap, hardware intake sheets and software boundaries are written.
 3. vendor/ contains 93 unchanged source files from WonderMac, Macintosh Mini, AgentBridge and Bill's Continuum Hexapod, with license/provenance notes.
 4. Source hashes, seven repository-tool tests, fresh checkout restoration, local document links and CSV structure checks passed. No imported runtime or vendor tests were executed.

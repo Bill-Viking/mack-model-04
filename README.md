@@ -6,9 +6,20 @@ RayCue Mac turns a Macintosh-shaped alarm clock into an intelligent companion. I
 
 The screen is its way of expressing itself. A conversation can appear in a classic dialog. A remembered detail can become a little note. Listening, thinking, and resting can have their own quiet desktop behaviors. The aim is a robot that feels like a tiny Mac has come to life.
 
-![Walking RayCue Mac concept: ivory compact Mac, four short legs, and a classic desktop saying Hello, Bill.](concepts/raycue-walking-mac-v1.png)
+![RayCue build target: ivory compact Mac, four short legs, and a classic desktop saying Hello, Bill.](concepts/raycue-build-target.png)
 
-*Accepted visual direction. This generated image is a design target; it is not a CAD model or proof of a working mechanism.*
+*The exact image Bill supplied and confirmed as the build target on 2026-10-20. It defines the intended appearance; dimensions and mechanisms still require engineering.*
+
+## Visual design target
+
+- The beige compact-Mac enclosure remains the dominant shape, including the screen surround, carry-handle recess, vents, and floppy-slot detail.
+- A compact base sits directly beneath the Mac.
+- Four short articulated legs have rounded beige covers and dark visible joints.
+- Rounded dark feet provide the contact points.
+- The screen shows a classic Mac desktop with a menu bar, icons, and dialogs such as “Hello, Bill.”
+- Personality comes through the desktop, voice, and stance.
+
+Use this image as the baseline for CAD and packaging decisions. Preserve its overall proportions as the actual clock, motors, battery, and joint supports are fitted. Keep the [original generated concept](concepts/raycue-walking-mac-v1.png) for history.
 
 ## What we are building
 
