@@ -37,4 +37,8 @@ LIVE SERVICE AND REPOSITORY
 
 http://127.0.0.1:9844/ is intentionally left running for Bill, unified-exec session 94987. Resolve the current PID before stopping anything. Start Mack.command reopens it; no login automation exists. Keep the browser deliverable. Never stop the shared Ollama service as part of Mack cleanup.
 
-Private origin: https://github.com/Bill-Viking/mack-model-04.git. Vendor imports stay unchanged and attributed. The loose root PNG stays untracked and untouched. No iCloud writes. This chat remains active; do not perform the close ritual until Bill ends the session.
+Origin (public visibility authorized by Bill on 2026-10-21): https://github.com/Bill-Viking/mack-model-04.git. Vendor imports stay unchanged and attributed. The loose root PNG stays untracked and untouched. No iCloud writes. This chat remains active; do not perform the close ritual until Bill ends the session.
+
+PUBLIC DEVELOPMENT
+
+Bill asked for a public GitHub link to share on X. README and docs/build-log.md now introduce the public build and distinguish the visual concept from working software and unbuilt hardware. Keep actual memory databases, credentials and recordings out of every commit. Existing Git history is retained. No X post is authorized or sent by this task.

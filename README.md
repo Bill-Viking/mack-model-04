@@ -2,11 +2,13 @@
 
 **Mobile Autonomous Computer · “Mack”**
 
-Project repository: [Bill-Viking/mack-model-04](https://github.com/Bill-Viking/mack-model-04) (private).
+Project repository: [Bill-Viking/mack-model-04](https://github.com/Bill-Viking/mack-model-04).
 
 M.A.C. Model 04, called **Mack**, is an original personal robot built around the compact Mac form of a RayCue alarm clock. Its own operating environment on Linux brings together a classic Mac OS 9-inspired interface, intelligence, memory, sensors, fitted electronics, and four walking legs. We are engineering those parts as one complete device.
 
 The screen is its way of expressing itself. A conversation can appear in a classic dialog. A remembered detail can become a little note. Listening, thinking, and resting can have their own quiet desktop behaviors. The finished Mack should boot into its own interface, interact with Bill, understand its immediate surroundings, and move within a tested physical envelope. The aim is a robot that feels like a tiny Mac has come to life.
+
+**We’re building Mack in public, from the first concept to a working robot.** The classic desktop, local AI conversation and lasting memory already run on a development Mac. The physical robot is still being engineered. Follow the [build log](docs/build-log.md), [roadmap](docs/roadmap.md) and commit history for progress, experiments and remaining work.
 
 The formal designation has the deliberately industrial tone of an old computing instrument. “04” nods to its four legs. In conversation, it is simply Mack.
 
@@ -20,7 +22,7 @@ The formal designation has the deliberately industrial tone of an old computing 
 
 ![Mack build target: ivory compact Mac, four short legs, and a classic desktop saying Hello, Bill.](concepts/raycue-build-target.png)
 
-*The exact image Bill supplied and confirmed as the build target on 2026-10-20. It defines the intended appearance; dimensions and mechanisms still require engineering.*
+*Concept rendering, not a photograph of completed hardware. This is the exact image confirmed as the build target on 2026-10-20. Dimensions and mechanisms still require engineering.*
 
 ## Try Mack on your Mac
 
@@ -69,6 +71,7 @@ The desktop, local AI conversation and durable memory run on the host Mac. The r
 
 | Read | What it contains |
 | --- | --- |
+| [Build log](docs/build-log.md) | The project’s progress from the first concept onward. |
 | [Product definition](docs/product-spec.md) | Agreed vision, original system on Linux, and evidence required for completion. |
 | [Model strategy](docs/model-strategy.md) | Current candidates, downloadable upgrades, memory ownership and proposed project services. |
 | [Architecture](docs/architecture.md) | Screen, AI, memory, and motion boundaries. |
@@ -101,4 +104,4 @@ The local Continuum snapshot is included in Git and does not depend on a second 
 - Review upstream wiring and power circuits against the actual unit.
 - Keep Apple ROMs, OS disk images, credentials, and personal robot memories out of Git.
 
-Original work here has no public license selected yet. Imported material retains its own licenses; see [source notices](vendor/README.md). The project is maintained in the private [mack-model-04 repository](https://github.com/Bill-Viking/mack-model-04).
+Original work here has no public license selected yet. Imported material retains its own licenses; see [source notices](vendor/README.md). The project is maintained in the public [mack-model-04 repository](https://github.com/Bill-Viking/mack-model-04).

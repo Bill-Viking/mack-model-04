@@ -2,6 +2,8 @@
 
 ## Now
 
+2026-10-21: Bill explicitly asked to let the public follow Mack from start to finish and to share its GitHub link on X. Publication is authorized. Prepared a public introduction and docs/build-log.md, with concept-versus-built status clearly labeled. Reviewed tracked files and 194 unique text objects across the existing Git history for common credential patterns and private runtime files; no matches were found. Normal Git author metadata remains part of the history. Runtime memory and credentials remain excluded. Verify anonymous access after changing visibility.
+
 2026-10-21: **Mack Local AI 0.2 runs at http://127.0.0.1:9844/**. The original desktop now connects to real local Ollama inference, initially Qwen3.6:35b on Bill’s M2 Max / 64 GiB Mac. No new model download or cloud credential was required. Explicit Remember commands and the Memories editor persist facts in SQLite. Edits, recoverable Trash, bounded recent conversation, legacy-browser import, installed-model selection and digest-change checks are implemented. Facts remain independent of model weights. Model output has no tool, file, camera or motor authority.
 
 Bill selected the deployment direction: **as self-contained as possible, no-network operation with an onboard local model, and optional cloud/frontier APIs for harder tasks**. The finished robot should keep memory and body control locally. A home inference server is optional. docs/model-strategy.md records current model research, Meta Muse Spark 1.3’s hosted availability versus future open weights, downloadable candidates, staged upgrades, and proposed Continuum/Terrarium/Exocortex service boundaries. Those projects were inspected read-only; no service bridge is enabled. Continuum semantic expansion stays off; Terrarium’s recorded outward-export boundary is preserved.
@@ -59,7 +61,7 @@ The host desktop, local AI and durable-memory runtime are implemented; no body r
 
 ## Important
 
-- Origin is https://github.com/Bill-Viking/mack-model-04.git; keep the repository private unless Bill asks to publish it. The hub confirmed its carrier registry now uses GitHub in mail pm-356c0eafa137 on 2026-10-20. Its prior RAY-TX-001 snapshot is historical and predates the foundation. No new transfer payload is claimed here.
+- Origin is https://github.com/Bill-Viking/mack-model-04.git; Bill authorized public visibility on 2026-10-21 so development can be followed from start to finish. The hub confirmed its carrier registry now uses GitHub in mail pm-356c0eafa137 on 2026-10-20. Its prior RAY-TX-001 snapshot is historical and predates the foundation. No new transfer payload is claimed here.
 - Where things live: software/desktop/ is the UI; software/mack/runtime.py is the local AI/memory service; tools/serve_desktop.py and Start Mack.command launch it. runtime/mack/memory.sqlite3 stores personal facts and history outside Git. Browser preferences use mack.desktop.preferences.v2; legacy mack.desktop.v1 notes are imported without overwriting originals. docs/images/mack-local-ai.jpg is the new UI screenshot; the older preview image remains historical.
 - Full reference clones in sources/ remain ignored separate repositories. The tracked vendor/ subsets travel with the parent. Never push to vendor upstreams.
 - Original M.A.C. Model 04 work has no public license selected. Imports retain their individual licenses. Continuum is Bill-owned local source with no upstream LICENSE at the snapshot; no public redistribution license is asserted. The differently licensed AgentBridge classic client implementation is omitted.
@@ -68,4 +70,4 @@ The host desktop, local AI and durable-memory runtime are implemented; no body r
 - Imported GPIO button code can shut down Linux or launch emulator/setup commands. Do not run it on this Mac. Imported Freenove geometry/limits are not four-leg Mack settings.
 - SheepShaver supports through 9.0.4; Basilisk II through 8.1. AgentBridge PowerPC is marked builds, untested. Source discrepancies and wiring/power concerns are documented in docs/references.md.
 - Motor limits, timeout behavior and stopping must work independently of desktop and AI. The safe response must be validated for the actual body.
-- No writes to iCloud. No purchase, hardware modification, public publication, or live robot operation occurred.
+- No writes to iCloud. Public repository publication is authorized for this turn. No purchase, hardware modification or live robot operation occurred.
