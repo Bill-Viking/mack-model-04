@@ -2,7 +2,7 @@ lane: RayCue/Research
 written: 2026-10-21T14:16:17-07:00
 by: ACT — RayCue/Research: Mac OS 9 and walking robot
 on: MAC
-head: feature checkpoint based on 09f3059; read Git for the resulting commit
+head: 52eeed7 (local listening and conversation archive; pushed and remote verified)
 status_updated: 2026-10-21T14:16:17-07:00
 where: Local listening and archive implemented; Chrome switched from Bose to built-in microphone for Bill’s live test
 next: machine
@@ -40,7 +40,7 @@ Local Qwen3-ASR-0.6B-8bit is installed under runtime/listening/ and connected to
 
 63 Python + 21 JS checks pass. OS-scoped offline tests passed for transcription, exact approved synthesis, and isolated Qwen3.6 archive recall after restart. See software/mack/LISTENING.md for model revision, setup, timings and limits. The shared Ollama service was untouched.
 
-Bill says his microphone did not work. Chrome permission is allowed; changed its input from Bose NC 700 UC backup to MacBook Pro Microphone (Built-in), explicitly requested by Bill. Chrome spoken replies are now on. Await Bill's real result; typed messages and a model saying it heard him are not microphone evidence. IAB microphone startup timed out. Production Chrome tab 1005073246 at port9844 is the trial; preserve it. Final input-device-name/status and honest-input instructions are now live after idle restart/reload. QA server port9845 is stopped; temporary QA tab9 can close. The actual input blocker is now identified: AppleClamshellState=Yes, so the MacBook built-in microphone is physically disconnected by the closed lid. Studio Display Microphone is available. Await Bill’s choice to switch to it or open the lid, then verify real spoken input and audible reply.
+Bill says his microphone did not work. Chrome permission is allowed; changed its input from Bose NC 700 UC backup to MacBook Pro Microphone (Built-in), explicitly requested by Bill. Chrome spoken replies are now on. Await Bill's real result; typed messages and a model saying it heard him are not microphone evidence. IAB microphone startup timed out. Production Chrome tab 1005073246 at port9844 is the trial; preserve it. Final input-device-name/status and honest-input instructions are now live after idle restart/reload. QA server port9845 is stopped and temporary QA tab9 is closed. The actual input blocker is now identified: AppleClamshellState=Yes, so the MacBook built-in microphone is physically disconnected by the closed lid. Studio Display Microphone is available. Await Bill’s choice to switch to it or open the lid, then verify real spoken input and audible reply.
 
 NEXT PRODUCT WORK
 
