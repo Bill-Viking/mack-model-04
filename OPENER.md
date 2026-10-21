@@ -1,10 +1,10 @@
 lane: RayCue/Research
-written: 2026-10-21T13:26:54-07:00
+written: 2026-10-21T14:16:17-07:00
 by: ACT — RayCue/Research: Mac OS 9 and walking robot
 on: MAC
-head: d19096c (approved voice v1; parent of publication receipt checkpoint)
-status_updated: 2026-10-21T13:26:54-07:00
-where: Bill accepted the light-echo audition; Mack voice v1 is pinned, preserved and selected
+head: feature checkpoint based on 09f3059; read Git for the resulting commit
+status_updated: 2026-10-21T14:16:17-07:00
+where: Local listening and archive implemented; Chrome switched from Bose to built-in microphone for Bill’s live test
 next: machine
 depends_on: onboard measurements for hardware; configured provider for optional cloud use
 open_in: /Users/bill/Projects/RayCue Mac · existing RayCue/Research chat
@@ -26,13 +26,21 @@ Bill has accepted the sound. Preserve voice v1 while progressing toward full off
 
 LIVE SERVICE
 
-http://127.0.0.1:9844/ stays running for Bill, unified-exec session 62026. Resolve the current PID before any process action. The isolated voice QA server has been stopped. Never stop the shared Ollama service.
+http://127.0.0.1:9844/ stays running for Bill, unified-exec session 69302. Resolve the current PID before any process action. The isolated voice QA server has been stopped. Never stop the shared Ollama service.
 
 PRIVATE LOCAL ASSETS
 
 runtime/mack/memory.sqlite3 contains personal memory/history. runtime/voice/config.json points to a hash-checked WAV and fixed local model. runtime/voice/auditions/mack-first-hello.wav is the dry audition (6.08 seconds); mack-film-study.wav is the second (6.25 seconds, actual API generation 4.6 seconds). Original reference and provenance are in private-media/sal-reference/. A content-addressed copy is in private-media/voice-reference/. The accepted baseline is runtime/voice/approved/mack-voice-v1/audition.wav (SHA256 6192f95cd23edf174d3451619cfc6f1647e5e6ec0e3a1f85f8f84c0b5164a1fb), alongside reference/transcript/configuration copies. verification.wav is a later identical test output; the original accepted sample was not replaced. Neither media, transcripts, weights nor databases belong in Git. Generated speech jobs use temporary directories that are removed after the request.
 
-Voice synthesis uses offline model-loading flags and no cloud fallback. Fully disconnected reboot, local microphone input, streaming, warm-model optimization and Linux/onboard qualification remain open. A private Whisper Tiny spot check hallucinated repetitions over silence; it is not an accepted evaluator or connected speech-input feature.
+Voice synthesis uses offline model-loading flags and no cloud fallback. Local input is implemented and OS-scoped offline tests pass. Bill’s live microphone acceptance, disconnected reboot, streaming, warm-model optimization and Linux/onboard qualification remain open. A private Whisper Tiny spot check hallucinated repetitions over silence; it is not an accepted evaluator or connected speech-input feature.
+
+LOCAL LISTENING — CURRENT TURN
+
+Local Qwen3-ASR-0.6B-8bit is installed under runtime/listening/ and connected to Talk to Mack → Finish & send → local model → approved voice. The old online browser dictation path is removed. Recordings are temporary, at most 60 seconds; cancellation/timeout releases tracks/processes. Conversation archive is durable, searchable and recoverable, with schema-2 migration preserving old records. New Conversation no longer deletes history. AI recall is bounded word matching with the existing fact-edit boundary.
+
+63 Python + 21 JS checks pass. OS-scoped offline tests passed for transcription, exact approved synthesis, and isolated Qwen3.6 archive recall after restart. See software/mack/LISTENING.md for model revision, setup, timings and limits. The shared Ollama service was untouched.
+
+Bill says his microphone did not work. Chrome permission is allowed; changed its input from Bose NC 700 UC backup to MacBook Pro Microphone (Built-in), explicitly requested by Bill. Chrome spoken replies are now on. Await Bill's real result; typed messages and a model saying it heard him are not microphone evidence. IAB microphone startup timed out. Production Chrome tab 1005073246 at port9844 is the trial; preserve it. Final input-device-name/status and honest-input instructions are now live after idle restart/reload. QA server port9845 is stopped; temporary QA tab9 can close. The actual input blocker is now identified: AppleClamshellState=Yes, so the MacBook built-in microphone is physically disconnected by the closed lid. Studio Display Microphone is available. Await Bill’s choice to switch to it or open the lid, then verify real spoken input and audible reply.
 
 NEXT PRODUCT WORK
 

@@ -1,6 +1,6 @@
 # M.A.C. Model 04 — system architecture
 
-Bill confirmed Mack's own complete system on Linux on 2026-10-20. This is the proposed implementation architecture for the [product definition](product-spec.md). The host desktop, local conversation adapter and durable memory service are implemented in 0.2; physical and cross-project services remain proposed.
+Bill confirmed Mack's own complete system on Linux on 2026-10-20. This is the proposed implementation architecture for the [product definition](product-spec.md). The host desktop, local conversation adapter and durable memory service are implemented in 0.3; physical and cross-project services remain proposed.
 
 ## System boundary
 
@@ -33,7 +33,7 @@ The body controller checks locally enforceable limits regardless of conversation
 | --- | --- | --- |
 | Desktop | Classic menus, windows, personality, conversation, memory and device controls. | Working original browser interface with real local AI replies, a memory editor and labeled expression previews. |
 | Mack runtime | Own current device state, coordinate services, expose a narrow local interface to the desktop, and record action outcomes. | Local HTTP API, serialized conversation/memory changes, cancellation and honest failures; body coordination remains proposed. |
-| Voice and AI | Speech input/output, cancellation, conversation and bounded behavior proposals. | Local Ollama text inference and browser speech output. Opt-in browser dictation UI; transcription still needs end-to-end testing. |
+| Voice and AI | Speech input/output, cancellation, conversation and bounded behavior proposals. | Local Qwen3-ASR input, Ollama inference and approved reference speech output on the Mac; hardware qualification remains open. |
 | Memory | Durable facts, provenance, corrections, retention, export, and recovery. | Local SQLite facts and bounded history, explicit edits/Trash, legacy migration, restart tests. Automated backups and Continuum integration remain open. |
 | Perception | Convert sensor data into timestamped observations with validity/health; retain raw versus inferred distinctions. | Proposed. |
 | Motion supervisor | Validate requested behavior against current operating mode, freshness and qualified body capabilities. | Proposed; upstream reference code is not integrated. |
@@ -112,11 +112,11 @@ Buildroot is one candidate for a later tailored image: its official manual descr
 
 The desktop renders service events rather than guessing success from a timer. Listening means capture is active; speaking means playback is active; a disconnected provider produces a visible unavailable state. Demo expressions continue to say preview.
 
-Proposed data path: microphone → speech recognition → runtime → conversation adapter → text response → speech output. A user interruption cancels pending inference/playback. A separate validated action request may accompany a response; generated text cannot write servo angles, launch shell commands, or declare that a movement completed.
+Implemented host path: click-to-talk microphone → local Qwen3-ASR → runtime and archive recall → local Ollama → saved text response → approved local speech output. A user interruption cancels pending inference/playback. A separate validated action request may accompany a response; generated text cannot write servo angles, launch shell commands, or declare that a movement completed.
 
-Keep durable memory on the device, with explicit save/correct/remove behavior and recovery tests. Conversation history and longer-term remembered facts have distinct retention rules. Qwen3.6:35b through local Ollama is the first live adapter. Facts and history live in the ignored runtime/mack/ database; only preferences remain browser-local. Cloud routing, always-listening behavior and camera recording are not configured. Browser dictation is separately opt-in and may use the browser vendor’s online service. See the [model strategy](model-strategy.md) for implemented boundaries and proposed upgrades/project adapters.
+Keep durable memory on the device, with explicit save/correct/remove behavior and recovery tests. Conversation history and longer-term remembered facts have distinct retention rules. Qwen3.6:35b through local Ollama is the first live adapter. Facts and history live in the ignored runtime/mack/ database; only preferences remain browser-local. Cloud routing, always-listening behavior and camera recording are not configured. Microphone recordings are temporary; local recognition replaces browser dictation. Completed conversations stay in a searchable archive with recoverable Trash. See the [model strategy](model-strategy.md) for implemented boundaries and proposed upgrades/project adapters.
 
-Self-contained means onboard compute and control. Fully offline conversation remains an inference benchmark and model-selection question. Network loss must preserve local state, memory access, and the body's stopping behavior even if conversation becomes unavailable.
+Self-contained means onboard compute and control. Process-scoped tests with internet access denied passed for Mac speech, local conversation and recall; a cold disconnected boot and onboard qualification remain open. Network loss must preserve local state, memory access, and the body's stopping behavior even if conversation becomes unavailable.
 
 ## Proposed software/body contract
 

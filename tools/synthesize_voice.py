@@ -10,10 +10,12 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / 'software'))
 from mack.voice_profile import load_profile, validate_profile
+from mack.offline import deny_network
 
 # No model downloads, telemetry or online fallback during speech generation.
 os.environ.update(HF_HUB_OFFLINE='1', TRANSFORMERS_OFFLINE='1',
                   HF_HUB_DISABLE_TELEMETRY='1', DO_NOT_TRACK='1')
+deny_network()
 
 
 def main():

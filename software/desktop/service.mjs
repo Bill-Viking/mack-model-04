@@ -35,3 +35,13 @@ export async function speechAudio(body, signal) {
   if (!response.headers.get('Content-Type')?.startsWith('audio/wav')) throw new Error('Local voice returned unreadable audio.');
   return response.blob();
 }
+
+export async function transcribeAudio(audio, id, signal) {
+  const response=await fetch('/api/listening/transcribe',{
+    method:'POST',cache:'no-store',signal,
+    headers:{'Content-Type':'audio/wav','X-Mack-Token':token,'X-Mack-Request-Id':id},body:audio
+  });
+  const data=await response.json();
+  if(!response.ok)throw new Error(data.error||'Local transcription failed.');
+  return data;
+}

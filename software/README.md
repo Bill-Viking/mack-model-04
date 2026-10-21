@@ -7,14 +7,14 @@ Bill confirmed **Mack's own complete system on Linux** on 2026-10-20. The deskto
 | Component | Responsibility | Starting material |
 | --- | --- | --- |
 | Classic shell | Working menus, windows, real conversation, memory editing, and expression previews. | [Original desktop implementation](desktop/). |
-| Voice/conversation | Local Ollama inference, local browser speech output, and opt-in browser dictation UI. | [Local runtime](mack/runtime.py); Qwen3.6:35b is the initial installed model. |
-| Memory adapter | Explicit SQLite facts, edits/Trash and bounded retrieval. Continuum bridge remains proposed. | [Local runtime](mack/runtime.py); [Continuum reference](../vendor/continuum-hexapod/continuum/). |
+| Voice/conversation | Local Qwen3-ASR input, Ollama inference and approved reference speech output. | [Local runtime](mack/runtime.py); Qwen3.6:35b is the initial installed model. |
+| Memory adapter | SQLite conversation archive and explicit facts, edits/Trash and bounded retrieval. Continuum bridge remains proposed. | [Local runtime](mack/runtime.py); [Continuum reference](../vendor/continuum-hexapod/continuum/). |
 | Motion supervisor | Validate bounded requests; default to mock hardware. | [Continuum spine](../vendor/continuum-hexapod/spine/) and tests. |
 | Mack body adapter | Implement this body's controller commands and geometry. | [Interface reference](../vendor/continuum-hexapod/hand/hand_interface.py). |
 | Clock controls | Dial/button events and brightness. | [Macintosh Mini controls](../vendor/macintosh-mini/maclock-build/), after GPIO review. |
 | Optional legacy bridge | Shared-folder connection to a guest Mac. | [AgentBridge server](../vendor/agentbridge/src/) and protocol; deferred. |
 
-Real conversation and lasting memories now work on the host through Mack Local AI 0.2. Facts and the last 40 exchanges persist independently of model weights; only explicit Remember requests or the memory editor create facts. The next work covers the mock body contract, spoken-input verification and measured model evaluation. Read the [model and service strategy](../docs/model-strategy.md) for upgrade and cross-project boundaries. No live motor driver or cross-project bridge is implied by this host prototype.
+Real conversation and lasting memories now work on the host through Mack Local AI 0.3. Facts and all completed exchanges persist independently of model weights; only explicit Remember requests or the memory editor create facts. The next work covers the mock body contract, everyday spoken-input trials and measured model evaluation. Read the [model and service strategy](../docs/model-strategy.md) for upgrade and cross-project boundaries. No live motor driver or cross-project bridge is implied by this host prototype.
 
 The [Continuum tests](../vendor/continuum-hexapod/tests/) cover memory, validation, mock hardware, and simulation. They are retained at the same source revision and have not been run for this import. Its requirements are upstream's, not a Mack dependency lock.
 

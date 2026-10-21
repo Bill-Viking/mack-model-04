@@ -105,14 +105,34 @@ No pitch, inflection or echo setting changed during this lock. Future voice
 versions should be compared with this baseline. Voice acceptance is now recorded;
 full offline and onboard qualification remain separate work.
 
+## 2026-10-21 — Local listening and a conversation archive
+
+Connected click-to-talk audio to a pinned local Qwen3-ASR model. Mack releases the
+microphone before transcription, answers through local Qwen3.6:35b, and speaks
+in approved voice v1. Added recording level/time, cancellation, permission timeout,
+optional transcript review and honest recognition errors. Removed online browser
+dictation. Recordings are temporary; completed conversations are retained locally.
+
+Replaced the 40-exchange retention cap with a searchable archive. New Conversation
+starts a new visible session while preserving history. Recall uses bounded excerpts
+and a read-only search tool; individual exchanges have recoverable Trash. Existing
+facts, settings and history survived the schema migration.
+
+Recognition and approved synthesis passed with outbound networking denied. An
+isolated Qwen3.6 runtime recalled archived details after restart with internet access
+denied except loopback, then spoke the answer. The approved greeting remained
+byte-identical. See [local listening setup and evidence](../software/mack/LISTENING.md)
+for timings, scope and limitations. Disconnected reboot, noisy-room accuracy and
+onboard performance are still separate qualification work.
+
 ## What comes next
 
-- Qualify fully local speech input and the explicit offline/assisted modes.
+- Trial everyday microphone use, disconnected reboot and the future assisted mode.
 - Evaluate models on memory accuracy, response time and actual compute requirements.
 - Implement the simulated body contract before live motion.
 - Measure the donor clock and develop the packaging, mass and power budgets.
 - Engineer and test one loaded leg, then the four-leg base and integrated robot.
 
-Cloud providers, automatic model downloads, Continuum/Terrarium/Exocortex connections, sensors, motors and a bootable Mack Linux image are future work. Browser dictation is opt-in and may use an online service; microphone transcription has not yet been verified end to end.
+Cloud providers, automatic model downloads, Continuum/Terrarium/Exocortex connections, sensors, motors and a bootable Mack Linux image are future work. Microphone permission is browser-specific; an embedded browser may need a Chrome or Safari fallback.
 
 The [roadmap](roadmap.md) and [product requirements](product-spec.md) define what each stage must demonstrate. The [model strategy](model-strategy.md) covers replaceable models and proposed services. The [reference index](references.md) credits the projects this work builds on.

@@ -43,7 +43,7 @@ Define the future modes explicitly:
 - **Offline:** no non-loopback requests from Mack’s services, no remote fallback, local speech recognition and synthesis, downloaded local inference, persistent memory, and locally enforced body behavior. A network-disconnect boot/conversation/recall/stop test must pass before the device earns this claim.
 - **Assisted:** local remains available; an approved task can use a configured cloud provider with scoped context, visible routing, budget limits and an understandable failure path. Failed cloud inference may offer a local retry without changing memories or expanding permissions. Never silently upload a full memory database.
 
-This release uses local Mac inference only. It has no network exposure, cloud fallback or autonomous tool execution. Browser dictation is a separate opt-in feature whose browser vendor may process audio online; leave it off for the current local-only trial. Fully offline speech recognition, an enforced mode switch and the cloud adapter remain to be built. No hardware-level air-gap test has been performed.
+This release uses local Mac inference, Qwen3-ASR speech input and approved local speech output. Speech workers load cached models with networking disabled; the desktop has no browser dictation or cloud fallback. Process-scoped OS-denied-network tests passed for recognition, Qwen3.6:35b recall after a runtime restart, and approved synthesis. A physical disconnected reboot remains untested. See [listening evidence](../software/mack/LISTENING.md). Optional assisted routing remains future work.
 
 ## Downloading better models without losing Mack
 
@@ -57,7 +57,7 @@ Planned update pipeline:
 4. Select the candidate explicitly only after it passes; keep the previous artifact and configuration available for rollback. Do not automatically accept a tag update.
 5. Treat embedding changes as a separate index migration. Preserve source records and provenance; rebuild and validate the index without rewriting personal facts.
 
-Automatic download, evaluation-driven promotion, signed manifests and one-click rollback are **not implemented** in 0.2. Installed-model switching and digest checks are implemented.
+Automatic download, evaluation-driven promotion, signed manifests and one-click rollback are **not implemented** in 0.3. Installed-model switching and digest checks are implemented.
 
 ## Continuum, Terrarium and Exocortex
 
@@ -72,10 +72,10 @@ These are proposed services with distinct ownership. No existing project or priv
 
 A shared future envelope should carry `source`, `record_id`, `revision`, `observed_at`, `scope`, `kind` (real/simulated), `provenance`, and deletion/correction status. A service adapter must report unavailable/stale data honestly. All outward actions remain independently governed. The API shapes and adapters still need implementation and tests.
 
-## What lasting memory means in 0.2
+## What lasting memory means in 0.3
 
 Memories are explicit user-saved facts in SQLite, independent of model weights. The model does not autonomously decide what becomes permanent. The user can inspect, correct, trash and restore them. The most relevant six notes are selected by deterministic word overlap; this is a limited baseline, not Continuum’s governed retrieval or semantic recall. Corrections and removals exclude older conversation context from the next prompt to prevent the obvious stale-fact path.
 
-The last 40 completed exchanges persist for continuity; only the latest four since a memory change enter the next prompt. New Conversation clears those exchanges while retaining facts. Trash is recoverable storage, not secure erasure, and is excluded from inference. Backups and original browser records may still contain previous values. The database has owner-only file permissions and is ignored by Git; encryption and automated backups are not supplied by this release.
+All completed exchanges persist in a searchable local archive. The current chat displays up to 40; New Conversation starts a fresh visible session without deleting history. AI context includes up to four recent exchanges and four retrieved archived excerpts, plus six fact excerpts. Retrieval uses word matching with a recent fallback, not a semantic memory engine. A curated fact change conservatively excludes earlier dialogue from AI retrieval; the archive UI still shows it. Conversation Trash is recoverable and excluded from recall, independently of curated facts. Backups and original browser records may retain previous values. The database has owner-only file permissions and is ignored by Git; encryption and automated backups are not supplied.
 
 Keep `runtime/mack/` backed up with Mack’s server stopped. Restore into a separate `--data-dir` first and verify before replacing a working copy. Unknown database schema versions are refused without migration or overwrite. Model downtime does not prevent inspecting or explicitly saving facts.

@@ -17,6 +17,7 @@ ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / 'software'))
 from mack.runtime import MackError, Runtime
 from mack.voice import VoiceService
+from mack.listening import ListeningService, MAX_BYTES
 DESKTOP = ROOT / 'software' / 'desktop'
 IDENTITY = hashlib.sha256(str(ROOT).encode()).hexdigest()[:16]
 ASSETS = {
@@ -27,6 +28,8 @@ ASSETS = {
     '/model.mjs': ('model.mjs', 'text/javascript; charset=utf-8'),
     '/service.mjs': ('service.mjs', 'text/javascript; charset=utf-8'),
     '/voice.mjs': ('voice.mjs', 'text/javascript; charset=utf-8'),
+    '/listening.mjs': ('listening.mjs', 'text/javascript; charset=utf-8'),
+    '/microphone-worklet.js': ('microphone-worklet.js', 'text/javascript; charset=utf-8'),
 }
 
 
@@ -38,7 +41,14 @@ class Handler(BaseHTTPRequestHandler):
         if self.headers.get('Origin') not in (None, *('http://' + h for h in hosts)):
             return False
         if self.headers.get('Sec-Fetch-Site') == 'cross-site':
-            return False
+            # A link may open the public shell. Cross-site API and asset reads
+            # remain forbidden, including bootstrap's private state and token.
+            navigation = (not token and self.command == 'GET'
+                          and urlsplit(self.path).path in ('/', '/index.html')
+                          and self.headers.get('Sec-Fetch-Mode') == 'navigate'
+                          and self.headers.get('Sec-Fetch-Dest') == 'document')
+            if not navigation:
+                return False
         return not token or secrets.compare_digest(self.headers.get('X-Mack-Token', ''), getattr(self.server, 'token', 'unavailable'))
 
     def json_response(self, payload, code=200, head=False):
@@ -79,11 +89,13 @@ class Handler(BaseHTTPRequestHandler):
                     return self.json_response(self.server.runtime.health(), head=head_only)
                 if path == '/api/voice/status':
                     return self.json_response(self.server.voice.status(), head=head_only)
+                if path == '/api/listening/status':
+                    return self.json_response(self.server.listening.status(), head=head_only)
                 return self.json_response({'error': 'Unknown Mack service.'}, 404, head_only)
             except (sqlite3.Error, OSError):
                 return self.json_response({'error': 'Memory storage is unavailable. Existing data has been kept.'}, 503, head_only)
         if path == '/__mack__':
-            data = json.dumps({'app': 'mack-desktop', 'version': '0.2', 'identity': IDENTITY}).encode()
+            data = json.dumps({'app': 'mack-desktop', 'version': '0.3', 'identity': IDENTITY}).encode()
             kind = 'application/json'
         elif path in ASSETS:
             name, kind = ASSETS[path]
@@ -109,10 +121,20 @@ class Handler(BaseHTTPRequestHandler):
     def do_POST(self):
         if not self.allowed(token=True):
             return self.json_response({'error': 'Reload Mack to reconnect.'}, 403)
-        if self.headers.get('Content-Type', '').split(';')[0] != 'application/json':
-            return self.json_response({'error': 'JSON required.'}, 415)
         try:
+            path = urlsplit(self.path).path
             length = int(self.headers.get('Content-Length', '0'))
+            if path == '/api/listening/transcribe':
+                if not 44 < length <= MAX_BYTES:
+                    raise MackError('Recording is empty or exceeds 60 seconds.', 413)
+                if self.headers.get('Content-Type') != 'audio/wav':
+                    raise MackError('Expected local WAV audio.', 415)
+                audio = self.rfile.read(length)
+                if len(audio) != length:
+                    raise MackError('Recording upload was interrupted.')
+                return self.json_response(self.server.listening.transcribe(audio, self.headers.get('X-Mack-Request-Id')))
+            if self.headers.get('Content-Type', '').split(';')[0] != 'application/json':
+                return self.json_response({'error': 'JSON required.'}, 415)
             if not 0 < length <= 500_000:
                 raise MackError('Request is empty or too large.', 413)
             payload = json.loads(self.rfile.read(length))
@@ -120,6 +142,11 @@ class Handler(BaseHTTPRequestHandler):
                 raise MackError('A JSON object is required.')
             runtime = self.server.runtime
             path = urlsplit(self.path).path
+            if path == '/api/listening/cancel':
+                self.server.listening.cancel(payload.get('id'))
+                return self.json_response({'ok': True})
+            if path == '/api/conversation/search':
+                return self.json_response({'exchanges': runtime.store.conversations(payload.get('query', ''), payload.get('offset', 0), payload.get('trashed', False))})
             if path == '/api/voice/speak':
                 audio, seconds = self.server.voice.synthesize(payload)
                 self.send_response(200)
@@ -152,6 +179,8 @@ class Handler(BaseHTTPRequestHandler):
                 runtime.select(payload.get('model'))
             elif path == '/api/conversation/new':
                 runtime.change(runtime.store.new_conversation)
+            elif path == '/api/conversation/move':
+                runtime.change(runtime.store.move_conversation, payload.get('id'), payload.get('trashed'))
             else:
                 raise MackError('Unknown Mack service.', 404)
             return self.json_response(runtime.store.snapshot())
@@ -170,7 +199,7 @@ def running_mack(url):
     try:
         with urllib.request.urlopen(url + '__mack__', timeout=1) as response:
             payload = json.load(response)
-            return payload.get('app') == 'mack-desktop' and payload.get('identity') == IDENTITY and payload.get('version') == '0.2'
+            return payload.get('app') == 'mack-desktop' and payload.get('identity') == IDENTITY and payload.get('version') == '0.3'
     except (OSError, ValueError, urllib.error.URLError):
         return False
 
@@ -198,7 +227,9 @@ def main():
     url = 'http://127.0.0.1:' + str(server.server_port) + '/'
     server.runtime = Runtime(args.data_dir)
     server.voice = VoiceService(ROOT)
+    server.listening = ListeningService(ROOT)
     server.runtime.voice_status = server.voice.status
+    server.runtime.listening_status = server.listening.status
     server.token = secrets.token_urlsafe(32)
     print('Mack is ready: ' + url, flush=True)
     print('Keep this window open. Control-C stops the desktop server.', flush=True)
@@ -210,6 +241,7 @@ def main():
         print('\nMack’s desktop server stopped.', flush=True)
     finally:
         server.voice.close()
+        server.listening.close()
         server.server_close()
     return 0
 

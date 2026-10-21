@@ -30,13 +30,13 @@ The formal designation has the deliberately industrial tone of an old computing 
 
 ## Try Mack on your Mac
 
-**Mack Local AI 0.2 is working.** In Finder, double-click **Start Mack.command** in this repository. It opens Mack at **http://127.0.0.1:9844/**. Keep the launcher window open. Python 3 and a running local Ollama model are required; both are already present on Bill’s Mac.
+**Mack Local AI 0.3 is working.** In Finder, double-click **Start Mack.command** in this repository. It opens Mack at **http://127.0.0.1:9844/**. Keep the launcher window open. Python 3 and a running local Ollama model are required; both are already present on Bill’s Mac.
 
-Mack now answers through **Qwen3.6:35b** and saves explicit memories in a local SQLite database. Try **“Remember that I like jazz”**, then ask what music you like. Memories can be inspected, corrected, moved to Trash, and restored. They survive restarts and model changes. Control Panels can select another installed conversational model.
+Mack answers through **Qwen3.6:35b**, keeps completed conversations in a local SQLite archive, and saves curated facts when asked. Try **“Remember that I like jazz”**, then ask what music you like. Memories can be inspected, corrected, moved to Trash, and restored. They survive restarts and model changes. Control Panels can select another installed conversational model.
 
-A tool-capable local model can now check Mack's actual status, read the local clock, and search active saved memories. Try **“Check your status. What can you actually do?”** or **“Check the clock. What time is it?”** These are read-only tools; memory saves still require an explicit request.
+A tool-capable local model can check Mack's actual status, read the local clock, and search saved facts and past conversations. Try **“Check your status. What can you actually do?”** or **“Check the clock. What time is it?”** These are read-only tools; curated fact saves still require an explicit request. Completed exchanges are archived automatically.
 
-Mack’s approved voice v1 generates new speech locally from Bill’s chosen SAL reference. Bill accepted the light-echo delivery on October 21, 2026; its model, reference fingerprints, settings and audition fingerprint are preserved in a [versioned voice profile](software/mack/voice-profile.json). It is the default for new voice preferences; dry delivery and a stock voice remain explicit alternatives. A stock browser voice remains selectable. Optional browser dictation requires browser support and microphone permission; its provider may process audio online. There is no always-on microphone. Sensors, motors and project service bridges remain disconnected. [Desktop guide](software/desktop/README.md) · [Model research and upgrade plan](docs/model-strategy.md).
+Mack’s approved voice v1 generates new speech locally from Bill’s chosen SAL reference. Bill accepted the light-echo delivery on October 21, 2026; its model, reference fingerprints, settings and audition fingerprint are preserved in a [versioned voice profile](software/mack/voice-profile.json). It is the default for new voice preferences; dry delivery and a stock voice remain explicit alternatives. Click **Talk to Mack**, allow microphone access, speak, then **Finish & send**. Qwen3-ASR transcribes on this Mac; Mack answers in approved voice v1. **Conversations** provides searchable history and recoverable Trash. [Local listening setup and verification](software/mack/LISTENING.md). There is no always-on microphone. Sensors, motors and project service bridges remain disconnected. [Desktop guide](software/desktop/README.md) · [Model research and upgrade plan](docs/model-strategy.md).
 
 ## Visual design target
 
@@ -44,7 +44,7 @@ Mack's conversational manner now follows a [SAL-inspired personality](docs/perso
 calm, warm, curious and plain-spoken, with candor preserved under pressure. Control
 Panels identifies **Mack · approved voice v1** and **Approved v1 · light echo**.
 Her voice and manner are core design requirements. The voice direction is accepted;
-long-form speech quality, fully disconnected operation, onboard performance and
+long-form speech quality, disconnected reboot, onboard performance and
 physical mannerisms still need qualification.
 
 - The beige compact-Mac enclosure remains the dominant shape, including the screen surround, carry-handle recess, vents, and floppy-slot detail.
@@ -67,7 +67,7 @@ Use this image as the baseline for CAD and packaging decisions. Preserve its ove
 | Electronics and power | Fitted compute, controller, audio, sensors, battery, regulated supplies, and serviceable wiring. |
 | Physical body | The RayCue enclosure, structural base, four articulated legs, supported joints, and replaceable feet. |
 
-Bill confirmed the Linux foundation on 2026-10-20. The first software prototype runs on the existing Mac; the target robot carries its own compute and control. Fully offline AI capability remains to be benchmarked. Onboard compute, microphones, motors, battery, and controller are still to be selected. The [product definition](docs/product-spec.md) governs completion; the desktop preview is one component.
+Bill confirmed the Linux foundation on 2026-10-20. The first software prototype runs on the existing Mac; the target robot carries its own compute and control. Speech recognition, Qwen3.6 inference, recall and approved speech output passed process-scoped tests with internet access denied; cold reboot and onboard performance remain to be qualified. Onboard compute, microphones, motors, battery, and controller are still to be selected. The [product definition](docs/product-spec.md) governs completion; the desktop preview is one component.
 
 Real vintage Mac applications are an optional extra. A separate emulator may eventually run Mac OS 9.0.4, but the everyday personality and robot functions will use modern software. Emulation is not a prerequisite for the first prototype.
 
@@ -75,8 +75,8 @@ Real vintage Mac applications are an optional extra. A separate emulator may eve
 
 The desktop, local AI conversation and durable memory run on the host Mac. The repository also contains the concept, architecture, model research, build plan, hardware intake sheets, and pinned upstream source material. A working leg and verified electrical design remain to be built.
 
-- **Ready:** the interactive desktop, local Qwen conversation, durable editable memories, bounded read-only tools, she/her identity and SAL-inspired personality, installed-model selection, optional local speech output, expression previews, accepted concept and pinned CAD/PCB/robot references.
-- **Next software milestone:** evaluate model quality/latency, verify spoken input, and implement the explicitly simulated body contract. Continuum, Terrarium and Exocortex adapters are proposed separate services.
+- **Ready:** the interactive desktop, local Qwen conversation, durable editable memories and conversation archive, local speech input, bounded read-only tools, she/her identity and SAL-inspired personality, installed-model selection, optional local speech output, expression previews, accepted concept and pinned CAD/PCB/robot references.
+- **Next software milestone:** test everyday microphone use, evaluate model quality/latency, and implement the explicitly simulated body contract. Continuum, Terrarium and Exocortex adapters are proposed separate services.
 - **Next hardware milestone:** measured clock geometry/mass and a unified packaging, sensing and power budget, followed by a restrained loaded-leg test.
 - **Finished personal prototype:** boot-to-Mack, conversation and memory, working sensors, onboard power, qualified four-leg motion, interruption/recovery, and documented assembly/service. [Acceptance requirements](docs/product-spec.md).
 

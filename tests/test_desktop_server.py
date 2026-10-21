@@ -23,6 +23,7 @@ class DesktopServerTests(unittest.TestCase):
         cls.temp = tempfile.TemporaryDirectory()
         cls.server.runtime = module.Runtime(cls.temp.name)
         cls.server.voice = module.VoiceService(cls.temp.name)
+        cls.server.listening = module.ListeningService(cls.temp.name)
         cls.server.token = secrets.token_urlsafe(32)
         cls.thread = threading.Thread(target=cls.server.serve_forever, daemon=True)
         cls.thread.start()
@@ -106,6 +107,37 @@ class DesktopServerTests(unittest.TestCase):
 
     def test_existing_instance_identity(self):
         self.assertTrue(module.running_mack(self.url + '/'))
+
+    def test_cross_site_navigation_can_open_shell_but_never_bootstrap(self):
+        headers = {'Sec-Fetch-Site': 'cross-site', 'Sec-Fetch-Mode': 'navigate', 'Sec-Fetch-Dest': 'document'}
+        with urllib.request.urlopen(urllib.request.Request(self.url + '/', headers=headers)) as response:
+            self.assertEqual(response.status, 200)
+        with self.assertRaises(urllib.error.HTTPError) as error:
+            urllib.request.urlopen(urllib.request.Request(self.url + '/api/bootstrap', headers=headers))
+        self.assertEqual(error.exception.code, 403)
+
+    def test_wav_reaches_local_recognizer_only_after_authentication(self):
+        import io, wave
+        data = io.BytesIO()
+        with wave.open(data, 'wb') as wav:
+            wav.setnchannels(1);wav.setsampwidth(2);wav.setframerate(16000)
+            wav.writeframes(b'\0\x10'*8000)
+        for token, expected in [('',403),(self.server.token,503)]:
+            request = urllib.request.Request(self.url+'/api/listening/transcribe', data=data.getvalue(),
+                       headers={'Content-Type':'audio/wav','X-Mack-Token':token,'X-Mack-Request-Id':'listen-http'})
+            with self.assertRaises(urllib.error.HTTPError) as error:
+                urllib.request.urlopen(request)
+            self.assertEqual(error.exception.code,expected)
+            if expected==503:
+                self.assertIn('not installed',json.load(error.exception)['error'])
+
+    def test_archive_and_listening_status_require_token(self):
+        for path in ['/api/listening/status','/api/conversation/search']:
+            req=urllib.request.Request(self.url+path, data=b'{}' if path.endswith('search') else None,
+                                       headers={'Content-Type':'application/json'})
+            with self.assertRaises(urllib.error.HTTPError) as error:
+                urllib.request.urlopen(req)
+            self.assertEqual(error.exception.code,403)
 
 
 if __name__ == '__main__':

@@ -1,6 +1,8 @@
 import { STORAGE_KEY, INITIAL_STATE, readState } from './model.mjs';
-import { connect, api, speechAudio } from './service.mjs';
+import { connect, api, speechAudio, transcribeAudio } from './service.mjs';
 import { DEFAULT_DELIVERY, AUDITION, readDelivery, chooseVoice, speechChunks } from './voice.mjs';
+
+import { Microphone } from './listening.mjs';
 
 const $ = (selector, root = document) => root.querySelector(selector);
 const desktop = $('#desktop');
@@ -23,10 +25,12 @@ let conversation = [];
 let connected = false;
 let health = { ready: false, model: '', models: [], message: 'Connecting to local AI…' };
 let request = null;
-let recognition = null;
 const PREFS_KEY = 'mack.desktop.preferences.v2';
 let legacyNotes = null;
-let allowDictation = false;
+let reviewSpeech = false;
+let listening = {available:false,message:'Checking local listening…'};
+let microphone = null;
+let transcription = null;
 let delivery = { ...DEFAULT_DELIVERY };
 let referenceVoice = { available:false, message:'Checking local reference voice…' };
 let voiceJob = null;
@@ -38,7 +42,7 @@ try {
   const prefs = JSON.parse(localStorage.getItem(PREFS_KEY) || '{}');
   if (['periwinkle','sage','graphite','classic'].includes(prefs.pattern)) state.pattern = prefs.pattern;
   if (typeof prefs.voice === 'boolean') state.voice = prefs.voice;
-  allowDictation = prefs.allowDictation === true;
+  reviewSpeech = prefs.reviewSpeech === true;
   delivery = readDelivery(prefs.delivery);
 } catch { /* Keep earlier preferences; never overwrite the original notes. */ }
 
@@ -57,7 +61,7 @@ function toast(text) {
   clearTimeout(toastTimer); toastTimer = setTimeout(() => { item.hidden = true; }, 5500);
 }
 function persist(next) {
-  try { localStorage.setItem(PREFS_KEY, JSON.stringify({pattern:next.pattern,voice:next.voice,allowDictation,delivery})); state = next; return true; }
+  try { localStorage.setItem(PREFS_KEY, JSON.stringify({pattern:next.pattern,voice:next.voice,reviewSpeech,delivery})); state = next; return true; }
   catch { toast('This browser could not save preferences. Your memories have not changed.'); return false; }
 }
 function applySnapshot(snapshot, showHistory=false) {
@@ -71,10 +75,12 @@ async function refreshHealth() {
   catch (error) { health = {...health,ready:false,message:error.message}; }
   const label=$('#model-status'); if(label) label.textContent=health.message+(health.model?' · '+health.model:'');
   $('.preview-label').textContent=health.ready?'Local AI · '+health.model:'Local AI unavailable';
-  if (!busy && !preview && !voiceJob && mode!=='speaking') setMode(health.ready?'idle':'fault');
+  if (!busy && !microphone && !transcription && !preview && !voiceJob && mode!=='speaking') setMode(health.ready?'idle':'fault');
   renderModelChoices();
   try { referenceVoice = await api('voice/status'); }
   catch { referenceVoice = {available:false,message:'Local reference voice is unavailable.'}; }
+  try { listening=await api('listening/status'); } catch { listening={available:false,message:'Local listening is unavailable.'}; }
+  const micStatus=$('#listening-status');if(micStatus)micStatus.textContent=listening.message;
   renderVoiceChoices();
 }
 async function saveChange(path, payload) {
@@ -115,6 +121,7 @@ function focusWindow(win) {
   win.style.zIndex = ++depth; activeWindow = win;
 }
 function closeWindow(id) {
+  if(id==='mack'&&(microphone||transcription)){stopCurrent();setMode('idle');}
   const win = windows.get(id); if (!win) return;
   windowSizes.unobserve(win);
   win.remove(); windows.delete(id);
@@ -178,23 +185,26 @@ function makeWindow(id, title, width, contents, options={}) {
   return win;
 }
 
-const stateText={idle:'Mack is ready',listening:'Listening',thinking:'Thinking',voicing:'Preparing voice',speaking:'Speaking',resting:'Resting',fault:'Connection unavailable'};
+const stateText={idle:'Mack is ready',listening:'Listening · microphone on',opening:'Opening microphone',transcribing:'Transcribing locally',thinking:'Thinking',voicing:'Preparing voice',speaking:'Speaking',resting:'Resting',fault:'Connection unavailable'};
 function setMode(next, isPreview=false) {
   mode=next; preview=isPreview; desktop.dataset.state=mode;
   $('#status-label').textContent=stateText[mode]+(preview?' · preview':'');
   const line=$('#mack-state');
-  if(line)line.textContent=preview?'Expression preview — '+stateText[mode].toLowerCase()+'. No action is running.':(mode==='thinking'?'Waiting for '+(health.model||'local AI')+'…':mode==='voicing'?'Preparing her voice on this Mac. Escape stops it.':mode==='speaking'?'Reading the reply aloud.':mode==='listening'?'Dictating through your browser. Click Done when finished.':mode==='resting'?'Taking a little desktop nap. Send a message to wake me.':health.message+(health.model?' · '+health.model:''));
+  if(line)line.textContent=preview?'Expression preview — '+stateText[mode].toLowerCase()+'. No action is running.':(mode==='thinking'?'Waiting for '+(health.model||'local AI')+'…':mode==='voicing'?'Preparing her voice on this Mac. Escape stops it.':mode==='speaking'?'Reading the reply aloud.':mode==='opening'?'Allow microphone access to talk locally. Escape cancels.':mode==='transcribing'?'Microphone off. Transcribing on this Mac…':mode==='listening'?'Microphone on · '+(microphone?.deviceLabel||'Selected input')+'. Click Finish & send when done; Escape discards.':mode==='resting'?'Taking a little desktop nap. Send a message to wake me.':health.message+(health.model?' · '+health.model:''));
   const fault=$('#fault-banner'); if(fault)fault.hidden=mode!=='fault';
-  const input=$('#message-input'); if(input)input.disabled=busy||!connected;
-  const send=$('#send-message'); if(send)send.disabled=busy||!connected;
-  const dictate=$('#dictate-message'); if(dictate)dictate.disabled=busy||!connected;
+  const input=$('#message-input'); if(input)input.disabled=busy||!connected||!!microphone||!!transcription;
+  const send=$('#send-message'); if(send)send.disabled=busy||!connected||!!microphone||!!transcription;
+  if(!microphone){const elapsed=$('#recording-time');if(elapsed)elapsed.textContent='Microphone off';const meter=$('#microphone-meter');if(meter)meter.value=0;}
+  const dictate=$('#dictate-message'); if(dictate){dictate.disabled=busy||!connected||!!transcription;dictate.textContent=microphone?(mode==='opening'?'Cancel microphone':'Finish & send'):'Talk to Mack';}
+  const stop=$('#stop-listening');if(stop)stop.hidden=!microphone&&!transcription;
   document.querySelectorAll('[data-preview-state]').forEach((b)=>b.setAttribute('aria-pressed',String(preview && b.dataset.previewState===mode)));
 }
 function stopCurrent() {
   turn++; timers.forEach(clearTimeout); timers=[]; busy=false;
   if(request){api('cancel',{id:request.id}).catch(()=>{});request.controller.abort();request=null;}
-  if(recognition){recognition.abort();recognition=null;}
-  const dictate=$('#dictate-message');if(dictate)dictate.textContent='Dictate';
+  microphone?.cancel();microphone=null;
+  if(transcription){transcription.controller.abort();api('listening/cancel',{id:transcription.id}).catch(()=>{});transcription=null;}
+  const dictate=$('#dictate-message');if(dictate)dictate.textContent='Talk to Mack';
   if('speechSynthesis' in window)window.speechSynthesis.cancel();
   stopReferenceVoice();
 }
@@ -205,11 +215,11 @@ function renderConversation() {
     const row=node('div','message '+(who==='You'?'user':'assistant'));
     row.append(node('span','speaker',who),node('p','',text));
     if(tools?.length){
-      const labels={mack_status:'System status',local_time:'Local clock',search_memories:'Saved memories'};
+      const labels={mack_status:'System status',local_time:'Local clock',search_memories:'Saved memories',search_conversations:'Past conversations'};
       row.append(node('p','fine-print','Tools: '+tools.map((tool)=>(labels[tool.name]||'Unavailable tool')+(tool.ok?' — checked':' — failed')).join('; ')));
     }
     if(who==='Mack') {
-      const read=button('Read aloud',()=>{if(busy||recognition)return;stopCurrent();speak(text,turn,true);},'classic-button small read-aloud');
+      const read=button('Read aloud',()=>{if(busy||microphone||transcription)return;stopCurrent();speak(text,turn,true);},'classic-button small read-aloud');
       read.setAttribute('aria-label','Read this reply aloud');row.append(read);
     }
     log.append(row);
@@ -306,18 +316,41 @@ async function sendMessage(value) {
     health.message=error.message;setMode('fault');
   }
 }
-function dictate() {
-  if(recognition){recognition.stop();return;}
-  const Recognition=window.SpeechRecognition||window.webkitSpeechRecognition;
-  if(!Recognition){toast('This browser has no dictation API. Use Mac/iPhone keyboard dictation in the message field, or open Mack in Safari or Chrome.');return;}
-  if(!allowDictation){openControls();toast('Enable browser dictation in Control Panels first. Your browser may process speech online.');return;}
-  stopCurrent();const token=turn;const speech=new Recognition();recognition=speech;
-  speech.lang='en-US';speech.continuous=false;speech.interimResults=false;
-  speech.onstart=()=>{if(token===turn){setMode('listening');const b=$('#dictate-message');if(b)b.textContent='Done';}};
-  speech.onresult=(event)=>{if(token!==turn)return;const input=$('#message-input');if(input)input.value=event.results[0][0].transcript.slice(0,2000);};
-  speech.onerror=(event)=>{if(token===turn)toast('Dictation unavailable: '+event.error+'. You can still type.');};
-  speech.onend=()=>{if(token===turn){recognition=null;const b=$('#dictate-message');if(b)b.textContent='Dictate';setMode(health.ready?'idle':'fault');$('#message-input')?.focus();}};
-  try{speech.start();}catch{recognition=null;toast('Your browser could not start dictation.');}
+async function dictate() {
+  if(microphone){if(mode==='opening'){stopCurrent();setMode('idle');}else await finishListening();return;}
+  if(busy||transcription)return;
+  if(!listening.available){toast(listening.message);openControls();return;}
+  stopCurrent();const token=turn;
+  const capture=new Microphone(()=>finishListening(),(peak,seconds)=>{
+    const meter=$('#microphone-meter');if(meter){meter.value=peak;meter.setAttribute('aria-valuetext',Math.round(seconds)+' seconds recorded');}
+    const elapsed=$('#recording-time');if(elapsed)elapsed.textContent=Math.floor(seconds)+' / 60 seconds';
+  });microphone=capture;setMode('opening');
+  try{
+    if(await capture.start()&&token===turn)setMode('listening');
+  }catch(error){
+    if(token!==turn)return;
+    microphone=null;setMode('idle');
+    const message=error.name==='NotAllowedError'?'Microphone access was denied. Allow it for Mack in this browser, then try Talk to Mack again.':error.message;
+    const status=$('#mack-state');if(status)status.textContent=message;toast(message);
+  }
+}
+async function finishListening(){
+  const capture=microphone;if(!capture||mode==='opening')return;
+  microphone=null;const token=turn;
+  try{
+    const audio=capture.finish();
+    const job={id:crypto.randomUUID(),controller:new AbortController()};transcription=job;setMode('transcribing');
+    const result=await transcribeAudio(audio,job.id,job.controller.signal);
+    if(token!==turn)return;
+    transcription=null;
+    const input=$('#message-input');if(input)input.value=result.text;
+    setMode('idle');
+    delivery=readDelivery({...delivery,engine:'reference',style:'film'});persist({...state,voice:true});updateVoiceControls();
+    if(reviewSpeech){toast('Transcript ready. Edit it if needed, then Send.');input?.focus();}
+    else{
+      await sendMessage(result.text);
+    }
+  }catch(error){if(token===turn){transcription=null;setMode('idle');const status=$('#mack-state');if(status)status.textContent=error.message;toast(error.message);}}
 }
 function openMack() {
   if(windows.has('mack')){const win=windows.get('mack');win.classList.remove('collapsed');focusWindow(win);return;}
@@ -332,22 +365,27 @@ function openMack() {
   const form=node('form','composer');form.setAttribute('aria-label','Talk to Mack');
   const input=node('input');input.id='message-input';input.type='text';input.maxLength=2000;input.placeholder='Say something to Mack…';input.autocomplete='off';input.setAttribute('aria-label','Message to Mack');
   const send=node('button','classic-button primary','Send');send.id='send-message';send.type='submit';
-  const mic=button('Dictate',dictate);mic.id='dictate-message';mic.title='Dictate a message, then review it and press Send';
+  const mic=button('Talk to Mack',dictate);mic.id='dictate-message';mic.title='Click to record locally, then Finish & send';
   form.append(input,mic,send);form.addEventListener('submit',(event)=>{event.preventDefault();sendMessage(input.value);});
-  content.append(welcome,log,line,suggestions,fault,form);
-  makeWindow('mack','Mack',560,content,{foot:'M.A.C. Model 04 · Local AI 0.2 · Esc stops a reply'});renderConversation();setMode(mode,preview);
+  const micInfo=node('div','microphone-info');
+  const meter=node('meter');meter.id='microphone-meter';meter.min=0;meter.max=1;meter.value=0;meter.setAttribute('aria-label','Microphone level');
+  const elapsed=node('span','fine-print','Microphone off');elapsed.id='recording-time';
+  const stop=button('Cancel recording',()=>{stopCurrent();setMode('idle');},'classic-button small');stop.id='stop-listening';stop.hidden=true;
+  micInfo.append(meter,elapsed,stop);
+  content.append(welcome,log,line,suggestions,fault,form,micInfo,node('p','fine-print','Offline conversation · speech stays on this Mac · completed exchanges are saved in Conversations.'));
+  makeWindow('mack','Mack',560,content,{foot:'M.A.C. Model 04 · Local AI 0.3 · Esc stops a reply'});renderConversation();setMode(mode,preview);
 }
 function openAbout() {
   const content=node('div','panel');const hero=node('div','about-header');const words=node('div');words.append(node('h3','','M.A.C. Model 04'),node('p','','Mobile Autonomous Computer'));hero.append(face(),words);
   const table=node('table','spec-table');
-  [['Known as','Mack · she/her'],['System','Mack Local AI 0.2'],['Personality','SAL-inspired · calm, curious, plain-spoken'],['Conversation',health.model||'No model selected'],['Memories','Local database · survives restarts and model changes'],['Tools','Read-only status, clock and saved-memory search'],['Body','Desktop now · four-leg Mac planned'],['Long-term','Humanoid body · separate future engineering']].forEach(([key,value])=>{const row=node('tr');row.append(node('th','',key),node('td','',value));table.append(row);});
+  [['Known as','Mack · she/her'],['System','Mack Local AI 0.3'],['Personality','SAL-inspired · calm, curious, plain-spoken'],['Conversation',health.model||'No model selected'],['Memories','Local database · survives restarts and model changes'],['Tools','Read-only status, clock, facts and conversation search'],['Body','Desktop now · four-leg Mac planned'],['Long-term','Humanoid body · separate future engineering']].forEach(([key,value])=>{const row=node('tr');row.append(node('th','',key),node('td','',value));table.append(row);});
   content.append(hero,table,node('p','','A little Mac brought to life. This is the first working shell for the RayCue conversion, inspired by the Platinum desktop.'),node('p','fine-print','Original interface and icons. This preview does not run Mac OS 9 or vintage applications.'));
   makeWindow('about','About This Computer',440,content);
 }
 function openDisk() {
-  const content=node('div');const meta=node('div','finder-meta');meta.append(node('span','','5 items'),node('span','','Mackintosh HD'));
+  const content=node('div');const meta=node('div','finder-meta');meta.append(node('span','','6 items'),node('span','','Mackintosh HD'));
   const items=node('div','finder-items');
-  [['Mack','mack',openMack],['Memories','memory',openMemories],['Control Panels','controls',openControls],['Read Me','readme',openHelp],['About Mack','mack',openAbout]].forEach(([label,image,action])=>items.append(desktopIcon(label,image,action)));
+  [['Mack','mack',openMack],['Memories','memory',openMemories],['Conversations','readme',openConversations],['Control Panels','controls',openControls],['Read Me','readme',openHelp],['About Mack','mack',openAbout]].forEach(([label,image,action])=>items.append(desktopIcon(label,image,action)));
   content.append(meta,items);makeWindow('disk','Mackintosh HD',460,content);
 }
 function openNewNote(memory=null) {
@@ -406,10 +444,11 @@ function openControls() {
     slider.addEventListener('change',()=>persist(state));row.append(document.createTextNode(title),slider,value);panel.append(row);
   }
   const auditionLabel=node('label');const auditionText=node('textarea');auditionText.value=AUDITION;auditionText.maxLength=600;auditionText.rows=3;auditionText.setAttribute('aria-label','Voice audition text');auditionLabel.append(document.createTextNode('Audition text'),auditionText);panel.append(auditionLabel);
-  panel.append(button('Hear voice preview',()=>{if(busy||recognition){toast('Finish or stop the current conversation first.');return;}if(!auditionText.value.trim())return;stopCurrent();speak(auditionText.value,turn,true);},'classic-button small'),button('Stop voice',()=>{if(busy||recognition)return;stopCurrent();setMode(health.ready?'idle':'fault');},'classic-button small'),node('p','fine-print','Voice v1 preserves Bill’s approved light-echo delivery. New speech is generated locally from the chosen SAL reference. Preview text does not enter conversation or memory.'));
+  panel.append(button('Hear voice preview',()=>{if(busy||microphone||transcription){toast('Finish or stop the current conversation first.');return;}if(!auditionText.value.trim())return;stopCurrent();speak(auditionText.value,turn,true);},'classic-button small'),button('Stop voice',()=>{if(busy||microphone||transcription)return;stopCurrent();setMode(health.ready?'idle':'fault');},'classic-button small'),node('p','fine-print','Voice v1 preserves Bill’s approved light-echo delivery. New speech is generated locally from the chosen SAL reference. Preview text does not enter conversation or memory.'));
   const progress=node('p','fine-print',voiceProgress);progress.id='voice-progress';progress.setAttribute('aria-live','polite');panel.append(progress);
-  const micLabel=node('label');const mic=node('input');mic.type='checkbox';mic.checked=allowDictation;mic.addEventListener('change',()=>{allowDictation=mic.checked;persist(state);if(!allowDictation&&recognition){stopCurrent();setMode(health.ready?'idle':'fault');}});micLabel.append(mic,document.createTextNode('Allow browser dictation'));
-  panel.append(micLabel,node('p','fine-print','Starts only when you click Dictate. Your browser may send speech to its online service. Review the transcript before Send. Keyboard dictation also works.'));
+  const micLabel=node('label');const mic=node('input');mic.type='checkbox';mic.checked=reviewSpeech;mic.addEventListener('change',()=>{reviewSpeech=mic.checked;persist(state);});micLabel.append(mic,document.createTextNode('Review transcript before sending'));
+  const listeningStatus=node('p','fine-print',listening.message);listeningStatus.id='listening-status';
+  panel.append(node('hr'),node('h3','','Local listening'),listeningStatus,micLabel,node('p','fine-print','Talk to Mack opens the microphone. Finish & send closes it and asks Mack to answer in her approved voice. Escape discards the recording. Maximum 60 seconds. No browser speech service or cloud fallback.'));
   const modelStatus=node('p','fine-print');modelStatus.id='model-status';const modelChoices=node('div','model-choices');modelChoices.id='model-choices';
   panel.append(node('hr'),node('h3','','Local AI model'),modelStatus,modelChoices,button('Check connection',refreshHealth,'classic-button small'),node('p','fine-print','Installed Ollama models only. Switching keeps your memories. Downloads and cloud services are not enabled here.'),node('hr'),node('h3','','Try Mack’s expressions'),node('p','','These buttons preview screen states. They do not start a microphone, AI service, or robot.'));
   const states=node('div','state-buttons');
@@ -423,7 +462,7 @@ function renderVoiceChoices(){
   const engine=node('select');engine.setAttribute('aria-label','Voice engine');
   for(const [value,title] of [['reference','Mack · approved voice v1'],['browser','Stock Mac voice']]){const option=node('option','',title);option.value=value;engine.append(option);}
   engine.value=delivery.engine;
-  engine.addEventListener('change',()=>{if(!busy&&!recognition){stopCurrent();setMode(health.ready?'idle':'fault');}delivery=readDelivery({...delivery,engine:engine.value});persist(state);renderVoiceChoices();});
+  engine.addEventListener('change',()=>{if(!busy&&!microphone&&!transcription){stopCurrent();setMode(health.ready?'idle':'fault');}delivery=readDelivery({...delivery,engine:engine.value});persist(state);renderVoiceChoices();});
   engineLabel.append(engine);box.append(engineLabel);
   document.querySelectorAll('.stock-delivery').forEach((row)=>row.hidden=delivery.engine!=='browser');
   if(delivery.engine==='reference'){
@@ -431,7 +470,7 @@ function renderVoiceChoices(){
     const style=node('select');style.setAttribute('aria-label','Reference voice delivery');
     for(const [value,title] of [['film','Approved v1 · light echo'],['natural','Reference · dry (alternative)']]){const option=node('option','',title);option.value=value;style.append(option);}
     style.value=delivery.style;
-    style.addEventListener('change',()=>{if(!busy&&!recognition){stopCurrent();setMode(health.ready?'idle':'fault');}delivery=readDelivery({...delivery,style:style.value});persist(state);});
+    style.addEventListener('change',()=>{if(!busy&&!microphone&&!transcription){stopCurrent();setMode(health.ready?'idle':'fault');}delivery=readDelivery({...delivery,style:style.value});persist(state);});
     styleLabel.append(style);box.append(styleLabel,node('p','fine-print',referenceVoice.message));return;
   }
   const label=node('label');label.append(document.createTextNode('Local voice'));
@@ -452,20 +491,47 @@ function renderModelChoices(){
   choose.disabled=!health.models?.length;box.append(select,choose);
   $('#model-status').textContent=health.message+(health.model?' · '+health.model:'');
 }
+function openConversations() {
+  if(windows.has('conversations')){focusWindow(windows.get('conversations'));return;}
+  const panel=node('div','panel');const search=node('input');search.type='search';search.maxLength=200;search.setAttribute('aria-label','Search conversations');
+  const list=node('div');let offset=0;let trash=false;let generation=0;
+  const count=node('p','fine-print');
+  const load=async()=>{
+    const current=++generation;
+    try{
+      const result=await api('conversation/search',{query:search.value,offset,trashed:trash});
+      if(current!==generation)return;
+      list.replaceChildren();count.textContent=(trash?'Conversation Trash':'Saved conversations')+' · '+(result.exchanges.length ? (offset+1)+'–'+(offset+result.exchanges.length) : 'No exchanges');
+      if(!result.exchanges.length)list.append(node('p','','No exchanges found.'));
+      for(const exchange of result.exchanges){
+        const item=node('article','archive-exchange');item.append(node('p','fine-print',new Date(exchange.created).toLocaleString()),node('strong','','You'),node('p','',exchange.user),node('strong','','Mack'),node('p','',exchange.reply));
+        item.append(button(trash?'Restore exchange':'Move exchange to Trash',async()=>{if(await saveChange('conversation/move',{id:exchange.id,trashed:!trash})){applySnapshot(await api('state'),true);await load();}},'classic-button small'));
+        list.append(item);
+      }
+      previous.disabled=offset===0;next.disabled=result.exchanges.length<20;
+    }catch(error){toast(error.message);}
+  };
+  const previous=button('Previous',()=>{offset=Math.max(0,offset-20);load();},'classic-button small');
+  const next=button('Next',()=>{offset+=20;load();},'classic-button small');
+  const deleted=button('Show Conversation Trash',()=>{trash=!trash;offset=0;deleted.textContent=trash?'Show saved conversations':'Show Conversation Trash';load();},'classic-button small');
+  panel.append(node('p','','Completed exchanges stay on this Mac across restarts and model changes. Trash excludes an exchange from recall and can be restored.'),search,button('Search',()=>{offset=0;load();},'classic-button small'),deleted,count,list,previous,next);
+  search.addEventListener('keydown',e=>{if(e.key==='Enter'){offset=0;load();}});
+  makeWindow('conversations','Conversations',560,panel);load();
+}
 function openHelp() {
   const panel=node('div','panel');panel.append(node('h3','','Welcome to Mack.'),node('p','','A small desktop to get acquainted with. Click an icon once to open it. Drag a title bar to move a window.'));
-  const list=node('ul','help-list');['Talk to Mack: type freely, or try “Remember that I like jazz.” Explicit Remember requests save facts without asking the model to guess what belongs in memory.','Memories: inspect, edit, move notes to Trash, and restore them. They survive browser clearing, restarts, and model changes.','Control Panels: choose an installed model, enable a local speaking voice, or opt into browser dictation. Dictation requires browser support and microphone permission.','The last 40 completed exchanges are retained. New Conversation clears that history while keeping saved memories. Memory edits start fresh AI context to avoid reviving an old fact.','Window controls: close on the left, zoom and collapse on the right. Drag the bottom corner to resize.','Escape dismisses a pending reply or expression preview. Local inference may finish in the background before Mack accepts another request.'].forEach((text)=>list.append(node('li','',text)));
+  const list=node('ul','help-list');['Talk to Mack: type freely, or try “Remember that I like jazz.” Explicit Remember requests save facts without asking the model to guess what belongs in memory.','Memories: inspect, edit, move notes to Trash, and restore them. They survive browser clearing, restarts, and model changes.','Talk to Mack records locally. Finish & send closes the microphone, transcribes locally and plays her answer. Escape cancels. Control Panels offers transcript review before sending.','Completed exchanges stay in the local Conversations archive. New Conversation starts a fresh view without erasing the archive. Move an exchange to Conversation Trash to exclude it from recall. Fact edits create a recall boundary so old dialogue cannot revive corrected facts.','Window controls: close on the left, zoom and collapse on the right. Drag the bottom corner to resize.','Escape dismisses a pending reply or expression preview. Local inference may finish in the background before Mack accepts another request.'].forEach((text)=>list.append(node('li','',text)));
   panel.append(list,node('hr'),node('p','','AI answers can be mistaken. Mack currently has no sensors, motors, web access, or project service connections. Memory lives in runtime/mack/memory.sqlite3 in the project folder; it is excluded from Git. Back up that folder with the server stopped.'),node('p','fine-print','Mack is a new interface inspired by classic Mac OS. It does not include Apple system software, ROMs, sounds, or fonts.'));
   makeWindow('help','Read Me',470,panel);
 }
 function arrangeWindows(){windows.forEach((win,id)=>{const i=[...windows.keys()].indexOf(id);win.classList.remove('collapsed');Object.assign(win.style,{left:18+i*24+'px',top:18+i*24+'px',height:''});fit(win);});}
-async function newConversation(){if(busy){toast('Finish or stop this reply first, then start a new conversation.');return;}if(await saveChange('conversation/new',{})){stopCurrent();conversation=[{who:'Mack',text:'A fresh conversation. Your saved notes are still in Memories.'}];openMack();renderConversation();setMode(health.ready?'idle':'fault');}}
+async function newConversation(){if(busy){toast('Finish or stop this reply first, then start a new conversation.');return;}if(await saveChange('conversation/new',{})){stopCurrent();conversation=[{who:'Mack',text:'A fresh conversation. Earlier exchanges are still in Conversations, and your saved facts are in Memories.'}];openMack();renderConversation();setMode(health.ready?'idle':'fault');}}
 function closeMenus(){document.querySelectorAll('.dropdown').forEach((menu)=>menu.hidden=true);document.querySelectorAll('.menu-trigger').forEach((b)=>b.setAttribute('aria-expanded','false'));}
 function buildMenus(){
   const items=[
     ['Mack menu',[['About This Computer…',openAbout],null,['Mack',openMack],['Control Panels…',openControls],['Memories',openMemories]]],
     ['File',[['New Note',openNewNote],['Open Mackintosh HD',openDisk],null,['Close Window',()=>{if(activeWindow)closeWindow(activeWindow.dataset.window);}]]],
-    ['Edit',[['New Conversation',newConversation],['Show Saved Notes',openMemories]]],
+    ['Edit',[['New Conversation',newConversation],['Show Saved Notes',openMemories],['Conversations',openConversations]]],
     ['View',[['Arrange Windows',arrangeWindows],['Desktop Appearance…',openControls]]],
     ['Special',[['Take a Nap',()=>{stopCurrent();openMack();setMode('resting');}],['Wake Mack',()=>{stopCurrent();openMack();setMode('idle');}],null,['Try Expressions…',openControls]]],
     ['Help',[['Mack Help',openHelp],['About This Preview',openAbout]]]
@@ -487,16 +553,17 @@ function buildMenus(){
 }
 desktop.dataset.pattern=state.pattern;
 buildMenus();
-[['Mackintosh HD','disk',openDisk],['Memories','memory',openMemories],['Control Panels','controls',openControls],['Trash','trash',openTrash]].forEach(([label,image,action])=>$('#desktop-icons').append(desktopIcon(label,image,action)));
+[['Mackintosh HD','disk',openDisk],['Memories','memory',openMemories],['Conversations','readme',openConversations],['Control Panels','controls',openControls],['Trash','trash',openTrash]].forEach(([label,image,action])=>$('#desktop-icons').append(desktopIcon(label,image,action)));
 document.addEventListener('pointerdown',(event)=>{if(!event.target.closest('.menu-wrap'))closeMenus();});
 document.addEventListener('keydown',(event)=>{
   if(event.key==='Escape'){closeMenus();stopCurrent();setMode('idle');}
 });
 window.addEventListener('resize',()=>windows.forEach(fit));
 window.addEventListener('pagehide',()=>stopCurrent());
+document.addEventListener('visibilitychange',()=>{if(document.hidden&&microphone){stopCurrent();setMode('idle');}});
 window.addEventListener('storage',(event)=>{
   if(event.key!==PREFS_KEY)return;
-  try{const prefs=JSON.parse(event.newValue||'{}');if(['periwinkle','sage','graphite','classic'].includes(prefs.pattern))state.pattern=prefs.pattern;if(typeof prefs.voice==='boolean')state.voice=prefs.voice;allowDictation=prefs.allowDictation===true;delivery=readDelivery(prefs.delivery);desktop.dataset.pattern=state.pattern;updateVoiceControls();renderVoiceChoices();}catch{ /* Ignore malformed browser preferences. */ }
+  try{const prefs=JSON.parse(event.newValue||'{}');if(['periwinkle','sage','graphite','classic'].includes(prefs.pattern))state.pattern=prefs.pattern;if(typeof prefs.voice==='boolean')state.voice=prefs.voice;reviewSpeech=prefs.reviewSpeech===true;delivery=readDelivery(prefs.delivery);desktop.dataset.pattern=state.pattern;updateVoiceControls();renderVoiceChoices();}catch{ /* Ignore malformed browser preferences. */ }
 });
 window.addEventListener('focus',()=>{if(connected&&!busy)api('state').then((s)=>applySnapshot(s)).catch(()=>{});});
 $('#status-control').addEventListener('click',openControls);$('#sound-control').addEventListener('click',toggleVoice);

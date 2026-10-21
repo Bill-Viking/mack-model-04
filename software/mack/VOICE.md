@@ -80,7 +80,7 @@ separate from those software licenses.
 - Text segments are limited to 600 characters. Longer replies are split and spoken
   sequentially. There is a pause while the next segment is prepared.
 - The worker loads fixed local paths with Hugging Face/Transformers offline mode
-  and telemetry disabled. There is no cloud speech endpoint or download fallback.
+  and telemetry disabled. A Python audit hook blocks network socket access in speech workers. There is no cloud speech endpoint or download fallback.
 - **Preparing voice** describes synthesis. **Speaking** follows the media player's
   playing event. Stop cancels playback and pending synthesis. Audio output is mono
   24 kHz PCM16, with peak limiting to prevent clipping.
@@ -88,8 +88,7 @@ separate from those software licenses.
   The light-echo audition is 6.25 seconds. These are sample observations; streaming,
   a warm resident model, physical network-disconnection tests, and Linux/onboard
   qualification remain open.
-- Browser dictation is a separate, opt-in input path and may use the browser
-  vendor's online service. Local speech output does not make that input offline.
+- Local click-to-talk input uses Qwen3-ASR. Its [setup and verification](LISTENING.md) includes OS-denied-network speech and recall tests. The approved greeting reproduced byte-for-byte under that policy; no acoustic setting changed.
 
 The Mac runtime and its dependencies are an initial implementation. A future Linux
 voice backend should retain the same interface, identity and memory boundaries.

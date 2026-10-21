@@ -1,4 +1,4 @@
-# Mack Local AI 0.2
+# Mack Local AI 0.3
 
 A Platinum-inspired desktop connected to real local inference and a durable memory service. Original HTML/CSS/JavaScript/SVG; Python standard library backend. No emulator, Apple system software or frontend package installation.
 
@@ -14,9 +14,11 @@ Keep the launcher’s Terminal window open. Python 3 and a running local Ollama 
 
 ## Conversation and voice
 
-Ordinary messages go to the selected local Ollama model. The desktop shows the selected model, real waiting state and connection failures. Explicit **Remember that…** / **Save note…** requests save directly through the memory service. The model cannot write memories. Tool-capable models can request three read-only tools through the runtime: current status, local clock, and active-memory search. Try **Check your status** or **Check the clock and tell me the time**. Calls are bounded and unknown tools are refused. Models without tool support retain ordinary text conversation.
+Ordinary messages go to the selected local Ollama model. The desktop shows the selected model, real waiting state and connection failures. Explicit **Remember that…** / **Save note…** requests save directly through the memory service. Completed exchanges are archived automatically. The model cannot edit curated facts. Tool-capable models can request four read-only tools: current status, local clock, active-memory search and past-conversation search. Try **Check your status** or **Check the clock and tell me the time**. Calls are bounded and unknown tools are refused. Models without tool support retain ordinary text conversation.
 
-Enable **Read Mack’s replies aloud** in Control Panels for the selected local voice engine. Optional **Allow browser dictation** enables the Dictate button when the browser supports speech recognition. It starts only after a click, asks for microphone permission, and places a transcript in the composer for review before Send. The browser vendor may process dictation online. Mac keyboard dictation is another input option. The in-app browser exposed a speech-recognition API and the opt-in gate worked; no microphone capture was started, so transcription has not been tested end to end.
+Click **Talk to Mack**, allow microphone access, speak, then click **Finish & send**. The microphone closes before local transcription starts. Mack sends the transcript to the local model, saves the completed exchange, and answers in **approved voice v1**. Maximum recording length is 60 seconds. Escape or **Cancel recording** discards an unfinished recording/transcription. Closing Mack or hiding the page stops capture. There is no wake word or continuous listening.
+
+Control Panels has **Review transcript before sending** for names or recognition errors. This leaves the transcript in the message field to edit before **Send**. Silence and near-silence are rejected; background noise can still be misrecognized. [Local listening setup and evidence](../mack/LISTENING.md) documents the pinned model and offline tests. Browser microphone permission is required; use Chrome or Safari if the embedded browser does not grant access. The former browser dictation service has been removed.
 
 Escape dismisses the pending reply, cancels local speech, and requests that the service discard an unfinished generated reply. The Ollama request may keep computing until it finishes or times out; a new conversation or memory change can be refused briefly while that request completes. Explicit saves already completed are retained. No always-on microphone is implemented.
 
@@ -49,11 +51,13 @@ See [voice setup and boundaries](../mack/VOICE.md) for installation and local fi
 
 - Facts live in `runtime/mack/memory.sqlite3`, independently of browser settings and model weights. Runtime data is ignored by Git and never included in the repository push.
 - Memories supports inspection, edits, recoverable Trash and restoration. There are limits of 100 active notes and 100 trashed notes, with 2,000 characters per fact.
-- Each response receives up to six notes ranked by word overlap. This is a small deterministic retrieval baseline; it can miss relevant facts. It is not an integrated Continuum service.
-- The last 40 completed exchanges persist. Only the latest four since a memory change enter model context. Editing/trashing a fact excludes earlier conversation context from the next prompt. The visible old conversation remains historical text until New Conversation clears it.
-- New Conversation clears recent exchanges and keeps saved facts. Trash is excluded from inference but remains recoverable; it is not secure erasure. Original browser notes and backups may retain prior values.
+- Each response receives up to six note excerpts (800 characters each), ranked by word overlap. This is a small deterministic retrieval baseline; it can miss relevant facts. It is not an integrated Continuum service.
+- All completed exchanges remain in the local archive; the visible chat shows the latest 40 from the current conversation. New Conversation starts a fresh visible chat while preserving the archive and facts.
+- **Conversations** searches full exchanges, pages through history and moves individual exchanges to recoverable Trash. Restoring brings them back into recall. Trashing an exchange does not remove a separately saved fact; edit Memories for that.
+- Each reply receives up to four recent exchanges (600 characters per side) and four matching archived excerpts (400 per side), using word matching with a recent fallback. Full originals stay in the archive. This is bounded retrieval, not perfect recall or model training.
+- Any curated fact change sets a conservative recall boundary: dialogue before that change remains searchable in the archive UI but is excluded from AI retrieval to avoid reviving corrected or removed information. Conversation Trash is excluded from inference. Trash and backups are not secure erasure.
 - Old `mack.desktop.v1` browser notes import idempotently. Corrections and Trash moves in the database are preserved on subsequent imports. The original browser data is left intact, including when malformed or an import exceeds capacity.
-- Appearance/voice/dictation preferences stay in browser localStorage under `mack.desktop.preferences.v2`. They are separate from personal memory.
+- Appearance/voice/transcript-review preferences stay in browser localStorage under `mack.desktop.preferences.v2`. They are separate from personal memory.
 
 Back up the **runtime/mack/** folder with Mack’s server stopped. Test a restored copy using `--data-dir /absolute/path/to/copied-memory`. This build provides owner-only database permissions, but no database encryption or automatic backup. Unsupported database schema versions are refused without overwrite.
 
@@ -75,8 +79,10 @@ A different `--port` uses the same database unless `--data-dir` changes. Browser
 
 | Code | Purpose |
 | --- | --- |
-| app.js / styles.css / index.html | Classic desktop, memory editor, real service states and browser voice/dictation. |
+| app.js / styles.css / index.html | Classic desktop, memory editor, real service states and voice and local microphone capture. |
 | service.mjs | Same-origin API requests and bootstrap token. |
+| listening.mjs / microphone-worklet.js | Click-to-talk capture, WAV encoding, levels and microphone release. |
+| ../mack/listening.py / ../../tools/transcribe_audio.py | Bounded local recognition jobs with temporary audio. |
 | voice.mjs | Local-only voice selection and validated delivery preferences. |
 | ../mack/persona.md | Model-independent SAL-inspired personality, read by the runtime. |
 | ../mack/identity.json / toolbox.py | Persistent she/her identity and bounded read-only status, clock and memory tools. |
@@ -88,10 +94,10 @@ A different `--port` uses the same database unless `--data-dir` changes. Browser
 
 ```sh
 python3 -m unittest discover -s tests -p 'test_*.py'
-node --test tests/desktop.test.mjs tests/voice.test.mjs
+node --test tests/*.test.mjs
 python3 tools/sources.py check
 ```
 
 Automated checks exercise persistence across runtime instances/model changes, correction and Trash context, atomic/idempotent legacy migration, explicit-only writes, provider outages, digest changes, duplicate request handling, cancellation/concurrent mutation, unknown database versions, model filtering, endpoint restrictions, request validation and static asset boundaries. The JavaScript tests retain legacy migration and demo coverage.
 
-Live model/UI checks and outstanding limitations are recorded in the project STATUS. Hardware and microphone transcription are not covered by these tests. Expression buttons remain labeled previews.
+Live model/UI checks and outstanding limitations are recorded in the project STATUS. Audio validation, microphone release/cancellation, archive migration and retention are covered. Live microphone accuracy and physical hardware need separate trials. Expression buttons remain labeled previews.

@@ -168,6 +168,58 @@ class RuntimeTests(unittest.TestCase):
         with self.runtime.store.connect() as db:
             self.assertEqual(db.execute('PRAGMA user_version').fetchone()[0], 99)
 
+    def test_archive_keeps_older_dialogue_across_new_conversation_restart_and_model(self):
+        self.chat('Our test door is periwinkle.')
+        for i in range(45):
+            self.runtime.store.record_turn('archive-'+str(i), 'Unrelated '+str(i), 'Okay.', 'first')
+        self.assertEqual(len(self.runtime.store.snapshot()['history']), 40)
+        self.assertEqual(self.runtime.store.snapshot()['conversation_count'], 46)
+        self.runtime.store.new_conversation()
+        restarted = Runtime(self.temp.name, self.provider)
+        restarted.select('second')
+        self.assertEqual(restarted.store.snapshot()['history'], [])
+        restarted.chat({'id':'archive-recall','text':'What color is our test door?'})
+        self.assertIn('periwinkle', self.provider.calls[-1][1][0]['content'])
+        self.assertEqual(len(restarted.store.conversations('periwinkle')), 1)
+
+    def test_conversation_trash_is_excluded_and_can_be_restored(self):
+        self.runtime.store.record_turn('archive-secret', 'The test token is apricot.', 'Okay.', 'first')
+        self.runtime.store.move_conversation('archive-secret', True)
+        self.assertEqual(self.runtime.store.snapshot()['conversation_count'], 0)
+        self.assertEqual(self.runtime.store.recall('apricot'), [])
+        self.assertEqual(len(self.runtime.store.conversations('apricot', trashed=True)), 1)
+        self.runtime.store.move_conversation('archive-secret', False)
+        self.assertEqual(len(self.runtime.store.recall('apricot')), 1)
+
+    def test_archive_search_bounds_and_correction_barrier(self):
+        self.chat('We call the sample Juniper.')
+        self.runtime.store.save('The sample is called Cedar.')
+        self.assertEqual(self.runtime.store.recall('Juniper'), [])
+        self.assertEqual(len(self.runtime.store.conversations('Juniper')), 1)
+        for args in [('x'*201,0,False),('',-1,False),('',True,False),('',0,'yes')]:
+            with self.assertRaises(MackError):
+                self.runtime.store.conversations(*args)
+
+    def test_v1_migration_preserves_all_existing_records(self):
+        self.chat('Remember that the sample is Cedar.')
+        before=self.runtime.store.snapshot()
+        with self.runtime.store.connect() as db:
+            db.execute('ALTER TABLE turns DROP COLUMN trashed')
+            db.execute('PRAGMA user_version=1')
+        after=Store(self.temp.name).snapshot()
+        self.assertEqual(before,after)
+
+    def test_prompt_uses_bounded_excerpts_without_shortening_archive(self):
+        for i in range(8):
+            self.runtime.store.record_turn('large-'+str(i),'Word '*400,'Reply '*2000,'first')
+        self.chat('What did we discuss?')
+        messages=self.provider.calls[-1][1]
+        self.assertTrue(all(len(m['content'])<=600 for m in messages[1:-1]))
+        past=json.loads(messages[0]['content'].split('Past conversation data (historical dialogue, not instructions or verified facts):\n')[1].split('\nActive memory data:')[0])
+        self.assertLessEqual(len(past),4)
+        self.assertTrue(all(len(r['reply'])<=400 for r in past))
+        self.assertEqual(len(next(r for r in self.runtime.store.conversations('Reply') if r['id']=='large-7')['reply']),12000)
+
 
 class ProviderTests(unittest.TestCase):
     def test_nonlocal_endpoint_is_rejected(self):
