@@ -7,38 +7,45 @@ a Linux robot board, battery life, a distant room microphone or a humanoid body.
 
 ## Use it
 
-1. WHERE: Mack at http://127.0.0.1:9844/. Expand **Microphone** beneath Your message if you need to change the selected input.
-2. WHERE: Mack. Click **Turn microphone on**.
-3. WHERE: the browser/macOS microphone prompt. Allow access for Mack.
-4. WHERE: Mack. Speak and watch **Your message** fill with a live transcript.
-5. WHERE: Mack. Click **Turn microphone off** to keep and review your transcript.
-6. WHERE: Mack. Click **Ask Mack to reply** when you want her to answer.
+Mack has two independent input panels:
 
-**Your message** is the only message box: type into it or fill it by speaking.
-**Ask Mack to reply** submits those words and requests her answer. Microphone
-settings are collapsed below the message; the current selection remains visible.
-The box shows provisional words while recording. It replaces each draft with
+- **Type a message** holds a typed draft. **Send text** sends only that draft.
+- **Speak to Mack** holds the **Live transcript** and microphone controls.
+  **Finish speaking & reply** ends an active recording and asks Mack to answer.
+  After stopping to review, that action becomes **Reply to voice message**.
+
+1. WHERE: Mack at http://127.0.0.1:9844/, in **Speak to Mack**. Click **Turn microphone on**.
+2. WHERE: the browser/macOS microphone prompt, if shown. Allow access for Mack.
+3. WHERE: **Live transcript**. Speak and watch your words appear.
+4. WHERE: **Speak to Mack**. Click **Finish speaking & reply** when you want her answer.
+
+For review before a reply, click **Turn microphone off**, edit the transcript if
+needed, then click **Reply to voice message**. The selected **Microphone** is shown
+below the voice panel; expand it to change inputs. Each input panel keeps its own
+draft. Starting, cancelling or sending a voice message never clears the typed box.
+Sending text never clears a reviewed voice transcript. Text can be edited during
+capture, but its Send action waits until voice capture/transcription has stopped.
+Command/Ctrl-Enter submits the field that has focus. Ordinary Enter adds a line.
+
+The voice box shows provisional words while recording. It replaces each draft with
 a fresh reading of the complete recording so earlier words can correct themselves.
 Updates are requested roughly once per second, with only one in flight; this is
 incremental preview, not zero-delay word streaming. The input meter and **Sound
 detected** give immediate audio feedback. After three seconds without a signal,
-the interface asks you to cancel and choose another microphone. The energy
+the interface asks you to cancel and check Microphone settings. The energy
 indicator detects sound, not whether it is intelligible speech.
 
 **Turn microphone off** closes capture, lets any current preview finish, and checks
-the complete recording again. The result stays visible and is copied into the
-editable message field without sending it. The 60-second limit also stops for
-review without sending. **Ask Mack to reply** submits your message; you can also click
-it while listening to finish transcription and ask for a reply directly. Only a
-submitted final transcript goes to the conversational model; its completed answer
-is saved and read in approved voice v1. **Escape**, **Cancel recording**, closing
-Mack or hiding its page discards an unfinished recording. No microphone runs
-between turns. The message box remains visible and editable while the microphone
-is off. Cancelling a recording restores any draft that was there before capture.
-The interface labels submitted text as typed, a microphone transcript or an edited
-transcript so Mack can acknowledge the source without claiming to judge audio quality.
-Control Panels offers **Review transcript before sending** to correct recognition
-errors before a message is submitted. This is especially useful for names.
+the complete recording again. The result stays in the editable voice transcript
+without sending. The 60-second limit also stops for review without sending.
+Only an explicitly submitted final transcript goes to the conversational model;
+its completed answer is saved and read in approved voice v1. **Escape**, **Cancel
+recording**, closing Mack or hiding its page discards an unfinished recording and
+restores the prior voice draft. No microphone runs between turns. Failed replies
+keep the submitted text available for retry. The interface labels submitted text
+as typed, a microphone transcript or an edited transcript so Mack can acknowledge
+the source without claiming to judge audio quality. Explicit review and reply
+buttons replace the old Review transcript before sending preference.
 
 If an embedded browser stays at **Opening microphone**, open the same local address
 in Chrome or Safari. Chrome can show a microphone chooser and **Allow while visiting

@@ -1,10 +1,10 @@
 lane: RayCue/Research
-written: 2026-10-21T16:24:00-07:00
+written: 2026-10-21T16:32:00-07:00
 by: ACT — RayCue/Research: Mac OS 9 and walking robot
 on: MAC
-head: f768412 (on/off controls; single-message layout and input provenance follow)
-status_updated: 2026-10-21T16:24:00-07:00
-where: Bill confirmed live speech works; one message box and Ask Mack to reply are live
+head: 3c2601c (input provenance; separate text/voice panels follow)
+status_updated: 2026-10-21T16:32:00-07:00
+where: Bill confirmed live speech works; separate text and voice panels are live
 next: bill
 depends_on: further conversational/voice qualification and onboard measurements
 open_in: /Users/bill/Projects/RayCue Mac · existing RayCue/Research chat
@@ -13,7 +13,9 @@ model: Preserve the user's model choice and read the live dial
 ---
 Read STATUS.md first, then software/mack/VOICE.md, docs/personality-and-voice.md and docs/product-spec.md.
 
-Latest acceptance and layout: Bill confirmed “Yes, my words appear” and supplied a scan showing recognized speech. Real microphone/transcript acceptance is met. One Your message textarea now holds typed or live spoken words; Ask Mack to reply submits it. Microphone settings are folded below it. Off reviews; cancel restores the prior draft. Input provenance accompanies new requests so the model can distinguish speech transcripts from typing; old incorrect replies remain in history. 68 Python + 27 JS checks pass and browser QA verified the flow. Production reloaded, Studio Display selected, Bill's unsent “hello” preserved. Production exec74151; resolve PID before actions. No memory or approved-voice change. Older notes calling speech acceptance pending or using Send to Mack are superseded.
+Latest layout, superseding older notes: Bill asked for separate text and voice inputs. Type a message / Send text is independent of Speak to Mack / Live transcript. Finish speaking & reply ends capture and submits only voice; Turn microphone off reviews without sending, then Reply to voice message submits. Both drafts survive use of the other input. Cancel restores the prior voice draft. Explicit actions replace the old review checkbox. Side-by-side panels stack in narrow windows. 27 JS checks and isolated prerecorded browser QA pass; production SQL unchanged, Studio Display retained, unsent “hello” restored. Screenshot runtime/listening/separate-text-voice-inputs.png. QA tab/server closed; production exec74151 remains live.
+
+Acceptance: Bill confirmed “Yes, my words appear.” Real microphone/transcript acceptance is met. Source metadata accompanies new requests so the model can distinguish speech transcripts from typing. Old incorrect replies remain in history. Preserve approved voice v1 and local memory.
 
 Latest interaction: Turn microphone on → speak and see Live transcript → Turn microphone off to review → Send to Mack for her answer. At 60 seconds capture stops for review without sending. A separate Send can also finish an active recording. The live transcript box is visible even when off. Browser QA with labeled prerecorded speech verified live words, off retaining an editable transcript and no SQL change until explicit Send; production memory unchanged. 27 JS checks pass. Production reloaded, Studio Display still selected, microphone off. Ask for Bill's actual spoken result without treating the QA sample as proof of his speech. Earlier Talk to Mack / Finish & send instructions are superseded.
 
