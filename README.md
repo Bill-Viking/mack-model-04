@@ -22,6 +22,14 @@ The formal designation has the deliberately industrial tone of an old computing 
 
 *The exact image Bill supplied and confirmed as the build target on 2026-10-20. It defines the intended appearance; dimensions and mechanisms still require engineering.*
 
+## Try Mack on your Mac
+
+The first desktop preview is working. In Finder, double-click **Start Mack.command** in this repository. It opens Mack in your browser at **http://127.0.0.1:9844/**. Keep the launcher window open while using it. Python 3 is required; there are no packages to install.
+
+Try saying **“hello”**, **“what time is it?”**, or **“Remember that I like jazz.”** Open **Memories** to read notes, **Trash** to restore removed notes, and **Control Panels** to change the desktop or preview Mack’s expressions. Drag, collapse, zoom, and resize the windows. A local browser voice can read replies aloud when available.
+
+This version uses clearly labeled, scripted local replies. Live AI, microphone input, and robot control are not connected. Notes and preferences stay in this browser; conversation text resets on reload. [Desktop guide and checks](software/desktop/README.md).
+
 ## Visual design target
 
 - The beige compact-Mac enclosure remains the dominant shape, including the screen surround, carry-handle recess, vents, and floppy-slot detail.
@@ -48,10 +56,10 @@ Real vintage Mac applications are an optional extra. A separate emulator may eve
 
 ## Where the project stands
 
-This is the repository foundation: concept, architecture, build plan, hardware intake sheets, and pinned upstream source material. No integrated Mack app, working leg, or verified electrical design exists yet.
+The browser desktop preview runs on the host Mac. The repository also contains the concept, architecture, build plan, hardware intake sheets, and pinned upstream source material. Live AI integration, a working leg, and a verified electrical design remain to be built.
 
-- **Ready:** the accepted concept, source references, screen-bezel STL/STEP and editable CAD, PCB reference, and reusable robot software snapshots.
-- **Next software milestone:** a classic desktop that visibly moves through idle, listening, thinking, and speaking, then completes one voice interaction.
+- **Ready:** the interactive desktop, browser-local notes, optional local speech output, expression previews, accepted concept, CAD/PCB references, and reusable robot software snapshots.
+- **Next software milestone:** connect a live conversation service and microphone input while keeping the desktop’s states truthful.
 - **Next mechanical milestone:** measured clock geometry and mass, followed by one leg tested with a representative load.
 
 ## Start here

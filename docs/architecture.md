@@ -1,6 +1,6 @@
 # M.A.C. Model 04 — architecture
 
-Status: proposed boundaries, not an integrated implementation. The compact four-leg appearance is settled. Technology and hardware choices remain open.
+Status: the first host browser shell is implemented; AI, memory-service and body integrations remain proposed. The compact four-leg appearance is settled. Onboard technology and hardware choices remain open.
 
 ```mermaid
 flowchart TD
@@ -21,7 +21,9 @@ The shell presents status. The brain proposes behavior. The controller decides w
 
 Build a modern interface inspired by Mac OS 9 Platinum. Use original assets or assets with a known license. First states: idle, listening, thinking, speaking, and fault. An honest disconnected state remains visible when the AI service is unavailable.
 
-Start on the host Mac with scripted state transitions. Add one microphone-to-response path after the display behavior works. Measure legibility and response on the selected small screen before choosing the deployment stack. A browser kiosk is a candidate, not a selected dependency.
+The host preview in software/desktop uses native browser modules, original SVG icons, browser-local notes and preferences, and a small deterministic conversation model. It displays scripted expression previews and real local speech-output state when the browser supplies a local voice. A Python standard-library server exposes only the desktop assets on 127.0.0.1; there is no write API, microphone capture, cloud request, or hardware endpoint.
+
+The next step is a live conversation adapter, followed by a microphone-to-response path. Measure legibility and response on the selected physical screen before choosing the deployment stack. The browser is selected for this host preview; an onboard kiosk remains a candidate.
 
 The host can supply the first AI connection and voice processing. Provider, model, network dependence, and offline fallback are undecided. The imported Continuum code supplies SQLite memory, retrieval, a brain loop, and simulation for evaluation. Its current Anthropic dependency does not select Mack's provider. No personal database or credential is imported.
 

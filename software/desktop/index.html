@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#929bbb">
+  <meta name="description" content="Meet Mack. A classic Mac desktop for a small, curious companion.">
+  <title>Mack — M.A.C. Model 04</title>
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div id="desktop" class="desktop" data-pattern="periwinkle">
+    <header class="menu-bar" aria-label="Desktop menu bar">
+      <nav id="menus" aria-label="Application menus"></nav>
+      <div class="menu-right"><time id="clock" aria-label="Current time"></time><span class="menu-divider"></span><span class="app-indicator">Mack</span></div>
+    </header>
+    <main id="workspace" aria-label="Mack desktop">
+      <div id="desktop-icons" class="desktop-icons" aria-label="Desktop items"></div>
+      <div id="windows"></div>
+      <aside class="desktop-signature" aria-label="Project designation"><strong>M.A.C. MODEL 04</strong><span>MOBILE AUTONOMOUS COMPUTER</span></aside>
+    </main>
+    <footer class="control-strip">
+      <button id="status-control" class="strip-status" title="Open Mack's control panel"><span id="status-dot" class="status-dot"></span><span id="status-label">Mack is ready</span></button>
+      <span class="strip-divider"></span>
+      <button id="sound-control" aria-label="Turn on Mack's voice" aria-pressed="false">Voice off</button>
+      <span class="preview-label">Desktop preview · local replies</span>
+    </footer>
+    <div id="toast" role="status" class="toast" hidden></div>
+  </div>
+  <noscript>Mack's desktop needs JavaScript enabled in your browser.</noscript>
+  <script type="module" src="app.js"></script>
+</body>
+</html>

@@ -2,6 +2,12 @@
 
 ## Now
 
+On 2026-10-20 Bill asked to build Mack’s Mac OS 9-style interface to try on his Mac. **Mack Desktop Preview 0.1 is running at http://127.0.0.1:9844/**. It has original Platinum-inspired menus/icons, draggable/resizable/collapsible windows, a Finder-style disk, About/Read Me, scripted typed replies, persistent browser-local notes, recoverable Trash, appearance controls, optional local browser speech, and six explicitly labeled expression previews. Live AI, microphone input and hardware remain disconnected.
+
+Launch by double-clicking **Start Mack.command** in Finder. The Python standard-library server exposes only the desktop assets on loopback; no dependency install is needed. This session deliberately leaves server PID 39534 (unified-exec session 66162) running for Bill’s trial; it is not a login item or background automation. If it stops, the launcher reopens it. The Codex browser tab is kept as a deliverable. Python 3 is required; Node is only needed for JavaScript tests.
+
+Verification for the preview: 8 JavaScript tests and all 11 Python repository tests passed; all 93 imported-file hashes remain unchanged. Browser checks passed for note save/recall after reload, Trash/restore, preferences, local speech start/end events, all six expressions and Escape recovery, title-bar drag, zoom/collapse, keyboard resize, keyboard menu selection, empty-note feedback, and 1024×768 / 640×480 / 412×504 layouts. No browser console errors observed. Audible voice quality and the physical display were not assessed. Test notes were moved to the preview’s recoverable Trash; the final view is a fresh greeting with voice off and the periwinkle desktop.
+
 Name ratified by Bill on 2026-10-20: **M.A.C. Model 04** (Mobile Autonomous Computer), everyday name **Mack**. Use the formal name for project titles and the industrial designation; use Mack in conversation and the robot personality. RayCue identifies the donor clock. The existing working folder and RayCue/Research coordination lane remain in place.
 
 On 2026-10-20 Bill asked to create a repository for Mack. Created **Bill-Viking/mack-model-04** on GitHub as a private repository and connected this local repository as its source. Canonical URL: https://github.com/Bill-Viking/mack-model-04. This request supersedes the earlier drive-only transport selection for this project. The committed introduction, concept images, documentation and pinned source library are the initial upload; ignored source checkouts and the loose duplicate PNG remain local.
@@ -16,7 +22,7 @@ Imported 93 unmodified files (2,360,495 bytes) into vendor/ from four pinned sou
 
 Validation: all 93 hashes match; seven source-tool tests pass, including modified/missing imports and refusal to overwrite dirty or mismatched checkouts; a fresh WonderMac restore and repeat invocation passed in a temporary folder. Owned documentation links and CSV structure checked. These are repository-tool checks, not tests of the imported runtime. No upstream installer, vendor test suite, emulator, AI service or motor code was executed.
 
-No integrated Mack runtime, leg CAD or verified electrical design exists yet. The exact clock model, mass, internals, actuators, compute board and power design remain unknown. The initial printer recommendation remains an A1-class filament printer, PLA fit checks, PETG candidate structure and TPU feet; no printer or hardware purchase has been selected.
+The host desktop shell is implemented; no integrated live-AI/robot runtime, leg CAD or verified electrical design exists yet. The exact clock model, mass, internals, actuators, compute board and power design remain unknown. The initial printer recommendation remains an A1-class filament printer, PLA fit checks, PETG candidate structure and TPU feet; no printer or hardware purchase has been selected.
 
 ## To do
 
@@ -28,7 +34,8 @@ No integrated Mack runtime, leg CAD or verified electrical design exists yet. Th
 - [x] Import selected CAD, PCB, control, bridge and robot source with provenance and notices.
 - [x] Add and verify source-integrity and pinned-checkout restore tools.
 - [ ] Identify and measure the actual clock; populate hardware/measurements.csv.
-- [ ] Define a first screen-state prototype and demonstrate one voice/screen interaction on the host.
+- [x] Build and verify the host desktop, screen-state previews, saved notes, and a typed response with local speech output.
+- [ ] Select and connect a live AI conversation adapter, then microphone input, with visible connection/error states.
 - [ ] Evaluate imported Continuum mock tests and select reusable memory/control pieces.
 - [ ] Develop packaging and mass/power budgets before choosing fitted hardware.
 - [ ] Design and test one restrained leg with representative load.
@@ -37,7 +44,8 @@ No integrated Mack runtime, leg CAD or verified electrical design exists yet. Th
 
 ## Important
 
-- Origin is https://github.com/Bill-Viking/mack-model-04.git; keep the repository private unless Bill asks to publish it. Bill's 2026-10-20 repository request supersedes the hub's 2026-10-19 drive transport selection. The hub's carrier registry needs to follow this change; its prior RAY-TX-001 snapshot is historical and predates the foundation. No new transfer payload is claimed here.
+- Origin is https://github.com/Bill-Viking/mack-model-04.git; keep the repository private unless Bill asks to publish it. The hub confirmed its carrier registry now uses GitHub in mail pm-356c0eafa137 on 2026-10-20. Its prior RAY-TX-001 snapshot is historical and predates the foundation. No new transfer payload is claimed here.
+- Where things live: software/desktop/ is the original UI; tools/serve_desktop.py and Start Mack.command launch it; docs/images/mack-desktop-preview.png is a browser screenshot from the 640×480 layout check. These are tracked project assets. Notes/preferences are browser localStorage under mack.desktop.v1, separate for each browser/profile/address/port; conversation is page-local. No personal notes or recordings are committed.
 - Full reference clones in sources/ remain ignored separate repositories. The tracked vendor/ subsets travel with the parent. Never push to vendor upstreams.
 - Original M.A.C. Model 04 work has no public license selected. Imports retain their individual licenses. Continuum is Bill-owned local source with no upstream LICENSE at the snapshot; no public redistribution license is asserted. The differently licensed AgentBridge classic client implementation is omitted.
 - Apple ROMs, OS images, chimes and emulator binaries are not in the tracked imports. Keep media, credentials, recordings and memory databases in ignored local storage.

@@ -1,28 +1,29 @@
 lane: RayCue/Research
-written: 2026-10-20T12:02:38-07:00
+written: 2026-10-20T20:44:11-07:00
 by: ACT — RayCue/Research: Mac OS 9 and walking robot
 on: MAC
-head: 0ae49ae
-status_updated: 2026-10-20T12:02:38-07:00
-where: Mack has a private GitHub repository and documented build foundation
-next: machine
-depends_on: exact clock measurements for fitted hardware; software prototype can proceed
+head: 908c09c
+status_updated: 2026-10-20T20:44:11-07:00
+where: Mack desktop runs locally; live AI and microphone connection next
+next: bill
+depends_on: nothing for trying the desktop; exact clock measurements for fitted hardware
 open_in: /Users/bill/Projects/RayCue Mac · reuse RayCue Mac · ACT — RayCue/Research: Mac OS 9 and walking robot · existing chat or fresh session
-judgment: Adapt selected source after mock tests; engineer one leg from measured loads
+judgment: Choose the live conversation adapter and privacy behavior; engineer hardware from measured loads
 model: Not reselected; preserve the user's choice and read the live dial
 ---
-read the project status/memory first. Start with README.md, docs/architecture.md and docs/roadmap.md; use docs/references.md and SOURCES.json for imported source.
+read the project status/memory first. Read software/desktop/README.md for the runnable preview and its verification, then README.md, docs/architecture.md and docs/roadmap.md for the whole robot.
 
 WHERE WE ARE
 
-The project is **M.A.C. Model 04** (Mobile Autonomous Computer), called **Mack**, as selected by Bill on 2026-10-20. Bill wants the accepted compact four-leg Mac concept to become an intelligent companion. The classic Mac shell is its visible personality; real vintage apps are optional. Do not re-ask that priority.
+M.A.C. Model 04 is **Mack**, an intelligent companion in Bill’s RayCue Macintosh-shaped clock. The accepted target is the beige Mac body on four short articulated legs. The classic desktop is its personality; authentic vintage apps are optional. Do not re-ask those decisions.
 
-1. Bill reattached the exact build target on 2026-10-20. It is saved as concepts/raycue-build-target.png and is now the README hero. Use its proportions, four short legs, compact base, dark feet, and classic desktop as the visual baseline. The original concept and research remain saved.
-2. README is now the introduction; architecture, roadmap, hardware intake sheets and software boundaries are written.
-3. vendor/ contains 93 unchanged source files from WonderMac, Macintosh Mini, AgentBridge and Bill's Continuum Hexapod, with license/provenance notes.
-4. Source hashes, seven repository-tool tests, fresh checkout restoration, local document links and CSV structure checks passed. No imported runtime or vendor tests were executed.
-5. On Bill's 2026-10-20 request, created the private GitHub repository https://github.com/Bill-Viking/mack-model-04 and connected origin to it. Keep it private unless Bill asks to publish.
+1. The private repository https://github.com/Bill-Viking/mack-model-04 contains the project foundation and pinned source library. The hub confirmed GitHub transport; RAY-TX-001 remains historical.
+2. **Mack Desktop Preview 0.1 is built.** It runs in a browser at http://127.0.0.1:9844/. The project-root Start Mack.command starts the loopback server and opens the browser with no package installation. It requires Python 3.
+3. Menus, movable/resizable windows, notes, recoverable Trash, desktop preferences, scripted replies, optional local browser speech, and six expression previews work. AI, microphone input, and motors are not connected. Saved notes stay in that browser; conversation resets on reload.
+4. Eight JavaScript and eleven Python tests passed; all 93 imported hashes match. The browser checks covered persistence, recovery, speech events, expressions, window controls, keyboard menus and three viewport sizes. Screenshot: docs/images/mack-desktop-preview.png. Speech sound quality and the physical display need human assessment.
 
-The software and mechanism remain to be built. Bill's physical input is clock identification and measurements. The machine's next independent work is the host screen-state prototype and evaluation of Continuum's mock tests. Fitted parts and actuator selection depend on actual dimensions, mass and power requirements.
+Bill’s next move is to try Mack and judge its look and feel. The next machine work is a provider-neutral live conversation adapter, then microphone input and real connection/error states. No AI provider or credential has been selected. Keep the deterministic demo available and label it honestly.
 
-The parent repo now uses GitHub for committed project files; this supersedes the prior drive-only selection. The hub's carrier registry must reflect the new remote. RAY-TX-001 remains a historical snapshot; this turn did not cut a new payload. The original other-project folders are untouched. The loose PNG at the project root is an untouched duplicate of the committed concept and remains untracked. No running process remains from this work. The chat stays active.
+The desktop server was deliberately left running for Bill’s trial (PID 39534, exec session 66162, 127.0.0.1:9844 at verification). Check it rather than trusting a carried PID. The browser tab was marked as a deliverable. The launcher reuses an existing server from this checkout; there is no installed login item or scheduled task. Voice is off and the desktop periwinkle after QA. A disposable test note is in the browser’s recoverable Trash.
+
+Clock identification/measurements remain necessary for fitted hardware. No motors, emulator, upstream installer, or imported robot runtime were started. The loose PNG at the project root remains untouched and untracked. The chat stays active.
