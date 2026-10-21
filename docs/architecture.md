@@ -42,6 +42,60 @@ The body controller checks locally enforceable limits regardless of conversation
 
 The first runtime development can run on macOS with a simulated body. An onboard Linux deployment will boot directly into Mack's shell. Simulation must remain visibly labeled and cannot claim to measure physical hardware.
 
+## Identity across bodies
+
+On 2026-10-21 Bill specified Mack as **she/her**, with a humanoid body as a possible
+future embodiment years from now. The compact four-legged Mac remains the first
+physical product. The formal name M.A.C. Model 04 and everyday name Mack remain.
+
+The implemented [identity record](../software/mack/identity.json),
+[personality](../software/mack/persona.md), and local memory are independent of
+model weights and body geometry. Runtime status currently names only the desktop,
+with no physical connection, sensors or motion actions. The desktop is not a
+simulated walking body.
+
+For a later body, implement an adapter that declares its revision, calibration,
+health, observations and qualified named actions. Keep high-level requests such
+as orienting toward a speaker separate from joint trajectories. Each body owns
+its kinematics, balance, gait, grasping limits and stop behavior. A humanoid cannot
+reuse a quadruped's qualification or inherit its movement permission.
+
+Migration must preserve identity, memory provenance and user choices, then start
+with motion unarmed. Bind permission to the particular body's qualified actions.
+Verify recall, voice interruption, sensor truth and recovery again on the new
+compute/controller. Cross-machine migration, body discovery and humanoid control
+are future work; a shared identity record alone does not implement them.
+
+## Implemented reasoning tools
+
+The local Ollama adapter now accepts native structured tool requests using the
+[documented tool-calling protocol](https://docs.ollama.com/capabilities/tool-calling).
+The runtime, rather than the model, dispatches three allowlisted read-only tools:
+
+| Tool | Evidence returned |
+| --- | --- |
+| `mack_status` | Identity, current desktop body, selected model, memory count, voice limits and disconnected service bridges. |
+| `local_time` | Host clock timestamp, UTC offset and weekday; it does not independently verify clock accuracy. |
+| `search_memories` | Up to six active facts matching query words, with match counts; no Trash, paths, SQL or writes. |
+
+Each turn uses a snapshot of active notes. The existing serialization gate prevents
+memory changes during the reply. Tool outputs are data; they do not grant authority.
+Unknown names and extra/wrong arguments return failures. Malformed envelopes,
+oversized batches and exhausted limits fail the turn without saving a partial
+answer. At most four calls and three model requests are allowed within a 120-second
+conversation deadline. Cancellation is checked before/after inference and before
+each tool. An in-flight Ollama request may still compute until it finishes or times out.
+
+Models without advertised tool support retain text conversation and bounded memory
+context. Tools do not give the model arbitrary shell, file, web, project-service or
+physical access. Explicit memory writes remain a separate user command/editor path.
+The API returns tool-name/success receipts for the current completed reply; they
+are not yet a durable audit log. No tool can install a model or expand permissions.
+
+Future reasoning work must evaluate answer quality, uncertainty, tool selection
+and latency on fixed Mack tasks. Cloud assistance, Continuum, Terrarium and
+Exocortex remain proposed adapters with their own scoped permissions.
+
 ## Linux foundation and device image
 
 Start hardware bring-up with a maintained Linux distribution supported by the selected board. Once display/audio/inference drivers and the electrical design are demonstrated, choose how to build the reproducible device image. Boot integration, service supervision, storage management, release identification, and recovery are part of Mack's product work.
@@ -89,4 +143,8 @@ A separate emulator may later supply selected vintage apps. It does not own memo
 
 ## Next implementation
 
-Build the local runtime with a durable memory API, service-health events, a provider-neutral conversation boundary, and a mock body adapter. First verify one path: desktop request → runtime → memory or simulated action → acknowledged result → truthful desktop state. Then add selected live inference and microphone capture, followed by measured Linux-board bring-up.
+The local runtime, durable memory, live inference, identity profile and read-only
+tool path are implemented. Next qualify fully local voice, evaluate reasoning/tool
+behavior, and build an explicitly simulated body adapter. Verify request → accepted
+or rejected → completed/cancelled/expired/faulted, including reconnect and recovery,
+before measured Linux-board bring-up and physical control.

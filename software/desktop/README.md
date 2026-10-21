@@ -14,11 +14,16 @@ Keep the launcher’s Terminal window open. Python 3 and a running local Ollama 
 
 ## Conversation and voice
 
-Ordinary messages go to the selected local Ollama model. The desktop shows the selected model, real waiting state and connection failures. Explicit **Remember that…** / **Save note…** requests save directly through the memory service. The model cannot write memories or invoke tools on its own.
+Ordinary messages go to the selected local Ollama model. The desktop shows the selected model, real waiting state and connection failures. Explicit **Remember that…** / **Save note…** requests save directly through the memory service. The model cannot write memories. Tool-capable models can request three read-only tools through the runtime: current status, local clock, and active-memory search. Try **Check your status** or **Check the clock and tell me the time**. Calls are bounded and unknown tools are refused. Models without tool support retain ordinary text conversation.
 
 Enable **Read Mack’s replies aloud** in Control Panels for a browser-supplied local voice. Optional **Allow browser dictation** enables the Dictate button when the browser supports speech recognition. It starts only after a click, asks for microphone permission, and places a transcript in the composer for review before Send. The browser vendor may process dictation online. Mac keyboard dictation is another input option. The in-app browser exposed a speech-recognition API and the opt-in gate worked; no microphone capture was started, so transcription has not been tested end to end.
 
 Escape dismisses the pending reply, cancels local speech, and requests that the service discard an unfinished generated reply. The Ollama request may keep computing until it finishes or times out; a new conversation or memory change can be refused briefly while that request completes. Explicit saves already completed are retained. No always-on microphone is implemented.
+
+Completed replies show which tools were checked or failed. These receipts appear
+for the current browser conversation; they are not yet retained in saved history
+after a reload. Tool search returns at most six matching active notes and never
+reads Trash. It uses word overlap rather than semantic search.
 
 ## SAL-inspired personality and voice study
 
@@ -34,8 +39,9 @@ it. Preferences survive reload. If a saved voice becomes unavailable, choose
 another; Mack does not silently substitute an online voice.
 
 The current sound is a stock local voice study, initially Samantha when available.
-It is not an exact reproduction of SAL's film voice. A neural voice model, approved
-reference, acoustic comparison and offline/onboard qualification remain open.
+It is not an exact reproduction of SAL's film voice. Bill's reference clip is now
+recorded in the voice design document. Audio analysis, a neural voice model,
+acoustic comparison and offline/onboard qualification remain open.
 
 ## Lasting memory
 
@@ -71,6 +77,7 @@ A different `--port` uses the same database unless `--data-dir` changes. Browser
 | service.mjs | Same-origin API requests and bootstrap token. |
 | voice.mjs | Local-only voice selection and validated delivery preferences. |
 | ../mack/persona.md | Model-independent SAL-inspired personality, read by the runtime. |
+| ../mack/identity.json / toolbox.py | Persistent she/her identity and bounded read-only status, clock and memory tools. |
 | model.mjs | Legacy browser-state validation and retained 0.1 demo helpers/tests; no longer the live conversation engine. |
 | ../mack/runtime.py | SQLite persistence, explicit memory commands, bounded retrieval, local Ollama adapter and request serialization. |
 | ../../tools/serve_desktop.py | Loopback HTTP service and launcher. |

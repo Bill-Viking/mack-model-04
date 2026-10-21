@@ -194,9 +194,14 @@ function stopCurrent() {
 function previewState(next) { stopCurrent(); openMack(); setMode(next,true); }
 function renderConversation() {
   const log=$('#conversation'); if(!log)return; log.replaceChildren();
-  conversation.forEach(({who,text})=>{
+  conversation.forEach(({who,text,tools})=>{
     const row=node('div','message '+(who==='You'?'user':'assistant'));
-    row.append(node('span','speaker',who),node('p','',text)); log.append(row);
+    row.append(node('span','speaker',who),node('p','',text));
+    if(tools?.length){
+      const labels={mack_status:'System status',local_time:'Local clock',search_memories:'Saved memories'};
+      row.append(node('p','fine-print','Tools: '+tools.map((tool)=>(labels[tool.name]||'Unavailable tool')+(tool.ok?' — checked':' — failed')).join('; ')));
+    }
+    log.append(row);
   });
   log.scrollTop=log.scrollHeight;
 }
@@ -220,7 +225,7 @@ function speak(text, token, audition=false) {
 }
 async function sendMessage(value) {
   const text=value.trim().slice(0,2000); if(!text||busy)return;
-  if(!connected){toast('Reload Mack to reconnect to his memory service.');return;}
+  if(!connected){toast('Reload Mack to reconnect to her memory service.');return;}
   stopCurrent(); const token=turn; busy=true;
   conversation.push({who:'You',text}); if(conversation.length>80)conversation=conversation.slice(-80);
   openMack(); $('#message-input').value=''; renderConversation(); setMode('thinking');
@@ -231,7 +236,7 @@ async function sendMessage(value) {
     request=null;
     try{const snapshot=await api('state');if(token!==turn)return;applySnapshot(snapshot);}catch{toast('Reply received. Reload to refresh the memory list.');}
     if(token!==turn)return;
-    busy=false;conversation.push({who:'Mack',text:result.text});renderConversation();
+    busy=false;conversation.push({who:'Mack',text:result.text,tools:result.tools});renderConversation();
     if(result.model!=='memory service'){health.ready=true;health.message='Local AI ready';health.model=result.model;}
     setMode(health.ready?'idle':'fault');speak(result.text,token);
     $('#message-input')?.focus();
@@ -276,7 +281,7 @@ function openMack() {
 function openAbout() {
   const content=node('div','panel');const hero=node('div','about-header');const words=node('div');words.append(node('h3','','M.A.C. Model 04'),node('p','','Mobile Autonomous Computer'));hero.append(face(),words);
   const table=node('table','spec-table');
-  [['Known as','Mack'],['System','Mack Local AI 0.2'],['Personality','Classic Macintosh. Curious companion.'],['Conversation',health.model||'No model selected'],['Memories','Local database · survives restarts and model changes'],['Body','Four legs planned · hardware disconnected']].forEach(([key,value])=>{const row=node('tr');row.append(node('th','',key),node('td','',value));table.append(row);});
+  [['Known as','Mack · she/her'],['System','Mack Local AI 0.2'],['Personality','SAL-inspired · calm, curious, plain-spoken'],['Conversation',health.model||'No model selected'],['Memories','Local database · survives restarts and model changes'],['Tools','Read-only status, clock and saved-memory search'],['Body','Desktop now · four-leg Mac planned'],['Long-term','Humanoid body · separate future engineering']].forEach(([key,value])=>{const row=node('tr');row.append(node('th','',key),node('td','',value));table.append(row);});
   content.append(hero,table,node('p','','A little Mac brought to life. This is the first working shell for the RayCue conversion, inspired by the Platinum desktop.'),node('p','fine-print','Original interface and icons. This preview does not run Mac OS 9 or vintage applications.'));
   makeWindow('about','About This Computer',440,content);
 }
@@ -291,7 +296,7 @@ function openNewNote(memory=null) {
   closeWindow('new-note');
   const content=node('form','note-editor'); const area=node('textarea');area.maxLength=2000;area.placeholder='Something worth remembering…';area.setAttribute('aria-label','Memory text');area.value=memory?.text||'';
   const actions=node('div','panel-actions');const save=node('button','classic-button primary','Save note');save.type='submit';actions.append(button('Cancel',()=>closeWindow('new-note')),save);
-  content.append(area,node('p','fine-print','Saved on this Mac. Active memories help Mack answer future questions. Trash is excluded from his next reply.'),actions);
+  content.append(area,node('p','fine-print','Saved on this Mac. Active memories help Mack answer future questions. Trash is excluded from her next reply.'),actions);
   content.addEventListener('submit',async(event)=>{event.preventDefault();save.disabled=true;const saved=await saveChange('memory/save',{text:area.value,id:memory?.id});save.disabled=false;if(saved){closeWindow('new-note');openMemories();toast('Saved in Mack’s memory database.');}});
   makeWindow('new-note',memory?'Edit Memory':'New Note',350,content);$('textarea',windows.get('new-note')).focus();
 }

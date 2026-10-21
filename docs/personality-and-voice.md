@@ -4,7 +4,9 @@
 
 The chosen direction is SAL 9000's voice and manner from *2010: The Year We Make
 Contact*, with the same depth of personality design requested for Agent 99.
-Mack keeps the name M.A.C. Model 04 and the everyday name Mack.
+Mack keeps the name M.A.C. Model 04 and the everyday name Mack. She uses she/her
+pronouns. Her identity continues from the desktop to the first four-legged Mac
+body and, eventually, a possible humanoid body.
 
 The project creator's guiding sentence is:
 
@@ -36,8 +38,12 @@ new trained voice.
 **This is the personality implementation and a stock-voice delivery study. The
 exact film voice is not implemented.** The initial browser settings are rate 0.88
 and pitch 0.98. These are tuning starting points, not a measured acoustic match.
-The chosen reference clip or an existing voice model is still needed for the next
-voice iteration. No film recording or character voice weights are distributed.
+Bill supplied the [Chandra and SAL reference clip](https://www.youtube.com/watch?v=T2E7sxGAmuo)
+on 2026-10-21. The browser page was verified: *Dr. Chandra and SAL 9000 — 2010:
+The Year We Make Contact (sequel to 2001)*, duration 2:44. The page's captions
+control reported unavailable. Audio has **not** been heard or analyzed through
+this session's tools. The reference is received; acoustic analysis is still open.
+No film recording or character voice weights are distributed.
 
 ## Voice acceptance
 

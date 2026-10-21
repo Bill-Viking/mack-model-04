@@ -68,6 +68,7 @@ button:focus-visible, a:focus-visible, input:focus-visible,textarea:focus-visibl
 .message:last-child { margin-bottom:0; }
 .message .speaker { font-weight:bold; color:#68675d; }
 .message p { margin:0; white-space:pre-wrap; overflow-wrap:anywhere; user-select:text; }
+.message .fine-print { grid-column:2; }
 .message.user .speaker { color:#3b467e; }
 .state-line { font-size:11px; color:#68675d; margin:0 26px 12px; min-height:17px; display:flex; align-items:center; gap:7px; }
 .state-line .status-dot { width:6px; height:6px; }

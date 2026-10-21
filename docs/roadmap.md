@@ -4,7 +4,7 @@ The goal is the complete [Mack product](product-spec.md): its own system on Linu
 
 | Gate | Build or learn | Done when |
 | --- | --- | --- |
-| G0 — Foundation; built | Repository, provenance, accepted concept, and host desktop preview. | Imported hashes verify; desktop interactions and truthful demo labels pass. The physical screen and live intelligence remain open. |
+| G0 — Foundation; built | Repository, provenance, accepted concept, and host desktop preview. | Imported hashes verify; desktop interactions and truthful demo labels pass. Physical screen integration remains open; live local text inference was subsequently connected. |
 | G1 — Product envelope; open | Clock intake, operating environment, requirements, mass/space/power budgets and sensing plan. | Measured unit geometry and retained-component masses; numerical targets and budget recorded before part selection. |
 | G2 — Integrated host system; open | Local runtime, durable memory, provider boundary, service states, and mock body. | Desktop request reaches the service and returns a truthful result; memory survives restart; simulated commands exercise rejection, expiry and recovery. |
 | G3 — Live intelligence; open | Selected inference, microphone and speech output, interruptible dialogue, retention controls. | Spoken request/response and memory work; latency measured; disconnect/cancellation and offline behavior demonstrated. |

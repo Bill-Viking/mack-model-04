@@ -24,7 +24,7 @@ class Provider:
         return [{'name': 'first', 'digest': self.digest, 'size': 100},
                 {'name': 'second', 'digest': 'digest-two', 'size': 100}]
 
-    def chat(self, model, messages):
+    def chat(self, model, messages, toolbox=None, cancelled=None):
         self.calls.append((model, messages))
         self.started.set()
         if self.release:

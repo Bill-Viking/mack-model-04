@@ -8,11 +8,13 @@ Owner: Bill. Intent confirmed 2026-10-20. Engineering baseline: proposed v0.1.
 
 Bill confirmed **Mack's own system on Linux** on 2026-10-20. Linux supplies the kernel and hardware foundation. Mack supplies the experience, services, behavior, body integration, and device configuration. “Mack system” is a working description, not another ratified product name. A new kernel is outside this baseline.
 
-The current browser desktop is one working component. It is not a bootable robot operating system or a live AI. A finished personal prototype and a production-ready commercial product are separate release gates below; no sales, manufacturing volume, certification, or budget has been agreed.
+The current browser desktop connects to real local AI, durable memory and read-only tools on the development Mac. A bootable robot system and physical body remain to be built. A finished personal prototype and a production-ready commercial product are separate release gates below; no sales, manufacturing volume, certification, or budget has been agreed.
 
 ## Decisions already made
 
 - Formal name: **M.A.C. Model 04**, Mobile Autonomous Computer. Everyday name: **Mack**.
+- Identity: **she/her**, with SAL-inspired plain, calm conversation. Identity and memory persist independently of models and bodies.
+- Long-term direction: a possible humanoid body, years away. The first physical release remains the accepted four-legged Mac. A later body requires separate engineering and qualification.
 - Appearance: [Bill's accepted image](../concepts/raycue-build-target.png), a dominant beige compact Mac body, compact underside base, four short articulated legs, and rounded dark feet.
 - Starting enclosure: Bill's RayCue clock. Preserve its character while engineering the internal structure and base around measured loads.
 - Everyday experience: an original classic Mac-style interface over modern intelligence and robotics. Authentic vintage applications are a minor, optional mode.
@@ -21,7 +23,7 @@ The current browser desktop is one working component. It is not a bootable robot
 
 ## What “complete” must demonstrate
 
-These acceptance requirements define proposed engineering work. Except for the limited desktop preview, they have not passed.
+These acceptance requirements define the complete embodied product. Host-side conversation, memory and tools have been verified, but no complete embodied requirement has passed yet.
 
 | ID | Requirement | Evidence required |
 | --- | --- | --- |
@@ -58,7 +60,7 @@ Pinned `vendor/` snapshots are a reference library. Importing them does not inst
 
 ## Immediate engineering handoff
 
-The next software build is a local Mack service connecting the existing desktop to durable memory, a replaceable conversation adapter, and an explicitly simulated body. The next physical input is the clock's model, exterior/internal clearances, and masses. Those two tracks meet at a stationary fitted prototype before loaded walking tests.
+The local service now connects the desktop to durable memory, local inference and read-only tools. The next software work is qualified offline voice, reasoning evaluation and an explicitly simulated body. The next physical input is the clock's model, exterior/internal clearances, and masses. Those two tracks meet at a stationary fitted prototype before loaded walking tests.
 
 See the [system architecture](architecture.md), [hardware integration plan](../hardware/integration-plan.md), and [release gates](roadmap.md).
 

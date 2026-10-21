@@ -4,9 +4,11 @@
 
 Project repository: [Bill-Viking/mack-model-04](https://github.com/Bill-Viking/mack-model-04).
 
-M.A.C. Model 04, called **Mack**, is an original personal robot built around the compact Mac form of a RayCue alarm clock. Its own operating environment on Linux brings together a classic Mac OS 9-inspired interface, intelligence, memory, sensors, fitted electronics, and four walking legs. We are engineering those parts as one complete device.
+M.A.C. Model 04, called **Mack (she/her)**, is an original personal robot built around the compact Mac form of a RayCue alarm clock. Her own operating environment on Linux brings together a classic Mac OS 9-inspired interface, intelligence, memory, sensors, fitted electronics, and four walking legs. We are engineering those parts as one complete device.
 
-The screen is its way of expressing itself. A conversation can appear in a classic dialog. A remembered detail can become a little note. Listening, thinking, and resting can have their own quiet desktop behaviors. The finished Mack should boot into its own interface, interact with Bill, understand its immediate surroundings, and move within a tested physical envelope. The aim is a robot that feels like a tiny Mac has come to life.
+The screen is her way of expressing herself. A conversation can appear in a classic dialog. A remembered detail can become a little note. Listening, thinking, and resting can have their own quiet desktop behaviors. The finished Mack should boot into her own interface, interact with Bill, understand her immediate surroundings, and move within a tested physical envelope. The aim is a robot that feels like a tiny Mac has come to life.
+
+Mack's identity is designed to continue across bodies. The little four-legged Mac is the first physical target; a humanoid body is a longer-term ambition, years away. Her personality, remembered facts and reasoning interfaces stay separate from each body's sensors, geometry and controller. A new body must earn its own movement capabilities through testing. See [identity and embodiment](docs/architecture.md#identity-across-bodies).
 
 **We’re building Mack in public, from the first concept to a working robot.** The classic desktop, local AI conversation and lasting memory already run on a development Mac. The physical robot is still being engineered. Follow the [build log](docs/build-log.md), [roadmap](docs/roadmap.md) and commit history for progress, experiments and remaining work.
 
@@ -29,6 +31,8 @@ The formal designation has the deliberately industrial tone of an old computing 
 **Mack Local AI 0.2 is working.** In Finder, double-click **Start Mack.command** in this repository. It opens Mack at **http://127.0.0.1:9844/**. Keep the launcher window open. Python 3 and a running local Ollama model are required; both are already present on Bill’s Mac.
 
 Mack now answers through **Qwen3.6:35b** and saves explicit memories in a local SQLite database. Try **“Remember that I like jazz”**, then ask what music you like. Memories can be inspected, corrected, moved to Trash, and restored. They survive restarts and model changes. Control Panels can select another installed conversational model.
+
+A tool-capable local model can now check Mack's actual status, read the local clock, and search active saved memories. Try **“Check your status. What can you actually do?”** or **“Check the clock. What time is it?”** These are read-only tools; memory saves still require an explicit request.
 
 A local browser voice can read replies aloud. Optional browser dictation requires browser support and microphone permission; its provider may process audio online. There is no always-on microphone. Sensors, motors and project service bridges remain disconnected. [Desktop guide](software/desktop/README.md) · [Model research and upgrade plan](docs/model-strategy.md).
 
@@ -67,7 +71,7 @@ Real vintage Mac applications are an optional extra. A separate emulator may eve
 
 The desktop, local AI conversation and durable memory run on the host Mac. The repository also contains the concept, architecture, model research, build plan, hardware intake sheets, and pinned upstream source material. A working leg and verified electrical design remain to be built.
 
-- **Ready:** the interactive desktop, local Qwen conversation, durable editable memories, installed-model selection, optional local speech output, expression previews, accepted concept and pinned CAD/PCB/robot references.
+- **Ready:** the interactive desktop, local Qwen conversation, durable editable memories, bounded read-only tools, she/her identity and SAL-inspired personality, installed-model selection, optional local speech output, expression previews, accepted concept and pinned CAD/PCB/robot references.
 - **Next software milestone:** evaluate model quality/latency, verify spoken input, and implement the explicitly simulated body contract. Continuum, Terrarium and Exocortex adapters are proposed separate services.
 - **Next hardware milestone:** measured clock geometry/mass and a unified packaging, sensing and power budget, followed by a restrained loaded-leg test.
 - **Finished personal prototype:** boot-to-Mack, conversation and memory, working sensors, onboard power, qualified four-leg motion, interruption/recovery, and documented assembly/service. [Acceptance requirements](docs/product-spec.md).

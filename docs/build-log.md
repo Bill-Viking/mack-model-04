@@ -44,6 +44,24 @@ immediate stopping and preference persistence. Existing memory stayed unchanged.
 See [personality and voice](personality-and-voice.md) for the implementation and
 the remaining reference-audio, synthesis and onboard acceptance work.
 
+## 2026-10-21 — One Mack, successive bodies
+
+Confirmed Mack as **she/her** and recorded the chosen Chandra/SAL video reference.
+Her first physical body remains the little four-legged Mac. A humanoid body is a
+long-term ambition, years away; her identity and memory should continue across it.
+Added a separate identity record and explicit body/capability status.
+
+Connected three read-only tools to local model reasoning: status, host clock and
+active saved-memory search. Real Qwen checks used each tool successfully and kept
+the future humanoid ambition separate from today's inability to walk. No physical
+controller or new voice model is installed. The video page was verified; its audio
+has not been heard or analyzed through the development tools.
+
+41 Python and 12 JavaScript tests pass. The desktop shows actual tool receipts;
+existing private memory remained unchanged across the service restart.
+
+![Mack introducing herself and reading the local clock with a verified tool receipt](images/mack-identity-tools.png)
+
 ## What comes next
 
 - Qualify fully local speech input and the explicit offline/assisted modes.
