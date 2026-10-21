@@ -64,6 +64,21 @@ class RuntimeTests(unittest.TestCase):
         self.assertEqual(self.runtime.store.snapshot()['notes'], [])
         self.assertEqual(len(self.runtime.store.snapshot()['history']), 1)
 
+    def test_message_source_reaches_model_without_guessing_from_words(self):
+        for index, source in enumerate(('text', 'microphone', 'edited_transcript')):
+            self.runtime.chat({'id':'source-check-'+str(index), 'text':'Can you hear me?', 'input_source':source})
+            system=self.provider.calls[-1][1][0]['content']
+            self.assertIn('Current message source (interface-reported; transcript may be edited): '+source,system)
+        self.chat('Can you hear me?')
+        self.assertIn('Current message source (interface-reported; transcript may be edited): unknown',self.provider.calls[-1][1][0]['content'])
+
+    def test_invalid_message_source_has_no_conversation_side_effects(self):
+        for source in ('invented', {'text':'microphone'}, ['microphone']):
+            with self.assertRaises(MackError):
+                self.runtime.chat({'id':'bad-source-123', 'text':'Hello', 'input_source':source})
+        self.assertEqual(self.provider.calls,[])
+        self.assertEqual(self.runtime.store.snapshot()['history'],[])
+
     def test_edit_and_trash_remove_stale_context(self):
         self.chat('Remember that my workshop is Juniper.')
         self.chat('What is my workshop?')
