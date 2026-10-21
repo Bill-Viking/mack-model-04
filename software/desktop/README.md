@@ -16,7 +16,7 @@ Keep the launcher’s Terminal window open. Python 3 and a running local Ollama 
 
 Ordinary messages go to the selected local Ollama model. The desktop shows the selected model, real waiting state and connection failures. Explicit **Remember that…** / **Save note…** requests save directly through the memory service. Completed exchanges are archived automatically. The model cannot edit curated facts. Tool-capable models can request four read-only tools: current status, local clock, active-memory search and past-conversation search. Try **Check your status** or **Check the clock and tell me the time**. Calls are bounded and unknown tools are refused. Models without tool support retain ordinary text conversation.
 
-Click **Talk to Mack**, allow microphone access, speak, then click **Finish & send**. The microphone closes before local transcription starts. Mack sends the transcript to the local model, saves the completed exchange, and answers in **approved voice v1**. Maximum recording length is 60 seconds. Escape or **Cancel recording** discards an unfinished recording/transcription. Closing Mack or hiding the page stops capture. There is no wake word or continuous listening.
+Click **Talk to Mack**, allow microphone access, and watch **Live transcript** update while speaking. Provisional words may correct themselves; the meter and sound indicator show whether audio is arriving. Updates are requested about once per second using the local recognizer. **Finish & send** closes the microphone and checks the complete transcript before sending it to the local conversational model. Mack saves the completed exchange and answers in **approved voice v1**. Maximum recording length is 60 seconds. Escape or **Cancel recording** discards an unfinished recording/transcription. Closing Mack or hiding the page stops capture. There is no wake word or continuous listening. Live drafts are not saved in the conversation archive.
 
 Control Panels has **Review transcript before sending** for names or recognition errors. This leaves the transcript in the message field to edit before **Send**. Silence and near-silence are rejected; background noise can still be misrecognized. [Local listening setup and evidence](../mack/LISTENING.md) documents the pinned model and offline tests. Browser microphone permission is required; use Chrome or Safari if the embedded browser does not grant access. The former browser dictation service has been removed.
 
@@ -81,8 +81,8 @@ A different `--port` uses the same database unless `--data-dir` changes. Browser
 | --- | --- |
 | app.js / styles.css / index.html | Classic desktop, memory editor, real service states and voice and local microphone capture. |
 | service.mjs | Same-origin API requests and bootstrap token. |
-| listening.mjs / microphone-worklet.js | Click-to-talk capture, WAV encoding, levels and microphone release. |
-| ../mack/listening.py / ../../tools/transcribe_audio.py | Bounded local recognition jobs with temporary audio. |
+| listening.mjs / microphone-worklet.js | Click-to-talk capture, live draft scheduling, WAV encoding, levels and microphone release. |
+| ../mack/listening.py / ../../tools/transcribe_audio.py | Bounded local recognition, temporary audio and a warm worker with idle release. |
 | voice.mjs | Local-only voice selection and validated delivery preferences. |
 | ../mack/persona.md | Model-independent SAL-inspired personality, read by the runtime. |
 | ../mack/identity.json / toolbox.py | Persistent she/her identity and bounded read-only status, clock and memory tools. |

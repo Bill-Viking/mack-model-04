@@ -36,8 +36,8 @@ export async function speechAudio(body, signal) {
   return response.blob();
 }
 
-export async function transcribeAudio(audio, id, signal) {
-  const response=await fetch('/api/listening/transcribe',{
+export async function transcribeAudio(audio, id, signal, preview=false) {
+  const response=await fetch('/api/listening/'+(preview?'preview':'transcribe'),{
     method:'POST',cache:'no-store',signal,
     headers:{'Content-Type':'audio/wav','X-Mack-Token':token,'X-Mack-Request-Id':id},body:audio
   });

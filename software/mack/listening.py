@@ -4,8 +4,10 @@ import io
 import json
 import math
 import os
+import select
 import subprocess
 import tempfile
+import threading
 import time
 import wave
 from pathlib import Path
@@ -47,6 +49,51 @@ class ListeningService(VoiceService):
         super().__init__(root, timeout)
         self.config_path = self.root / 'runtime/listening/config.json'
         self.worker = self.root / 'tools/transcribe_audio.py'
+        self.warm_process = None
+        self.idle_timer = None
+        self.closed = False
+
+    @staticmethod
+    def dispose(process):
+        if process:
+            if process.poll() is None:
+                process.kill()
+            process.wait()
+            for pipe in (process.stdin, process.stdout):
+                if pipe:
+                    pipe.close()
+
+    def retire(self, process):
+        with self.lock:
+            if self.warm_process is process and self.ident is None:
+                self.dispose(process)
+                self.warm_process = None
+
+    def close(self):
+        with self.lock:
+            self.closed = True
+            if self.idle_timer:
+                self.idle_timer.cancel()
+            # The active request owns its pipes until its finally block runs.
+            if self.ident is not None:
+                if self.process and self.process.poll() is None:
+                    self.process.kill()
+            else:
+                self.dispose(self.warm_process)
+                self.warm_process = None
+
+    def read_result(self, process, timeout):
+        deadline = time.monotonic() + timeout
+        data = bytearray()
+        while b'\n' not in data:
+            remaining = deadline - time.monotonic()
+            if remaining <= 0 or not select.select([process.stdout], [], [], remaining)[0]:
+                raise MackError('Local transcription took too long. Try a shorter recording.', 504)
+            block = os.read(process.stdout.fileno(), 4096)
+            if not block or len(data) + len(block) > 12000:
+                raise ValueError('Invalid recognizer response')
+            data.extend(block)
+        return json.loads(data)
 
     def config(self):
         try:
@@ -67,58 +114,75 @@ class ListeningService(VoiceService):
         try:
             config = self.config()
             return {'available': True, 'model': config['model_id'], 'revision': config['revision'],
-                    'message': 'Local listening ready. Audio stays on this Mac and is discarded after transcription.',
-                    'max_seconds': 60, 'network': 'disabled in speech worker'}
+                    'message': 'Live local transcript ready. Words update while you speak; audio is discarded after recognition.',
+                    'max_seconds': 60, 'live_preview': True, 'network': 'disabled in speech worker'}
         except MackError as error:
             return {'available': False, 'message': str(error), 'max_seconds': 60}
 
-    def transcribe(self, data, ident):
+    def transcribe(self, data, ident, preview=False):
         self.validate_id(ident)
-        duration = validate_audio(data)
+        try:
+            duration = validate_audio(data)
+        except MackError as error:
+            if preview and error.status == 422:
+                return {'text': '', 'local': True, 'partial': True, 'seconds': 0}
+            raise
         self.config()
         if not self.gate.acquire(blocking=False):
             raise MackError('Another recording is being transcribed. Stop it or wait a moment.', 409)
         process = None
+        successful = False
         started = time.monotonic()
         try:
             directory = self.root / 'runtime/listening/jobs'
             directory.mkdir(parents=True, exist_ok=True, mode=0o700)
             with tempfile.TemporaryDirectory(dir=directory) as job:
-                audio, output = Path(job) / 'recording.wav', Path(job) / 'transcript.json'
+                audio = Path(job) / 'recording.wav'
                 audio.write_bytes(data)
                 audio.chmod(0o600)
                 with self.lock:
-                    if ident in self.cancelled:
+                    if ident in self.cancelled or self.closed:
                         raise MackError('Listening stopped.', 409)
-                    process = subprocess.Popen([str(self.python), str(self.worker), '--config', str(self.config_path),
-                                                '--audio', str(audio), '--output', str(output)],
-                                               stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL, cwd=self.root,
-                                               env=dict(os.environ, HF_HUB_OFFLINE='1', TRANSFORMERS_OFFLINE='1', HF_HUB_DISABLE_TELEMETRY='1'))
+                    if self.idle_timer:
+                        self.idle_timer.cancel()
+                    if self.warm_process and self.warm_process.poll() is not None:
+                        self.dispose(self.warm_process)
+                        self.warm_process = None
+                    if self.warm_process is None:
+                        self.warm_process = subprocess.Popen(
+                            [str(self.python), str(self.worker), '--config', str(self.config_path), '--serve'],
+                            stdin=subprocess.PIPE, stdout=subprocess.PIPE, stderr=subprocess.DEVNULL,
+                            bufsize=0, cwd=self.root,
+                            env=dict(os.environ, HF_HUB_OFFLINE='1', TRANSFORMERS_OFFLINE='1', HF_HUB_DISABLE_TELEMETRY='1'))
+                    process = self.warm_process
                     self.process, self.ident = process, ident
-                try:
-                    process.wait(timeout=self.timeout)
-                except subprocess.TimeoutExpired:
-                    process.kill()
-                    process.wait()
-                    raise MackError('Local transcription took too long. Try a shorter recording.', 504) from None
+                process.stdin.write((json.dumps({'audio': str(audio)})+'\n').encode())
+                process.stdin.flush()
+                result = self.read_result(process, min(self.timeout, 15) if preview else self.timeout)
                 with self.lock:
                     if ident in self.cancelled:
                         raise MackError('Listening stopped.', 409)
-                if process.returncode or not output.is_file() or output.stat().st_size > 12000:
-                    raise MackError('Local transcription could not finish. Nothing was sent to Mack. Try again or type.', 503)
-                result = json.loads(output.read_text())
                 if not isinstance(result, dict):
                     raise ValueError('Invalid transcription response')
                 text = result.get('text')
-                if not isinstance(text, str) or not text.strip() or len(text) > 2000 or result.get('truncated'):
+                if not isinstance(text, str) or (not text.strip() and not preview) or len(text) > 2000 or result.get('truncated'):
                     raise MackError('I could not transcribe that clearly. Try a shorter sentence or type it.', 422)
-                return {'text': text.strip(), 'audio_seconds': duration, 'seconds': round(time.monotonic()-started, 2), 'local': True}
+                successful = True
+                return {'text': text.strip(), 'audio_seconds': duration, 'seconds': round(time.monotonic()-started, 2), 'local': True, 'partial': preview}
         except (OSError, ValueError, TypeError):
+            with self.lock:
+                if ident in self.cancelled or self.closed:
+                    raise MackError('Listening stopped.', 409) from None
             raise MackError('The local speech recognizer is unavailable. You can still type.', 503) from None
         finally:
             with self.lock:
-                if process and process.poll() is None:
-                    process.kill()
-                    process.wait()
                 self.process, self.ident = None, None
+                if process and (not successful or self.closed or ident in self.cancelled):
+                    self.dispose(process)
+                    self.warm_process = None
+                elif process:
+                    # Keep weights, never recorded audio, warm across live updates.
+                    self.idle_timer = threading.Timer(30, self.retire, args=(process,))
+                    self.idle_timer.daemon = True
+                    self.idle_timer.start()
             self.gate.release()

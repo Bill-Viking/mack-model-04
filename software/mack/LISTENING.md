@@ -9,10 +9,20 @@ a Linux robot board, battery life, a distant room microphone or a humanoid body.
 
 1. WHERE: Mack in Chrome or Safari at http://127.0.0.1:9844/. Click **Talk to Mack**.
 2. WHERE: the browser/macOS microphone prompt. Allow access for Mack.
-3. WHERE: Mack. Wait for **Microphone on**, speak, then click **Finish & send**.
+3. WHERE: Mack. Speak and watch **Live transcript** update.
+4. WHERE: Mack. Click **Finish & send** when finished.
 
-Mack closes the microphone before recognizing the recording. The transcript goes
-to the selected local model; its completed answer is saved and read in approved
+The live box shows provisional words while recording. It replaces each draft with
+a fresh reading of the complete recording so earlier words can correct themselves.
+Updates are requested roughly once per second, with only one in flight; this is
+incremental preview, not zero-delay word streaming. The input meter and **Sound
+detected** give immediate audio feedback. After three seconds without a signal,
+the interface says **No sound detected — check your microphone**. The energy
+indicator detects sound, not whether it is intelligible speech.
+
+**Finish & send** closes the microphone, lets any current preview finish, and checks
+the complete recording again. Only this final transcript goes to the selected
+local conversational model; its completed answer is saved and read in approved
 voice v1. **Escape**, **Cancel recording**, closing Mack or hiding its page stops
 capture. Recording ends at 60 seconds. No microphone runs between turns.
 Control Panels offers **Review transcript before sending** to correct recognition
@@ -58,8 +68,17 @@ The browser captures mono PCM with an AudioWorklet and converts it to 16 kHz PCM
 WAV. Uploads are authenticated, same-origin and limited to 60 seconds / 1,920,044
 bytes. Invalid formats, very short audio and near-silence are rejected. This energy
 check is not a full voice-activity detector; room noise can still produce mistaken
-words. The recognizer has one worker at a time, a 90-second deadline and a bounded
-512-token / 2,000-character output. Truncation is reported rather than submitted.
+words. The recognizer has one worker at a time, a 15-second preview deadline,
+a 90-second final deadline and a bounded 512-token / 2,000-character output.
+Truncation is reported rather than submitted. Quiet previews return no invented
+words; a quiet final submission is rejected.
+
+The offline child process keeps model weights loaded between updates and unloads
+after 30 seconds idle. This does not leave a microphone open. A cancelled active
+request kills the worker; later recognition starts a fresh one. Full-prefix previews
+use the authenticated `/api/listening/preview` endpoint and never create memories
+or conversation entries. A failed preview is shown in the live box while recording
+continues, so the user can still request final transcription or cancel.
 
 Each job uses a private temporary directory and a 0600 recording file, removed
 when the job succeeds, fails or is cancelled. No raw microphone recording is kept
@@ -109,3 +128,22 @@ model-loading flags and a Python socket audit guard. The runtime only addresses
 loopback Ollama, ignores proxies, refuses redirects and rejects known cloud models.
 No cloud API is configured. A physical disconnected cold reboot, broader accents,
 noisy rooms, long conversations and Linux/onboard performance remain to be tested.
+
+## Live transcript verification — 2026-10-21
+
+- With all outbound networking denied by macOS, the first 1.2-second sample prefix
+  took 1.87 seconds including worker/model startup. Subsequent 2.4–6.25-second
+  prefixes took 0.14–0.23 seconds on the same worker. Repeated speech extended to
+  30 and 60 seconds took 0.67 and 1.22 seconds. These are sample recognition times,
+  not a guarantee of end-to-end microphone latency or broad recognition accuracy.
+- An isolated browser test fed prerecorded speech through a Web Audio stream and
+  the actual microphone worklet. **Hello, Bill.** appeared at the displayed two-second
+  mark before finishing. A longer run updated continuously, then final review
+  produced an editable complete transcript with the microphone off. Cancellation
+  removed the live panel and did not revive it with a late result. No console errors
+  or warnings were observed. This verifies the application pipeline, not Bill's
+  physical microphone; the QA stream was explicitly labeled and used separate data.
+- 66 Python and 25 JavaScript checks pass, including warm-worker reuse, retirement,
+  truncated/invalid responses, partial-pipe timeouts, quiet previews, authentication,
+  no archive writes from previews, full-prefix capture, no overlapping requests,
+  cancellation and stale-result suppression.

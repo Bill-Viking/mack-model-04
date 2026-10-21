@@ -124,7 +124,7 @@ class Handler(BaseHTTPRequestHandler):
         try:
             path = urlsplit(self.path).path
             length = int(self.headers.get('Content-Length', '0'))
-            if path == '/api/listening/transcribe':
+            if path in ('/api/listening/transcribe', '/api/listening/preview'):
                 if not 44 < length <= MAX_BYTES:
                     raise MackError('Recording is empty or exceeds 60 seconds.', 413)
                 if self.headers.get('Content-Type') != 'audio/wav':
@@ -132,7 +132,8 @@ class Handler(BaseHTTPRequestHandler):
                 audio = self.rfile.read(length)
                 if len(audio) != length:
                     raise MackError('Recording upload was interrupted.')
-                return self.json_response(self.server.listening.transcribe(audio, self.headers.get('X-Mack-Request-Id')))
+                return self.json_response(self.server.listening.transcribe(audio, self.headers.get('X-Mack-Request-Id'),
+                                                                           preview=path.endswith('/preview')))
             if self.headers.get('Content-Type', '').split(';')[0] != 'application/json':
                 return self.json_response({'error': 'JSON required.'}, 415)
             if not 0 < length <= 500_000:

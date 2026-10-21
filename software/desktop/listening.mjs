@@ -53,8 +53,9 @@ export class Microphone {
         const room=Math.floor(this.context.sampleRate*MAX_SECONDS)-this.samples;
         const chunk=data.slice(0,room);this.chunks.push(chunk);this.samples+=chunk.length;
         let peak=0;for(const sample of chunk)peak=Math.max(peak,Math.abs(sample));
+        this.meterPeak=Math.max(this.meterPeak||0,peak);
         if(this.samples-(this.lastMeterSample||0)>=this.context.sampleRate/10){
-          this.lastMeterSample=this.samples;this.onLevel(peak,this.samples/this.context.sampleRate);
+          this.lastMeterSample=this.samples;this.onLevel(this.meterPeak,this.samples/this.context.sampleRate);this.meterPeak=0;
         }
         if(this.samples>=this.context.sampleRate*MAX_SECONDS&&!this.limitReached){this.limitReached=true;this.onLimit();}
       };
@@ -72,9 +73,51 @@ export class Microphone {
     if(this.worklet)this.worklet.port.onmessage=null;
     if(this.context&&this.context.state!=='closed')this.context.close().catch(()=>{});
   }
+  snapshot() {
+    if(this.closed || !this.context || this.samples < this.context.sampleRate*.8)return null;
+    return encodeWav(this.chunks,this.context.sampleRate);
+  }
   finish() {
     const rate=this.context?.sampleRate;this.release();
     try{return encodeWav(this.chunks,rate);}finally{this.chunks=[];}
   }
   cancel(){this.release();this.chunks=[];}
+}
+
+// Full-prefix drafts can correct earlier words. Never queue overlapping inference
+// or append duplicate snippets, and never let a late result revive a cancelled turn.
+export class LiveTranscript {
+  constructor({capture,recognize,cancel,onText,onError,env=globalThis,interval=1000}) {
+    Object.assign(this,{capture,recognize,cancel,onText,onError,env,interval});
+    this.closed=false;this.active=null;this.pending=null;
+  }
+  start(){this.schedule(this.interval);}
+  schedule(delay){if(!this.closed)this.timer=this.env.setTimeout(()=>this.tick(),delay);}
+  tick(){
+    if(this.closed||this.pending)return;
+    const started=Date.now();
+    this.pending=this.update().finally(()=>{
+      this.pending=null;
+      this.schedule(Math.max(100,this.interval-(Date.now()-started)));
+    });
+    return this.pending;
+  }
+  async update(){
+    try{
+      const audio=this.capture.snapshot();if(!audio)return;
+      const job={id:this.env.crypto.randomUUID(),controller:new this.env.AbortController()};
+      this.active=job;
+      const result=await this.recognize(audio,job.id,job.controller.signal);
+      if(!this.closed)this.onText(result);
+    }catch(error){if(!this.closed)this.onError(error);}
+    finally{this.active=null;}
+  }
+  stop(discard=false){
+    this.closed=true;this.env.clearTimeout(this.timer);
+    if(discard&&this.active){
+      const {id,controller}=this.active;controller.abort();
+      this.cancel(id).catch(()=>{});
+    }
+    return this.pending||Promise.resolve();
+  }
 }

@@ -39,11 +39,12 @@ class ListeningTests(unittest.TestCase):
         (self.root / 'runtime/listening/config.json').write_text(json.dumps({'model_path': str(model), 'model_id': MODEL, 'revision': REVISION}))
         self.worker = self.root / 'tools/transcribe_audio.py'
         self.worker.write_text('''
-import argparse,json,os,stat
-p=argparse.ArgumentParser();p.add_argument('--audio');p.add_argument('--output');p.add_argument('--config');a=p.parse_args()
+import json,os,stat,sys
 assert os.environ['HF_HUB_OFFLINE']=='1'
-assert stat.S_IMODE(os.stat(a.audio).st_mode)==0o600
-json.dump({'text':'A local transcript.'},open(a.output,'w'))
+for line in sys.stdin:
+    audio=json.loads(line)['audio']
+    assert stat.S_IMODE(os.stat(audio).st_mode)==0o600
+    print(json.dumps({'text':'A local transcript.'}),flush=True)
 ''')
         self.service = ListeningService(self.root, timeout=.5)
         self.addCleanup(self.service.close)
@@ -76,8 +77,10 @@ json.dump({'text':'A local transcript.'},open(a.output,'w'))
 
     def test_timeout_and_malformed_output_release_engine_and_clean_audio(self):
         for code, status in [('import time;time.sleep(10)', 504), ('raise SystemExit(4)', 503),
-                             ("import sys;open(sys.argv[-1],'w').write('{}')", 422),
-                             ("import sys;open(sys.argv[-1],'w').write('not json')", 503)]:
+                             ("print('{}',flush=True)", 422),
+                             ("print('not json',flush=True)", 503),
+                             ("print('x'*12001,flush=True)", 503),
+                             ("import sys,time;sys.stdout.write('{');sys.stdout.flush();time.sleep(10)", 504)]:
             self.worker.write_text(code)
             with self.subTest(code=code), self.assertRaises(MackError) as error:
                 self.service.transcribe(wav_bytes(), 'listening-failure')
@@ -86,6 +89,30 @@ json.dump({'text':'A local transcript.'},open(a.output,'w'))
             self.assertEqual(list((self.root / 'runtime/listening/jobs').iterdir()), [])
             self.assertTrue(self.service.gate.acquire(blocking=False))
             self.service.gate.release()
+
+    def test_live_preview_reuses_worker_and_final_result_is_distinct(self):
+        first=self.service.transcribe(wav_bytes(), 'preview-first', preview=True)
+        worker=self.service.warm_process
+        second=self.service.transcribe(wav_bytes(frames=16000), 'preview-second', preview=True)
+        final=self.service.transcribe(wav_bytes(frames=32000), 'preview-final')
+        self.assertIs(self.service.warm_process, worker)
+        self.assertIsNone(worker.poll())
+        self.assertTrue(first['partial'])
+        self.assertEqual(second['audio_seconds'], 1)
+        self.assertFalse(final['partial'])
+        self.assertEqual(list((self.root / 'runtime/listening/jobs').iterdir()), [])
+        self.service.retire(worker)
+        self.assertIsNotNone(worker.poll())
+        self.assertIsNone(self.service.warm_process)
+        self.assertEqual(self.service.transcribe(wav_bytes(), 'preview-restart')['text'], first['text'])
+
+    def test_silent_preview_does_not_invent_words_or_start_worker(self):
+        result=self.service.transcribe(wav_bytes(silence=True), 'preview-silence', preview=True)
+        self.assertEqual(result['text'], '')
+        self.assertTrue(result['partial'])
+        self.assertIsNone(self.service.warm_process)
+        with self.assertRaises(MackError):
+            self.service.transcribe(wav_bytes(silence=True), 'preview-final')
 
     def test_active_cancel_terminates_worker_and_busy_request_is_refused(self):
         self.service.timeout = 10

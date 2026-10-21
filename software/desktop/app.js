@@ -2,7 +2,7 @@ import { STORAGE_KEY, INITIAL_STATE, readState } from './model.mjs';
 import { connect, api, speechAudio, transcribeAudio } from './service.mjs';
 import { DEFAULT_DELIVERY, AUDITION, readDelivery, chooseVoice, speechChunks } from './voice.mjs';
 
-import { Microphone } from './listening.mjs';
+import { Microphone, LiveTranscript } from './listening.mjs';
 
 const $ = (selector, root = document) => root.querySelector(selector);
 const desktop = $('#desktop');
@@ -31,6 +31,7 @@ let reviewSpeech = false;
 let listening = {available:false,message:'Checking local listening…'};
 let microphone = null;
 let transcription = null;
+let liveTranscript = null;
 let delivery = { ...DEFAULT_DELIVERY };
 let referenceVoice = { available:false, message:'Checking local reference voice…' };
 let voiceJob = null;
@@ -194,7 +195,7 @@ function setMode(next, isPreview=false) {
   const fault=$('#fault-banner'); if(fault)fault.hidden=mode!=='fault';
   const input=$('#message-input'); if(input)input.disabled=busy||!connected||!!microphone||!!transcription;
   const send=$('#send-message'); if(send)send.disabled=busy||!connected||!!microphone||!!transcription;
-  if(!microphone){const elapsed=$('#recording-time');if(elapsed)elapsed.textContent='Microphone off';const meter=$('#microphone-meter');if(meter)meter.value=0;}
+  if(!microphone){const elapsed=$('#recording-time');if(elapsed)elapsed.textContent='Microphone off';const meter=$('#microphone-meter');if(meter)meter.value=0;const signal=$('#microphone-signal');if(signal)signal.textContent='';}
   const dictate=$('#dictate-message'); if(dictate){dictate.disabled=busy||!connected||!!transcription;dictate.textContent=microphone?(mode==='opening'?'Cancel microphone':'Finish & send'):'Talk to Mack';}
   const stop=$('#stop-listening');if(stop)stop.hidden=!microphone&&!transcription;
   document.querySelectorAll('[data-preview-state]').forEach((b)=>b.setAttribute('aria-pressed',String(preview && b.dataset.previewState===mode)));
@@ -203,6 +204,8 @@ function stopCurrent() {
   turn++; timers.forEach(clearTimeout); timers=[]; busy=false;
   if(request){api('cancel',{id:request.id}).catch(()=>{});request.controller.abort();request=null;}
   microphone?.cancel();microphone=null;
+  liveTranscript?.stop(true);liveTranscript=null;
+  const transcriptPanel=$('#live-transcript');if(transcriptPanel)transcriptPanel.hidden=true;
   if(transcription){transcription.controller.abort();api('listening/cancel',{id:transcription.id}).catch(()=>{});transcription=null;}
   const dictate=$('#dictate-message');if(dictate)dictate.textContent='Talk to Mack';
   if('speechSynthesis' in window)window.speechSynthesis.cancel();
@@ -321,18 +324,40 @@ async function dictate() {
   if(busy||transcription)return;
   if(!listening.available){toast(listening.message);openControls();return;}
   stopCurrent();const token=turn;
+  let lastSound=-Infinity;
   const capture=new Microphone(()=>finishListening(),(peak,seconds)=>{
+    if(token!==turn)return;
     const meter=$('#microphone-meter');if(meter){meter.value=peak;meter.setAttribute('aria-valuetext',Math.round(seconds)+' seconds recorded');}
     const elapsed=$('#recording-time');if(elapsed)elapsed.textContent=Math.floor(seconds)+' / 60 seconds';
+    if(peak>.003)lastSound=seconds;
+    const signal=$('#microphone-signal');
+    if(signal)signal.textContent=seconds-lastSound<1?'Sound detected':seconds>3?'No sound detected — check your microphone.':'Waiting for sound…';
   });microphone=capture;setMode('opening');
+  showTranscript('', 'Opening microphone…');
   try{
-    if(await capture.start()&&token===turn)setMode('listening');
+    if(await capture.start()&&token===turn){
+      setMode('listening');showTranscript('', 'Listening · your words will appear here');
+      liveTranscript=new LiveTranscript({capture,
+        recognize:(audio,id,signal)=>transcribeAudio(audio,id,signal,true),
+        cancel:id=>api('listening/cancel',{id}),
+        onText:result=>{if(token===turn)showTranscript(result.text,result.text?'Live transcript · words may correct themselves':'Listening · waiting for speech');},
+        onError:error=>{if(token===turn){const label=$('#live-transcript-label');if(label)label.textContent='Live words unavailable · '+error.message+' You can still Finish & send.';}}
+      });
+      liveTranscript.start();
+    }
   }catch(error){
     if(token!==turn)return;
     microphone=null;setMode('idle');
     const message=error.name==='NotAllowedError'?'Microphone access was denied. Allow it for Mack in this browser, then try Talk to Mack again.':error.message;
+    showTranscript('',message);
     const status=$('#mack-state');if(status)status.textContent=message;toast(message);
   }
+}
+function showTranscript(text,label){
+  const panel=$('#live-transcript');if(!panel)return;
+  panel.hidden=false;
+  $('#live-transcript-label').textContent=label;
+  const words=$('#live-transcript-text');words.textContent=text||'…';words.scrollTop=words.scrollHeight;
 }
 async function finishListening(){
   const capture=microphone;if(!capture||mode==='opening')return;
@@ -340,17 +365,23 @@ async function finishListening(){
   try{
     const audio=capture.finish();
     const job={id:crypto.randomUUID(),controller:new AbortController()};transcription=job;setMode('transcribing');
+    const label=$('#live-transcript-label');if(label)label.textContent='Checking the complete transcript · microphone off';
+    const drafts=liveTranscript;
+    await drafts?.stop();
+    if(token!==turn)return;
+    liveTranscript=null;
     const result=await transcribeAudio(audio,job.id,job.controller.signal);
     if(token!==turn)return;
     transcription=null;
     const input=$('#message-input');if(input)input.value=result.text;
+    showTranscript(result.text,'Transcript ready');
     setMode('idle');
     delivery=readDelivery({...delivery,engine:'reference',style:'film'});persist({...state,voice:true});updateVoiceControls();
     if(reviewSpeech){toast('Transcript ready. Edit it if needed, then Send.');input?.focus();}
     else{
       await sendMessage(result.text);
     }
-  }catch(error){if(token===turn){transcription=null;setMode('idle');const status=$('#mack-state');if(status)status.textContent=error.message;toast(error.message);}}
+  }catch(error){if(token===turn){liveTranscript?.stop(true);liveTranscript=null;transcription=null;setMode('idle');const status=$('#mack-state');if(status)status.textContent=error.message;const label=$('#live-transcript-label');if(label)label.textContent='Not sent · '+error.message;toast(error.message);}}
 }
 function openMack() {
   if(windows.has('mack')){const win=windows.get('mack');win.classList.remove('collapsed');focusWindow(win);return;}
@@ -365,14 +396,19 @@ function openMack() {
   const form=node('form','composer');form.setAttribute('aria-label','Talk to Mack');
   const input=node('input');input.id='message-input';input.type='text';input.maxLength=2000;input.placeholder='Say something to Mack…';input.autocomplete='off';input.setAttribute('aria-label','Message to Mack');
   const send=node('button','classic-button primary','Send');send.id='send-message';send.type='submit';
-  const mic=button('Talk to Mack',dictate);mic.id='dictate-message';mic.title='Click to record locally, then Finish & send';
+  const mic=button('Talk to Mack',dictate);mic.id='dictate-message';mic.title='See a live local transcript as you speak, then Finish & send';
   form.append(input,mic,send);form.addEventListener('submit',(event)=>{event.preventDefault();sendMessage(input.value);});
   const micInfo=node('div','microphone-info');
   const meter=node('meter');meter.id='microphone-meter';meter.min=0;meter.max=1;meter.value=0;meter.setAttribute('aria-label','Microphone level');
   const elapsed=node('span','fine-print','Microphone off');elapsed.id='recording-time';
+  const signal=node('span','fine-print');signal.id='microphone-signal';
   const stop=button('Cancel recording',()=>{stopCurrent();setMode('idle');},'classic-button small');stop.id='stop-listening';stop.hidden=true;
-  micInfo.append(meter,elapsed,stop);
-  content.append(welcome,log,line,suggestions,fault,form,micInfo,node('p','fine-print','Offline conversation · speech stays on this Mac · completed exchanges are saved in Conversations.'));
+  micInfo.append(meter,elapsed,signal,stop);
+  const transcriptPanel=node('section','live-transcript');transcriptPanel.id='live-transcript';transcriptPanel.hidden=true;transcriptPanel.setAttribute('aria-label','Live speech transcript');
+  const transcriptLabel=node('div','fine-print');transcriptLabel.id='live-transcript-label';
+  const transcriptText=node('p','live-transcript-text','…');transcriptText.id='live-transcript-text';transcriptText.setAttribute('aria-live','polite');transcriptText.setAttribute('aria-atomic','true');
+  transcriptPanel.append(transcriptLabel,transcriptText);
+  content.append(welcome,log,line,suggestions,fault,transcriptPanel,form,micInfo,node('p','fine-print','Offline conversation · speech stays on this Mac · completed exchanges are saved in Conversations.'));
   makeWindow('mack','Mack',560,content,{foot:'M.A.C. Model 04 · Local AI 0.3 · Esc stops a reply'});renderConversation();setMode(mode,preview);
 }
 function openAbout() {
@@ -448,7 +484,7 @@ function openControls() {
   const progress=node('p','fine-print',voiceProgress);progress.id='voice-progress';progress.setAttribute('aria-live','polite');panel.append(progress);
   const micLabel=node('label');const mic=node('input');mic.type='checkbox';mic.checked=reviewSpeech;mic.addEventListener('change',()=>{reviewSpeech=mic.checked;persist(state);});micLabel.append(mic,document.createTextNode('Review transcript before sending'));
   const listeningStatus=node('p','fine-print',listening.message);listeningStatus.id='listening-status';
-  panel.append(node('hr'),node('h3','','Local listening'),listeningStatus,micLabel,node('p','fine-print','Talk to Mack opens the microphone. Finish & send closes it and asks Mack to answer in her approved voice. Escape discards the recording. Maximum 60 seconds. No browser speech service or cloud fallback.'));
+  panel.append(node('hr'),node('h3','','Local listening'),listeningStatus,micLabel,node('p','fine-print','Talk to Mack shows a live local transcript as you speak. Draft words may correct themselves. Finish & send closes the microphone, checks the full transcript and asks Mack to answer in her approved voice. Escape discards the recording. Maximum 60 seconds. No browser speech service or cloud fallback.'));
   const modelStatus=node('p','fine-print');modelStatus.id='model-status';const modelChoices=node('div','model-choices');modelChoices.id='model-choices';
   panel.append(node('hr'),node('h3','','Local AI model'),modelStatus,modelChoices,button('Check connection',refreshHealth,'classic-button small'),node('p','fine-print','Installed Ollama models only. Switching keeps your memories. Downloads and cloud services are not enabled here.'),node('hr'),node('h3','','Try Mack’s expressions'),node('p','','These buttons preview screen states. They do not start a microphone, AI service, or robot.'));
   const states=node('div','state-buttons');
@@ -520,7 +556,7 @@ function openConversations() {
 }
 function openHelp() {
   const panel=node('div','panel');panel.append(node('h3','','Welcome to Mack.'),node('p','','A small desktop to get acquainted with. Click an icon once to open it. Drag a title bar to move a window.'));
-  const list=node('ul','help-list');['Talk to Mack: type freely, or try “Remember that I like jazz.” Explicit Remember requests save facts without asking the model to guess what belongs in memory.','Memories: inspect, edit, move notes to Trash, and restore them. They survive browser clearing, restarts, and model changes.','Talk to Mack records locally. Finish & send closes the microphone, transcribes locally and plays her answer. Escape cancels. Control Panels offers transcript review before sending.','Completed exchanges stay in the local Conversations archive. New Conversation starts a fresh view without erasing the archive. Move an exchange to Conversation Trash to exclude it from recall. Fact edits create a recall boundary so old dialogue cannot revive corrected facts.','Window controls: close on the left, zoom and collapse on the right. Drag the bottom corner to resize.','Escape dismisses a pending reply or expression preview. Local inference may finish in the background before Mack accepts another request.'].forEach((text)=>list.append(node('li','',text)));
+  const list=node('ul','help-list');['Talk to Mack: type freely, or try “Remember that I like jazz.” Explicit Remember requests save facts without asking the model to guess what belongs in memory.','Memories: inspect, edit, move notes to Trash, and restore them. They survive browser clearing, restarts, and model changes.','Talk to Mack shows a live local transcript while you speak. Draft words may change. Finish & send closes the microphone, checks the full transcript and plays her answer. Escape cancels. Control Panels offers transcript review before sending.','Completed exchanges stay in the local Conversations archive. New Conversation starts a fresh view without erasing the archive. Move an exchange to Conversation Trash to exclude it from recall. Fact edits create a recall boundary so old dialogue cannot revive corrected facts.','Window controls: close on the left, zoom and collapse on the right. Drag the bottom corner to resize.','Escape dismisses a pending reply or expression preview. Local inference may finish in the background before Mack accepts another request.'].forEach((text)=>list.append(node('li','',text)));
   panel.append(list,node('hr'),node('p','','AI answers can be mistaken. Mack currently has no sensors, motors, web access, or project service connections. Memory lives in runtime/mack/memory.sqlite3 in the project folder; it is excluded from Git. Back up that folder with the server stopped.'),node('p','fine-print','Mack is a new interface inspired by classic Mac OS. It does not include Apple system software, ROMs, sounds, or fonts.'));
   makeWindow('help','Read Me',470,panel);
 }

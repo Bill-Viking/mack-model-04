@@ -122,14 +122,31 @@ class DesktopServerTests(unittest.TestCase):
         with wave.open(data, 'wb') as wav:
             wav.setnchannels(1);wav.setsampwidth(2);wav.setframerate(16000)
             wav.writeframes(b'\0\x10'*8000)
-        for token, expected in [('',403),(self.server.token,503)]:
-            request = urllib.request.Request(self.url+'/api/listening/transcribe', data=data.getvalue(),
-                       headers={'Content-Type':'audio/wav','X-Mack-Token':token,'X-Mack-Request-Id':'listen-http'})
-            with self.assertRaises(urllib.error.HTTPError) as error:
-                urllib.request.urlopen(request)
-            self.assertEqual(error.exception.code,expected)
-            if expected==503:
-                self.assertIn('not installed',json.load(error.exception)['error'])
+        for path in ('transcribe','preview'):
+            for token, expected in [('',403),(self.server.token,503)]:
+                request = urllib.request.Request(self.url+'/api/listening/'+path, data=data.getvalue(),
+                           headers={'Content-Type':'audio/wav','X-Mack-Token':token,'X-Mack-Request-Id':'listen-http'})
+                with self.assertRaises(urllib.error.HTTPError) as error:
+                    urllib.request.urlopen(request)
+                self.assertEqual(error.exception.code,expected)
+                if expected==503:
+                    self.assertIn('not installed',json.load(error.exception)['error'])
+
+    def test_preview_is_draft_only_and_does_not_save_history(self):
+        import io,wave
+        from unittest.mock import patch
+        data=io.BytesIO()
+        with wave.open(data,'wb') as wav:
+            wav.setnchannels(1);wav.setsampwidth(2);wav.setframerate(16000)
+            wav.writeframes(b'\0\x10'*16000)
+        before=self.server.runtime.store.snapshot()
+        with patch.object(self.server.listening,'transcribe',return_value={'text':'Draft words','partial':True,'local':True}) as recognizer:
+            request=urllib.request.Request(self.url+'/api/listening/preview',data=data.getvalue(),
+                       headers={'Content-Type':'audio/wav','X-Mack-Token':self.server.token,'X-Mack-Request-Id':'preview-http'})
+            with urllib.request.urlopen(request) as response:
+                self.assertEqual(json.load(response)['text'],'Draft words')
+            recognizer.assert_called_once_with(data.getvalue(),'preview-http',preview=True)
+        self.assertEqual(before,self.server.runtime.store.snapshot())
 
     def test_archive_and_listening_status_require_token(self):
         for path in ['/api/listening/status','/api/conversation/search']:

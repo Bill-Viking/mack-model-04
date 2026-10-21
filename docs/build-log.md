@@ -4,6 +4,24 @@
 
 The goal: turn a RayCue Macintosh-shaped alarm clock into a small, intelligent four-legged companion. Mack will have an original classic Mac-inspired interface, a Linux foundation, local memory, sensors and an engineered walking body. Offline operation is the default target, with optional cloud assistance for harder tasks.
 
+## 2026-10-21 — Seeing what Mack hears
+
+Added a visible live transcript during microphone capture, requested about once
+per second through the local recognizer. Draft words can revise earlier words;
+the complete recording is checked again before submission. The sound indicator
+distinguishes an open microphone from audio actually arriving. Preview text is
+never written into the conversation archive.
+
+Kept the recognizer warm between updates, with a 30-second idle release. A recorded
+speech test displayed words at the two-second mark in the browser. Offline worker
+tests measured 0.14–0.23 seconds for short warm updates and 1.87 seconds for initial
+startup; longer repeated samples were also tested. All 66 Python and 25 JavaScript
+checks passed. Browser final review and cancellation passed, with no observed
+console errors. These are controlled recorded-speech checks; Bill's physical
+microphone trial remains pending. Saved memory and the approved voice are unchanged.
+
+The implementation and measured limits are in [Local listening](../software/mack/LISTENING.md).
+
 ## 2026-10-19 — The idea and the shape
 
 Investigated the original clock conversion, display/bezel designs, classic Mac emulators and robot-control references. Chose the core experience: a little robot with a classic Mac personality. Vintage applications are optional.

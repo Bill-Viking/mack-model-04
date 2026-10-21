@@ -142,5 +142,9 @@ button:focus-visible, a:focus-visible, input:focus-visible,textarea:focus-visibl
 @media (max-width:430px) { .menu-trigger { padding:0 5px; font-size:11px; } .brand-trigger svg { width:17px; } .menu-right { font-size:10px; } .welcome { gap:14px; padding:16px; } .welcome h1 { font-size:21px; } .welcome p { font-size:11px; } .preview-label { max-width:90px; line-height:1.2; text-align:right; } .panel { padding:15px; } .conversation { margin:0 16px; } }
 .microphone-info { display:flex; align-items:center; gap:8px; flex-wrap:wrap; margin-top:6px; }
 .microphone-info meter { width:90px; }
+.live-transcript { margin:0 15px 12px; padding:10px 12px; border:1px solid #777; background:#ffffef; box-shadow:inset 1px 1px #ccc; }
+.live-transcript[hidden] { display:none; }
+.live-transcript-text { margin:6px 0 0; min-height:42px; max-height:110px; overflow-y:auto; white-space:pre-wrap; overflow-wrap:anywhere; font-size:15px; line-height:1.45; color:#151515; }
+.microphone-info { padding:0 15px 8px; }
 .archive-exchange { border-top:1px solid #999; padding:10px 0; overflow-wrap:anywhere; }
 .archive-exchange p { white-space:pre-wrap; }

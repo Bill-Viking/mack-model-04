@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import {encodeWav,Microphone} from '../software/desktop/listening.mjs';
+import {encodeWav,Microphone,LiveTranscript} from '../software/desktop/listening.mjs';
 
 function fakeEnvironment({pending=false,failModule=false}={}){
   let grant;const tracks=[{stopped:false,stop(){this.stopped=true;}}];
@@ -59,4 +59,49 @@ test('recording limit cannot capture beyond sixty seconds',async()=>{
   const mic=new Microphone(()=>{completed=mic.finish();},()=>{},f.env);
   await mic.start();mic.worklet.port.onmessage({data:new Float32Array(48000*61).fill(.1)});
   assert.equal(completed.size,1920044);assert.ok(f.tracks.every(t=>t.stopped));
+});
+
+test('live snapshots preserve capture and include the full growing prefix',async()=>{
+  const f=fakeEnvironment(),mic=new Microphone(()=>{},()=>{},f.env);
+  await mic.start();assert.equal(mic.snapshot(),null);
+  mic.worklet.port.onmessage({data:new Float32Array(48000).fill(.1)});
+  const first=mic.snapshot();
+  mic.worklet.port.onmessage({data:new Float32Array(48000).fill(.2)});
+  const second=mic.snapshot();
+  assert.equal(first.size,32044);assert.equal(second.size,64044);
+  assert.ok(f.tracks.every(t=>!t.stopped));assert.equal(mic.chunks.length,2);
+  mic.cancel();assert.equal(mic.snapshot(),null);
+});
+
+function previewFixture(){
+  const timers=new Map(),calls=[],updates=[],errors=[],cancels=[];let sequence=0;
+  const env={crypto:{randomUUID:()=>`preview-${++sequence}`},AbortController,
+    setTimeout:(fn,delay)=>{const id=++sequence;timers.set(id,{fn,delay});return id;},clearTimeout:id=>timers.delete(id)};
+  const preview=new LiveTranscript({capture:{snapshot:()=>new Blob(['audio'])},env,
+    recognize:(audio,id,signal)=>new Promise((resolve,reject)=>calls.push({id,signal,resolve,reject})),
+    cancel:async id=>{cancels.push(id);},onText:r=>updates.push(r.text),onError:e=>errors.push(e.message)});
+  return {preview,timers,calls,updates,errors,cancels};
+}
+test('live recognition never overlaps and replaces drafts with corrected full text',async()=>{
+  const f=previewFixture();
+  const first=f.preview.tick();f.preview.tick();assert.equal(f.calls.length,1);
+  f.calls[0].resolve({text:'Hello, Max'});await first;
+  const second=f.preview.tick();f.calls[1].resolve({text:'Hello, Mack. This is Bill.'});await second;
+  assert.deepEqual(f.updates,['Hello, Max','Hello, Mack. This is Bill.']);
+  await f.preview.stop();
+});
+test('finish drains the current draft while cancellation rejects stale updates',async()=>{
+  const f=previewFixture();const current=f.preview.tick();
+  let done=false;const finishing=f.preview.stop().then(()=>{done=true;});
+  await Promise.resolve();assert.equal(done,false);assert.equal(f.calls[0].signal.aborted,false);
+  f.preview.stop(true);assert.equal(f.calls[0].signal.aborted,true);
+  f.calls[0].resolve({text:'This late text must not appear.'});await current;await finishing;
+  assert.deepEqual(f.updates,[]);assert.deepEqual(f.cancels,[f.calls[0].id]);
+  assert.equal(f.timers.size,0);
+});
+test('preview failure is visible, and a later update can recover',async()=>{
+  const f=previewFixture();const failed=f.preview.tick();f.calls[0].reject(Error('Recognizer busy'));await failed;
+  const next=f.preview.tick();f.calls[1].resolve({text:'Now working'});await next;
+  assert.deepEqual(f.errors,['Recognizer busy']);assert.deepEqual(f.updates,['Now working']);
+  await f.preview.stop();
 });
