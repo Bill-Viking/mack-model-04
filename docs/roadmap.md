@@ -1,21 +1,26 @@
 # M.A.C. Model 04 — build roadmap
 
-The accepted four-leg concept is the visual target. Each milestone earns the next hardware or integration decision. This is dependency order, not a calendar estimate.
+The goal is the complete [Mack product](product-spec.md): its own system on Linux, intelligence, memory, sensing, fitted electronics and four-leg body. The accepted image sets the appearance. These are evidence gates, not a calendar estimate; a gate stays open until its tests pass.
 
-| Milestone | Build or learn | Done when |
+| Gate | Build or learn | Done when |
 | --- | --- | --- |
-| 0 — Repository | Introduction, source inventory, CAD/code references, and provenance. | Source hashes verify and README explains the project. |
-| 1 — Clock intake | Identify and measure the unit, mounting points, screen space, and mass. | Measurements have observations and notes; unknowns stay explicit. |
-| 2 — Screen character (host preview built) | Classic menus/windows, conversation preview, saved notes, and idle/listening/thinking/speaking/resting/fault expressions. | Browser interactions checked at 1024×768, 640×480 and the narrow app panel. Actual physical display remains untested. |
-| 3 — One conversation | Microphone, speech response, visible state, and one remembered fact. | A spoken request gets a response; restart preserves the fact; disconnection is visible. |
-| 4 — Stationary Mac | Fit selected display, compute, microphone, audio, and reviewed power. | Shell closes without strain; voice/display work under measured power and temperature. |
-| 5 — One leg | CAD around selected motors, supported joints, fasteners, and replaceable foot. | Restrained test moves a representative load with current and stopping behavior recorded. |
-| 6 — Four-leg base | Use dummy mass matching the Mac and battery. | Base stands, steps, and stops within a tested envelope. |
-| 7 — Companion | Mount Mac and connect status, bounded behavior, and personality. | It responds, remembers, and moves; interruption cases are demonstrated. |
-| Optional — Vintage apps | Separate OS 9.0.4 emulator and possibly AgentBridge. | Selected apps work without making voice or motor control depend on the emulator. |
+| G0 — Foundation; built | Repository, provenance, accepted concept, and host desktop preview. | Imported hashes verify; desktop interactions and truthful demo labels pass. The physical screen and live intelligence remain open. |
+| G1 — Product envelope; open | Clock intake, operating environment, requirements, mass/space/power budgets and sensing plan. | Measured unit geometry and retained-component masses; numerical targets and budget recorded before part selection. |
+| G2 — Integrated host system; open | Local runtime, durable memory, provider boundary, service states, and mock body. | Desktop request reaches the service and returns a truthful result; memory survives restart; simulated commands exercise rejection, expiry and recovery. |
+| G3 — Live intelligence; open | Selected inference, microphone and speech output, interruptible dialogue, retention controls. | Spoken request/response and memory work; latency measured; disconnect/cancellation and offline behavior demonstrated. |
+| G4 — Stationary embodied Mack; open | Selected Linux compute, boot-to-Mack, fitted display/audio/sensors, controller link and reviewed power. | Shell closes and is serviceable; sensor health is real; measured voltage, heat, sound and performance satisfy G1 limits. |
+| G5 — Qualified leg; open | Selected actuator arrangement, supported joints, firmware, calibration and restrained loaded-leg fixture. | Representative load/range/current/temperature and stop/fault cases pass recorded numerical limits. |
+| G6 — Qualified base; open | Four legs, representative dummy body/battery mass, gait and local protection. | Stands, steps, turns and stops on defined surfaces; stability, edge/obstacle response and link-loss behavior pass. |
+| G7 — Integrated personal robot; open | Complete Mack, onboard battery, voice/personality/memory/perception and bounded movement. | P01–P09 pass on the actual assembly, including simultaneous voice/motion, network loss, reboot and no automatic movement after recovery. |
+| G8 — Reproducible product build; open | Versioned CAD/BOM/harness, installation image, assembly/calibration, backup/update recovery and service instructions. | Another clean build can be installed/calibrated from the record; P10 and repeated-use tests pass. Commercial production is a separate scope. |
+| Optional — Vintage apps | Separate emulator and possibly AgentBridge. | Selected apps work independently of the companion's control system. |
 
-Clock intake and the screen prototype can progress independently. CAD for the legs depends on measured geometry and selected actuators. The existing bezel is printable reference material; the robot picture does not contain printable leg geometry.
+## Dependencies and next work
 
-Immediate design work: try the [desktop preview](../software/desktop/README.md), connect a live conversation adapter and microphone input, populate the [measurement sheet](../hardware/measurements.csv), sketch packaging and a mass budget, and evaluate the imported Continuum mock tests.
+G1 physical intake and G2 host software can progress independently. G3 follows the host service boundary. G4 needs the packaging/power evidence and selected board. G5 needs the mass/load budget and actuator choice; it can proceed alongside stationary electronics. G6 uses representative mass, and G7 requires both G4 and G6. Reassess the mass and power budgets when any part changes.
 
-No purchase-ready BOM, leg CAD, deployment script, or live Mack motor driver is implied by this foundation.
+Immediate software work: the G2 runtime and simulated end-to-end path. Immediate physical input: clock model, exterior dimensions and total mass, followed by internal clearances and retained-part masses. See [measurements](../hardware/measurements.csv), [system budget](../hardware/system-budget.csv), and [integration plan](../hardware/integration-plan.md).
+
+The existing bezel is printable reference material. The robot picture does not contain printable leg geometry. Imported Continuum tests and abstractions can be evaluated before adopting code; no upstream geometry or limits are accepted without Mack-specific validation.
+
+No purchase-ready BOM, leg CAD, bootable device image, or live Mack motor driver exists yet. Each gate will carry its own revision, test conditions, results and remaining limits.

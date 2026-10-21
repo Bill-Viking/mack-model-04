@@ -2,6 +2,8 @@
 
 The original RayCue shell and accepted four-leg appearance are the starting constraints. All dimensions and loads need measurement.
 
+The [integration plan](integration-plan.md) treats electronics, sensing, battery, structure and walking as one assembly. The [product definition](../docs/product-spec.md) sets the completion requirements. Sensor methods and packaging zones are proposed; no wiring or motor selection is approved yet.
+
 ## Existing design files
 
 - [Screen bezel STL](../vendor/macintosh-mini/maclock-screen-bezel/maclock-screen-bezel.stl): upstream printable frame and clips.
@@ -15,6 +17,8 @@ The source location and CERN-OHL-S-2.0 notices travel with the CAD and PCB. Crea
 ## Design inputs
 
 [measurements.csv](measurements.csv) records observations. Empty values mean unknown, not zero. [parts.csv](parts.csv) is a candidate list, not an order list. Unspecified counts remain empty.
+
+[system-budget.csv](system-budget.csv) starts the assembly mass, power and space budget. It deliberately has no invented numbers. Record peak/average power by operating mode and avoid counting consumers both individually and in their supply assembly.
 
 Measure mounting points from named datums. Record outside versus inside clearances and hole centers. Weigh the complete clock and removable pieces so the robot mass budget does not double-count them.
 

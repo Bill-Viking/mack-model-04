@@ -2,6 +2,12 @@
 
 ## Now
 
+On 2026-10-20 Bill clarified the governing goal: **a complete original OS/AI/robotics product fitted into the accepted form, with engineered electronics, mechanics and sensors**. He explicitly selected **Mack's own complete system on Linux**. Walking and sensing are core product requirements. The browser desktop is one component. A new kernel is outside this baseline; no new foundation-model training is assumed.
+
+Added docs/product-spec.md with agreed decisions, P01–P10 acceptance requirements, and distinct personal-prototype/reproducible-build gates. Expanded architecture and roadmap around the full system. Added hardware/integration-plan.md and system-budget.csv for packaging zones, sensing functions, power, structure, and proof sequence. Quantities and ratings remain unknown where unmeasured; these are proposed engineering plans, not completed hardware or approved wiring. Next machine work is a local runtime joining the desktop, durable memory, a conversation boundary, and an explicitly simulated body. Clock model/dimensions/mass are the next physical input.
+
+Verification for the product-definition update: relative links in seven owned Markdown documents resolve; all three hardware CSVs have consistent columns; all 93 imported hashes still match; git whitespace checks pass. No executable code changed, so the previous implementation test results below are historical rather than a new run. The live preview health endpoint still reports mack-desktop 0.1.
+
 On 2026-10-20 Bill asked to build Mack’s Mac OS 9-style interface to try on his Mac. **Mack Desktop Preview 0.1 is running at http://127.0.0.1:9844/**. It has original Platinum-inspired menus/icons, draggable/resizable/collapsible windows, a Finder-style disk, About/Read Me, scripted typed replies, persistent browser-local notes, recoverable Trash, appearance controls, optional local browser speech, and six explicitly labeled expression previews. Live AI, microphone input and hardware remain disconnected.
 
 Launch by double-clicking **Start Mack.command** in Finder. The Python standard-library server exposes only the desktop assets on loopback; no dependency install is needed. This session deliberately leaves server PID 39534 (unified-exec session 66162) running for Bill’s trial; it is not a login item or background automation. If it stops, the launcher reopens it. The Codex browser tab is kept as a deliverable. Python 3 is required; Node is only needed for JavaScript tests.
@@ -33,13 +39,17 @@ The host desktop shell is implemented; no integrated live-AI/robot runtime, leg 
 - [x] Build the project introduction, architecture, roadmap and reference index.
 - [x] Import selected CAD, PCB, control, bridge and robot source with provenance and notices.
 - [x] Add and verify source-integrity and pinned-checkout restore tools.
+- [x] Record the complete product scope and Bill's selection of Mack's own system on Linux; define acceptance gates and hardware integration work.
 - [ ] Identify and measure the actual clock; populate hardware/measurements.csv.
 - [x] Build and verify the host desktop, screen-state previews, saved notes, and a typed response with local speech output.
+- [ ] Build the local Mack runtime, durable memory, service-state events, and simulated body contract; prove request/result and failure paths.
 - [ ] Select and connect a live AI conversation adapter, then microphone input, with visible connection/error states.
 - [ ] Evaluate imported Continuum mock tests and select reusable memory/control pieces.
 - [ ] Develop packaging and mass/power budgets before choosing fitted hardware.
 - [ ] Design and test one restrained leg with representative load.
 - [ ] Build the four-leg base with dummy mass, then integrate the stationary Mac.
+- [ ] Integrate sensing and independent body control; qualify the complete battery-powered robot against P01–P09.
+- [ ] Produce repeatable installation, assembly/calibration, update recovery, and service evidence for P10.
 - [ ] Optional after core experience: prove OS 9.0.4 and selected legacy apps.
 
 ## Important

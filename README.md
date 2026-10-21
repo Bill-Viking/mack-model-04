@@ -4,9 +4,9 @@
 
 Project repository: [Bill-Viking/mack-model-04](https://github.com/Bill-Viking/mack-model-04) (private).
 
-M.A.C. Model 04, called **Mack**, turns a RayCue Macintosh-shaped alarm clock into an intelligent companion. It keeps the familiar beige enclosure and gives it a classic Mac OS 9-style desktop, a voice, memory, and eventually four small walking legs.
+M.A.C. Model 04, called **Mack**, is an original personal robot built around the compact Mac form of a RayCue alarm clock. Its own operating environment on Linux brings together a classic Mac OS 9-inspired interface, intelligence, memory, sensors, fitted electronics, and four walking legs. We are engineering those parts as one complete device.
 
-The screen is its way of expressing itself. A conversation can appear in a classic dialog. A remembered detail can become a little note. Listening, thinking, and resting can have their own quiet desktop behaviors. The aim is a robot that feels like a tiny Mac has come to life.
+The screen is its way of expressing itself. A conversation can appear in a classic dialog. A remembered detail can become a little note. Listening, thinking, and resting can have their own quiet desktop behaviors. The finished Mack should boot into its own interface, interact with Bill, understand its immediate surroundings, and move within a tested physical envelope. The aim is a robot that feels like a tiny Mac has come to life.
 
 The formal designation has the deliberately industrial tone of an old computing instrument. “04” nods to its four legs. In conversation, it is simply Mack.
 
@@ -45,12 +45,14 @@ Use this image as the baseline for CAD and packaging decisions. Preserve its ove
 
 | Layer | Job |
 | --- | --- |
-| Classic Mac shell | A responsive modern interface with Platinum-style windows, menus, bitmap-like graphics, and robot status. |
-| Voice and mind | Conversation, personality, memory, and interpretation of its surroundings. |
+| Mack system on Linux | Boot, device services, original classic interface, configuration, diagnostics, updates, and recovery. |
+| Voice and mind | Conversation, personality, durable local memory, and behavior. |
+| Perception | Microphone and body/environment sensors, observations, and sensor health. |
 | Robot controller | Bounded actions, joint control, movement limits, and stopping independent of AI response time. |
-| Physical body | The RayCue enclosure, a fitted display and electronics, a compact base, and four articulated legs. |
+| Electronics and power | Fitted compute, controller, audio, sensors, battery, regulated supplies, and serviceable wiring. |
+| Physical body | The RayCue enclosure, structural base, four articulated legs, supported joints, and replaceable feet. |
 
-The first software prototype can run on the existing Mac. That lets us develop the experience while measuring the clock and designing its body. Onboard compute, microphones, motors, battery, and controller are still to be selected.
+Bill confirmed the Linux foundation on 2026-10-20. The first software prototype runs on the existing Mac; the target robot carries its own compute and control. Fully offline AI capability remains to be benchmarked. Onboard compute, microphones, motors, battery, and controller are still to be selected. The [product definition](docs/product-spec.md) governs completion; the desktop preview is one component.
 
 Real vintage Mac applications are an optional extra. A separate emulator may eventually run Mac OS 9.0.4, but the everyday personality and robot functions will use modern software. Emulation is not a prerequisite for the first prototype.
 
@@ -59,17 +61,20 @@ Real vintage Mac applications are an optional extra. A separate emulator may eve
 The browser desktop preview runs on the host Mac. The repository also contains the concept, architecture, build plan, hardware intake sheets, and pinned upstream source material. Live AI integration, a working leg, and a verified electrical design remain to be built.
 
 - **Ready:** the interactive desktop, browser-local notes, optional local speech output, expression previews, accepted concept, CAD/PCB references, and reusable robot software snapshots.
-- **Next software milestone:** connect a live conversation service and microphone input while keeping the desktop’s states truthful.
-- **Next mechanical milestone:** measured clock geometry and mass, followed by one leg tested with a representative load.
+- **Next software milestone:** a local Mack runtime connecting the desktop, durable memory, a conversation adapter, and an explicitly simulated body; then microphone input and live inference.
+- **Next hardware milestone:** measured clock geometry/mass and a unified packaging, sensing and power budget, followed by a restrained loaded-leg test.
+- **Finished personal prototype:** boot-to-Mack, conversation and memory, working sensors, onboard power, qualified four-leg motion, interruption/recovery, and documented assembly/service. [Acceptance requirements](docs/product-spec.md).
 
 ## Start here
 
 | Read | What it contains |
 | --- | --- |
+| [Product definition](docs/product-spec.md) | Agreed vision, original system on Linux, and evidence required for completion. |
 | [Architecture](docs/architecture.md) | Screen, AI, memory, and motion boundaries. |
 | [Build roadmap](docs/roadmap.md) | Small milestones with a demonstration for each. |
 | [References and reuse](docs/references.md) | Which projects we use, what we brought in, and what needs adaptation. |
 | [Hardware workspace](hardware/README.md) | CAD/PCB entry points, measurements, and candidate parts. |
+| [Hardware integration](hardware/integration-plan.md) | Fitted electronics, sensors, structure, power, and physical proof sequence. |
 | [Software workspace](software/README.md) | Intended components and the Continuum code to evaluate first. |
 | [Research notes](docs/research-notes.md) | Earlier investigation, printer/material recommendations, and source discrepancies. |
 | [Current status](STATUS.md) | The working record and next decisions. |
