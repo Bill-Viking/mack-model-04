@@ -1,17 +1,19 @@
 lane: RayCue/Research
-written: 2026-10-21T14:16:17-07:00
+written: 2026-10-21T14:43:00-07:00
 by: ACT — RayCue/Research: Mac OS 9 and walking robot
 on: MAC
-head: 52eeed7 (local listening and conversation archive; pushed and remote verified)
-status_updated: 2026-10-21T14:16:17-07:00
-where: Local listening and archive implemented; Chrome switched from Bose to built-in microphone for Bill’s live test
-next: machine
-depends_on: onboard measurements for hardware; configured provider for optional cloud use
+head: 065efab (live transcript implementation; documentation receipt follows)
+status_updated: 2026-10-21T14:43:00-07:00
+where: Live local transcripts verified with recorded speech; Bill's microphone trial pending
+next: bill
+depends_on: open MacBook lid for selected built-in microphone; onboard measurements for hardware
 open_in: /Users/bill/Projects/RayCue Mac · existing RayCue/Research chat
 judgment: Preserve local memory and independent control; benchmark models and qualify offline voice before onboard claims
 model: Preserve the user's model choice and read the live dial
 ---
 Read STATUS.md first, then software/mack/VOICE.md, docs/personality-and-voice.md and docs/product-spec.md.
+
+Latest interface change: Talk to Mack shows a live local transcript during recording, with one preview request about every second, a sound indicator and a final full transcription before submission. Warm recognition is measured at 0.14–0.23 seconds on short test samples; first startup took 1.87 seconds. Prerecorded browser QA showed words at the two-second mark and verified final review/cancellation; this is not Bill's physical mic acceptance. 66 Python + 25 JS checks pass. The built-in mic remains selected and the lid was still closed at 14:42. Bill has a pending trial prompt to open the lid and test the live words. Preserve his memory and accepted voice.
 
 Latest research: docs/model-strategy.md now covers downloadable Muse Glimmer 30B, Qwen3.8-27B, Gemma 4 and EmbeddingGemma 2. Glimmer/Qwen are the recommended first Mac comparison; no new weights are installed or selected. Muse Spark Open is now downloadable but far too large here. NVIDIA Bolt E4B is only announced for October 23. Preserve the approved voice and existing memory while evaluating candidates in isolated data.
 
@@ -28,7 +30,7 @@ Bill has accepted the sound. Preserve voice v1 while progressing toward full off
 
 LIVE SERVICE
 
-http://127.0.0.1:9844/ stays running for Bill, unified-exec session 69302. Resolve the current PID before any process action. The isolated voice QA server has been stopped. Never stop the shared Ollama service.
+http://127.0.0.1:9844/ stays running for Bill, unified-exec session 1868, PID 94662 at deployment. Resolve the current PID before any process action. The isolated transcript QA server/tab have been stopped. Both production views were reloaded. Never stop the shared Ollama service.
 
 PRIVATE LOCAL ASSETS
 
