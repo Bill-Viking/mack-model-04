@@ -50,6 +50,8 @@ PUBLIC WORK
 
 https://github.com/Bill-Viking/mack-model-04 is public. The README, specification and architecture make personalized intelligence and eventual humanoid embodiment explicit. docs/public-introduction.md holds approved Facebook/X copy. Resonance confirmed both posts were published once and verified after reload. Facebook retained Friends audience; X is Public. Exact permalinks and proofs live in Resonance's private application report mack-vision-publications-20261021.context.json. Do not duplicate either post.
 
+Bill's repository rule is public viewing with editing under his control. For Mack, GitHub lists only Bill-Viking as a collaborator (admin), with no pending invitations, verified 2026-10-21. Do not grant others write access. Assistants act on Bill's behalf within authorized work. Preserve the separate private/local-only rules for other projects; this was not a bulk visibility change or an account-wide permissions audit.
+
 Bill subsequently authorized the approved voice clip on Facebook and X. Resonance published one playable title-card video on each, retaining Facebook Friends / X Public, with AI labels and the project link. Both were reloaded and playback-checked. Exact links and screenshots are in the private receipt mack-voice-publications-20261021.context.json. Original baseline WAV is unchanged. Do not repeat these voice posts.
 
 Keep the loose root PNG untracked. Keep vendor snapshots and notices unchanged. No iCloud writes. This chat remains active until Bill ends it.
