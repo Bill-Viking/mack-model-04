@@ -1,9 +1,9 @@
 lane: RayCue/Research
-written: 2026-10-21T13:17:53-07:00
+written: 2026-10-21T13:26:54-07:00
 by: ACT — RayCue/Research: Mac OS 9 and walking robot
 on: MAC
-head: dfd98c9 (parent of approved voice v1 checkpoint)
-status_updated: 2026-10-21T13:17:53-07:00
+head: d19096c (approved voice v1; parent of publication receipt checkpoint)
+status_updated: 2026-10-21T13:26:54-07:00
 where: Bill accepted the light-echo audition; Mack voice v1 is pinned, preserved and selected
 next: machine
 depends_on: onboard measurements for hardware; configured provider for optional cloud use
@@ -41,5 +41,7 @@ Keep the accepted voice v1. Qualify disconnected speech, then fully local speech
 PUBLIC WORK
 
 https://github.com/Bill-Viking/mack-model-04 is public. The README, specification and architecture make personalized intelligence and eventual humanoid embodiment explicit. docs/public-introduction.md holds approved Facebook/X copy. Resonance confirmed both posts were published once and verified after reload. Facebook retained Friends audience; X is Public. Exact permalinks and proofs live in Resonance's private application report mack-vision-publications-20261021.context.json. Do not duplicate either post.
+
+Bill subsequently authorized the approved voice clip on Facebook and X. Resonance published one playable title-card video on each, retaining Facebook Friends / X Public, with AI labels and the project link. Both were reloaded and playback-checked. Exact links and screenshots are in the private receipt mack-voice-publications-20261021.context.json. Original baseline WAV is unchanged. Do not repeat these voice posts.
 
 Keep the loose root PNG untracked. Keep vendor snapshots and notices unchanged. No iCloud writes. This chat remains active until Bill ends it.
