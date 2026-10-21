@@ -1,61 +1,69 @@
-# Mack Desktop Preview 0.1
+# Mack Local AI 0.2
 
-A runnable, Platinum-inspired desktop for M.A.C. Model 04. Original assets and ordinary browser code; no emulator, Apple system software, external fonts, packages, API keys, or hardware required.
+A Platinum-inspired desktop connected to real local inference and a durable memory service. Original HTML/CSS/JavaScript/SVG; Python standard library backend. No emulator, Apple system software or frontend package installation.
 
-![Mack Desktop Preview at 640 by 480](../../docs/images/mack-desktop-preview.png)
+![Mack Local AI](../../docs/images/mack-local-ai.jpg)
 
 ## Open on the Mac
 
-1. In Finder, open this repository’s folder and double-click **Start Mack.command**.
-2. Mack opens at **http://127.0.0.1:9844/**. Keep the launcher’s Terminal window open.
-3. Type **hello** and press **Send**. Try **Remember that I like jazz**, then **What do you remember?**
+1. WHERE: Finder, this repository. Double-click **Start Mack.command**.
+2. WHERE: the browser at **http://127.0.0.1:9844/**. Type a message and press **Send**.
+3. WHERE: Mack’s message field. Try **Remember that I like jazz**, then ask **What music do I like?** Use a true preference you want saved.
 
-The launcher requires Python 3, available on the development Mac. Starting it twice reopens the existing instance from this repository. Control-C in the launcher window stops the server. Stopping the server does not erase browser notes.
+Keep the launcher’s Terminal window open. Python 3 and a running local Ollama with a downloaded conversational model are required. Bill’s Mac already has both; `qwen3.6:35b` is the initial model. This repository does not install Ollama or download weights automatically. Starting the launcher twice reopens the existing instance. Control-C stops the desktop service without erasing memories.
 
-For development, from the repository root:
+## Conversation and voice
+
+Ordinary messages go to the selected local Ollama model. The desktop shows the selected model, real waiting state and connection failures. Explicit **Remember that…** / **Save note…** requests save directly through the memory service. The model cannot write memories or invoke tools on its own.
+
+Enable **Read Mack’s replies aloud** in Control Panels for a browser-supplied local voice. Optional **Allow browser dictation** enables the Dictate button when the browser supports speech recognition. It starts only after a click, asks for microphone permission, and places a transcript in the composer for review before Send. The browser vendor may process dictation online. Mac keyboard dictation is another input option. The in-app browser exposed a speech-recognition API and the opt-in gate worked; no microphone capture was started, so transcription has not been tested end to end.
+
+Escape dismisses the pending reply, cancels local speech, and requests that the service discard an unfinished generated reply. The Ollama request may keep computing until it finishes or times out; a new conversation or memory change can be refused briefly while that request completes. Explicit saves already completed are retained. No always-on microphone is implemented.
+
+## Lasting memory
+
+- Facts live in `runtime/mack/memory.sqlite3`, independently of browser settings and model weights. Runtime data is ignored by Git and never included in the repository push.
+- Memories supports inspection, edits, recoverable Trash and restoration. There are limits of 100 active notes and 100 trashed notes, with 2,000 characters per fact.
+- Each response receives up to six notes ranked by word overlap. This is a small deterministic retrieval baseline; it can miss relevant facts. It is not an integrated Continuum service.
+- The last 40 completed exchanges persist. Only the latest four since a memory change enter model context. Editing/trashing a fact excludes earlier conversation context from the next prompt. The visible old conversation remains historical text until New Conversation clears it.
+- New Conversation clears recent exchanges and keeps saved facts. Trash is excluded from inference but remains recoverable; it is not secure erasure. Original browser notes and backups may retain prior values.
+- Old `mack.desktop.v1` browser notes import idempotently. Corrections and Trash moves in the database are preserved on subsequent imports. The original browser data is left intact, including when malformed or an import exceeds capacity.
+- Appearance/voice/dictation preferences stay in browser localStorage under `mack.desktop.preferences.v2`. They are separate from personal memory.
+
+Back up the **runtime/mack/** folder with Mack’s server stopped. Test a restored copy using `--data-dir /absolute/path/to/copied-memory`. This build provides owner-only database permissions, but no database encryption or automatic backup. Unsupported database schema versions are refused without overwrite.
+
+## Model changes
+
+Control Panels lists installed conversational models. **Use model** saves the model name and digest; facts remain unchanged. If that artifact changes, Mack requires explicit reselection. Embedding-only and known cloud-backed models are excluded; a cloud-backed `/api/show` response is also rejected before inference. This version has no hosted provider fallback, model downloader, automatic promotion or rollback UI. See the [research and upgrade plan](../../docs/model-strategy.md).
+
+## Service and development
+
+From the repository root:
 
 ```sh
 python3 tools/serve_desktop.py --no-open
 ```
 
-The server binds only to 127.0.0.1 and serves a fixed list of desktop assets. It does not serve the repository, source clones, credentials, or other local files. There is no write API. If another application owns the port, it reports the conflict rather than stopping that application. A different `--port` is possible, but browser storage is tied to the exact address and port.
+The service binds only to `127.0.0.1`, with a fixed asset allowlist, strict Host/Origin checks and a per-process token for state access and mutations. It does not expose the repository or arbitrary files. The desktop CSP permits only same-origin service requests. Ollama requests ignore environment proxies and reject redirects. There is no shell, web, camera, motion, Continuum, Terrarium or Exocortex capability. The server is a local development service; it is not configured for another device to connect over a network.
 
-## What works
+A different `--port` uses the same database unless `--data-dir` changes. Browser preferences and legacy migration remain tied to the browser address. Do not share one data directory between multiple server processes; request serialization is per process.
 
-- Classic menus and movable, resizable, collapsible windows, including keyboard access to menus and resize handles.
-- A Finder-style Mackintosh HD, About This Computer, Read Me, Memories, Control Panels, and recoverable Trash.
-- Deterministic replies for greetings, time, identity, help, and explicitly saving or recalling notes. Unknown requests explain the preview’s limits.
-- Browser-local notes and preferences that survive reloads. Note text is rendered as text, never HTML. Unreadable saved data is preserved and writes are refused.
-- Optional speech output using voices that the browser identifies as local. Voice is off by default. A missing voice leaves typed conversation usable.
-- Six expression previews: ready, listening, thinking, speaking, resting, and disconnected. Escape cancels a pending reply, speech, or expression preview.
-- Four desktop patterns, a real system clock, and reduced-motion support.
-
-## What is a preview
-
-Replies are scripted locally. No live AI, microphone input, robot, or OS 9 guest is connected. Listening and disconnected expressions are explicitly labeled previews; they do not imply microphone access or an attempted connection. When voice is enabled, the speaking state follows browser playback events.
-
-Notes and preferences use the `mack.desktop.v1` key in this browser’s localStorage. They do not use the imported Continuum memory service. A different browser, browser profile, hostname, or port has separate notes. Clearing site data deletes that browser’s notes. Conversation text stays in the current page and resets on reload. This is a prototype notebook, not a backed-up archive.
-
-## Code map
-
-| File | Purpose |
+| Code | Purpose |
 | --- | --- |
-| index.html | Desktop landmarks and loading entry point. |
-| styles.css | Platinum styling, desktop patterns, responsive windows and expression animations. |
-| app.js | Window/menu interactions, note controls, browser speech and visible states. |
-| model.mjs | Saved-state validation, reversible note moves and deterministic replies. |
-| ../../tools/serve_desktop.py | Loopback server and browser launcher. |
+| app.js / styles.css / index.html | Classic desktop, memory editor, real service states and browser voice/dictation. |
+| service.mjs | Same-origin API requests and bootstrap token. |
+| model.mjs | Legacy browser-state validation and retained 0.1 demo helpers/tests; no longer the live conversation engine. |
+| ../mack/runtime.py | SQLite persistence, explicit memory commands, bounded retrieval, local Ollama adapter and request serialization. |
+| ../../tools/serve_desktop.py | Loopback HTTP service and launcher. |
 
 ## Verification
 
-From the repository root, with Node.js for the pure JavaScript checks and Python 3 for server checks:
-
 ```sh
+python3 -m unittest discover -s tests -p 'test_*.py'
 node --test tests/desktop.test.mjs
-python3 -m unittest discover -s tests -p 'test_desktop_server.py'
 python3 tools/sources.py check
 ```
 
-Browser checks on the Mac: typed reply and thinking state, note save and recall after reload, Trash/restore, preference persistence, local speech start/end events, all six expression previews and Escape recovery, title-bar drag, zoom/collapse, keyboard resize, and layouts at 1024×768, 640×480 and 412×504. No browser console errors were observed. Speech events were verified; audible quality and the eventual physical display still need Bill’s assessment.
+Automated checks exercise persistence across runtime instances/model changes, correction and Trash context, atomic/idempotent legacy migration, explicit-only writes, provider outages, digest changes, duplicate request handling, cancellation/concurrent mutation, unknown database versions, model filtering, endpoint restrictions, request validation and static asset boundaries. The JavaScript tests retain legacy migration and demo coverage.
 
-The automated checks cover malformed saved data, oversized/duplicate notes, exact note text, reversible moves, honest fallback replies, asset responses, traversal refusal, rejection of POST requests, and an existing server’s identity. They do not test AI or hardware.
+Live model/UI checks and outstanding limitations are recorded in the project STATUS. Hardware and microphone transcription are not covered by these tests. Expression buttons remain labeled previews.

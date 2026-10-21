@@ -19,7 +19,7 @@ The goal is the complete [Mack product](product-spec.md): its own system on Linu
 
 G1 physical intake and G2 host software can progress independently. G3 follows the host service boundary. G4 needs the packaging/power evidence and selected board. G5 needs the mass/load budget and actuator choice; it can proceed alongside stationary electronics. G6 uses representative mass, and G7 requires both G4 and G6. Reassess the mass and power budgets when any part changes.
 
-Immediate software work: the G2 runtime and simulated end-to-end path. Immediate physical input: clock model, exterior dimensions and total mass, followed by internal clearances and retained-part masses. See [measurements](../hardware/measurements.csv), [system budget](../hardware/system-budget.csv), and [integration plan](../hardware/integration-plan.md).
+Local AI 0.2 now covers the desktop/runtime boundary, persistent memories, installed-model switching and local inference. G2 stays open for the simulated body contract; G3 stays open for verified spoken input, broader latency/quality evaluation and interruption qualification. Immediate software work: the simulated body path and model/voice evaluation. Immediate physical input: clock model, exterior dimensions and total mass, followed by internal clearances and retained-part masses. See [measurements](../hardware/measurements.csv), [system budget](../hardware/system-budget.csv), and [integration plan](../hardware/integration-plan.md).
 
 The existing bezel is printable reference material. The robot picture does not contain printable leg geometry. Imported Continuum tests and abstractions can be evaluated before adopting code; no upstream geometry or limits are accepted without Mack-specific validation.
 

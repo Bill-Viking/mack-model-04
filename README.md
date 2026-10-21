@@ -24,11 +24,11 @@ The formal designation has the deliberately industrial tone of an old computing 
 
 ## Try Mack on your Mac
 
-The first desktop preview is working. In Finder, double-click **Start Mack.command** in this repository. It opens Mack in your browser at **http://127.0.0.1:9844/**. Keep the launcher window open while using it. Python 3 is required; there are no packages to install.
+**Mack Local AI 0.2 is working.** In Finder, double-click **Start Mack.command** in this repository. It opens Mack at **http://127.0.0.1:9844/**. Keep the launcher window open. Python 3 and a running local Ollama model are required; both are already present on Bill’s Mac.
 
-Try saying **“hello”**, **“what time is it?”**, or **“Remember that I like jazz.”** Open **Memories** to read notes, **Trash** to restore removed notes, and **Control Panels** to change the desktop or preview Mack’s expressions. Drag, collapse, zoom, and resize the windows. A local browser voice can read replies aloud when available.
+Mack now answers through **Qwen3.6:35b** and saves explicit memories in a local SQLite database. Try **“Remember that I like jazz”**, then ask what music you like. Memories can be inspected, corrected, moved to Trash, and restored. They survive restarts and model changes. Control Panels can select another installed conversational model.
 
-This version uses clearly labeled, scripted local replies. Live AI, microphone input, and robot control are not connected. Notes and preferences stay in this browser; conversation text resets on reload. [Desktop guide and checks](software/desktop/README.md).
+A local browser voice can read replies aloud. Optional browser dictation requires browser support and microphone permission; its provider may process audio online. There is no always-on microphone. Sensors, motors and project service bridges remain disconnected. [Desktop guide](software/desktop/README.md) · [Model research and upgrade plan](docs/model-strategy.md).
 
 ## Visual design target
 
@@ -58,10 +58,10 @@ Real vintage Mac applications are an optional extra. A separate emulator may eve
 
 ## Where the project stands
 
-The browser desktop preview runs on the host Mac. The repository also contains the concept, architecture, build plan, hardware intake sheets, and pinned upstream source material. Live AI integration, a working leg, and a verified electrical design remain to be built.
+The desktop, local AI conversation and durable memory run on the host Mac. The repository also contains the concept, architecture, model research, build plan, hardware intake sheets, and pinned upstream source material. A working leg and verified electrical design remain to be built.
 
-- **Ready:** the interactive desktop, browser-local notes, optional local speech output, expression previews, accepted concept, CAD/PCB references, and reusable robot software snapshots.
-- **Next software milestone:** a local Mack runtime connecting the desktop, durable memory, a conversation adapter, and an explicitly simulated body; then microphone input and live inference.
+- **Ready:** the interactive desktop, local Qwen conversation, durable editable memories, installed-model selection, optional local speech output, expression previews, accepted concept and pinned CAD/PCB/robot references.
+- **Next software milestone:** evaluate model quality/latency, verify spoken input, and implement the explicitly simulated body contract. Continuum, Terrarium and Exocortex adapters are proposed separate services.
 - **Next hardware milestone:** measured clock geometry/mass and a unified packaging, sensing and power budget, followed by a restrained loaded-leg test.
 - **Finished personal prototype:** boot-to-Mack, conversation and memory, working sensors, onboard power, qualified four-leg motion, interruption/recovery, and documented assembly/service. [Acceptance requirements](docs/product-spec.md).
 
@@ -70,6 +70,7 @@ The browser desktop preview runs on the host Mac. The repository also contains t
 | Read | What it contains |
 | --- | --- |
 | [Product definition](docs/product-spec.md) | Agreed vision, original system on Linux, and evidence required for completion. |
+| [Model strategy](docs/model-strategy.md) | Current candidates, downloadable upgrades, memory ownership and proposed project services. |
 | [Architecture](docs/architecture.md) | Screen, AI, memory, and motion boundaries. |
 | [Build roadmap](docs/roadmap.md) | Small milestones with a demonstration for each. |
 | [References and reuse](docs/references.md) | Which projects we use, what we brought in, and what needs adaptation. |

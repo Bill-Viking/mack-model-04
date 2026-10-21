@@ -61,3 +61,9 @@ Pinned `vendor/` snapshots are a reference library. Importing them does not inst
 The next software build is a local Mack service connecting the existing desktop to durable memory, a replaceable conversation adapter, and an explicitly simulated body. The next physical input is the clock's model, exterior/internal clearances, and masses. Those two tracks meet at a stationary fitted prototype before loaded walking tests.
 
 See the [system architecture](architecture.md), [hardware integration plan](../hardware/integration-plan.md), and [release gates](roadmap.md).
+
+## Intelligence deployment decision — 2026-10-21
+
+Bill wants Mack as self-contained as possible, with a no-network mode using an onboard local model and optional cloud APIs/frontier reasoning when useful. Preserve memory, identity and body control locally. Ordinary interaction must not require a home inference server. Model updates must preserve remembered facts and must not grant new physical capabilities.
+
+The target offline acceptance test is a cold boot with external networking unavailable, followed by local spoken interaction, saved-fact recall after restart and qualified body interruption/stop behavior. Assisted mode must visibly identify cloud use, send scoped context under the user’s selected policy and handle failure while preserving local operation. These are requirements for the finished system; Local AI 0.2 runs inference on the development Mac, and fully local speech recognition/onboard performance remain unqualified. See [model strategy](model-strategy.md).

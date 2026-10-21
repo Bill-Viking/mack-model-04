@@ -1,36 +1,40 @@
 lane: RayCue/Research
-written: 2026-10-20T20:57:10-07:00
+written: 2026-10-21T10:56:33-07:00
 by: ACT — RayCue/Research: Mac OS 9 and walking robot
 on: MAC
-head: cad1575
-status_updated: 2026-10-20T20:57:10-07:00
-where: Complete Mack product defined; Linux foundation confirmed; host desktop remains runnable
+head: 06ab142 (base before the Local AI 0.2 implementation; resolve the latest commit)
+status_updated: 2026-10-21T10:56:33-07:00
+where: Local AI 0.2 connected; memory persists; offline-first product direction selected
 next: machine
-depends_on: nothing for host runtime; clock measurements for fitted electronics and mechanics
-open_in: /Users/bill/Projects/RayCue Mac · reuse RayCue Mac · ACT — RayCue/Research: Mac OS 9 and walking robot · existing chat or fresh session
-judgment: Implement the integrated runtime; select physical parts only against measured packaging and loads
-model: Not reselected; preserve the user's choice and read the live dial
+depends_on: onboard measurements for hardware; configured provider for optional cloud use
+open_in: /Users/bill/Projects/RayCue Mac · existing RayCue/Research chat
+judgment: Preserve local memory and independent control; benchmark models and qualify offline voice before onboard claims
+model: Preserve the user's model choice and read the live dial
 ---
-Read STATUS.md and docs/product-spec.md first, then docs/architecture.md, docs/roadmap.md and hardware/integration-plan.md. Read software/desktop/README.md for the runnable component.
+Read STATUS.md, docs/model-strategy.md and software/desktop/README.md, then docs/product-spec.md and docs/architecture.md.
 
-WHERE WE ARE
+BUILT
 
-Bill clarified that Mack is a complete original OS/AI/robotics product: its own operating environment, intelligence, memory, sensing, fitted electronics and four-leg body. He explicitly selected Mack's own system on Linux. Do not re-ask this choice. The new kernel option was not selected. The formal name remains M.A.C. Model 04 (Mobile Autonomous Computer); everyday name Mack. The accepted concept image remains the visual baseline.
+Mack now uses real local Ollama inference (Qwen3.6:35b on Bill’s 64 GiB M2 Max), explicit SQLite facts, editable Memories/Trash, bounded persistent history and installed-model selection with digest checks. The database is ignored at runtime/mack/memory.sqlite3. Never stage it. Browser notes import idempotently; originals remain untouched. Local speech output remains available. Browser dictation is opt-in and may process audio online; it was not exercised with a microphone.
 
-The repository now distinguishes agreed intent, proposed engineering architecture, and built components. Product requirements P01–P10 and gates G0–G8 cover a complete personal robot and reproducible build; commercial production is a separate scope. The integration plan covers packaging zones, sensors, electrical work, structural loads and physical testing. hardware/system-budget.csv has 12 assembly rows with blank measured values, not invented ratings. No board, actuator, battery, camera, AI provider, offline model or wire protocol is selected.
+Verified 30 Python tests, 8 legacy JavaScript tests and 93 vendor hashes. Live Qwen/UI recall, correction, model switch and exclusion of trashed facts passed. Exact memory/history/model state survived a real server restart. The window-growth clipping fix was checked at normal, 640×480 and 412×504 sizes. Two true starting memories record Bill’s name and his deployment preference. Disposable QA notes remain only in recoverable Trash.
 
-NEXT MACHINE WORK
+USER DIRECTION
 
-Build the G2 local Mack runtime: desktop interface, durable local memory, replaceable conversation boundary, service-state events, and explicitly simulated body. Prove requests, acknowledgments/results, expiry, cancellation and failure/recovery without live motors. Then add selected live inference and microphone capture. The future Linux device image must boot into Mack and provide installation/update recovery; it does not exist yet.
+Mack is the complete Linux-based personal robot, not just its browser interface. Bill wants it as self-contained as possible, with offline local intelligence and optional cloud/frontier assistance. Do not re-ask this. No hosted account/key was configured. Model intelligence does not grant physical authority. Memory and local motion control remain independent of cloud availability and model upgrades.
+
+NEXT
+
+Implement/qualify fully local speech recognition and the explicit offline/assisted mode policy. Evaluate models on fixed Mack tasks, response latency, correction/unknown-fact behavior and resource use. Build the mock-body contract so requests/results, cancellation, expiry and recovery are real, labeled simulation. Cloud assistance needs a scoped provider adapter and credentials, without wholesale memory upload. Model downloader/evaluation/rollback remains planned.
+
+Continuum research, Terrarium (LLM Arcade Game) and Exocortex are proposed separate services. Only read-only inspection occurred. Preserve Continuum’s frozen experiments and semantic-expansion-off ruling. Preserve Terrarium’s recorded export-only observation boundary until its owner closes it. Do not ingest the whole Exocortex dossier or write into other projects. No live bridge exists.
 
 NEXT PHYSICAL INPUT
 
-Clock model/revision, exterior dimensions and total mass, then internal clearances and retained-component masses. Use hardware/measurements.csv and system-budget.csv. CAD and motor choices depend on these values. The concept picture is not printable or load-qualified geometry. The controller's local limits and stopping must survive host/AI failure; exact deadlines and stop response require the actual body.
+Actual RayCue model/revision, dimensions, mass, clearances and retained component masses. Use hardware/measurements.csv and system-budget.csv. Four-leg CAD, actuators, electronics, battery, sensors and Linux compute must fit measured budgets. No motion/hardware test or purchase occurred.
 
-BUILT AND VERIFIED
+LIVE SERVICE AND REPOSITORY
 
-Mack Desktop Preview 0.1 remains available at http://127.0.0.1:9844/. Start Mack.command launches a Python standard-library loopback server with no package install. Menus, draggable/resizable windows, browser-local notes, recoverable Trash, preferences, scripted replies, local browser speech and six labeled expression previews work. No live AI, microphone or hardware is connected. Browser notes are not the proposed device memory service.
+http://127.0.0.1:9844/ is intentionally left running for Bill, unified-exec session 94987. Resolve the current PID before stopping anything. Start Mack.command reopens it; no login automation exists. Keep the browser deliverable. Never stop the shared Ollama service as part of Mack cleanup.
 
-Previous implementation validation: eight JavaScript and eleven Python tests passed, plus browser interaction checks at three viewport sizes. This documentation change checked owned links, CSV structure and all 93 imported hashes; no executable code changed. The server health endpoint still identifies mack-desktop 0.1. The session intentionally leaves it running for Bill's trial, without a login item or automation. Earlier PID 39534 is historical; verify before using it. Voice was off and a disposable test note remains in browser Trash.
-
-The private repository is https://github.com/Bill-Viking/mack-model-04. GitHub is the hub-confirmed carrier; RAY-TX-001 is historical. Keep vendor snapshots unchanged and attributed. No hardware purchase/modification, upstream installer, emulator or motor runtime was run. The loose root PNG remains untracked and untouched. This chat stays active.
+Private origin: https://github.com/Bill-Viking/mack-model-04.git. Vendor imports stay unchanged and attributed. The loose root PNG stays untracked and untouched. No iCloud writes. This chat remains active; do not perform the close ritual until Bill ends the session.

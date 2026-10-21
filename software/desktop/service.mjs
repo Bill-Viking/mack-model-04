@@ -1,0 +1,22 @@
+let token = '';
+
+export async function connect() {
+  const response = await fetch('/api/bootstrap', { cache: 'no-store' });
+  const data = await response.json();
+  if (!response.ok) throw new Error(data.error || 'Mack’s local service is unavailable.');
+  token = data.token;
+  return data.state;
+}
+
+export async function api(path, body, signal) {
+  const response = await fetch('/api/' + path, {
+    method: body === undefined ? 'GET' : 'POST', cache: 'no-store', signal,
+    headers: { 'Content-Type': 'application/json', 'X-Mack-Token': token },
+    ...(body === undefined ? {} : { body: JSON.stringify(body) })
+  });
+  let data;
+  try { data = await response.json(); }
+  catch { throw new Error('Mack’s local service returned an unreadable response.'); }
+  if (!response.ok) throw new Error(data.error || 'Mack could not complete that request.');
+  return data;
+}

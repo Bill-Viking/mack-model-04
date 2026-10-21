@@ -25,7 +25,7 @@ button:focus-visible, a:focus-visible, input:focus-visible,textarea:focus-visibl
 .menu-right { display:flex; align-items:center; gap:14px; font-size:12px; white-space:nowrap; }
 .menu-divider { width:1px; background:#aaa; height:17px; box-shadow:1px 0 white; }
 .app-indicator::before { content:'▣'; margin-right:7px; }
-#workspace { position:absolute; inset:30px 0 37px; overflow:hidden; }
+#workspace { position:absolute; inset:30px 0 37px; overflow:clip; }
 .desktop-icons { position:absolute; right:23px; top:24px; display:flex; flex-direction:column; gap:22px; }
 .desktop-icon { display:flex; flex-direction:column; align-items:center; gap:5px; background:none; border:0; width:100px; padding:3px; user-select:none; }
 .icon-art { width:44px; height:44px; display:inline-flex; flex-shrink:0; }
@@ -96,6 +96,9 @@ button:focus-visible, a:focus-visible, input:focus-visible,textarea:focus-visibl
 .panel hr { border:0; border-top:1px solid #aaa; border-bottom:1px solid white; margin:19px 0; }
 .panel label { display:flex; align-items:center; gap:8px; margin:9px 0; font-size:12px; }
 .panel select { background:#fff; border:1px solid #666; padding:3px; }
+.model-choices { display:flex; gap:8px; align-items:center; margin-bottom:10px; }
+.model-choices select { flex:1; min-width:0; }
+.composer button { flex-shrink:0; }
 .fine-print { font-size:10px!important; color:#60616b; margin:8px 0 0!important; }
 .swatches,.state-buttons { display:flex; gap:8px; flex-wrap:wrap; }
 .state-buttons [aria-pressed="true"] { background:var(--blue); color:white; }
