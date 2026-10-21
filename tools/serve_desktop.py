@@ -25,6 +25,7 @@ ASSETS = {
     '/app.js': ('app.js', 'text/javascript; charset=utf-8'),
     '/model.mjs': ('model.mjs', 'text/javascript; charset=utf-8'),
     '/service.mjs': ('service.mjs', 'text/javascript; charset=utf-8'),
+    '/voice.mjs': ('voice.mjs', 'text/javascript; charset=utf-8'),
 }
 
 

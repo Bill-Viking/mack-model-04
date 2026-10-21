@@ -34,6 +34,11 @@ A local browser voice can read replies aloud. Optional browser dictation require
 
 ## Visual design target
 
+Mack's conversational manner now follows a [SAL-inspired personality](docs/personality-and-voice.md):
+calm, warm, curious and plain-spoken, with candor preserved under pressure. Control
+Panels includes a local voice picker and delivery audition. The current stock voice
+is a study; matching the film voice and implementing physical mannerisms remain open.
+
 - The beige compact-Mac enclosure remains the dominant shape, including the screen surround, carry-handle recess, vents, and floppy-slot detail.
 - A compact base sits directly beneath the Mac.
 - Four short articulated legs have rounded beige covers and dark visible joints.

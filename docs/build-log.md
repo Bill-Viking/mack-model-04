@@ -28,6 +28,22 @@ Verified real-model recall after reload and service restart, corrected facts, mo
 
 The repository became public at this stage so the complete development history is visible from the beginning. Personal memory databases, credentials, recordings and downloaded models stay outside Git. Original project work has no public license selected yet; imported material retains its existing notices.
 
+## 2026-10-21 — SAL-inspired personality and voice study
+
+Selected SAL 9000 from *2010* as the voice and personality direction. Added an
+original Mack-specific personality profile that stays in place across model
+changes. It covers plain explanations, curiosity, correction, emotional restraint,
+and candor without changing memory or hardware permissions.
+
+Added a local voice picker, pace/pitch controls and an audition with interruption.
+The current sound is a stock Mac voice study, not an exact film-voice reproduction.
+Eight live Qwen conversation probes were reviewed after refining the profile;
+30 Python and 12 JavaScript tests pass. Browser checks verified playback state,
+immediate stopping and preference persistence. Existing memory stayed unchanged.
+
+See [personality and voice](personality-and-voice.md) for the implementation and
+the remaining reference-audio, synthesis and onboard acceptance work.
+
 ## What comes next
 
 - Qualify fully local speech input and the explicit offline/assisted modes.

@@ -1,5 +1,6 @@
 import { STORAGE_KEY, INITIAL_STATE, readState } from './model.mjs';
 import { connect, api } from './service.mjs';
+import { DEFAULT_DELIVERY, AUDITION, readDelivery, chooseVoice } from './voice.mjs';
 
 const $ = (selector, root = document) => root.querySelector(selector);
 const desktop = $('#desktop');
@@ -26,6 +27,7 @@ let recognition = null;
 const PREFS_KEY = 'mack.desktop.preferences.v2';
 let legacyNotes = null;
 let allowDictation = false;
+let delivery = { ...DEFAULT_DELIVERY };
 try { state = readState(localStorage.getItem(STORAGE_KEY)); }
 catch (error) { storageBlocked = true; storageMessage = 'Saved notes could not be opened. The original data has been left untouched; this session will not overwrite it.'; }
 if (!storageBlocked) legacyNotes = { notes: state.notes, trash: state.trash };
@@ -34,6 +36,7 @@ try {
   if (['periwinkle','sage','graphite','classic'].includes(prefs.pattern)) state.pattern = prefs.pattern;
   if (typeof prefs.voice === 'boolean') state.voice = prefs.voice;
   allowDictation = prefs.allowDictation === true;
+  delivery = readDelivery(prefs.delivery);
 } catch { /* Keep earlier preferences; never overwrite the original notes. */ }
 
 function node(tag, className, text) {
@@ -51,7 +54,7 @@ function toast(text) {
   clearTimeout(toastTimer); toastTimer = setTimeout(() => { item.hidden = true; }, 5500);
 }
 function persist(next) {
-  try { localStorage.setItem(PREFS_KEY, JSON.stringify({pattern:next.pattern,voice:next.voice,allowDictation})); state = next; return true; }
+  try { localStorage.setItem(PREFS_KEY, JSON.stringify({pattern:next.pattern,voice:next.voice,allowDictation,delivery})); state = next; return true; }
   catch { toast('This browser could not save preferences. Your memories have not changed.'); return false; }
 }
 function applySnapshot(snapshot, showHistory=false) {
@@ -197,19 +200,22 @@ function renderConversation() {
   });
   log.scrollTop=log.scrollHeight;
 }
-function refreshVoices() { localVoices=('speechSynthesis' in window)?window.speechSynthesis.getVoices().filter((voice)=>voice.localService):[]; }
+function refreshVoices() { localVoices=('speechSynthesis' in window)?window.speechSynthesis.getVoices().filter((voice)=>voice.localService):[]; renderVoiceChoices(); }
 if('speechSynthesis' in window){ refreshVoices();window.speechSynthesis.addEventListener('voiceschanged',refreshVoices); }
-function speak(text, token) {
+function speak(text, token, audition=false) {
   refreshVoices();
-  if(!state.voice || !localVoices.length) { setMode('idle'); if(state.voice)toast('No local browser voice is available. You can keep chatting by typing.'); return; }
+  const selected = chooseVoice(localVoices, delivery.voiceURI);
+  if((!state.voice&&!audition) || !selected) { setMode(health.ready?'idle':'fault'); if(state.voice||audition)toast('The selected local voice is unavailable. Choose another voice in Control Panels.'); return; }
   const speech=new SpeechSynthesisUtterance(text.slice(0,2500));
-  speech.voice=localVoices.find((v)=>v.lang.startsWith('en')&&/Samantha|Daniel|Alex/.test(v.name)) || localVoices.find((v)=>v.lang.startsWith('en')) || localVoices[0];
-  speech.rate=.94;
+  speech.voice=selected;
+  speech.lang=selected.lang;
+  speech.rate=delivery.rate;
+  speech.pitch=delivery.pitch;
   speech.onstart=()=>{if(token===turn)setMode('speaking');};
   speech.onend=()=>{if(token===turn)setMode('idle');};
   speech.onerror=()=>{if(token===turn){setMode('idle');toast('Voice playback was unavailable. The reply is here to read.');}};
   window.speechSynthesis.speak(speech);
-  const speechDeadline=Math.max(30000,speech.text.split(/\s+/).length*650);
+  const speechDeadline=Math.max(30000,speech.text.split(/\s+/).length*650/delivery.rate);
   timers.push(setTimeout(()=>{if(token===turn&&mode==='speaking'){window.speechSynthesis.cancel();setMode('idle');}},speechDeadline));
 }
 async function sendMessage(value) {
@@ -327,7 +333,15 @@ function openControls() {
     const swatch=button('',()=>{if(persist({...state,pattern:name})){desktop.dataset.pattern=name;swatches.querySelectorAll('button').forEach((b)=>b.setAttribute('aria-pressed',String(b===swatch)));}},'swatch');swatch.style.background=color;swatch.title=name;swatch.setAttribute('aria-label',name+' desktop');swatch.setAttribute('aria-pressed',String(state.pattern===name));swatches.append(swatch);
   });panel.append(swatches,node('hr'),node('h3','','Mack’s voice'));
   const label=node('label');const check=node('input');check.type='checkbox';check.id='voice-check';check.checked=state.voice;check.addEventListener('change',()=>{toggleVoice();updateVoiceControls();});label.append(check,document.createTextNode('Read Mack’s replies aloud'));
-  panel.append(label,node('p','fine-print','Uses a local voice supplied by your browser when available.'));
+  panel.append(node('p','','SAL-inspired personality: calm, candid, curious, and plain-spoken.'),label);
+  const voiceChoices=node('div','voice-choices');voiceChoices.id='voice-choices';panel.append(voiceChoices);
+  for(const [key,title,min,max] of [['rate','Pace',0.7,1.1],['pitch','Pitch',0.8,1.2]]){
+    const row=node('label');const slider=node('input');slider.type='range';slider.min=min;slider.max=max;slider.step=0.02;slider.value=delivery[key];slider.setAttribute('aria-label','Voice '+title.toLowerCase());
+    const value=node('output','',delivery[key].toFixed(2));
+    slider.addEventListener('input',()=>{delivery=readDelivery({...delivery,[key]:Number(slider.value)});value.textContent=delivery[key].toFixed(2);});
+    slider.addEventListener('change',()=>persist(state));row.append(document.createTextNode(title),slider,value);panel.append(row);
+  }
+  panel.append(button('Hear voice preview',()=>{if(busy||recognition){toast('Finish or stop the current conversation first.');return;}stopCurrent();speak(AUDITION,turn,true);},'classic-button small'),button('Stop voice',()=>{if(busy||recognition)return;stopCurrent();setMode(health.ready?'idle':'fault');},'classic-button small'),node('p','fine-print','A stock local voice with measured delivery. This is a voice study, not a reproduction of the film voice. Your choice and tuning stay in this browser.'));
   const micLabel=node('label');const mic=node('input');mic.type='checkbox';mic.checked=allowDictation;mic.addEventListener('change',()=>{allowDictation=mic.checked;persist(state);if(!allowDictation&&recognition){stopCurrent();setMode(health.ready?'idle':'fault');}});micLabel.append(mic,document.createTextNode('Allow browser dictation'));
   panel.append(micLabel,node('p','fine-print','Starts only when you click Dictate. Your browser may send speech to its online service. Review the transcript before Send. Keyboard dictation also works.'));
   const modelStatus=node('p','fine-print');modelStatus.id='model-status';const modelChoices=node('div','model-choices');modelChoices.id='model-choices';
@@ -335,7 +349,18 @@ function openControls() {
   const states=node('div','state-buttons');
   [['idle','Ready'],['listening','Listening'],['thinking','Thinking'],['speaking','Speaking'],['resting','Resting'],['fault','Disconnected']].forEach(([name,label])=>{const b=button(label,()=>previewState(name),'classic-button small');b.dataset.previewState=name;b.setAttribute('aria-pressed','false');states.append(b);});
   panel.append(states);const actions=node('div','panel-actions');actions.append(button('Reset expression',()=>{stopCurrent();setMode('idle');}));panel.append(actions);
-  makeWindow('controls','Control Panels',420,panel);setMode(mode,preview);renderModelChoices();refreshHealth();
+  makeWindow('controls','Control Panels',420,panel);setMode(mode,preview);renderModelChoices();refreshVoices();refreshHealth();
+}
+function renderVoiceChoices(){
+  const box=$('#voice-choices');if(!box)return;box.replaceChildren();
+  const label=node('label');label.append(document.createTextNode('Local voice'));
+  const select=node('select');select.setAttribute('aria-label','Local speaking voice');
+  const automatic=node('option','','Automatic · English');automatic.value='';select.append(automatic);
+  for(const voice of localVoices){const option=node('option','',voice.name+' · '+voice.lang);option.value=voice.voiceURI;select.append(option);}
+  if(delivery.voiceURI&&!localVoices.some((v)=>v.voiceURI===delivery.voiceURI)){const missing=node('option','','Saved voice unavailable');missing.value=delivery.voiceURI;select.append(missing);}
+  select.value=delivery.voiceURI;select.addEventListener('change',()=>{delivery=readDelivery({...delivery,voiceURI:select.value});persist(state);renderVoiceChoices();});
+  label.append(select);box.append(label);
+  const selected=chooseVoice(localVoices,delivery.voiceURI);box.append(node('p','fine-print',selected?'Current voice: '+selected.name:'No matching local voice is available.'));
 }
 function renderModelChoices(){
   const box=$('#model-choices');if(!box)return;box.replaceChildren();
@@ -390,7 +415,7 @@ window.addEventListener('resize',()=>windows.forEach(fit));
 window.addEventListener('pagehide',()=>stopCurrent());
 window.addEventListener('storage',(event)=>{
   if(event.key!==PREFS_KEY)return;
-  try{const prefs=JSON.parse(event.newValue||'{}');if(['periwinkle','sage','graphite','classic'].includes(prefs.pattern))state.pattern=prefs.pattern;if(typeof prefs.voice==='boolean')state.voice=prefs.voice;allowDictation=prefs.allowDictation===true;desktop.dataset.pattern=state.pattern;updateVoiceControls();}catch{ /* Ignore malformed browser preferences. */ }
+  try{const prefs=JSON.parse(event.newValue||'{}');if(['periwinkle','sage','graphite','classic'].includes(prefs.pattern))state.pattern=prefs.pattern;if(typeof prefs.voice==='boolean')state.voice=prefs.voice;allowDictation=prefs.allowDictation===true;delivery=readDelivery(prefs.delivery);desktop.dataset.pattern=state.pattern;updateVoiceControls();renderVoiceChoices();}catch{ /* Ignore malformed browser preferences. */ }
 });
 window.addEventListener('focus',()=>{if(connected&&!busy)api('state').then((s)=>applySnapshot(s)).catch(()=>{});});
 $('#status-control').addEventListener('click',openControls);$('#sound-control').addEventListener('click',toggleVoice);

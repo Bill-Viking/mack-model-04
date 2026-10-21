@@ -1,10 +1,10 @@
 lane: RayCue/Research
-written: 2026-10-21T11:03:43-07:00
+written: 2026-10-21T11:24:15-07:00
 by: ACT — RayCue/Research: Mac OS 9 and walking robot
 on: MAC
-head: db8d0e2 (public introduction; publication receipt follows)
-status_updated: 2026-10-21T11:03:43-07:00
-where: Local AI 0.2 connected; memory persists; offline-first product direction selected
+head: 02d53fa (parent of SAL personality checkpoint)
+status_updated: 2026-10-21T11:24:15-07:00
+where: SAL personality connected; stock voice audition works; exact voice remains open
 next: machine
 depends_on: onboard measurements for hardware; configured provider for optional cloud use
 open_in: /Users/bill/Projects/RayCue Mac · existing RayCue/Research chat
@@ -25,6 +25,10 @@ Mack is the complete Linux-based personal robot, not just its browser interface.
 
 NEXT
 
+Bill selected SAL 9000’s complete voice and manner from 2010, as with Agent 99. The original Mack persona is implemented in software/mack/persona.md and loaded on each runtime startup, independent of model and memory. Local voice selection, pace/pitch, preview and stop controls work. Stock Samantha is a temporary study, not the exact film voice. The question asking for an existing reference clip or voice model remains pending. Do not claim acoustic completion. Read docs/personality-and-voice.md. The Mac/Linux neural synthesis path remains to be installed and evaluated.
+
+Verified 30 Python and 12 JavaScript tests, eight sampled live Qwen persona probes, browser Speaking/Stop behavior and preference persistence. QA used disposable memory; the production database dump stayed identical across restart/audition. The stock audio preview and QA evidence stay ignored under runtime/. Do not publish them or copy private Agent 99 files into the public repository.
+
 Implement/qualify fully local speech recognition and the explicit offline/assisted mode policy. Evaluate models on fixed Mack tasks, response latency, correction/unknown-fact behavior and resource use. Build the mock-body contract so requests/results, cancellation, expiry and recovery are real, labeled simulation. Cloud assistance needs a scoped provider adapter and credentials, without wholesale memory upload. Model downloader/evaluation/rollback remains planned.
 
 Continuum research, Terrarium (LLM Arcade Game) and Exocortex are proposed separate services. Only read-only inspection occurred. Preserve Continuum’s frozen experiments and semantic-expansion-off ruling. Preserve Terrarium’s recorded export-only observation boundary until its owner closes it. Do not ingest the whole Exocortex dossier or write into other projects. No live bridge exists.
@@ -35,7 +39,7 @@ Actual RayCue model/revision, dimensions, mass, clearances and retained componen
 
 LIVE SERVICE AND REPOSITORY
 
-http://127.0.0.1:9844/ is intentionally left running for Bill, unified-exec session 94987. Resolve the current PID before stopping anything. Start Mack.command reopens it; no login automation exists. Keep the browser deliverable. Never stop the shared Ollama service as part of Mack cleanup.
+http://127.0.0.1:9844/ is intentionally left running for Bill, unified-exec session 43311. Resolve the current PID before stopping anything. Start Mack.command reopens it; no login automation exists. Keep the browser deliverable. Never stop the shared Ollama service as part of Mack cleanup.
 
 Public origin (visibility and anonymous access verified on 2026-10-21): https://github.com/Bill-Viking/mack-model-04.git. Vendor imports stay unchanged and attributed. The loose root PNG stays untracked and untouched. No iCloud writes. This chat remains active; do not perform the close ritual until Bill ends the session.
 

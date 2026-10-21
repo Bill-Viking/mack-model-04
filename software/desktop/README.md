@@ -20,6 +20,23 @@ Enable **Read Mack’s replies aloud** in Control Panels for a browser-supplied 
 
 Escape dismisses the pending reply, cancels local speech, and requests that the service discard an unfinished generated reply. The Ollama request may keep computing until it finishes or times out; a new conversation or memory change can be refused briefly while that request completes. Explicit saves already completed are retained. No always-on microphone is implemented.
 
+## SAL-inspired personality and voice study
+
+Mack now has a persistent [SAL-inspired personality](../mack/persona.md) loaded
+for every model-generated reply. It shapes conversation while keeping runtime
+capabilities and memory rules explicit. The [voice design and acceptance plan](../../docs/personality-and-voice.md)
+distinguishes the implemented personality from the unfinished film-voice target.
+
+In Control Panels, choose a **Local voice**, adjust **Pace** and **Pitch**, and
+click **Hear voice preview**. The preview works without enabling automatic reply
+reading and does not add a conversation or memory. **Stop voice** or Escape stops
+it. Preferences survive reload. If a saved voice becomes unavailable, choose
+another; Mack does not silently substitute an online voice.
+
+The current sound is a stock local voice study, initially Samantha when available.
+It is not an exact reproduction of SAL's film voice. A neural voice model, approved
+reference, acoustic comparison and offline/onboard qualification remain open.
+
 ## Lasting memory
 
 - Facts live in `runtime/mack/memory.sqlite3`, independently of browser settings and model weights. Runtime data is ignored by Git and never included in the repository push.
@@ -52,6 +69,8 @@ A different `--port` uses the same database unless `--data-dir` changes. Browser
 | --- | --- |
 | app.js / styles.css / index.html | Classic desktop, memory editor, real service states and browser voice/dictation. |
 | service.mjs | Same-origin API requests and bootstrap token. |
+| voice.mjs | Local-only voice selection and validated delivery preferences. |
+| ../mack/persona.md | Model-independent SAL-inspired personality, read by the runtime. |
 | model.mjs | Legacy browser-state validation and retained 0.1 demo helpers/tests; no longer the live conversation engine. |
 | ../mack/runtime.py | SQLite persistence, explicit memory commands, bounded retrieval, local Ollama adapter and request serialization. |
 | ../../tools/serve_desktop.py | Loopback HTTP service and launcher. |
@@ -60,7 +79,7 @@ A different `--port` uses the same database unless `--data-dir` changes. Browser
 
 ```sh
 python3 -m unittest discover -s tests -p 'test_*.py'
-node --test tests/desktop.test.mjs
+node --test tests/desktop.test.mjs tests/voice.test.mjs
 python3 tools/sources.py check
 ```
 

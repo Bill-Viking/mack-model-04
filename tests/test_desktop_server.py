@@ -35,7 +35,7 @@ class DesktopServerTests(unittest.TestCase):
         cls.temp.cleanup()
 
     def test_assets_load_with_right_types(self):
-        for path, kind in [('/', 'text/html'), ('/app.js', 'text/javascript'), ('/model.mjs', 'text/javascript'), ('/styles.css', 'text/css')]:
+        for path, kind in [('/', 'text/html'), ('/app.js', 'text/javascript'), ('/model.mjs', 'text/javascript'), ('/voice.mjs', 'text/javascript'), ('/styles.css', 'text/css')]:
             with urllib.request.urlopen(self.url + path) as response:
                 self.assertEqual(response.status, 200)
                 self.assertIn(kind, response.headers['Content-Type'])
