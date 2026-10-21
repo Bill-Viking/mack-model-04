@@ -4,7 +4,7 @@ by: ACT — RayCue/Research: Mac OS 9 and walking robot
 on: MAC
 head: 7806e5a (parent of personalized-intelligence public introduction)
 status_updated: 2026-10-21T12:33:00-07:00
-where: Personalized-intelligence and humanoid goal documented; Facebook and X publication approved and pending
+where: Personalized-intelligence vision published on GitHub; approved Facebook and X drafts sent to Resonance, receipts pending
 next: machine
 depends_on: onboard measurements for hardware; configured provider for optional cloud use
 open_in: /Users/bill/Projects/RayCue Mac · existing RayCue/Research chat
@@ -51,4 +51,4 @@ Public origin (visibility and anonymous access verified on 2026-10-21): https://
 
 PUBLIC DEVELOPMENT
 
-Bill asked for a public GitHub link to share on X. The repository is now PUBLIC; unauthenticated API, repository page and raw README access all returned HTTP 200. README and docs/build-log.md introduce the public build and distinguish the visual concept from working software and unbuilt hardware. The 2026-10-21 long-term vision update makes personalized intelligence and eventual humanoid embodiment explicit in the README, specification and architecture. docs/public-introduction.md holds approved Facebook and X copy. Bill explicitly approved publishing both drafts; verify platform receipts before claiming publication. Keep actual memory databases, credentials and recordings out of every commit. Existing Git history is retained.
+Bill asked for a public GitHub link to share on X. The repository is now PUBLIC; unauthenticated API, repository page and raw README access all returned HTTP 200. README and docs/build-log.md introduce the public build and distinguish the visual concept from working software and unbuilt hardware. The 2026-10-21 long-term vision update (3eebcc2, pushed and anonymous README verified) makes personalized intelligence and eventual humanoid embodiment explicit in the README, specification and architecture. docs/public-introduction.md holds approved Facebook and X copy. Bill explicitly approved publishing both drafts. The existing Resonance chat received the complete drafts and authorization; do not post duplicates. Verify platform receipts before claiming publication. Keep actual memory databases, credentials and recordings out of every commit. Existing Git history is retained.
