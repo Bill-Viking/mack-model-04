@@ -28,13 +28,16 @@ export class Microphone {
     this.env=env;this.onLimit=onLimit;this.onLevel=onLevel;this.closed=false;
     this.chunks=[];this.samples=0;
   }
-  async start() {
+  async start(deviceId='') {
     if(!this.env.navigator?.mediaDevices?.getUserMedia)throw new Error('This browser cannot access a microphone. Open Mack in Safari or Chrome on this Mac.');
     let openingTimer;
     try {
       this.context=new this.env.AudioContext();
       const resumed=this.context.resume();
-      const permission=this.env.navigator.mediaDevices.getUserMedia({audio:{channelCount:1,echoCancellation:true,noiseSuppression:true,autoGainControl:true},video:false}).then(stream=>{
+      // An explicit choice must never silently fall back to a different input.
+      const audio={channelCount:1,echoCancellation:true,noiseSuppression:true,autoGainControl:true};
+      if(deviceId)audio.deviceId={exact:deviceId};
+      const permission=this.env.navigator.mediaDevices.getUserMedia({audio,video:false}).then(stream=>{
         if(this.closed)stream.getTracks().forEach(t=>t.stop());
         else this.stream=stream;
       });
@@ -63,7 +66,11 @@ export class Microphone {
       this.source.connect(this.worklet);this.worklet.connect(this.context.destination);
       this.timer=this.env.setTimeout(()=>this.onLimit(),MAX_SECONDS*1000);
       return true;
-    } catch(error){this.cancel();throw error;}
+    } catch(error){
+      this.cancel();
+      if(deviceId&&['NotFoundError','OverconstrainedError'].includes(error.name))throw new Error('The selected microphone is unavailable. Refresh inputs and choose a connected microphone.');
+      throw error;
+    }
     finally{this.env.clearTimeout(openingTimer);}
   }
   release() {

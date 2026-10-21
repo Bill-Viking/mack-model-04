@@ -1,10 +1,10 @@
 lane: RayCue/Research
-written: 2026-10-21T15:59:00-07:00
+written: 2026-10-21T16:04:00-07:00
 by: ACT — RayCue/Research: Mac OS 9 and walking robot
 on: MAC
-head: 0b478a1 (live transcript verification; microphone diagnostic receipt follows)
-status_updated: 2026-10-21T15:59:00-07:00
-where: Studio Display microphone now supplies real audio in the in-app browser; spoken acceptance pending
+head: 63852ea (microphone diagnostic; direct chooser implementation follows)
+status_updated: 2026-10-21T16:04:00-07:00
+where: Direct microphone chooser installed and saved to Studio Display; spoken acceptance pending
 next: bill
 depends_on: Bill's spoken-sentence trial with Studio Display microphone; onboard measurements for hardware
 open_in: /Users/bill/Projects/RayCue Mac · existing RayCue/Research chat
@@ -12,6 +12,8 @@ judgment: Preserve local memory and independent control; benchmark models and qu
 model: Preserve the user's model choice and read the live dial
 ---
 Read STATUS.md first, then software/mack/VOICE.md, docs/personality-and-voice.md and docs/product-spec.md.
+
+Latest interface fix: added Microphone chooser with exact device selection and browser-local persistence. Studio Display Microphone is explicitly selected in the production in-app browser, verified across reload and actual capture. Missing devices are refused without fallback; refresh enumerates without opening a mic. 27 JS checks pass, including new exact-selection and unavailable-device checks. Browser console clean. Capture cancelled; no diagnostic transcript submitted. Bill should click Talk to Mack and speak; full speech/reply acceptance remains pending. No backend or approved-voice changes.
 
 Latest microphone fix: MacBook lid remained closed, so changed the macOS default input from its disconnected built-in microphone to Studio Display Microphone. Verified System Settings, hardware inventory, Mack's active device label and a changing nonzero meter in the existing in-app browser. “Sound detected” appeared; intelligible speech from Bill is not yet confirmed. Cancelled the 48-second diagnostic capture without sending it. Microphone is off between turns. Bill should click Talk to Mack and speak toward the display. IAB is working for capture now; the earlier Chrome-only workaround is no longer required. Preserve his memory and voice.
 

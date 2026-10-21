@@ -7,7 +7,7 @@ a Linux robot board, battery life, a distant room microphone or a humanoid body.
 
 ## Use it
 
-1. WHERE: Mack in Chrome or Safari at http://127.0.0.1:9844/. Click **Talk to Mack**.
+1. WHERE: Mack at http://127.0.0.1:9844/. Choose your **Microphone** above the live transcript, then click **Talk to Mack**.
 2. WHERE: the browser/macOS microphone prompt. Allow access for Mack.
 3. WHERE: Mack. Speak and watch **Live transcript** update.
 4. WHERE: Mack. Click **Finish & send** when finished.
@@ -32,8 +32,14 @@ If an embedded browser stays at **Opening microphone**, open the same local addr
 in Chrome or Safari. Chrome can show a microphone chooser and **Allow while visiting
 the site**. The app releases capture after a 30-second permission/startup timeout;
 a permission granted after cancellation cannot leave a late stream recording.
-The active input name is shown while listening. If the level meter stays empty,
-check Chrome's selected input. Apple silicon MacBooks physically disconnect the
+The active input name is shown while listening. The **Microphone** chooser requests
+that exact device and remembers it in this browser. It never silently substitutes a
+different input if the selected microphone is disconnected. **Refresh inputs** updates
+the list without opening a microphone; names may only become available after the
+first permission grant. Cancel a recording before changing input. **Browser default**
+leaves selection to the browser, which can differ from the macOS system default.
+If the level meter stays empty, cancel and choose another input directly in Mack.
+Apple silicon MacBooks physically disconnect the
 built-in microphone when the lid is closed; open the lid or choose an external
 microphone, such as a Studio Display's microphone.
 [Apple Platform Security](https://support.apple.com/en-ie/guide/security/secbbd20b00b/web).

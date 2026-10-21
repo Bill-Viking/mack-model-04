@@ -28,6 +28,10 @@ let request = null;
 const PREFS_KEY = 'mack.desktop.preferences.v2';
 let legacyNotes = null;
 let reviewSpeech = false;
+let microphoneChoice = {id:'',label:''};
+let microphoneDevices = [];
+let microphoneListMessage = '';
+let microphoneListRequest = 0;
 let listening = {available:false,message:'Checking local listening…'};
 let microphone = null;
 let transcription = null;
@@ -44,6 +48,7 @@ try {
   if (['periwinkle','sage','graphite','classic'].includes(prefs.pattern)) state.pattern = prefs.pattern;
   if (typeof prefs.voice === 'boolean') state.voice = prefs.voice;
   reviewSpeech = prefs.reviewSpeech === true;
+  if(typeof prefs.microphone?.id==='string'&&prefs.microphone.id.length<=512)microphoneChoice={id:prefs.microphone.id,label:typeof prefs.microphone.label==='string'?prefs.microphone.label.slice(0,256):'Saved microphone'};
   delivery = readDelivery(prefs.delivery);
 } catch { /* Keep earlier preferences; never overwrite the original notes. */ }
 
@@ -62,7 +67,7 @@ function toast(text) {
   clearTimeout(toastTimer); toastTimer = setTimeout(() => { item.hidden = true; }, 5500);
 }
 function persist(next) {
-  try { localStorage.setItem(PREFS_KEY, JSON.stringify({pattern:next.pattern,voice:next.voice,reviewSpeech,delivery})); state = next; return true; }
+  try { localStorage.setItem(PREFS_KEY, JSON.stringify({pattern:next.pattern,voice:next.voice,reviewSpeech,delivery,microphone:microphoneChoice})); state = next; return true; }
   catch { toast('This browser could not save preferences. Your memories have not changed.'); return false; }
 }
 function applySnapshot(snapshot, showHistory=false) {
@@ -198,6 +203,7 @@ function setMode(next, isPreview=false) {
   if(!microphone){const elapsed=$('#recording-time');if(elapsed)elapsed.textContent='Microphone off';const meter=$('#microphone-meter');if(meter)meter.value=0;const signal=$('#microphone-signal');if(signal)signal.textContent='';}
   const dictate=$('#dictate-message'); if(dictate){dictate.disabled=busy||!connected||!!transcription;dictate.textContent=microphone?(mode==='opening'?'Cancel microphone':'Finish & send'):'Talk to Mack';}
   const stop=$('#stop-listening');if(stop)stop.hidden=!microphone&&!transcription;
+  for(const control of ['#microphone-choice','#refresh-microphones']){const item=$(control);if(item)item.disabled=busy||!!microphone||!!transcription;}
   document.querySelectorAll('[data-preview-state]').forEach((b)=>b.setAttribute('aria-pressed',String(preview && b.dataset.previewState===mode)));
 }
 function stopCurrent() {
@@ -331,11 +337,12 @@ async function dictate() {
     const elapsed=$('#recording-time');if(elapsed)elapsed.textContent=Math.floor(seconds)+' / 60 seconds';
     if(peak>.003)lastSound=seconds;
     const signal=$('#microphone-signal');
-    if(signal)signal.textContent=seconds-lastSound<1?'Sound detected':seconds>3?'No sound detected — check your microphone.':'Waiting for sound…';
+    if(signal)signal.textContent=seconds-lastSound<1?'Sound detected':seconds>3?'No sound detected — cancel, then choose another microphone above.':'Waiting for sound…';
   });microphone=capture;setMode('opening');
   showTranscript('', 'Opening microphone…');
   try{
-    if(await capture.start()&&token===turn){
+    if(await capture.start(microphoneChoice.id)&&token===turn){
+      refreshMicrophones();
       setMode('listening');showTranscript('', 'Listening · your words will appear here');
       liveTranscript=new LiveTranscript({capture,
         recognize:(audio,id,signal)=>transcribeAudio(audio,id,signal,true),
@@ -358,6 +365,30 @@ function showTranscript(text,label){
   panel.hidden=false;
   $('#live-transcript-label').textContent=label;
   const words=$('#live-transcript-text');words.textContent=text||'…';words.scrollTop=words.scrollHeight;
+}
+async function refreshMicrophones(){
+  const version=++microphoneListRequest;
+  try{
+    if(!navigator.mediaDevices?.enumerateDevices)throw new Error('Microphone selection is unavailable in this browser.');
+    const devices=await navigator.mediaDevices.enumerateDevices();
+    if(version!==microphoneListRequest)return;
+    microphoneDevices=devices.filter(d=>d.kind==='audioinput'&&d.deviceId&&!['default','communications'].includes(d.deviceId));
+    microphoneListMessage=microphoneDevices.some(d=>d.label)?'Choice saved in this browser. For a closed MacBook, choose the display or another external microphone.':'Click Talk to Mack and allow access to reveal microphone names, then cancel and choose your input.';
+  }catch(error){if(version!==microphoneListRequest)return;microphoneListMessage=error.message;}
+  renderMicrophones();
+}
+function renderMicrophones(){
+  const select=$('#microphone-choice');if(!select)return;
+  select.replaceChildren();
+  const automatic=node('option','','Browser default');automatic.value='';select.append(automatic);
+  for(const [index,device] of microphoneDevices.entries()){
+    const option=node('option','',device.label||'Microphone '+(index+1));option.value=device.deviceId;select.append(option);
+  }
+  if(microphoneChoice.id&&!microphoneDevices.some(d=>d.deviceId===microphoneChoice.id)){
+    const missing=node('option','',microphoneChoice.label+' · unavailable');missing.value=microphoneChoice.id;select.append(missing);
+  }
+  select.value=microphoneChoice.id;
+  const hint=$('#microphone-choice-hint');if(hint)hint.textContent=microphoneListMessage;
 }
 async function finishListening(){
   const capture=microphone;if(!capture||mode==='opening')return;
@@ -404,12 +435,21 @@ function openMack() {
   const signal=node('span','fine-print');signal.id='microphone-signal';
   const stop=button('Cancel recording',()=>{stopCurrent();setMode('idle');},'classic-button small');stop.id='stop-listening';stop.hidden=true;
   micInfo.append(meter,elapsed,signal,stop);
+  const micChoice=node('div','microphone-choice');
+  const micChoiceLabel=node('label','','Microphone');micChoiceLabel.htmlFor='microphone-choice';
+  const micSelect=node('select');micSelect.id='microphone-choice';micSelect.setAttribute('aria-describedby','microphone-choice-hint');
+  micSelect.addEventListener('change',()=>{
+    microphoneChoice={id:micSelect.value,label:micSelect.selectedOptions[0]?.textContent||'Selected microphone'};persist(state);
+  });
+  const micRefresh=button('Refresh inputs',refreshMicrophones,'classic-button small');micRefresh.id='refresh-microphones';
+  const micHint=node('p','fine-print');micHint.id='microphone-choice-hint';
+  micChoice.append(micChoiceLabel,micSelect,micRefresh,micHint);
   const transcriptPanel=node('section','live-transcript');transcriptPanel.id='live-transcript';transcriptPanel.hidden=true;transcriptPanel.setAttribute('aria-label','Live speech transcript');
   const transcriptLabel=node('div','fine-print');transcriptLabel.id='live-transcript-label';
   const transcriptText=node('p','live-transcript-text','…');transcriptText.id='live-transcript-text';transcriptText.setAttribute('aria-live','polite');transcriptText.setAttribute('aria-atomic','true');
   transcriptPanel.append(transcriptLabel,transcriptText);
-  content.append(welcome,log,line,suggestions,fault,transcriptPanel,form,micInfo,node('p','fine-print','Offline conversation · speech stays on this Mac · completed exchanges are saved in Conversations.'));
-  makeWindow('mack','Mack',560,content,{foot:'M.A.C. Model 04 · Local AI 0.3 · Esc stops a reply'});renderConversation();setMode(mode,preview);
+  content.append(welcome,log,line,suggestions,fault,micChoice,transcriptPanel,form,micInfo,node('p','fine-print','Offline conversation · speech stays on this Mac · completed exchanges are saved in Conversations.'));
+  makeWindow('mack','Mack',560,content,{foot:'M.A.C. Model 04 · Local AI 0.3 · Esc stops a reply'});renderConversation();renderMicrophones();setMode(mode,preview);refreshMicrophones();
 }
 function openAbout() {
   const content=node('div','panel');const hero=node('div','about-header');const words=node('div');words.append(node('h3','','M.A.C. Model 04'),node('p','','Mobile Autonomous Computer'));hero.append(face(),words);
@@ -597,9 +637,10 @@ document.addEventListener('keydown',(event)=>{
 window.addEventListener('resize',()=>windows.forEach(fit));
 window.addEventListener('pagehide',()=>stopCurrent());
 document.addEventListener('visibilitychange',()=>{if(document.hidden&&microphone){stopCurrent();setMode('idle');}});
+navigator.mediaDevices?.addEventListener?.('devicechange',refreshMicrophones);
 window.addEventListener('storage',(event)=>{
   if(event.key!==PREFS_KEY)return;
-  try{const prefs=JSON.parse(event.newValue||'{}');if(['periwinkle','sage','graphite','classic'].includes(prefs.pattern))state.pattern=prefs.pattern;if(typeof prefs.voice==='boolean')state.voice=prefs.voice;reviewSpeech=prefs.reviewSpeech===true;delivery=readDelivery(prefs.delivery);desktop.dataset.pattern=state.pattern;updateVoiceControls();renderVoiceChoices();}catch{ /* Ignore malformed browser preferences. */ }
+  try{const prefs=JSON.parse(event.newValue||'{}');if(['periwinkle','sage','graphite','classic'].includes(prefs.pattern))state.pattern=prefs.pattern;if(typeof prefs.voice==='boolean')state.voice=prefs.voice;reviewSpeech=prefs.reviewSpeech===true;delivery=readDelivery(prefs.delivery);if(typeof prefs.microphone?.id==='string'&&prefs.microphone.id.length<=512){microphoneChoice={id:prefs.microphone.id,label:typeof prefs.microphone.label==='string'?prefs.microphone.label.slice(0,256):'Saved microphone'};renderMicrophones();}desktop.dataset.pattern=state.pattern;updateVoiceControls();renderVoiceChoices();}catch{ /* Ignore malformed browser preferences. */ }
 });
 window.addEventListener('focus',()=>{if(connected&&!busy)api('state').then((s)=>applySnapshot(s)).catch(()=>{});});
 $('#status-control').addEventListener('click',openControls);$('#sound-control').addEventListener('click',toggleVoice);

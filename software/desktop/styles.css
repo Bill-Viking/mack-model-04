@@ -146,5 +146,9 @@ button:focus-visible, a:focus-visible, input:focus-visible,textarea:focus-visibl
 .live-transcript[hidden] { display:none; }
 .live-transcript-text { margin:6px 0 0; min-height:42px; max-height:110px; overflow-y:auto; white-space:pre-wrap; overflow-wrap:anywhere; font-size:15px; line-height:1.45; color:#151515; }
 .microphone-info { padding:0 15px 8px; }
+.microphone-choice { display:flex; flex-wrap:wrap; align-items:center; gap:7px; margin:0 15px 12px; }
+.microphone-choice label { font-size:12px; }
+.microphone-choice select { flex:1; min-width:120px; max-width:100%; padding:4px; border:1px solid #777; background:#fff; }
+.microphone-choice p { flex-basis:100%; margin:0; }
 .archive-exchange { border-top:1px solid #999; padding:10px 0; overflow-wrap:anywhere; }
 .archive-exchange p { white-space:pre-wrap; }

@@ -2,7 +2,7 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import {encodeWav,Microphone,LiveTranscript} from '../software/desktop/listening.mjs';
 
-function fakeEnvironment({pending=false,failModule=false}={}){
+function fakeEnvironment({pending=false,failModule=false,mediaError=null}={}){
   let grant;const tracks=[{stopped:false,stop(){this.stopped=true;}}];
   const stream={getTracks:()=>tracks};
   const timers=new Map();let serial=0;
@@ -13,8 +13,9 @@ function fakeEnvironment({pending=false,failModule=false}={}){
     createMediaStreamSource(){return{connect(){},disconnect(){}};}
   }
   class AudioWorkletNode{constructor(){this.port={onmessage:null};}connect(){}disconnect(){}}
-  return {tracks,timers,grant:()=>grant(stream),
-    env:{navigator:{mediaDevices:{getUserMedia:()=>pending?new Promise(resolve=>grant=resolve):Promise.resolve(stream)}},
+  const requests=[];
+  return {tracks,timers,requests,grant:()=>grant(stream),
+    env:{navigator:{mediaDevices:{getUserMedia:constraints=>{requests.push(constraints);return mediaError?Promise.reject(mediaError):pending?new Promise(resolve=>grant=resolve):Promise.resolve(stream);}}},
       AudioContext,AudioWorkletNode,setTimeout:(fn,ms)=>{const id=++serial;timers.set(id,{fn,ms});return id;},clearTimeout:id=>timers.delete(id)}};
 }
 
@@ -35,6 +36,22 @@ test('finish releases all microphone tracks before returning upload audio',async
   const blob=mic.finish();assert.equal(blob.type,'audio/wav');
   assert.ok(f.tracks.every(t=>t.stopped));assert.equal(mic.context.state,'closed');
   assert.equal(mic.chunks.length,0);assert.equal(f.timers.size,0);
+});
+test('a chosen microphone is required exactly, while default leaves the browser choice open',async()=>{
+  const chosen=fakeEnvironment(),mic=new Microphone(()=>{},()=>{},chosen.env);
+  await mic.start('studio-display-device');
+  assert.deepEqual(chosen.requests[0].audio.deviceId,{exact:'studio-display-device'});
+  mic.cancel();
+  const automatic=fakeEnvironment(),other=new Microphone(()=>{},()=>{},automatic.env);
+  await other.start();assert.equal(automatic.requests[0].audio.deviceId,undefined);other.cancel();
+});
+test('a missing selected input closes audio and never retries with another microphone',async()=>{
+  for(const name of ['NotFoundError','OverconstrainedError']){
+    const f=fakeEnvironment({mediaError:Object.assign(new Error('gone'),{name})});
+    const mic=new Microphone(()=>{},()=>{},f.env);
+    await assert.rejects(mic.start('disconnected-device'),/selected microphone is unavailable/);
+    assert.equal(f.requests.length,1);assert.equal(mic.context.state,'closed');assert.equal(f.timers.size,0);
+  }
 });
 test('cancel before permission resolves stops a late microphone stream',async()=>{
   const f=fakeEnvironment({pending:true}),mic=new Microphone(()=>{},()=>{},f.env);
