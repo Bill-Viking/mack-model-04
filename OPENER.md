@@ -1,17 +1,19 @@
 lane: RayCue/Research
-written: 2026-10-21T14:43:00-07:00
+written: 2026-10-21T15:59:00-07:00
 by: ACT — RayCue/Research: Mac OS 9 and walking robot
 on: MAC
-head: 065efab (live transcript implementation; documentation receipt follows)
-status_updated: 2026-10-21T14:43:00-07:00
-where: Live local transcripts verified with recorded speech; Bill's microphone trial pending
+head: 0b478a1 (live transcript verification; microphone diagnostic receipt follows)
+status_updated: 2026-10-21T15:59:00-07:00
+where: Studio Display microphone now supplies real audio in the in-app browser; spoken acceptance pending
 next: bill
-depends_on: open MacBook lid for selected built-in microphone; onboard measurements for hardware
+depends_on: Bill's spoken-sentence trial with Studio Display microphone; onboard measurements for hardware
 open_in: /Users/bill/Projects/RayCue Mac · existing RayCue/Research chat
 judgment: Preserve local memory and independent control; benchmark models and qualify offline voice before onboard claims
 model: Preserve the user's model choice and read the live dial
 ---
 Read STATUS.md first, then software/mack/VOICE.md, docs/personality-and-voice.md and docs/product-spec.md.
+
+Latest microphone fix: MacBook lid remained closed, so changed the macOS default input from its disconnected built-in microphone to Studio Display Microphone. Verified System Settings, hardware inventory, Mack's active device label and a changing nonzero meter in the existing in-app browser. “Sound detected” appeared; intelligible speech from Bill is not yet confirmed. Cancelled the 48-second diagnostic capture without sending it. Microphone is off between turns. Bill should click Talk to Mack and speak toward the display. IAB is working for capture now; the earlier Chrome-only workaround is no longer required. Preserve his memory and voice.
 
 Latest interface change: Talk to Mack shows a live local transcript during recording, with one preview request about every second, a sound indicator and a final full transcription before submission. Warm recognition is measured at 0.14–0.23 seconds on short test samples; first startup took 1.87 seconds. Prerecorded browser QA showed words at the two-second mark and verified final review/cancellation; this is not Bill's physical mic acceptance. 66 Python + 25 JS checks pass. The built-in mic remains selected and the lid was still closed at 14:42. Bill has a pending trial prompt to open the lid and test the live words. Preserve his memory and accepted voice.
 
