@@ -13,6 +13,8 @@ model: Preserve the user's model choice and read the live dial
 ---
 Read STATUS.md first, then software/mack/VOICE.md, docs/personality-and-voice.md and docs/product-spec.md.
 
+Latest research: docs/model-strategy.md now covers downloadable Muse Glimmer 30B, Qwen3.8-27B, Gemma 4 and EmbeddingGemma 2. Glimmer/Qwen are the recommended first Mac comparison; no new weights are installed or selected. Muse Spark Open is now downloadable but far too large here. NVIDIA Bolt E4B is only announced for October 23. Preserve the approved voice and existing memory while evaluating candidates in isolated data.
+
 WHERE WE ARE
 
 Goal: Mack is a personalized intelligence with her own Linux-based system, a classic Mac desktop, local AI and lasting memory. The first body is the four-legged Mac; a humanoid body is the long-term goal, years away. She keeps her identity and memory across models, voice engines and bodies.
