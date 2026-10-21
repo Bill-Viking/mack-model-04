@@ -25,23 +25,24 @@ for the current browser conversation; they are not yet retained in saved history
 after a reload. Tool search returns at most six matching active notes and never
 reads Trash. It uses word overlap rather than semantic search.
 
-## SAL-inspired personality and voice study
+## SAL-inspired personality and approved voice
 
 Mack now has a persistent [SAL-inspired personality](../mack/persona.md) loaded
 for every model-generated reply. It shapes conversation while keeping runtime
 capabilities and memory rules explicit. The [voice design and acceptance plan](../../docs/personality-and-voice.md)
-distinguishes the implemented personality from the unfinished film-voice target.
+records Bill’s acceptance of the light-echo voice v1 and the remaining product checks.
 
-In Control Panels, choose **Mack · SAL reference study** for local neural speech,
-or **Stock Mac voice** for the browser voice. Choose **Reference · dry** or
-**Film study · light echo** to compare deliveries. Edit the audition text and click
+Control Panels defaults to **Mack · approved voice v1** with **Approved v1 · light
+echo** for new preferences. **Reference · dry (alternative)** and **Stock Mac voice**
+remain available, and saved explicit choices survive reload. Edit the audition text and click
 **Hear voice preview**. It works without automatic reading and writes no memory.
 **Stop voice** or Escape stops preparation/playback. **Read aloud** beneath a reply
 plays it on demand. Preferences survive reload; failure never substitutes another
 voice. Pace and Pitch apply only to the stock browser engine.
 
-The first neural audition is installed on Bill's Mac. Exact film likeness, refined
-prosody, a full disconnected reboot, and Linux/onboard performance remain open.
+Bill accepted voice v1 on 2026-10-21. Its recipe and the accepted private recording
+are preserved. A full disconnected reboot, long-form speech quality and
+Linux/onboard performance remain open.
 See [voice setup and boundaries](../mack/VOICE.md) for installation and local files.
 
 ## Lasting memory

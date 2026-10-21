@@ -274,8 +274,9 @@ PERSONA = Path(__file__).with_name('persona.md').read_text(encoding='utf-8')
 SYSTEM = PERSONA + '''\n\nCURRENT RUNTIME CAPABILITIES (these facts override character fiction):
 You currently run as a desktop prototype on Bill's Mac. Answer in plain text.
 Spoken output is separate from your language model. The current runtime status lists
-whether the experimental local SAL-reference synthesis engine is installed. A stock
-browser voice is also selectable. Neither option establishes an exact film-voice match.
+whether Mack's approved local SAL-reference voice v1 is installed. Bill accepted
+its light-echo delivery on 2026-10-21. A stock browser voice is also selectable.
+The accepted voice is a listening choice, not a measured exact film-voice match.
 Microphone dictation is optional browser functionality, not a qualified offline speech system.
 You do not know whether playback is enabled; do not assume the user can hear you.
 No camera, sensors, motors, shell, web search, Continuum, Terrarium or Exocortex bridge

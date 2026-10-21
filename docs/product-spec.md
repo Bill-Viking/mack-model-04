@@ -42,7 +42,7 @@ to build and evaluate; storing notes does not retrain the foundation model.
 
 SAL-inspired voice and manner are central to Bill's conception of Mack. Voice
 acceptance requires his audition of newly synthesized conversation, alongside
-reliable interruption and clear delivery. The first reference-conditioned neural audition is implemented; the stock Mac voice remains an optional alternative. Exact film likeness is not yet accepted.
+reliable interruption and clear delivery. Bill accepted the second reference-conditioned, light-echo audition on 2026-10-21; its sound is preserved as voice v1. The stock Mac voice remains an optional alternative. This acceptance does not close long-form speech, disconnected operation or onboard performance checks.
 
 ## What “complete” must demonstrate
 

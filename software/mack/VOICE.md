@@ -1,19 +1,36 @@
 # Local reference voice on Apple silicon
 
 Mack can generate new speech using a private reference recording and a pinned
-Qwen3-TTS Base model. This is a first audition implementation. Voice likeness is
-judged by listening; installation and successful synthesis do not establish a match.
+Qwen3-TTS Base model. Bill approved the second, light-echo audition on 2026-10-21:
+“that's it, lock that voice in.” It is now **Mack · approved voice v1**.
 
-Bill's Mac is already configured. In Mack's Control Panels, select **Mack · SAL
-reference study**. **Reference · dry** keeps the original delivery. **Film study ·
-light echo** uses an alternate sampling preset with quiet early reflections and
-an 85 ms echo. The Base model does not offer instruction-controlled inflection.
-The second preset is a listening experiment, not a measured copy of film processing.
+Bill's Mac is configured with **Approved v1 · light echo**, using the same sampling
+and reflections he accepted. No sound settings were changed during the lock.
+The dry delivery and stock Mac voice remain explicit alternatives. New preferences
+and API requests without a style default to the approved reference voice; an
+existing explicit choice is preserved. Automatic playback remains a separate toggle.
 
 Edit **Audition text**, then choose **Hear voice preview**. This generates new
 speech without saving a conversation or memory. **Read aloud** plays any existing
 reply. **Stop voice**, Escape or a new message interrupts speech. A selected engine
 that fails is reported; another voice is never substituted automatically.
+
+## Preserved baseline
+
+[voice-profile.json](voice-profile.json) is the public recipe. It records the pinned
+model revision, MLX Audio version, reference/transcript checksums, seed 29,
+temperature 0.85, English, 1800-token limit, clipping ceiling 0.98, and reflections
+at 19/37/85/170 ms with gains 0.035/0.025/0.09/0.025. Other generation defaults come
+from the pinned model and engine. The worker reads this profile directly.
+
+The accepted 6.25-second mono PCM16 24 kHz WAV is preserved byte-for-byte at
+`runtime/voice/approved/mack-voice-v1/audition.wav`, with private copies of the
+reference, transcript, configuration and install recipe. Its SHA-256 is in the
+public profile. These private assets remain ignored by Git. Preserve voice v1 when
+trying a new engine or delivery; create and audition a separate version first.
+Model weights are pinned by download revision, not rehashed on every utterance.
+A seed and pinned recipe do not guarantee identical output across different hardware.
+Acceptance of the sound does not finish offline, long-form or onboard qualification.
 
 ## Reproduce the installation
 
@@ -29,8 +46,9 @@ python3.12 -m venv .venv
 .venv/bin/python -m pip install -r software/mack/requirements-voice-macos.txt
 ```
 
-Prepare a user-chosen, clean reference as mono PCM16 WAV at 24 kHz. This first
-setup accepts 3–30 seconds. Put its exact transcript in a private UTF-8 text file.
+Restore the approved private mono PCM16 WAV at 24 kHz and its exact transcript.
+Setup accepts 3–30 seconds and verifies both against the versioned profile.
+The approved recording is not distributed by this repository.
 Paths below are placeholders for those two local files.
 
 WHERE: Mac Terminal, repository root. Download the pinned model and configure it:
@@ -43,7 +61,9 @@ WHERE: Mac Terminal, repository root. Download the pinned model and configure it
 
 The tool keeps a reference copy under ignored `private-media/voice-reference/`,
 and configuration under ignored `runtime/voice/config.json`. It records a SHA-256
-of the WAV. A changed or missing reference blocks synthesis until reconfigured.
+of the WAV. A changed or missing reference, transcript, declared model revision,
+model generation defaults or dependency recipe blocks synthesis. Configuration
+refuses a different reference before downloading or replacing the installed setup.
 Reference recordings, transcripts, generated audio and model weights are not in Git.
 Original model/engine terms are documented by
 [Qwen3-TTS](https://github.com/QwenLM/Qwen3-TTS) and

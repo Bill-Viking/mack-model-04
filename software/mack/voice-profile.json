@@ -1,0 +1,43 @@
+{
+  "id": "mack-voice-v1",
+  "label": "Mack · approved voice v1",
+  "approved_on": "2026-10-21",
+  "approved_by": "Bill",
+  "approval": "that's it, lock that voice in",
+  "default_style": "film",
+  "model_id": "mlx-community/Qwen3-TTS-12Hz-1.7B-Base-bf16",
+  "revision": "a6eb4f68e4b056f1215157bb696209bc82a6db48",
+  "engine": "mlx-audio",
+  "engine_version": "0.6.1",
+  "reference_sha256": "8e165c883abc83eef26e78accef34975f481813cbcded40a5c7f5bde653f6876",
+  "reference_text_sha256": "1e12210eab7526ac5f546675044bb4afabaf75ae3d2cb2b6fc1068c045c3ebbb",
+  "generation_config_sha256": "f1b90b4513f3b34c62851049e2492d7b4c5940daf1276f89c82b8ef04127f3aa",
+  "requirements_sha256": "3c206e255029c8c5bc00f6cda7acd2d680c7d71025fc338fade3907145e85108",
+  "language": "english",
+  "max_tokens": 1800,
+  "peak_limit": 0.98,
+  "styles": {
+    "film": {
+      "label": "Approved v1 · light echo",
+      "seed": 29,
+      "temperature": 0.85,
+      "reflections": [[0.019, 0.035], [0.037, 0.025], [0.085, 0.09], [0.17, 0.025]]
+    },
+    "natural": {
+      "label": "Reference · dry (alternative)",
+      "seed": 17,
+      "temperature": 0.7,
+      "reflections": []
+    }
+  },
+  "accepted_audition": {
+    "sha256": "6192f95cd23edf174d3451619cfc6f1647e5e6ec0e3a1f85f8f84c0b5164a1fb",
+    "text": "Hello, Bill. I'm Mack. It is good to speak with you. We can take this one step at a time.",
+    "style": "film",
+    "sample_rate": 24000,
+    "frames": 150000,
+    "format": "mono PCM16 WAV",
+    "source_commit": "dfd98c92055ee5dfdc0544b7a1f4acf0cd015b5b",
+    "private_copy": "runtime/voice/approved/mack-voice-v1/audition.wav"
+  }
+}

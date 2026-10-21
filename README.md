@@ -36,17 +36,16 @@ Mack now answers through **Qwen3.6:35b** and saves explicit memories in a local 
 
 A tool-capable local model can now check Mack's actual status, read the local clock, and search active saved memories. Try **“Check your status. What can you actually do?”** or **“Check the clock. What time is it?”** These are read-only tools; memory saves still require an explicit request.
 
-An optional local Qwen3-TTS voice can now generate new speech from Bill’s chosen SAL reference, with dry and light-echo audition settings. A stock browser voice remains selectable. Optional browser dictation requires browser support and microphone permission; its provider may process audio online. There is no always-on microphone. Sensors, motors and project service bridges remain disconnected. [Desktop guide](software/desktop/README.md) · [Model research and upgrade plan](docs/model-strategy.md).
+Mack’s approved voice v1 generates new speech locally from Bill’s chosen SAL reference. Bill accepted the light-echo delivery on October 21, 2026; its model, reference fingerprints, settings and audition fingerprint are preserved in a [versioned voice profile](software/mack/voice-profile.json). It is the default for new voice preferences; dry delivery and a stock voice remain explicit alternatives. A stock browser voice remains selectable. Optional browser dictation requires browser support and microphone permission; its provider may process audio online. There is no always-on microphone. Sensors, motors and project service bridges remain disconnected. [Desktop guide](software/desktop/README.md) · [Model research and upgrade plan](docs/model-strategy.md).
 
 ## Visual design target
 
 Mack's conversational manner now follows a [SAL-inspired personality](docs/personality-and-voice.md):
 calm, warm, curious and plain-spoken, with candor preserved under pressure. Control
-Panels includes a reference-voice audition and a stock voice alternative. The first
-local neural audition works; matching the film performance and implementing physical
-mannerisms remain open.
-Her voice and manner are core design requirements. Bill's acceptance of new spoken
-conversation will determine whether that part of Mack is ready.
+Panels identifies **Mack · approved voice v1** and **Approved v1 · light echo**.
+Her voice and manner are core design requirements. The voice direction is accepted;
+long-form speech quality, fully disconnected operation, onboard performance and
+physical mannerisms still need qualification.
 
 - The beige compact-Mac enclosure remains the dominant shape, including the screen surround, carry-handle recess, vents, and floppy-slot detail.
 - A compact base sits directly beneath the Mac.

@@ -25,7 +25,7 @@ about the system itself. It preserves Mack's identity and existing capability
 limits. It does not grant perception, motor control, or memory-writing authority.
 
 Control Panels now offers two local speech engines: the existing stock Mac voice
-and an experimental **Mack · SAL reference study**. The latter generates new speech
+and **Mack · approved voice v1**. The latter generates new speech
 using Qwen3-TTS 1.7B Base through MLX Audio on Apple silicon. Bill selected the
 [isolated SAL reply](https://www.101soundboards.com/sounds/71716732-a-fabulous-bird-reborn-from-the-ashes-of-its-earlier-life)
 on 2026-10-21. Its roughly 4½ seconds of audio are stored privately and converted
@@ -39,12 +39,22 @@ synthesis and **Speaking** only during actual playback. It records completion or
 stopping in the controls. Voice preferences survive browser reload.
 
 Bill's first feedback was positive, with a request for more inflection and echo.
-The **Reference · dry** delivery preserves the first audition. **Film study · light
-echo** uses a second sampling preset and quiet early reflections: 19 and 37 ms,
-plus an 85 ms echo and a softer 170 ms return. These are audition choices, not
-measurements of the film recording. The Base model does not expose instruction
-control for prosody; changing its sampling can vary delivery but does not guarantee
-more pitch movement. Further matching depends on Bill's comparison.
+The dry alternative preserves the first audition. Bill then accepted **Film study ·
+light echo**, saying “that's it, lock that voice in” on 2026-10-21. It is now labeled
+**Approved v1 · light echo** and is the default for fresh voice preferences and API
+requests that omit a delivery. Explicit saved alternatives remain selectable.
+
+The [voice v1 profile](../software/mack/voice-profile.json) preserves the exact
+sampling settings and quiet 19/37/85/170 ms reflections, with reference, transcript,
+model-generation-defaults, dependency-recipe and accepted-audition fingerprints.
+The original 6.25-second accepted WAV is retained privately, without rerendering it.
+The installed reference, transcript, declared model revision and recipe must match
+before synthesis; the worker also checks its MLX Audio version. Future voice work
+should create a new profile and compare it with v1 rather than rewrite this baseline.
+
+This is Bill's acceptance of Mack's sound, not a measurement of film acoustics.
+The Base model does not expose instruction control for prosody. Conversational
+model changes are independent of the voice profile and saved memories.
 
 The engine is pinned to `mlx-community/Qwen3-TTS-12Hz-1.7B-Base-bf16`, revision
 `a6eb4f68e4b056f1215157bb696209bc82a6db48`, with MLX Audio 0.6.1. Downloaded
@@ -61,8 +71,9 @@ A full disconnected reboot test and Linux/onboard qualification remain open.
 The earlier [Chandra/SAL scene](https://www.youtube.com/watch?v=T2E7sxGAmuo) remains
 a broader performance reference. No film recording, generated voice recording,
 private transcript, or model weights are distributed in Git. Code and installation
-instructions are public. This session has not listened to the output or established
-an exact acoustic match. An automated Whisper spot check recovered the intended
+instructions and profile fingerprints are public. Bill's listening judgment is the
+acceptance evidence; no exact acoustic match was independently established.
+An automated Whisper spot check recovered the intended
 words but hallucinated repetitions over silence, so it is not an acceptance test.
 
 See the [local voice setup guide](../software/mack/VOICE.md).
@@ -114,7 +125,10 @@ controller. There are no physical mannerisms implemented yet.
 Eight live Qwen3.6:35b prompts and two follow-up probes were reviewed using disposable
 memory. Unknown facts stayed unknown and capability limits were respected in those
 samples. Some replies still append an unnecessary question; restraint is not yet
-consistent. Bill has heard the first reference-conditioned audition and requested more inflection and echo. Exact likeness and physical mannerisms have not passed acceptance. The revision-3 persona produces brief acknowledgments, but sampled Qwen replies still sometimes append unnecessary offers or questions; further conversational tuning remains open.
+consistent. Bill accepted the second, light-echo voice audition as voice v1.
+Physical mannerisms, long-form speech and onboard qualification remain open.
+The persona produces brief acknowledgments, but sampled Qwen replies still
+sometimes append unnecessary offers or questions; conversational tuning remains open.
 
 ## Reference
 

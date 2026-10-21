@@ -22,13 +22,20 @@ test('old and malformed browser preferences keep usable delivery defaults', () =
   for(const value of [null,undefined,[],{}, {rate:'fast',pitch:Infinity,voiceURI:34}]) {
     assert.deepEqual(readDelivery(value),DEFAULT_DELIVERY);
   }
-  assert.deepEqual(readDelivery({rate:-3,pitch:40,voiceURI:'local'}),{rate:0.7,pitch:1.2,voiceURI:'local',engine:'browser',style:'natural'});
+  assert.deepEqual(readDelivery({rate:-3,pitch:40,voiceURI:'local'}),{rate:0.7,pitch:1.2,voiceURI:'local',engine:'reference',style:'film'});
 });
 test('reference selection survives preferences; unknown engines cannot select a network path',()=>{
   assert.equal(readDelivery({engine:'reference'}).engine,'reference');
-  assert.equal(readDelivery({engine:'https://remote.example'}).engine,'browser');
+  assert.equal(readDelivery({engine:'https://remote.example'}).engine,'reference');
   assert.equal(readDelivery({style:'film'}).style,'film');
-  assert.equal(readDelivery({style:'unavailable'}).style,'natural');
+  assert.equal(readDelivery({style:'unavailable'}).style,'film');
+});
+test('fresh preferences use the approved voice while explicit alternatives survive reload',()=>{
+  assert.equal(readDelivery().engine,'reference');
+  assert.equal(readDelivery().style,'film');
+  const alternative=readDelivery({engine:'browser',style:'natural'});
+  assert.equal(readDelivery(JSON.parse(JSON.stringify(alternative))).engine,'browser');
+  assert.equal(readDelivery(alternative).style,'natural');
 });
 test('long replies are spoken in bounded chunks without losing words',()=>{
   const text=('One complete sentence. Another thought follows. ').repeat(50).trim();

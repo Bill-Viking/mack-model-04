@@ -406,7 +406,7 @@ function openControls() {
     slider.addEventListener('change',()=>persist(state));row.append(document.createTextNode(title),slider,value);panel.append(row);
   }
   const auditionLabel=node('label');const auditionText=node('textarea');auditionText.value=AUDITION;auditionText.maxLength=600;auditionText.rows=3;auditionText.setAttribute('aria-label','Voice audition text');auditionLabel.append(document.createTextNode('Audition text'),auditionText);panel.append(auditionLabel);
-  panel.append(button('Hear voice preview',()=>{if(busy||recognition){toast('Finish or stop the current conversation first.');return;}if(!auditionText.value.trim())return;stopCurrent();speak(auditionText.value,turn,true);},'classic-button small'),button('Stop voice',()=>{if(busy||recognition)return;stopCurrent();setMode(health.ready?'idle':'fault');},'classic-button small'),node('p','fine-print','The reference voice generates new speech locally from the chosen SAL clip. This is an experimental audition; likeness is for you to judge. Preview text does not enter conversation or memory.'));
+  panel.append(button('Hear voice preview',()=>{if(busy||recognition){toast('Finish or stop the current conversation first.');return;}if(!auditionText.value.trim())return;stopCurrent();speak(auditionText.value,turn,true);},'classic-button small'),button('Stop voice',()=>{if(busy||recognition)return;stopCurrent();setMode(health.ready?'idle':'fault');},'classic-button small'),node('p','fine-print','Voice v1 preserves Bill’s approved light-echo delivery. New speech is generated locally from the chosen SAL reference. Preview text does not enter conversation or memory.'));
   const progress=node('p','fine-print',voiceProgress);progress.id='voice-progress';progress.setAttribute('aria-live','polite');panel.append(progress);
   const micLabel=node('label');const mic=node('input');mic.type='checkbox';mic.checked=allowDictation;mic.addEventListener('change',()=>{allowDictation=mic.checked;persist(state);if(!allowDictation&&recognition){stopCurrent();setMode(health.ready?'idle':'fault');}});micLabel.append(mic,document.createTextNode('Allow browser dictation'));
   panel.append(micLabel,node('p','fine-print','Starts only when you click Dictate. Your browser may send speech to its online service. Review the transcript before Send. Keyboard dictation also works.'));
@@ -421,7 +421,7 @@ function renderVoiceChoices(){
   const box=$('#voice-choices');if(!box)return;box.replaceChildren();
   const engineLabel=node('label');engineLabel.append(document.createTextNode('Voice engine'));
   const engine=node('select');engine.setAttribute('aria-label','Voice engine');
-  for(const [value,title] of [['reference','Mack · SAL reference study'],['browser','Stock Mac voice']]){const option=node('option','',title);option.value=value;engine.append(option);}
+  for(const [value,title] of [['reference','Mack · approved voice v1'],['browser','Stock Mac voice']]){const option=node('option','',title);option.value=value;engine.append(option);}
   engine.value=delivery.engine;
   engine.addEventListener('change',()=>{if(!busy&&!recognition){stopCurrent();setMode(health.ready?'idle':'fault');}delivery=readDelivery({...delivery,engine:engine.value});persist(state);renderVoiceChoices();});
   engineLabel.append(engine);box.append(engineLabel);
@@ -429,7 +429,7 @@ function renderVoiceChoices(){
   if(delivery.engine==='reference'){
     const styleLabel=node('label');styleLabel.append(document.createTextNode('Delivery'));
     const style=node('select');style.setAttribute('aria-label','Reference voice delivery');
-    for(const [value,title] of [['natural','Reference · dry'],['film','Film study · light echo']]){const option=node('option','',title);option.value=value;style.append(option);}
+    for(const [value,title] of [['film','Approved v1 · light echo'],['natural','Reference · dry (alternative)']]){const option=node('option','',title);option.value=value;style.append(option);}
     style.value=delivery.style;
     style.addEventListener('change',()=>{if(!busy&&!recognition){stopCurrent();setMode(health.ready?'idle':'fault');}delivery=readDelivery({...delivery,style:style.value});persist(state);});
     styleLabel.append(style);box.append(styleLabel,node('p','fine-print',referenceVoice.message));return;

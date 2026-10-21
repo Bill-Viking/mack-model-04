@@ -1,5 +1,5 @@
 // Delivery settings are separate from Mack's identity, model, and saved memories.
-export const DEFAULT_DELIVERY = Object.freeze({ voiceURI: '', rate: 0.88, pitch: 0.98, engine: 'browser', style: 'natural' });
+export const DEFAULT_DELIVERY = Object.freeze({ voiceURI: '', rate: 0.88, pitch: 0.98, engine: 'reference', style: 'film' });
 export const AUDITION = "Hello. I'm Mack. We can take this one step at a time. If I am not certain, I will tell you.";
 
 export function readDelivery(value) {
@@ -9,8 +9,8 @@ export function readDelivery(value) {
   return {
     voiceURI: typeof source.voiceURI === 'string' ? source.voiceURI.slice(0, 500) : '',
     rate: bounded('rate', 0.7, 1.1), pitch: bounded('pitch', 0.8, 1.2),
-    engine: source.engine === 'reference' ? 'reference' : 'browser',
-    style: source.style === 'film' ? 'film' : 'natural',
+    engine: ['reference', 'browser'].includes(source.engine) ? source.engine : DEFAULT_DELIVERY.engine,
+    style: ['film', 'natural'].includes(source.style) ? source.style : DEFAULT_DELIVERY.style,
   };
 }
 

@@ -93,6 +93,18 @@ remain outside Git. The public [setup guide](../software/mack/VOICE.md) records 
 pinned engine and model. Conversational restraint still needs refinement; physical
 mannerisms and onboard qualification remain future work.
 
+## 2026-10-21 — Bill approves Mack's voice v1
+
+Bill accepted the second light-echo audition: “that's it, lock that voice in.”
+Preserved the exact accepted WAV privately and published a versioned recipe with
+its checksum, reference/transcript fingerprints, pinned model and delivery settings.
+The worker now reads that recipe directly. The desktop and API default to the
+approved delivery while preserving explicit alternative choices. Changed reference,
+transcript or installation metadata cannot silently redefine the accepted voice.
+No pitch, inflection or echo setting changed during this lock. Future voice
+versions should be compared with this baseline. Voice acceptance is now recorded;
+full offline and onboard qualification remain separate work.
+
 ## What comes next
 
 - Qualify fully local speech input and the explicit offline/assisted modes.

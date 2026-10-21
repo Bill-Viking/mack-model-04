@@ -1,5 +1,4 @@
 """Optional local neural speech. The desktop and memory work without MLX installed."""
-import hashlib
 import io
 import json
 import os
@@ -13,6 +12,7 @@ from collections import OrderedDict
 from pathlib import Path
 
 from .runtime import MackError, clean_text
+from .voice_profile import load_profile, validate_profile
 
 
 class VoiceService:
@@ -37,27 +37,28 @@ class VoiceService:
                     raise ValueError('Missing local asset')
             if not self.python.is_file() or not self.worker.is_file():
                 raise ValueError('Voice runtime is missing')
-            if hashlib.sha256(Path(config['reference_path']).read_bytes()).hexdigest() != config['reference_sha256']:
-                raise ValueError('Reference changed')
             if not isinstance(config['reference_text'], str) or not 1 <= len(config['reference_text']) <= 2000:
                 raise ValueError('Reference transcript is missing')
             if not all(isinstance(config[key], str) and config[key] for key in ('model_id', 'revision')):
                 raise ValueError('Model provenance is missing')
+            validate_profile(self.root, config, load_profile(self.root))
             return config
         except (OSError, ValueError, KeyError, TypeError):
-            raise MackError('The local reference voice is not ready. Check its installation; no other voice was substituted.', 503) from None
+            raise MackError('Mack’s approved voice is unavailable or its installation differs from the saved profile. Restore the pinned setup; no other voice was substituted.', 503) from None
 
     def status(self):
         try:
             config = self.config()
-            return {'available': True, 'label': 'Mack · SAL reference study',
+            profile = load_profile(self.root)
+            return {'available': True, 'label': profile['label'],
                     'engine': 'Qwen3-TTS 1.7B Base · MLX',
                     'model': config['model_id'], 'revision': config['revision'],
-                    'message': 'Local reference voice installed. Voice likeness awaits your audition.',
+                    'message': 'Bill approved the light-echo delivery on 2026-10-21. Voice v1 is preserved.',
+                    'profile': profile['id'], 'default_style': profile['default_style'],
                     'styles': ['natural', 'film'],
                     'max_text': 600}
         except MackError as error:
-            return {'available': False, 'label': 'Mack · SAL reference study',
+            return {'available': False, 'label': 'Mack · approved voice v1',
                     'message': str(error), 'max_text': 600}
 
     @staticmethod
@@ -84,10 +85,10 @@ class VoiceService:
         text = clean_text(payload.get('text'), 600)
         ident = payload.get('id')
         self.validate_id(ident)
-        style = payload.get('style', 'natural')
+        self.config()
+        style = payload.get('style', load_profile(self.root)['default_style'])
         if style not in ('natural', 'film'):
             raise MackError('Choose a supported voice delivery.')
-        self.config()
         if not self.gate.acquire(blocking=False):
             raise MackError('Mack is preparing another spoken reply. Stop it or wait a moment.', 409)
         start = time.monotonic()
