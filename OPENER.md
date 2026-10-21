@@ -1,10 +1,10 @@
 lane: RayCue/Research
-written: 2026-10-21T16:04:00-07:00
+written: 2026-10-21T16:09:00-07:00
 by: ACT — RayCue/Research: Mac OS 9 and walking robot
 on: MAC
-head: 63852ea (microphone diagnostic; direct chooser implementation follows)
-status_updated: 2026-10-21T16:04:00-07:00
-where: Direct microphone chooser installed and saved to Studio Display; spoken acceptance pending
+head: 47e831c (direct chooser; on/off transcript controls follow)
+status_updated: 2026-10-21T16:09:00-07:00
+where: Explicit microphone on/off and visible live transcript installed; spoken acceptance pending
 next: bill
 depends_on: Bill's spoken-sentence trial with Studio Display microphone; onboard measurements for hardware
 open_in: /Users/bill/Projects/RayCue Mac · existing RayCue/Research chat
@@ -12,6 +12,8 @@ judgment: Preserve local memory and independent control; benchmark models and qu
 model: Preserve the user's model choice and read the live dial
 ---
 Read STATUS.md first, then software/mack/VOICE.md, docs/personality-and-voice.md and docs/product-spec.md.
+
+Latest interaction: Turn microphone on → speak and see Live transcript → Turn microphone off to review → Send to Mack for her answer. At 60 seconds capture stops for review without sending. A separate Send can also finish an active recording. The live transcript box is visible even when off. Browser QA with labeled prerecorded speech verified live words, off retaining an editable transcript and no SQL change until explicit Send; production memory unchanged. 27 JS checks pass. Production reloaded, Studio Display still selected, microphone off. Ask for Bill's actual spoken result without treating the QA sample as proof of his speech. Earlier Talk to Mack / Finish & send instructions are superseded.
 
 Latest interface fix: added Microphone chooser with exact device selection and browser-local persistence. Studio Display Microphone is explicitly selected in the production in-app browser, verified across reload and actual capture. Missing devices are refused without fallback; refresh enumerates without opening a mic. 27 JS checks pass, including new exact-selection and unavailable-device checks. Browser console clean. Capture cancelled; no diagnostic transcript submitted. Bill should click Talk to Mack and speak; full speech/reply acceptance remains pending. No backend or approved-voice changes.
 

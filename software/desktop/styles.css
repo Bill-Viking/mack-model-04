@@ -150,5 +150,7 @@ button:focus-visible, a:focus-visible, input:focus-visible,textarea:focus-visibl
 .microphone-choice label { font-size:12px; }
 .microphone-choice select { flex:1; min-width:120px; max-width:100%; padding:4px; border:1px solid #777; background:#fff; }
 .microphone-choice p { flex-basis:100%; margin:0; }
+.listening-controls { display:flex; align-items:center; flex-wrap:wrap; gap:8px; margin:0 15px 8px; }
+.listening-controls button[aria-pressed="true"] { background:#d8e6d1; border-color:#455942; }
 .archive-exchange { border-top:1px solid #999; padding:10px 0; overflow-wrap:anywhere; }
 .archive-exchange p { white-space:pre-wrap; }

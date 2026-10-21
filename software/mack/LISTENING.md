@@ -7,24 +7,30 @@ a Linux robot board, battery life, a distant room microphone or a humanoid body.
 
 ## Use it
 
-1. WHERE: Mack at http://127.0.0.1:9844/. Choose your **Microphone** above the live transcript, then click **Talk to Mack**.
-2. WHERE: the browser/macOS microphone prompt. Allow access for Mack.
-3. WHERE: Mack. Speak and watch **Live transcript** update.
-4. WHERE: Mack. Click **Finish & send** when finished.
+1. WHERE: Mack at http://127.0.0.1:9844/. Choose your **Microphone** above the live transcript.
+2. WHERE: Mack. Click **Turn microphone on**.
+3. WHERE: the browser/macOS microphone prompt. Allow access for Mack.
+4. WHERE: Mack. Speak and watch **Live transcript** update.
+5. WHERE: Mack. Click **Turn microphone off** to keep and review your transcript.
+6. WHERE: Mack. Click **Send to Mack** when you want her to answer.
 
 The live box shows provisional words while recording. It replaces each draft with
 a fresh reading of the complete recording so earlier words can correct themselves.
 Updates are requested roughly once per second, with only one in flight; this is
 incremental preview, not zero-delay word streaming. The input meter and **Sound
 detected** give immediate audio feedback. After three seconds without a signal,
-the interface says **No sound detected — check your microphone**. The energy
+the interface asks you to cancel and choose another microphone. The energy
 indicator detects sound, not whether it is intelligible speech.
 
-**Finish & send** closes the microphone, lets any current preview finish, and checks
-the complete recording again. Only this final transcript goes to the selected
-local conversational model; its completed answer is saved and read in approved
-voice v1. **Escape**, **Cancel recording**, closing Mack or hiding its page stops
-capture. Recording ends at 60 seconds. No microphone runs between turns.
+**Turn microphone off** closes capture, lets any current preview finish, and checks
+the complete recording again. The result stays visible and is copied into the
+editable message field without sending it. The 60-second limit also stops for
+review without sending. **Send to Mack** submits your message; you can also click
+it while listening to finish transcription and ask for a reply directly. Only a
+submitted final transcript goes to the conversational model; its completed answer
+is saved and read in approved voice v1. **Escape**, **Cancel recording**, closing
+Mack or hiding its page discards an unfinished recording. No microphone runs
+between turns. The live transcript box remains visible with an off-state prompt.
 Control Panels offers **Review transcript before sending** to correct recognition
 errors before a message is submitted. This is especially useful for names.
 
