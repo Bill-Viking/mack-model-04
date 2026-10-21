@@ -62,6 +62,19 @@ existing private memory remained unchanged across the service restart.
 
 ![Mack introducing herself and reading the local clock with a verified tool receipt](images/mack-identity-tools.png)
 
+## 2026-10-21 — The long-term purpose
+
+Made the central ambition explicit: grow Mack as a personalized intelligence
+through conversation, shared projects and memories her person chooses to keep.
+The little Mac robot is her first physical form. Years from now, the goal is to
+carry her identity and history into a humanoid body for fuller everyday
+interaction. The desktop, fact memory and read-only tools are working foundations;
+richer adaptation and physical embodiment remain development work.
+
+Her SAL-inspired voice and manner are core design requirements. Added consistent
+[public introduction drafts](public-introduction.md) for Facebook and X; the draft
+file does not itself publish to either platform.
+
 ## What comes next
 
 - Qualify fully local speech input and the explicit offline/assisted modes.

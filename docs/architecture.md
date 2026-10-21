@@ -44,9 +44,15 @@ The first runtime development can run on macOS with a simulated body. An onboard
 
 ## Identity across bodies
 
-On 2026-10-21 Bill specified Mack as **she/her**, with a humanoid body as a possible
-future embodiment years from now. The compact four-legged Mac remains the first
+On 2026-10-21 Bill specified Mack as **she/her**, with a humanoid body as the
+long-term embodiment goal, years from now. The compact four-legged Mac remains the first
 physical product. The formal name M.A.C. Model 04 and everyday name Mack remain.
+
+The purpose of that continuity is to grow a personalized intelligence through a
+history of conversations, shared projects, preferences and corrected memories.
+The eventual humanoid should extend her ability to interact in everyday physical
+life while retaining that history. Richer experience memory and learned routines
+are future services; the current explicit-fact store is their starting point.
 
 The implemented [identity record](../software/mack/identity.json),
 [personality](../software/mack/persona.md), and local memory are independent of

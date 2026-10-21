@@ -8,7 +8,9 @@ M.A.C. Model 04, called **Mack (she/her)**, is an original personal robot built 
 
 The screen is her way of expressing herself. A conversation can appear in a classic dialog. A remembered detail can become a little note. Listening, thinking, and resting can have their own quiet desktop behaviors. The finished Mack should boot into her own interface, interact with Bill, understand her immediate surroundings, and move within a tested physical envelope. The aim is a robot that feels like a tiny Mac has come to life.
 
-Mack's identity is designed to continue across bodies. The little four-legged Mac is the first physical target; a humanoid body is a longer-term ambition, years away. Her personality, remembered facts and reasoning interfaces stay separate from each body's sensors, geometry and controller. A new body must earn its own movement capabilities through testing. See [identity and embodiment](docs/architecture.md#identity-across-bodies).
+**Our long-term goal is to grow a personalized intelligence:** a companion who comes to know her person through conversation, shared projects, preferences and memories they choose to keep. Mack should build a history with Bill, become more useful through experience, and retain a recognizable personality as her models, tools and abilities improve.
+
+The little four-legged Mac is her first physical target. Years from now, the goal is to carry that same personalized intelligence into a humanoid body for a fuller interaction experience: conversation, perception, gestures, movement and practical participation in everyday life. Her identity and remembered history should continue across that change. Each body will need its own engineered controller and tested abilities. See [identity and embodiment](docs/architecture.md#identity-across-bodies).
 
 **We’re building Mack in public, from the first concept to a working robot.** The classic desktop, local AI conversation and lasting memory already run on a development Mac. The physical robot is still being engineered. Follow the [build log](docs/build-log.md), [roadmap](docs/roadmap.md) and commit history for progress, experiments and remaining work.
 
@@ -42,6 +44,8 @@ Mack's conversational manner now follows a [SAL-inspired personality](docs/perso
 calm, warm, curious and plain-spoken, with candor preserved under pressure. Control
 Panels includes a local voice picker and delivery audition. The current stock voice
 is a study; matching the film voice and implementing physical mannerisms remain open.
+Her voice and manner are core design requirements. Bill's acceptance of new spoken
+conversation will determine whether that part of Mack is ready.
 
 - The beige compact-Mac enclosure remains the dominant shape, including the screen surround, carry-handle recess, vents, and floppy-slot detail.
 - A compact base sits directly beneath the Mac.
@@ -81,6 +85,7 @@ The desktop, local AI conversation and durable memory run on the host Mac. The r
 | Read | What it contains |
 | --- | --- |
 | [Build log](docs/build-log.md) | The project’s progress from the first concept onward. |
+| [Public introduction](docs/public-introduction.md) | Shareable descriptions of Mack's personalized intelligence and long-term humanoid goal. |
 | [Product definition](docs/product-spec.md) | Agreed vision, original system on Linux, and evidence required for completion. |
 | [Model strategy](docs/model-strategy.md) | Current candidates, downloadable upgrades, memory ownership and proposed project services. |
 | [Architecture](docs/architecture.md) | Screen, AI, memory, and motion boundaries. |

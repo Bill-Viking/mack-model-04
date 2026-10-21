@@ -1,10 +1,10 @@
 lane: RayCue/Research
-written: 2026-10-21T12:20:00-07:00
+written: 2026-10-21T12:33:00-07:00
 by: ACT — RayCue/Research: Mac OS 9 and walking robot
 on: MAC
-head: 71c4d29 (parent of identity and read-only tools checkpoint)
-status_updated: 2026-10-21T12:20:00-07:00
-where: She/her identity and local reasoning tools verified; chosen SAL clip recorded; audio analysis open
+head: 7806e5a (parent of personalized-intelligence public introduction)
+status_updated: 2026-10-21T12:33:00-07:00
+where: Personalized-intelligence and humanoid goal documented; Facebook and X publication approved and pending
 next: machine
 depends_on: onboard measurements for hardware; configured provider for optional cloud use
 open_in: /Users/bill/Projects/RayCue Mac · existing RayCue/Research chat
@@ -21,7 +21,7 @@ Verified 30 Python tests, 8 legacy JavaScript tests and 93 vendor hashes. Live Q
 
 LATEST VERIFIED CHECKPOINT
 
-Mack uses she/her. Bill wants her identity, personality and memory to carry from the compact four-legged Mac into a possible humanoid body years from now. The four-leg prototype remains first. identity.json is separate from model weights and body capabilities. toolbox.py exposes only read-only status, local clock and active-memory search through native Ollama tools. Three model requests/four calls/120 seconds per reply, cancellation checks, strict argument validation and no arbitrary file/network/motor authority. Tool receipts show in the current browser conversation, not persisted history. Models without tool support retain text conversation.
+Mack uses she/her. Bill's long-term goal is a personalized intelligence that builds a history with him, with her identity, personality and memory carrying from the compact four-legged Mac into a humanoid body years from now. The four-leg prototype remains first. identity.json is separate from model weights and body capabilities. toolbox.py exposes only read-only status, local clock and active-memory search through native Ollama tools. Three model requests/four calls/120 seconds per reply, cancellation checks, strict argument validation and no arbitrary file/network/motor authority. Tool receipts show in the current browser conversation, not persisted history. Models without tool support retain text conversation.
 
 41 Python + 12 JavaScript checks pass. Four live Qwen probes verified each tool and truthful she/her/body continuity. Browser status receipt verified with disposable memory; corrected its grid layout. Production database dump remained identical across restart. Evidence stays private under runtime/body-continuity-checks/. The only new public image is docs/images/mack-identity-tools.png from the isolated test UI.
 
@@ -51,4 +51,4 @@ Public origin (visibility and anonymous access verified on 2026-10-21): https://
 
 PUBLIC DEVELOPMENT
 
-Bill asked for a public GitHub link to share on X. The repository is now PUBLIC; unauthenticated API, repository page and raw README access all returned HTTP 200. README and docs/build-log.md now introduce the public build and distinguish the visual concept from working software and unbuilt hardware. Keep actual memory databases, credentials and recordings out of every commit. Existing Git history is retained. No X post is authorized or sent by this task.
+Bill asked for a public GitHub link to share on X. The repository is now PUBLIC; unauthenticated API, repository page and raw README access all returned HTTP 200. README and docs/build-log.md introduce the public build and distinguish the visual concept from working software and unbuilt hardware. The 2026-10-21 long-term vision update makes personalized intelligence and eventual humanoid embodiment explicit in the README, specification and architecture. docs/public-introduction.md holds approved Facebook and X copy. Bill explicitly approved publishing both drafts; verify platform receipts before claiming publication. Keep actual memory databases, credentials and recordings out of every commit. Existing Git history is retained.

@@ -2,6 +2,8 @@
 
 ## Now
 
+2026-10-21 12:33 PDT: Bill made the long-term purpose explicit: **grow a personalized intelligence** through an ongoing history with him, eventually carrying Mack into a **humanoid body for fuller everyday interaction**. Updated the README introduction, product definition, architecture and public build log. The four-legged Mac remains the first physical target. Her SAL-inspired voice and manner are core requirements; stock Samantha remains temporary. Richer experience memory, learned routines and humanoid abilities are future work, distinct from the current explicit-fact store and desktop tools. Added docs/public-introduction.md with Facebook and X drafts. Bill explicitly approved publishing both drafts in this chat; publication and post links are pending verification.
+
 2026-10-21 12:20 PDT: Bill supplied the SAL reference https://www.youtube.com/watch?v=T2E7sxGAmuo and specified Mack as **she/her**, eventually carrying her identity into a **humanoid body years from now**. The first physical target remains the compact four-legged Mac. The browser verified the Chandra/SAL page and 2:44 duration; captions were unavailable. This session has not heard or analyzed the audio. The clip is received; exact voice synthesis and acoustic comparison remain open.
 
 Implemented a separate identity record in software/mack/identity.json and native local-model tool use through software/mack/toolbox.py. Allowlisted read-only tools return actual runtime/body status, host clock, and active saved-memory search. They accept no file paths, SQL, networking or actuator handles. Unknown/malformed calls and excessive batches are refused; replies have a three-inference/four-tool-call/120-second budget with cancellation checks. Text-only models still work. Tool receipts appear beneath newly completed replies; receipt persistence is not yet implemented. Current body status is desktop, physical_connection=false, no sensors or motion actions. Architecture now defines identity continuity and separate qualification of each future body; no humanoid or mock walking controller has been implemented.
@@ -61,6 +63,8 @@ The host desktop, local AI and durable-memory runtime are implemented; no body r
 - [ ] Implement the simulated body contract and prove expiry, rejection, interruption and recovery.
 - [x] Implement the SAL-inspired conversation profile and local voice audition controls; verify sampled behavior and preference persistence.
 - [x] Record she/her identity, future humanoid continuity and the supplied SAL clip; connect and verify bounded read-only reasoning tools.
+- [x] Put the personalized-intelligence purpose and eventual humanoid embodiment in the public introduction, specification and build log.
+- [ ] Publish the approved personalized-intelligence update to Facebook and X; verify and return both post links.
 - [ ] Match the requested SAL sound using the chosen reference/model; audition new sentences and qualify local synthesis. Stock Samantha is only a study.
 - [ ] Verify spoken input; qualify fully local speech recognition and the offline/assisted routing policy.
 - [ ] Evaluate model quality, cold/warm latency and resources; implement a scoped cloud adapter and staged model upgrade/rollback flow.

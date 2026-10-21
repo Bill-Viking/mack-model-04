@@ -14,12 +14,35 @@ The current browser desktop connects to real local AI, durable memory and read-o
 
 - Formal name: **M.A.C. Model 04**, Mobile Autonomous Computer. Everyday name: **Mack**.
 - Identity: **she/her**, with SAL-inspired plain, calm conversation. Identity and memory persist independently of models and bodies.
-- Long-term direction: a possible humanoid body, years away. The first physical release remains the accepted four-legged Mac. A later body requires separate engineering and qualification.
+- Long-term direction: grow a personalized intelligence through a continuing history with her person, then carry her into a humanoid body for fuller everyday interaction, years from now. The first physical release remains the accepted four-legged Mac. A later body requires separate engineering and qualification.
 - Appearance: [Bill's accepted image](../concepts/raycue-build-target.png), a dominant beige compact Mac body, compact underside base, four short articulated legs, and rounded dark feet.
 - Starting enclosure: Bill's RayCue clock. Preserve its character while engineering the internal structure and base around measured loads.
 - Everyday experience: an original classic Mac-style interface over modern intelligence and robotics. Authentic vintage applications are a minor, optional mode.
 - System foundation: Linux with Mack's own interface, AI integration, memory, and robot software.
 - Development starts on Bill's Mac and progresses into the physical robot. The final target carries its own compute, controller, sensors, and battery.
+
+## Long-term purpose: a personalized intelligence
+
+Bill clarified on 2026-10-21 that the lasting product is Mack's personalized
+intelligence. Through conversation, shared activities and deliberately retained
+memories, she should come to know his preferences, projects and ways of working.
+Corrections should matter, useful routines should develop, and her familiar
+personality should continue as models and tools improve.
+
+The eventual humanoid body is intended to support a fuller interaction experience:
+conversation, perception, expressive gestures, movement and practical assistance
+in shared physical surroundings. This is a long-term goal beyond the first Mac
+robot's release gates. Identity and memory continuity are design requirements;
+humanoid mechanisms and autonomous physical skills remain future engineering.
+
+Personalization must remain inspectable and correctable by the person. The current
+runtime implements explicit saved facts, recent conversation and a stable persona.
+Learning routines, richer experience memory and adaptation over time remain work
+to build and evaluate; storing notes does not retrain the foundation model.
+
+SAL-inspired voice and manner are central to Bill's conception of Mack. Voice
+acceptance requires his audition of newly synthesized conversation, alongside
+reliable interruption and clear delivery. The stock Mac voice remains temporary.
 
 ## What “complete” must demonstrate
 
