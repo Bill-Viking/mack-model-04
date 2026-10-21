@@ -1,6 +1,6 @@
 import { STORAGE_KEY, INITIAL_STATE, readState } from './model.mjs';
-import { connect, api } from './service.mjs';
-import { DEFAULT_DELIVERY, AUDITION, readDelivery, chooseVoice } from './voice.mjs';
+import { connect, api, speechAudio } from './service.mjs';
+import { DEFAULT_DELIVERY, AUDITION, readDelivery, chooseVoice, speechChunks } from './voice.mjs';
 
 const $ = (selector, root = document) => root.querySelector(selector);
 const desktop = $('#desktop');
@@ -28,6 +28,9 @@ const PREFS_KEY = 'mack.desktop.preferences.v2';
 let legacyNotes = null;
 let allowDictation = false;
 let delivery = { ...DEFAULT_DELIVERY };
+let referenceVoice = { available:false, message:'Checking local reference voice…' };
+let voiceJob = null;
+let voiceProgress = 'Ready for an audition.';
 try { state = readState(localStorage.getItem(STORAGE_KEY)); }
 catch (error) { storageBlocked = true; storageMessage = 'Saved notes could not be opened. The original data has been left untouched; this session will not overwrite it.'; }
 if (!storageBlocked) legacyNotes = { notes: state.notes, trash: state.trash };
@@ -68,8 +71,11 @@ async function refreshHealth() {
   catch (error) { health = {...health,ready:false,message:error.message}; }
   const label=$('#model-status'); if(label) label.textContent=health.message+(health.model?' · '+health.model:'');
   $('.preview-label').textContent=health.ready?'Local AI · '+health.model:'Local AI unavailable';
-  if (!busy && !preview && mode!=='speaking') setMode(health.ready?'idle':'fault');
+  if (!busy && !preview && !voiceJob && mode!=='speaking') setMode(health.ready?'idle':'fault');
   renderModelChoices();
+  try { referenceVoice = await api('voice/status'); }
+  catch { referenceVoice = {available:false,message:'Local reference voice is unavailable.'}; }
+  renderVoiceChoices();
 }
 async function saveChange(path, payload) {
   if (!connected) { toast('Mack’s memory service is unavailable. Reload to reconnect.'); return false; }
@@ -172,12 +178,12 @@ function makeWindow(id, title, width, contents, options={}) {
   return win;
 }
 
-const stateText={idle:'Mack is ready',listening:'Listening',thinking:'Thinking',speaking:'Speaking',resting:'Resting',fault:'Connection unavailable'};
+const stateText={idle:'Mack is ready',listening:'Listening',thinking:'Thinking',voicing:'Preparing voice',speaking:'Speaking',resting:'Resting',fault:'Connection unavailable'};
 function setMode(next, isPreview=false) {
   mode=next; preview=isPreview; desktop.dataset.state=mode;
   $('#status-label').textContent=stateText[mode]+(preview?' · preview':'');
   const line=$('#mack-state');
-  if(line)line.textContent=preview?'Expression preview — '+stateText[mode].toLowerCase()+'. No action is running.':(mode==='thinking'?'Waiting for '+(health.model||'local AI')+'…':mode==='speaking'?'Reading the reply aloud.':mode==='listening'?'Dictating through your browser. Click Done when finished.':mode==='resting'?'Taking a little desktop nap. Send a message to wake me.':health.message+(health.model?' · '+health.model:''));
+  if(line)line.textContent=preview?'Expression preview — '+stateText[mode].toLowerCase()+'. No action is running.':(mode==='thinking'?'Waiting for '+(health.model||'local AI')+'…':mode==='voicing'?'Preparing her voice on this Mac. Escape stops it.':mode==='speaking'?'Reading the reply aloud.':mode==='listening'?'Dictating through your browser. Click Done when finished.':mode==='resting'?'Taking a little desktop nap. Send a message to wake me.':health.message+(health.model?' · '+health.model:''));
   const fault=$('#fault-banner'); if(fault)fault.hidden=mode!=='fault';
   const input=$('#message-input'); if(input)input.disabled=busy||!connected;
   const send=$('#send-message'); if(send)send.disabled=busy||!connected;
@@ -190,6 +196,7 @@ function stopCurrent() {
   if(recognition){recognition.abort();recognition=null;}
   const dictate=$('#dictate-message');if(dictate)dictate.textContent='Dictate';
   if('speechSynthesis' in window)window.speechSynthesis.cancel();
+  stopReferenceVoice();
 }
 function previewState(next) { stopCurrent(); openMack(); setMode(next,true); }
 function renderConversation() {
@@ -201,6 +208,10 @@ function renderConversation() {
       const labels={mack_status:'System status',local_time:'Local clock',search_memories:'Saved memories'};
       row.append(node('p','fine-print','Tools: '+tools.map((tool)=>(labels[tool.name]||'Unavailable tool')+(tool.ok?' — checked':' — failed')).join('; ')));
     }
+    if(who==='Mack') {
+      const read=button('Read aloud',()=>{if(busy||recognition)return;stopCurrent();speak(text,turn,true);},'classic-button small read-aloud');
+      read.setAttribute('aria-label','Read this reply aloud');row.append(read);
+    }
     log.append(row);
   });
   log.scrollTop=log.scrollHeight;
@@ -208,6 +219,8 @@ function renderConversation() {
 function refreshVoices() { localVoices=('speechSynthesis' in window)?window.speechSynthesis.getVoices().filter((voice)=>voice.localService):[]; renderVoiceChoices(); }
 if('speechSynthesis' in window){ refreshVoices();window.speechSynthesis.addEventListener('voiceschanged',refreshVoices); }
 function speak(text, token, audition=false) {
+  if(!state.voice&&!audition){setMode(health.ready?'idle':'fault');return;}
+  if(delivery.engine==='reference'){speakReference(text,token);return;}
   refreshVoices();
   const selected = chooseVoice(localVoices, delivery.voiceURI);
   if((!state.voice&&!audition) || !selected) { setMode(health.ready?'idle':'fault'); if(state.voice||audition)toast('The selected local voice is unavailable. Choose another voice in Control Panels.'); return; }
@@ -222,6 +235,52 @@ function speak(text, token, audition=false) {
   window.speechSynthesis.speak(speech);
   const speechDeadline=Math.max(30000,speech.text.split(/\s+/).length*650/delivery.rate);
   timers.push(setTimeout(()=>{if(token===turn&&mode==='speaking'){window.speechSynthesis.cancel();setMode('idle');}},speechDeadline));
+}
+
+function stopReferenceVoice() {
+  const job=voiceJob;voiceJob=null;
+  if(!job)return;
+  updateVoiceProgress('Voice stopped.');
+  job.controller.abort();api('voice/cancel',{id:job.id}).catch(()=>{});
+  if(job.audio){job.audio.pause();job.audio.removeAttribute('src');job.audio.load();}
+  if(job.url)URL.revokeObjectURL(job.url);
+  job.finish?.();
+}
+
+function updateVoiceProgress(message) {
+  voiceProgress=message;
+  const line=$('#voice-progress');if(line)line.textContent=message;
+}
+
+async function speakReference(text, token) {
+  if(!referenceVoice.available){setMode(health.ready?'idle':'fault');toast(referenceVoice.message);return;}
+  try {
+    for(const part of speechChunks(text)) {
+      if(token!==turn)return;
+      const job={id:crypto.randomUUID(),controller:new AbortController()};voiceJob=job;
+      setMode('voicing');
+      updateVoiceProgress('Preparing voice on this Mac…');
+      try {
+        const blob=await speechAudio({id:job.id,text:part,style:delivery.style},job.controller.signal);
+        if(token!==turn)return;
+        job.url=URL.createObjectURL(blob);job.audio=new Audio(job.url);
+        job.audio.onplaying=()=>{if(token===turn){setMode('speaking');updateVoiceProgress('Playing the generated voice.');}};
+        await new Promise((resolve,reject)=>{
+          job.finish=resolve;
+          job.audio.onended=resolve;
+          job.audio.onerror=()=>reject(new Error('Voice playback failed. The reply is still here to read.'));
+          job.audio.play().catch(()=>reject(new Error('Click Read aloud or Hear voice preview to allow playback.')));
+        });
+      } finally {
+        if(job.audio){job.audio.pause();job.audio.removeAttribute('src');job.audio.load();}
+        if(job.url)URL.revokeObjectURL(job.url);
+        if(voiceJob===job)voiceJob=null;
+      }
+    }
+    if(token===turn){setMode(health.ready?'idle':'fault');updateVoiceProgress('Voice playback finished.');}
+  } catch(error) {
+    if(token===turn){setMode(health.ready?'idle':'fault');updateVoiceProgress(error.message);toast(error.message);}
+  }
 }
 async function sendMessage(value) {
   const text=value.trim().slice(0,2000); if(!text||busy)return;
@@ -321,9 +380,9 @@ function openMemories(){makeWindow('memories','Memories',420,noteList('notes'));
 function openTrash(){makeWindow('trash','Trash',410,noteList('trash'));}
 function toggleVoice() {
   refreshVoices();
-  if(!state.voice&&!localVoices.length){toast('This browser has no local voice available. Try Mack in Safari or Chrome, or keep voice off.');return;}
+  if(!state.voice&&(delivery.engine==='reference'?!referenceVoice.available:!chooseVoice(localVoices,delivery.voiceURI))){toast('The selected voice is unavailable. Check Control Panels.');return;}
   if(persist({...state,voice:!state.voice})){
-    if(!state.voice){if(mode==='speaking')stopCurrent();window.speechSynthesis?.cancel();if(mode==='speaking')setMode('idle');}
+    if(!state.voice){if(mode==='speaking'||mode==='voicing'){stopCurrent();setMode(health.ready?'idle':'fault');}window.speechSynthesis?.cancel();}
     updateVoiceControls();
   }
 }
@@ -341,12 +400,14 @@ function openControls() {
   panel.append(node('p','','SAL-inspired personality: calm, candid, curious, and plain-spoken.'),label);
   const voiceChoices=node('div','voice-choices');voiceChoices.id='voice-choices';panel.append(voiceChoices);
   for(const [key,title,min,max] of [['rate','Pace',0.7,1.1],['pitch','Pitch',0.8,1.2]]){
-    const row=node('label');const slider=node('input');slider.type='range';slider.min=min;slider.max=max;slider.step=0.02;slider.value=delivery[key];slider.setAttribute('aria-label','Voice '+title.toLowerCase());
+    const row=node('label','stock-delivery');const slider=node('input');slider.type='range';slider.min=min;slider.max=max;slider.step=0.02;slider.value=delivery[key];slider.setAttribute('aria-label','Voice '+title.toLowerCase());
     const value=node('output','',delivery[key].toFixed(2));
     slider.addEventListener('input',()=>{delivery=readDelivery({...delivery,[key]:Number(slider.value)});value.textContent=delivery[key].toFixed(2);});
     slider.addEventListener('change',()=>persist(state));row.append(document.createTextNode(title),slider,value);panel.append(row);
   }
-  panel.append(button('Hear voice preview',()=>{if(busy||recognition){toast('Finish or stop the current conversation first.');return;}stopCurrent();speak(AUDITION,turn,true);},'classic-button small'),button('Stop voice',()=>{if(busy||recognition)return;stopCurrent();setMode(health.ready?'idle':'fault');},'classic-button small'),node('p','fine-print','A stock local voice with measured delivery. This is a voice study, not a reproduction of the film voice. Your choice and tuning stay in this browser.'));
+  const auditionLabel=node('label');const auditionText=node('textarea');auditionText.value=AUDITION;auditionText.maxLength=600;auditionText.rows=3;auditionText.setAttribute('aria-label','Voice audition text');auditionLabel.append(document.createTextNode('Audition text'),auditionText);panel.append(auditionLabel);
+  panel.append(button('Hear voice preview',()=>{if(busy||recognition){toast('Finish or stop the current conversation first.');return;}if(!auditionText.value.trim())return;stopCurrent();speak(auditionText.value,turn,true);},'classic-button small'),button('Stop voice',()=>{if(busy||recognition)return;stopCurrent();setMode(health.ready?'idle':'fault');},'classic-button small'),node('p','fine-print','The reference voice generates new speech locally from the chosen SAL clip. This is an experimental audition; likeness is for you to judge. Preview text does not enter conversation or memory.'));
+  const progress=node('p','fine-print',voiceProgress);progress.id='voice-progress';progress.setAttribute('aria-live','polite');panel.append(progress);
   const micLabel=node('label');const mic=node('input');mic.type='checkbox';mic.checked=allowDictation;mic.addEventListener('change',()=>{allowDictation=mic.checked;persist(state);if(!allowDictation&&recognition){stopCurrent();setMode(health.ready?'idle':'fault');}});micLabel.append(mic,document.createTextNode('Allow browser dictation'));
   panel.append(micLabel,node('p','fine-print','Starts only when you click Dictate. Your browser may send speech to its online service. Review the transcript before Send. Keyboard dictation also works.'));
   const modelStatus=node('p','fine-print');modelStatus.id='model-status';const modelChoices=node('div','model-choices');modelChoices.id='model-choices';
@@ -358,6 +419,21 @@ function openControls() {
 }
 function renderVoiceChoices(){
   const box=$('#voice-choices');if(!box)return;box.replaceChildren();
+  const engineLabel=node('label');engineLabel.append(document.createTextNode('Voice engine'));
+  const engine=node('select');engine.setAttribute('aria-label','Voice engine');
+  for(const [value,title] of [['reference','Mack · SAL reference study'],['browser','Stock Mac voice']]){const option=node('option','',title);option.value=value;engine.append(option);}
+  engine.value=delivery.engine;
+  engine.addEventListener('change',()=>{if(!busy&&!recognition){stopCurrent();setMode(health.ready?'idle':'fault');}delivery=readDelivery({...delivery,engine:engine.value});persist(state);renderVoiceChoices();});
+  engineLabel.append(engine);box.append(engineLabel);
+  document.querySelectorAll('.stock-delivery').forEach((row)=>row.hidden=delivery.engine!=='browser');
+  if(delivery.engine==='reference'){
+    const styleLabel=node('label');styleLabel.append(document.createTextNode('Delivery'));
+    const style=node('select');style.setAttribute('aria-label','Reference voice delivery');
+    for(const [value,title] of [['natural','Reference · dry'],['film','Film study · light echo']]){const option=node('option','',title);option.value=value;style.append(option);}
+    style.value=delivery.style;
+    style.addEventListener('change',()=>{if(!busy&&!recognition){stopCurrent();setMode(health.ready?'idle':'fault');}delivery=readDelivery({...delivery,style:style.value});persist(state);});
+    styleLabel.append(style);box.append(styleLabel,node('p','fine-print',referenceVoice.message));return;
+  }
   const label=node('label');label.append(document.createTextNode('Local voice'));
   const select=node('select');select.setAttribute('aria-label','Local speaking voice');
   const automatic=node('option','','Automatic · English');automatic.value='';select.append(automatic);

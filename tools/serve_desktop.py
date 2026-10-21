@@ -16,6 +16,7 @@ from urllib.parse import urlsplit
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / 'software'))
 from mack.runtime import MackError, Runtime
+from mack.voice import VoiceService
 DESKTOP = ROOT / 'software' / 'desktop'
 IDENTITY = hashlib.sha256(str(ROOT).encode()).hexdigest()[:16]
 ASSETS = {
@@ -76,6 +77,8 @@ class Handler(BaseHTTPRequestHandler):
                     return self.json_response(self.server.runtime.store.snapshot(), head=head_only)
                 if path == '/api/models':
                     return self.json_response(self.server.runtime.health(), head=head_only)
+                if path == '/api/voice/status':
+                    return self.json_response(self.server.voice.status(), head=head_only)
                 return self.json_response({'error': 'Unknown Mack service.'}, 404, head_only)
             except (sqlite3.Error, OSError):
                 return self.json_response({'error': 'Memory storage is unavailable. Existing data has been kept.'}, 503, head_only)
@@ -98,7 +101,7 @@ class Handler(BaseHTTPRequestHandler):
         self.send_header('Cache-Control', 'no-store')
         self.send_header('X-Content-Type-Options', 'nosniff')
         self.send_header('Referrer-Policy', 'no-referrer')
-        self.send_header('Content-Security-Policy', "default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; connect-src 'self'; object-src 'none'; frame-ancestors 'none'; base-uri 'none'; form-action 'none'")
+        self.send_header('Content-Security-Policy', "default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; media-src 'self' blob:; connect-src 'self'; object-src 'none'; frame-ancestors 'none'; base-uri 'none'; form-action 'none'")
         self.end_headers()
         if not head_only:
             self.wfile.write(data)
@@ -117,6 +120,23 @@ class Handler(BaseHTTPRequestHandler):
                 raise MackError('A JSON object is required.')
             runtime = self.server.runtime
             path = urlsplit(self.path).path
+            if path == '/api/voice/speak':
+                audio, seconds = self.server.voice.synthesize(payload)
+                self.send_response(200)
+                self.send_header('Content-Type', 'audio/wav')
+                self.send_header('Content-Length', str(len(audio)))
+                self.send_header('Cache-Control', 'no-store')
+                self.send_header('X-Content-Type-Options', 'nosniff')
+                self.send_header('X-Mack-Voice-Seconds', str(seconds))
+                self.end_headers()
+                try:
+                    self.wfile.write(audio)
+                except (BrokenPipeError, ConnectionResetError):
+                    pass
+                return
+            if path == '/api/voice/cancel':
+                self.server.voice.cancel(payload.get('id'))
+                return self.json_response({'ok': True})
             if path == '/api/chat':
                 return self.json_response(runtime.chat(payload))
             if path == '/api/cancel':
@@ -177,6 +197,8 @@ def main():
         return 1
     url = 'http://127.0.0.1:' + str(server.server_port) + '/'
     server.runtime = Runtime(args.data_dir)
+    server.voice = VoiceService(ROOT)
+    server.runtime.voice_status = server.voice.status
     server.token = secrets.token_urlsafe(32)
     print('Mack is ready: ' + url, flush=True)
     print('Keep this window open. Control-C stops the desktop server.', flush=True)
@@ -187,6 +209,7 @@ def main():
     except KeyboardInterrupt:
         print('\nMack’s desktop server stopped.', flush=True)
     finally:
+        server.voice.close()
         server.server_close()
     return 0
 

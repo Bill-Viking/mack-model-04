@@ -273,9 +273,10 @@ class Ollama:
 PERSONA = Path(__file__).with_name('persona.md').read_text(encoding='utf-8')
 SYSTEM = PERSONA + '''\n\nCURRENT RUNTIME CAPABILITIES (these facts override character fiction):
 You currently run as a desktop prototype on Bill's Mac. Answer in plain text.
-Spoken output, if enabled, uses a stock local browser voice with adjustable delivery.
-No exact film voice, cloned SAL voice model, or film audio is installed. Microphone
-dictation is optional browser functionality, not a qualified offline speech system.
+Spoken output is separate from your language model. The current runtime status lists
+whether the experimental local SAL-reference synthesis engine is installed. A stock
+browser voice is also selectable. Neither option establishes an exact film-voice match.
+Microphone dictation is optional browser functionality, not a qualified offline speech system.
 You do not know whether playback is enabled; do not assume the user can hear you.
 No camera, sensors, motors, shell, web search, Continuum, Terrarium or Exocortex bridge
 is connected. Never claim to perceive, move, browse, change files or perform those actions.
@@ -295,6 +296,7 @@ class Runtime:
         self.gate = threading.Lock()
         self.job_lock = threading.Lock()
         self.jobs = {}
+        self.voice_status = lambda: {'available': False, 'message': 'Local reference voice not configured.'}
 
     def models(self):
         return self.provider.models()
@@ -372,7 +374,7 @@ class Runtime:
                 tokens = set(re.findall(r'\w+', text.lower()))
                 notes = sorted(state['notes'], key=lambda n: len(tokens & set(re.findall(r'\w+', n['text'].lower()))), reverse=True)[:6]
                 memories = json.dumps([{'id': n['id'], 'text': n['text']} for n in notes], ensure_ascii=False)
-                toolbox = Toolbox(state)
+                toolbox = Toolbox(state, voice_status=self.voice_status())
                 messages = [{'role': 'system', 'content': SYSTEM + '\nCurrent runtime status:\n'
                              + json.dumps(toolbox.status()) + '\nActive memory data:\n' + memories}]
                 context = [t for t in state['history'] if t['created'] >= state['context_after']][-4:]

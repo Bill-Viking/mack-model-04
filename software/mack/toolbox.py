@@ -26,10 +26,11 @@ DEFINITIONS = [
 
 class Toolbox:
     """One turn's immutable view of facts, with bounded results and receipts."""
-    def __init__(self, state):
+    def __init__(self, state, voice_status=None):
         self.notes = copy.deepcopy(state['notes'])
         self.model = state['model']
         self.receipts = []
+        self.voice_status = copy.deepcopy(voice_status or {'available': False})
 
     def status(self):
         return {
@@ -39,7 +40,8 @@ class Toolbox:
             'inference': {'model': self.model, 'routing': 'local Ollama only'},
             'memory': {'storage': 'local SQLite', 'active_facts': len(self.notes),
                        'writes': 'explicit Remember command or Memories editor only'},
-            'voice': {'synthesis': 'stock local browser voice',
+            'voice': {'synthesis': 'browser selects stock local voice or the installed reference engine',
+                      'local_reference_synthesis': self.voice_status,
                       'playback_enabled': 'unknown to backend',
                       'offline_speech_input': 'not qualified'},
             'read_only_tools': [item['function']['name'] for item in DEFINITIONS],

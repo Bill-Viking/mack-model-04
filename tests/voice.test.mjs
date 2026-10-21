@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { chooseVoice, readDelivery, DEFAULT_DELIVERY } from '../software/desktop/voice.mjs';
+import { chooseVoice, readDelivery, DEFAULT_DELIVERY, speechChunks } from '../software/desktop/voice.mjs';
 
 const local = (name, lang='en-US') => ({name, lang, voiceURI:name, localService:true});
 
@@ -22,5 +22,20 @@ test('old and malformed browser preferences keep usable delivery defaults', () =
   for(const value of [null,undefined,[],{}, {rate:'fast',pitch:Infinity,voiceURI:34}]) {
     assert.deepEqual(readDelivery(value),DEFAULT_DELIVERY);
   }
-  assert.deepEqual(readDelivery({rate:-3,pitch:40,voiceURI:'local'}),{rate:0.7,pitch:1.2,voiceURI:'local'});
+  assert.deepEqual(readDelivery({rate:-3,pitch:40,voiceURI:'local'}),{rate:0.7,pitch:1.2,voiceURI:'local',engine:'browser',style:'natural'});
+});
+test('reference selection survives preferences; unknown engines cannot select a network path',()=>{
+  assert.equal(readDelivery({engine:'reference'}).engine,'reference');
+  assert.equal(readDelivery({engine:'https://remote.example'}).engine,'browser');
+  assert.equal(readDelivery({style:'film'}).style,'film');
+  assert.equal(readDelivery({style:'unavailable'}).style,'natural');
+});
+test('long replies are spoken in bounded chunks without losing words',()=>{
+  const text=('One complete sentence. Another thought follows. ').repeat(50).trim();
+  const chunks=speechChunks(text);
+  assert.ok(chunks.length>1);
+  assert.ok(chunks.every(c=>c.length<=600));
+  assert.equal(chunks.join(' '),text);
+  assert.deepEqual(speechChunks(''),[]);
+  assert.deepEqual(speechChunks('x'.repeat(1300)).map(c=>c.length),[600,600,100]);
 });

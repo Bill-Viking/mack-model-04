@@ -98,6 +98,9 @@ button:focus-visible, a:focus-visible, input:focus-visible,textarea:focus-visibl
 .panel label { display:flex; align-items:center; gap:8px; margin:9px 0; font-size:12px; }
 .panel select { background:#fff; border:1px solid #666; padding:3px; }
 .voice-choices select { flex:1; min-width:0; max-width:100%; }
+.stock-delivery[hidden] { display:none; }
+.panel textarea { width:100%; box-sizing:border-box; resize:vertical; font:inherit; background:#fff; color:#222; }
+.read-aloud { grid-column:2; justify-self:start; margin-top:4px; }
 .panel input[type="range"] { flex:1; min-width:50px; }
 .model-choices { display:flex; gap:8px; align-items:center; margin-bottom:10px; }
 .model-choices select { flex:1; min-width:0; }

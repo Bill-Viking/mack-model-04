@@ -1,6 +1,6 @@
 # Mack's personality and voice
 
-![Mack's local voice audition controls](images/mack-voice-study.jpg)
+![Mack's reference voice and light-echo audition controls](images/mack-reference-voice.png)
 
 The chosen direction is SAL 9000's voice and manner from *2010: The Year We Make
 Contact*, with the same depth of personality design requested for Agent 99.
@@ -24,26 +24,48 @@ without defensiveness, restrained humor, candor under pressure, and honest answe
 about the system itself. It preserves Mack's identity and existing capability
 limits. It does not grant perception, motor control, or memory-writing authority.
 
-Control Panels now offers a local voice picker, pace and pitch adjustments, and
-**Hear voice preview** / **Stop voice**. Automatic selection prefers an available
-local English Samantha voice, then other named English voices. The current voice
-name is displayed. An unavailable saved voice does not silently change to another
-one. Network voices are excluded. Preferences survive reload in this browser.
+Control Panels now offers two local speech engines: the existing stock Mac voice
+and an experimental **Mack · SAL reference study**. The latter generates new speech
+using Qwen3-TTS 1.7B Base through MLX Audio on Apple silicon. Bill selected the
+[isolated SAL reply](https://www.101soundboards.com/sounds/71716732-a-fabulous-bird-reborn-from-the-ashes-of-its-earlier-life)
+on 2026-10-21. Its roughly 4½ seconds of audio are stored privately and converted
+to mono PCM16 WAV at 24 kHz, alongside the exact reference transcript.
 
-The audition uses original text and does not ask the language model a question or
-write a memory. It can play while automatic reading is off. Escape stops it. Pace
-and pitch effects depend on the browser's speech engine; they do not constitute a
-new trained voice.
+**Hear voice preview** speaks editable audition text without adding a conversation
+or memory. **Read aloud** can replay a reply even with automatic reading off.
+**Stop voice**, Escape, or a new message interrupt playback and request termination
+of an active synthesis process. The screen says **Preparing voice** during local
+synthesis and **Speaking** only during actual playback. It records completion or
+stopping in the controls. Voice preferences survive browser reload.
 
-**This is the personality implementation and a stock-voice delivery study. The
-exact film voice is not implemented.** The initial browser settings are rate 0.88
-and pitch 0.98. These are tuning starting points, not a measured acoustic match.
-Bill supplied the [Chandra and SAL reference clip](https://www.youtube.com/watch?v=T2E7sxGAmuo)
-on 2026-10-21. The browser page was verified: *Dr. Chandra and SAL 9000 — 2010:
-The Year We Make Contact (sequel to 2001)*, duration 2:44. The page's captions
-control reported unavailable. Audio has **not** been heard or analyzed through
-this session's tools. The reference is received; acoustic analysis is still open.
-No film recording or character voice weights are distributed.
+Bill's first feedback was positive, with a request for more inflection and echo.
+The **Reference · dry** delivery preserves the first audition. **Film study · light
+echo** uses a second sampling preset and quiet early reflections: 19 and 37 ms,
+plus an 85 ms echo and a softer 170 ms return. These are audition choices, not
+measurements of the film recording. The Base model does not expose instruction
+control for prosody; changing its sampling can vary delivery but does not guarantee
+more pitch movement. Further matching depends on Bill's comparison.
+
+The engine is pinned to `mlx-community/Qwen3-TTS-12Hz-1.7B-Base-bf16`, revision
+`a6eb4f68e4b056f1215157bb696209bc82a6db48`, with MLX Audio 0.6.1. Downloaded
+model files occupy about 4.2 GiB. A 6.08-second original greeting took 5.73 seconds
+to synthesize in a sampled run on Bill's M2 Max. This is one observation, not an
+onboard latency guarantee. Each bounded text segment starts an isolated process;
+keeping the model warm and streaming speech are future latency improvements.
+
+Speech generation loads local files with Hugging Face/Transformers offline mode
+and telemetry disabled. Missing files or failures do not trigger model downloads or
+substitution of another voice. Model installation requires a network connection.
+A full disconnected reboot test and Linux/onboard qualification remain open.
+
+The earlier [Chandra/SAL scene](https://www.youtube.com/watch?v=T2E7sxGAmuo) remains
+a broader performance reference. No film recording, generated voice recording,
+private transcript, or model weights are distributed in Git. Code and installation
+instructions are public. This session has not listened to the output or established
+an exact acoustic match. An automated Whisper spot check recovered the intended
+words but hallucinated repetitions over silence, so it is not an acceptance test.
+
+See the [local voice setup guide](../software/mack/VOICE.md).
 
 ## Voice acceptance
 
@@ -65,12 +87,8 @@ A complete voice implementation must demonstrate:
 The voice engine should be replaceable without changing identity or saved memory.
 On-device speech recognition and the offline/assisted switch remain separate work.
 
-The next synthesis candidate to evaluate is [Qwen3-TTS](https://github.com/QwenLM/Qwen3-TTS).
-Its Base variants support reference-audio voice cloning; VoiceDesign creates a voice
-from a description. The [MLX Audio implementation](https://github.com/Blaizzy/mlx-audio/blob/main/mlx_audio/tts/models/qwen3_tts/README.md)
-provides a Mac path and documents reference audio plus its exact transcript.
-These capabilities were checked on 2026-10-21. No such engine or weights have been
-installed for Mack yet, and none has been judged against the chosen SAL reference.
+The engine follows [Qwen3-TTS](https://github.com/QwenLM/Qwen3-TTS) and the
+[MLX Audio reference-audio interface](https://github.com/Blaizzy/mlx-audio/blob/main/mlx_audio/tts/models/qwen3_tts/README.md).
 The robot's Linux build will require a separately qualified runtime.
 
 ## Behavior checks
@@ -96,7 +114,7 @@ controller. There are no physical mannerisms implemented yet.
 Eight live Qwen3.6:35b prompts and two follow-up probes were reviewed using disposable
 memory. Unknown facts stayed unknown and capability limits were respected in those
 samples. Some replies still append an unnecessary question; restraint is not yet
-consistent. No acoustic likeness evaluation or physical mannerism test has passed.
+consistent. Bill has heard the first reference-conditioned audition and requested more inflection and echo. Exact likeness and physical mannerisms have not passed acceptance. The revision-3 persona produces brief acknowledgments, but sampled Qwen replies still sometimes append unnecessary offers or questions; further conversational tuning remains open.
 
 ## Reference
 

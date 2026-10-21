@@ -75,6 +75,24 @@ Her SAL-inspired voice and manner are core design requirements. Added consistent
 [public introduction drafts](public-introduction.md) for Facebook and X; the draft
 file does not itself publish to either platform.
 
+## 2026-10-21 — A local reference voice
+
+Mack now generates new speech from Bill's chosen short SAL reference using local
+Qwen3-TTS 1.7B Base and MLX Audio. Control Panels includes an editable audition,
+dry and light-echo deliveries, and Stop voice. Replies can be read on demand or
+automatically. Preparation and playback have distinct screen states.
+
+The first original greeting produced 6.08 seconds of audio in a sampled 5.73-second
+generation on the development Mac. Bill liked the first result and asked for more
+inflection and echo; a second 6.25-second audition adds a restrained echo and an
+alternate delivery sample. Exact film likeness remains a listening judgment.
+
+Process cancellation, time limits, private-file boundaries and preference
+persistence are checked. Reference media, generated audio, transcripts and models
+remain outside Git. The public [setup guide](../software/mack/VOICE.md) records the
+pinned engine and model. Conversational restraint still needs refinement; physical
+mannerisms and onboard qualification remain future work.
+
 ## What comes next
 
 - Qualify fully local speech input and the explicit offline/assisted modes.

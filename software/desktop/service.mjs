@@ -20,3 +20,18 @@ export async function api(path, body, signal) {
   if (!response.ok) throw new Error(data.error || 'Mack could not complete that request.');
   return data;
 }
+
+export async function speechAudio(body, signal) {
+  const response = await fetch('/api/voice/speak', {
+    method:'POST', cache:'no-store', signal,
+    headers:{'Content-Type':'application/json','X-Mack-Token':token},
+    body:JSON.stringify(body),
+  });
+  if (!response.ok) {
+    let data;
+    try { data = await response.json(); } catch { /* Keep a readable failure. */ }
+    throw new Error(data?.error || 'Local voice could not finish.');
+  }
+  if (!response.headers.get('Content-Type')?.startsWith('audio/wav')) throw new Error('Local voice returned unreadable audio.');
+  return response.blob();
+}

@@ -1,10 +1,11 @@
 # Mack — public introduction
 
-These drafts describe the project's long-term goal. Social publication is separate
-from publishing this document in GitHub. Their wording distinguishes the working
-desktop from future physical forms.
+These approved captions describe the project's long-term goal. Resonance published
+both updates on 2026-10-21 and verified them after reload. The X post is Public;
+the Facebook post retained its Friends audience. Their wording distinguishes the
+working desktop from future physical forms.
 
-## Facebook draft
+## Facebook caption
 
 The long-term goal for Mack is to grow a personalized intelligence: a companion
 who gets to know me through conversation, shared projects, preferences and
@@ -24,6 +25,6 @@ her. Her voice and manner are central to that continuity.
 We're building in public, from these first software foundations toward that
 long-term goal: https://github.com/Bill-Viking/mack-model-04
 
-## X draft
+## X caption
 
 The goal for Mack: grow a personalized intelligence with lasting memory and a consistent personality, starting with a little Mac robot and eventually a humanoid body for richer everyday interaction. Building in public: https://github.com/Bill-Viking/mack-model-04

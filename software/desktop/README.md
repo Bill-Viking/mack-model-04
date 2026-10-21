@@ -16,7 +16,7 @@ Keep the launcher’s Terminal window open. Python 3 and a running local Ollama 
 
 Ordinary messages go to the selected local Ollama model. The desktop shows the selected model, real waiting state and connection failures. Explicit **Remember that…** / **Save note…** requests save directly through the memory service. The model cannot write memories. Tool-capable models can request three read-only tools through the runtime: current status, local clock, and active-memory search. Try **Check your status** or **Check the clock and tell me the time**. Calls are bounded and unknown tools are refused. Models without tool support retain ordinary text conversation.
 
-Enable **Read Mack’s replies aloud** in Control Panels for a browser-supplied local voice. Optional **Allow browser dictation** enables the Dictate button when the browser supports speech recognition. It starts only after a click, asks for microphone permission, and places a transcript in the composer for review before Send. The browser vendor may process dictation online. Mac keyboard dictation is another input option. The in-app browser exposed a speech-recognition API and the opt-in gate worked; no microphone capture was started, so transcription has not been tested end to end.
+Enable **Read Mack’s replies aloud** in Control Panels for the selected local voice engine. Optional **Allow browser dictation** enables the Dictate button when the browser supports speech recognition. It starts only after a click, asks for microphone permission, and places a transcript in the composer for review before Send. The browser vendor may process dictation online. Mac keyboard dictation is another input option. The in-app browser exposed a speech-recognition API and the opt-in gate worked; no microphone capture was started, so transcription has not been tested end to end.
 
 Escape dismisses the pending reply, cancels local speech, and requests that the service discard an unfinished generated reply. The Ollama request may keep computing until it finishes or times out; a new conversation or memory change can be refused briefly while that request completes. Explicit saves already completed are retained. No always-on microphone is implemented.
 
@@ -32,16 +32,17 @@ for every model-generated reply. It shapes conversation while keeping runtime
 capabilities and memory rules explicit. The [voice design and acceptance plan](../../docs/personality-and-voice.md)
 distinguishes the implemented personality from the unfinished film-voice target.
 
-In Control Panels, choose a **Local voice**, adjust **Pace** and **Pitch**, and
-click **Hear voice preview**. The preview works without enabling automatic reply
-reading and does not add a conversation or memory. **Stop voice** or Escape stops
-it. Preferences survive reload. If a saved voice becomes unavailable, choose
-another; Mack does not silently substitute an online voice.
+In Control Panels, choose **Mack · SAL reference study** for local neural speech,
+or **Stock Mac voice** for the browser voice. Choose **Reference · dry** or
+**Film study · light echo** to compare deliveries. Edit the audition text and click
+**Hear voice preview**. It works without automatic reading and writes no memory.
+**Stop voice** or Escape stops preparation/playback. **Read aloud** beneath a reply
+plays it on demand. Preferences survive reload; failure never substitutes another
+voice. Pace and Pitch apply only to the stock browser engine.
 
-The current sound is a stock local voice study, initially Samantha when available.
-It is not an exact reproduction of SAL's film voice. Bill's reference clip is now
-recorded in the voice design document. Audio analysis, a neural voice model,
-acoustic comparison and offline/onboard qualification remain open.
+The first neural audition is installed on Bill's Mac. Exact film likeness, refined
+prosody, a full disconnected reboot, and Linux/onboard performance remain open.
+See [voice setup and boundaries](../mack/VOICE.md) for installation and local files.
 
 ## Lasting memory
 

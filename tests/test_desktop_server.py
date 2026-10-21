@@ -22,6 +22,7 @@ class DesktopServerTests(unittest.TestCase):
         cls.server = ThreadingHTTPServer(('127.0.0.1', 0), module.Handler)
         cls.temp = tempfile.TemporaryDirectory()
         cls.server.runtime = module.Runtime(cls.temp.name)
+        cls.server.voice = module.VoiceService(cls.temp.name)
         cls.server.token = secrets.token_urlsafe(32)
         cls.thread = threading.Thread(target=cls.server.serve_forever, daemon=True)
         cls.thread.start()
@@ -43,7 +44,7 @@ class DesktopServerTests(unittest.TestCase):
                 self.assertTrue(response.read())
 
     def test_repository_and_traversal_are_not_served(self):
-        for path in ['/STATUS.md', '/.git/config', '/../STATUS.md', '/%2e%2e/STATUS.md', '/software/', '/sources/']:
+        for path in ['/STATUS.md', '/.git/config', '/../STATUS.md', '/%2e%2e/STATUS.md', '/software/', '/sources/', '/private-media/sal-reference/reference.wav', '/runtime/voice/config.json']:
             with self.assertRaises(urllib.error.HTTPError) as error:
                 urllib.request.urlopen(self.url + path)
             self.assertEqual(error.exception.code, 404)
@@ -63,6 +64,15 @@ class DesktopServerTests(unittest.TestCase):
             with self.assertRaises(urllib.error.HTTPError) as error:
                 urllib.request.urlopen(urllib.request.Request(self.url + '/api/bootstrap', headers=headers))
             self.assertEqual(error.exception.code, 403)
+
+    def test_voice_status_requires_token_and_missing_install_is_truthful(self):
+        with self.assertRaises(urllib.error.HTTPError) as error:
+            urllib.request.urlopen(self.url + '/api/voice/status')
+        self.assertEqual(error.exception.code, 403)
+        request = urllib.request.Request(self.url + '/api/voice/status',
+                      headers={'X-Mack-Token': self.server.token})
+        with urllib.request.urlopen(request) as response:
+            self.assertFalse(json.load(response)['available'])
 
     def test_bootstrap_and_memory_round_trip(self):
         with urllib.request.urlopen(self.url + '/api/bootstrap') as response:
