@@ -1,9 +1,9 @@
 lane: RayCue/Research
-written: 2026-10-21T10:56:33-07:00
+written: 2026-10-21T11:03:43-07:00
 by: ACT — RayCue/Research: Mac OS 9 and walking robot
 on: MAC
-head: 06ab142 (base before the Local AI 0.2 implementation; resolve the latest commit)
-status_updated: 2026-10-21T10:56:33-07:00
+head: db8d0e2 (public introduction; publication receipt follows)
+status_updated: 2026-10-21T11:03:43-07:00
 where: Local AI 0.2 connected; memory persists; offline-first product direction selected
 next: machine
 depends_on: onboard measurements for hardware; configured provider for optional cloud use
@@ -37,8 +37,8 @@ LIVE SERVICE AND REPOSITORY
 
 http://127.0.0.1:9844/ is intentionally left running for Bill, unified-exec session 94987. Resolve the current PID before stopping anything. Start Mack.command reopens it; no login automation exists. Keep the browser deliverable. Never stop the shared Ollama service as part of Mack cleanup.
 
-Origin (public visibility authorized by Bill on 2026-10-21): https://github.com/Bill-Viking/mack-model-04.git. Vendor imports stay unchanged and attributed. The loose root PNG stays untracked and untouched. No iCloud writes. This chat remains active; do not perform the close ritual until Bill ends the session.
+Public origin (visibility and anonymous access verified on 2026-10-21): https://github.com/Bill-Viking/mack-model-04.git. Vendor imports stay unchanged and attributed. The loose root PNG stays untracked and untouched. No iCloud writes. This chat remains active; do not perform the close ritual until Bill ends the session.
 
 PUBLIC DEVELOPMENT
 
-Bill asked for a public GitHub link to share on X. README and docs/build-log.md now introduce the public build and distinguish the visual concept from working software and unbuilt hardware. Keep actual memory databases, credentials and recordings out of every commit. Existing Git history is retained. No X post is authorized or sent by this task.
+Bill asked for a public GitHub link to share on X. The repository is now PUBLIC; unauthenticated API, repository page and raw README access all returned HTTP 200. README and docs/build-log.md now introduce the public build and distinguish the visual concept from working software and unbuilt hardware. Keep actual memory databases, credentials and recordings out of every commit. Existing Git history is retained. No X post is authorized or sent by this task.

@@ -2,7 +2,7 @@
 
 ## Now
 
-2026-10-21: Bill explicitly asked to let the public follow Mack from start to finish and to share its GitHub link on X. Publication is authorized. Prepared a public introduction and docs/build-log.md, with concept-versus-built status clearly labeled. Reviewed tracked files and 194 unique text objects across the existing Git history for common credential patterns and private runtime files; no matches were found. Normal Git author metadata remains part of the history. Runtime memory and credentials remain excluded. Verify anonymous access after changing visibility.
+2026-10-21: Bill explicitly asked to let the public follow Mack from start to finish and to share its GitHub link on X. **The GitHub repository is now public.** Added a public introduction and docs/build-log.md, with concept-versus-built status clearly labeled. Reviewed tracked files and 194 unique text objects across the existing Git history for common credential patterns and private runtime files; no matches were found. Normal Git author metadata remains part of the history. Runtime memory and credentials remain excluded. Verified anonymous access to the repository page, GitHub API and updated raw README, all HTTP 200.
 
 2026-10-21: **Mack Local AI 0.2 runs at http://127.0.0.1:9844/**. The original desktop now connects to real local Ollama inference, initially Qwen3.6:35b on Bill’s M2 Max / 64 GiB Mac. No new model download or cloud credential was required. Explicit Remember commands and the Memories editor persist facts in SQLite. Edits, recoverable Trash, bounded recent conversation, legacy-browser import, installed-model selection and digest-change checks are implemented. Facts remain independent of model weights. Model output has no tool, file, camera or motor authority.
 
@@ -70,4 +70,4 @@ The host desktop, local AI and durable-memory runtime are implemented; no body r
 - Imported GPIO button code can shut down Linux or launch emulator/setup commands. Do not run it on this Mac. Imported Freenove geometry/limits are not four-leg Mack settings.
 - SheepShaver supports through 9.0.4; Basilisk II through 8.1. AgentBridge PowerPC is marked builds, untested. Source discrepancies and wiring/power concerns are documented in docs/references.md.
 - Motor limits, timeout behavior and stopping must work independently of desktop and AI. The safe response must be validated for the actual body.
-- No writes to iCloud. Public repository publication is authorized for this turn. No purchase, hardware modification or live robot operation occurred.
+- No writes to iCloud. Public repository publication was completed and verified on 2026-10-21. No purchase, hardware modification or live robot operation occurred.

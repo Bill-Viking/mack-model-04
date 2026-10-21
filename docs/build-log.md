@@ -26,7 +26,7 @@ Verified real-model recall after reload and service restart, corrected facts, mo
 
 ![Mack recalling the project’s local-first direction](images/mack-local-ai.jpg)
 
-The repository is becoming public at this stage so the complete development history is visible from the beginning. Personal memory databases, credentials, recordings and downloaded models stay outside Git. Original project work has no public license selected yet; imported material retains its existing notices.
+The repository became public at this stage so the complete development history is visible from the beginning. Personal memory databases, credentials, recordings and downloaded models stay outside Git. Original project work has no public license selected yet; imported material retains its existing notices.
 
 ## What comes next
 
