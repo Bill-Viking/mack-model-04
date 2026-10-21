@@ -4,6 +4,14 @@ The original RayCue shell and accepted four-leg appearance are the starting cons
 
 The [integration plan](integration-plan.md) treats electronics, sensing, battery, structure and walking as one assembly. The [product definition](../docs/product-spec.md) sets the completion requirements. Sensor methods and packaging zones are proposed; no wiring or motor selection is approved yet.
 
+## Mack joint and recovery concept
+
+The [J04 design study](joints/README.md) proposes three powered axes per leg, a
+bearing-supported cartridge, compliant feet, protective frame rails and a reserved
+rear recovery-arm interface. It includes a [concept drawing](joints/joint-concept.svg),
+load calculations to perform and a staged recovery test plan. This is a design
+proposal, not printable load-qualified CAD.
+
 ## Existing design files
 
 - [Screen bezel STL](../vendor/macintosh-mini/maclock-screen-bezel/maclock-screen-bezel.stl): upstream printable frame and clips.

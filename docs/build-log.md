@@ -143,6 +143,20 @@ byte-identical. See [local listening setup and evidence](../software/mack/LISTEN
 for timings, scope and limitations. Disconnected reboot, noisy-room accuracy and
 onboard performance are still separate qualification work.
 
+## 2026-10-21 — A joint and self-righting design study
+
+Bill asked for dexterous joints and recovery after a fall. Proposed three powered
+axes per leg, supported replaceable joint cartridges, compliant feet and a cradle
+with protected rolling contacts. The tall Mac body makes inverted leg reach a
+critical check; reserve a folding rear recovery arm if the twelve leg axes cannot
+reach useful ground contacts. The [J04 study](../hardware/joints/README.md) records
+the mechanism, candidate travel ranges, load calculations, local recovery states,
+references and tests. Product requirement P11 now captures this intent.
+
+The concept drawing is an original schematic. No fitted CAD, motor selection,
+physical prototype, simulation result or working self-righting policy is claimed.
+Measure the donor clock and assembly mass before the one-leg fixture is designed.
+
 ## What comes next
 
 - Trial everyday microphone use, disconnected reboot and the future assisted mode.

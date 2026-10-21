@@ -1,17 +1,19 @@
 lane: RayCue/Research
-written: 2026-10-21T16:32:00-07:00
+written: 2026-10-21T16:41:00-07:00
 by: ACT — RayCue/Research: Mac OS 9 and walking robot
 on: MAC
-head: 3c2601c (input provenance; separate text/voice panels follow)
-status_updated: 2026-10-21T16:32:00-07:00
-where: Bill confirmed live speech works; separate text and voice panels are live
+head: 986073b (separate inputs; J04 design study follows)
+status_updated: 2026-10-21T16:41:00-07:00
+where: Separate inputs live; J04 joint/self-righting concept drafted for measured CAD
 next: bill
-depends_on: further conversational/voice qualification and onboard measurements
+depends_on: shell geometry and complete mass/center of mass for joint sizing
 open_in: /Users/bill/Projects/RayCue Mac · existing RayCue/Research chat
 judgment: Preserve local memory and independent control; benchmark models and qualify offline voice before onboard claims
 model: Preserve the user's model choice and read the live dial
 ---
 Read STATUS.md first, then software/mack/VOICE.md, docs/personality-and-voice.md and docs/product-spec.md.
+
+Latest mechanical direction: Bill asked for dexterous joints and self-righting. hardware/joints/README.md and joint-concept.svg define a proposed 12-axis leg system, supported serviceable cartridges, compliant feet, protected cradle contacts and reserved rear recovery arm if inverted reach fails. P11 and roadmap now include recovery. Candidate ranges and numerical test targets are proposals, not approvals or measured results. No motor, fitted CAD, simulation, physical mechanism or recovery controller is qualified. Next: measured shell/mass/center of mass → collision/reach model → restrained cartridge/leg. Primary references and diagram/link/CSV/arithmetic checks recorded in STATUS. Desktop and private memory unchanged.
 
 Latest layout, superseding older notes: Bill asked for separate text and voice inputs. Type a message / Send text is independent of Speak to Mack / Live transcript. Finish speaking & reply ends capture and submits only voice; Turn microphone off reviews without sending, then Reply to voice message submits. Both drafts survive use of the other input. Cancel restores the prior voice draft. Explicit actions replace the old review checkbox. Side-by-side panels stack in narrow windows. 27 JS checks and isolated prerecorded browser QA pass; production SQL unchanged, Studio Display retained, unsent “hello” restored. Screenshot runtime/listening/separate-text-voice-inputs.png. QA tab/server closed; production exec74151 remains live.
 

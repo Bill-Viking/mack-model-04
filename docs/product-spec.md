@@ -16,6 +16,7 @@ The current browser desktop connects to real local AI, durable memory and read-o
 - Identity: **she/her**, with SAL-inspired plain, calm conversation. Identity and memory persist independently of models and bodies.
 - Long-term direction: grow a personalized intelligence through a continuing history with her person, then carry her into a humanoid body for fuller everyday interaction, years from now. The first physical release remains the accepted four-legged Mac. A later body requires separate engineering and qualification.
 - Appearance: [Bill's accepted image](../concepts/raycue-build-target.png), a dominant beige compact Mac body, compact underside base, four short articulated legs, and rounded dark feet.
+- Motion intent, added 2026-10-21: dexterous foot/body placement and self-righting after a fall. Qualify the recoverable poses and surfaces explicitly; do not promise recovery from every fall.
 - Starting enclosure: Bill's RayCue clock. Preserve its character while engineering the internal structure and base around measured loads.
 - Everyday experience: an original classic Mac-style interface over modern intelligence and robotics. Authentic vintage applications are a minor, optional mode.
 - System foundation: Linux with Mack's own interface, AI integration, memory, and robot software.
@@ -60,6 +61,7 @@ These acceptance requirements define the complete embodied product. Host-side co
 | P08 | Self-contained operation | Battery powers the assembled robot; no development Mac is required. Basic state, local memory, stopping, and bounded control remain available without network access. Onboard versus optional remote AI inference is a separate decision. |
 | P09 | Fitted electrical and mechanical design | Shell closes; cables clear every joint; mounts carry load; service access works. Record mass/center of gravity, rail voltage/current, heat, and sound with the complete assembly. |
 | P10 | Repeatable ownership | A clean installation, calibration, backup/restore, failed-update recovery, and routine charging/service procedure work from the project instructions. |
+| P11 | Dexterity and self-righting | Demonstrate controlled three-dimensional foot placement and recovery from qualified left/right side, rear, front-guard and inverted resting poses. Record surface, mass/center of mass, attempts, time, contact/clearance, current/temperature and stop/failure behavior. Screen is not an intended contact. Unrecoverable cases stop and request help. [Joint concept and test stages](../hardware/joints/README.md). |
 
 ## First embodied release
 

@@ -1,6 +1,6 @@
 # Mack — fitted electronics and walking body
 
-Engineering proposal v0.1, 2026-10-20. Implements [P05–P10](../docs/product-spec.md). No components, dimensions, pin assignments, load limits or power topology are approved by this document.
+Engineering proposal v0.1, 2026-10-20. Implements [P05–P11](../docs/product-spec.md). No components, dimensions, pin assignments, load limits or power topology are approved by this document.
 
 ## Package the whole robot
 
@@ -22,7 +22,7 @@ Before selecting motors or committing CAD:
 
 1. Inventory what remains from the clock and what is removed. Establish available internal volume and a mass breakdown without double-counting.
 2. Lay out the display, compute, audio, battery and controller with their connectors and cable clearances. Reserve installation/removal paths.
-3. Compare candidate joint arrangements against the loaded geometry. Eight versus twelve actuators remains open; choose from required motion and packaging evidence.
+3. Evaluate the [J04 joint and recovery proposal](joints/README.md): twelve leg actuators (three per leg), with space reserved for a thirteenth recovery-arm actuator. This preferred concept follows Bill’s dexterity/self-righting requirement; actuator models and final geometry remain unselected. Prove inverted contact reach before dropping the arm reservation.
 4. Calculate joint demands across proposed stances and steps, including support changes and dynamic loads; then validate on a restrained leg. Dividing total mass by four is not a sufficient motor-sizing method.
 5. Budget electrical average and peak demand, heat and runtime for actual operating modes. A larger battery also adds mass and may increase actuator demand; iterate the complete design.
 
@@ -56,6 +56,10 @@ Test actuator transient load while compute, display and audio run. Record voltag
 Fit models → one supported joint → one restrained loaded leg → four-leg base with representative dummy mass → complete stationary Mack → restrained integrated motion → supervised floor walking. Save CAD revision, parts, firmware, calibration, measured load, surface, limit settings and results for each test.
 
 Before each powered test, set the numerical pass limits for that configuration. Do not mark a gait qualified from animation or simulation. Confirm stability, grip, joint heating, current, cable clearance, loosened fasteners and stopping/recovery through repeated runs.
+
+Self-righting adds protected resting contacts, an inverted reach/collision study, and
+a recovery matrix with a representative dummy body before the real display and
+battery assembly. See [J04 acceptance stages](joints/README.md#prototype-and-acceptance-plan).
 
 ## Release evidence
 

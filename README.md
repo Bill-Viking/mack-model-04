@@ -92,6 +92,7 @@ The desktop, local AI conversation and durable memory run on the host Mac. The r
 | [Build roadmap](docs/roadmap.md) | Small milestones with a demonstration for each. |
 | [References and reuse](docs/references.md) | Which projects we use, what we brought in, and what needs adaptation. |
 | [Hardware workspace](hardware/README.md) | CAD/PCB entry points, measurements, and candidate parts. |
+| [Joints and self-righting](hardware/joints/README.md) | Proposed three-axis legs, serviceable joints, body protection and recovery tests. |
 | [Hardware integration](hardware/integration-plan.md) | Fitted electronics, sensors, structure, power, and physical proof sequence. |
 | [Software workspace](software/README.md) | Intended components and the Continuum code to evaluate first. |
 | [Research notes](docs/research-notes.md) | Earlier investigation, printer/material recommendations, and source discrepancies. |

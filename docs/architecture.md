@@ -143,6 +143,14 @@ The main computer handles display, voice and behavior. A separate local controll
 
 Power design must distinguish compute/audio/sensor requirements from actuator peak demand. Regulated rails, protection, charging, return-current paths, connectors, and startup/brownout behavior need a reviewed schematic and measured load tests. The imported Macintosh Mini board is reference material, not approved robot wiring. See the [hardware plan](../hardware/integration-plan.md).
 
+The [J04 joint/recovery study](../hardware/joints/README.md) proposes a named
+self-righting skill under the local body controller. Orientation/contact assessment,
+validated motion, bounded attempts and measured standing confirmation remain body
+responsibilities. The conversation model cannot supply joint trajectories or
+self-certify recovery. A body capability declaration must name its qualified
+resting poses and surfaces; all of this remains proposed, with no motion hardware
+or executable recovery policy connected.
+
 ## Optional authentic Mac OS
 
 A separate emulator may later supply selected vintage apps. It does not own memory, perception or motor control. Existing emulator research and caveats remain in [references](references.md); no Apple media is committed.

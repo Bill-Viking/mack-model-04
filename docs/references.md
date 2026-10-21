@@ -22,6 +22,10 @@ The original local projects remain unchanged. The tracked snapshots travel with 
 - [MacinAI](https://oldapplestuff.com/MacinAI/): classic chat-interface inspiration.
 - [MacinAI Local](https://github.com/alexhoopes/MacinAI-Local): experimental classic-Mac inference, not a benchmark for our target.
 
+## Joint and recovery research — checked 2026-10-21
+
+The [Mack J04 study](../hardware/joints/README.md#references-and-what-they-actually-establish) links MIT Mini Cheetah, Open Dynamic Robot Initiative actuator/leg/test-stand designs, and the ANYmal recovery research and author supplementary repository. These are newly reviewed references only; nothing from them has been imported or installed. Their geometries, loads and policies are not Mack parameters. The existing pinned source manifest is unchanged.
+
 ## Build material
 
 - [Original WonderMac video](https://www.youtube.com/watch?v=dRr5iVjMfqs).

@@ -1,0 +1,148 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1400" height="1060" style="width:100%;height:auto;display:block" viewBox="0 0 1400 1060" role="img" aria-labelledby="title desc">
+<title id="title">Mack J04 joint and recovery design study</title><desc id="desc">Three powered axes per leg, a supported joint cartridge, structural body guards and a proposed recovery sequence. Concept only, not manufacturing geometry or simulated motion.</desc>
+<defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0 0L6 3L0 6" fill="none" stroke="#647473" stroke-width="1.4"/></marker></defs>
+<rect width="1400" height="1060" fill="#f2f0e7"/>
+<style>text{font-family:Arial,Helvetica,sans-serif;fill:#233c3b}.small{font-size:16px;fill:#526562}.body{font-size:19px}.label{font-weight:700}.line{fill:none;stroke:#647473;stroke-width:1.5}.mech{stroke:#354d4a;stroke-width:3;stroke-linejoin:round}</style>
+<text x="42" y="48" font-size="18" class="" style="fill:#526562">M.A.C. MODEL 04  /  MECHANICAL DEVELOPMENT</text>
+<text x="40" y="101" font-size="38" class="label">J04 — joints that help Mack get back up</text>
+<rect x="1042" y="65" width="316" height="39" rx="4" fill="#e5d6ad" stroke="#bba66b"/>
+<text x="1057" y="91" font-size="18" class="">CONCEPT STUDY · REV 0.1</text>
+<text x="42" y="132" font-size="19" class="">12 powered leg axes · compliant feet · body protection · space reserved for a recovery arm</text>
+<rect x="40" y="160" width="645" height="425" rx="8" fill="#fffdf5" stroke="#c3c9be"/>
+<rect x="715" y="160" width="645" height="425" rx="8" fill="#fffdf5" stroke="#c3c9be"/>
+<rect x="40" y="610" width="645" height="370" rx="8" fill="#fffdf5" stroke="#c3c9be"/>
+<rect x="715" y="610" width="645" height="370" rx="8" fill="#fffdf5" stroke="#c3c9be"/>
+<text x="62" y="198" font-size="22" class="label">01  THREE AXES PER LEG</text>
+<rect x="95" y="223" width="130" height="38" rx="4" fill="#c9cbc0" stroke="#354d4a"/>
+<text x="102" y="248" font-size="16" class="">FRAME</text>
+<path d="M165 261L165 287" fill="none" stroke="#354d4a" stroke-width="18"/>
+<circle cx="165" cy="285" r="27" fill="#739fba" stroke="#354d4a" stroke-width="3"/>
+<circle cx="196" cy="296" r="20" fill="#7da496" stroke="#354d4a" stroke-width="3"/>
+<path d="M196 296L244 405" fill="none" stroke="#354d4a" stroke-width="36"/>
+<path d="M196 296L244 405" fill="none" stroke="#d9cba8" stroke-width="27"/>
+<circle cx="244" cy="405" r="24" fill="#d5a95c" stroke="#354d4a" stroke-width="3"/>
+<path d="M244 405L171 501" fill="none" stroke="#354d4a" stroke-width="30"/>
+<path d="M244 405L171 501" fill="none" stroke="#d9cba8" stroke-width="21"/>
+<circle cx="171" cy="501" r="13" fill="#7da496" stroke="#354d4a" stroke-width="3"/>
+<rect x="136" y="515" width="71" height="28" rx="10" fill="#4c5d59" stroke="#354d4a"/>
+<path d="M110 545L269 545" fill="none" stroke="#647473" stroke-width="2"/>
+<circle cx="352" cy="243" r="7" fill="#739fba" stroke="#739fba" stroke-width="1"/>
+<text x="370" y="250" font-size="20" class="label">J1 · Hip spread</text>
+<text x="370" y="277" font-size="16" class="small">Sideways reach and stance width</text>
+<circle cx="352" cy="324" r="7" fill="#7da496" stroke="#7da496" stroke-width="1"/>
+<text x="370" y="331" font-size="20" class="label">J2 · Hip swing</text>
+<text x="370" y="358" font-size="16" class="small">Forward / back and leg tuck</text>
+<circle cx="352" cy="404" r="7" fill="#d5a95c" stroke="#d5a95c" stroke-width="1"/>
+<text x="370" y="411" font-size="20" class="label">J3 · Reversible knee</text>
+<text x="370" y="438" font-size="16" class="small">Fold, extend and recover</text>
+<circle cx="352" cy="489" r="7" fill="#4c5d59" stroke="#4c5d59" stroke-width="1"/>
+<text x="370" y="496" font-size="20" class="label">Passive foot seat</text>
+<text x="370" y="523" font-size="16" class="small">Bounded tilt; replaceable soft pad</text>
+<path d="M170 271L325 242" fill="none" stroke="#647473" stroke-width="2"/>
+<path d="M211 299L325 324" fill="none" stroke="#647473" stroke-width="2"/>
+<path d="M267 405L325 404" fill="none" stroke="#647473" stroke-width="2"/>
+<path d="M192 513L325 489" fill="none" stroke="#647473" stroke-width="2"/>
+<text x="62" y="568" font-size="16" class="small">Axis arrangement only. Link lengths and clearances remain open.</text>
+<text x="737" y="198" font-size="22" class="label">02  THE BODY MUST HELP</text>
+<rect x="953" y="231" width="169" height="217" rx="14" fill="#d9cba8" stroke="#354d4a"/>
+<rect x="976" y="255" width="124" height="125" rx="8" fill="#354d4a" stroke="#354d4a"/>
+<rect x="986" y="265" width="104" height="103" rx="4" fill="#c3cfdd" stroke="#526562"/>
+<rect x="1002" y="286" width="73" height="52" rx="0" fill="#f4f2e8" stroke="#526562"/>
+<text x="1010" y="316" font-size="18" class="">Mack</text>
+<path d="M1008 410L1096 410" fill="none" stroke="#354d4a" stroke-width="5"/>
+<path d="M941 438V245Q941 218 966 218H1113Q1137 218 1137 245V438" fill="none" stroke="#7da496" stroke-width="12"/>
+<rect x="938" y="449" width="204" height="28" rx="4" fill="#9caa9a" stroke="#354d4a"/>
+<rect x="989" y="451" width="101" height="23" rx="2" fill="#687d72" stroke="#354d4a"/>
+<path d="M960 475L923 506" fill="none" stroke="#d9cba8" stroke-width="19"/>
+<path d="M923 506L934 530" fill="none" stroke="#d9cba8" stroke-width="16"/>
+<circle cx="960" cy="475" r="10" fill="#739fba" stroke="#354d4a" stroke-width="3"/>
+<circle cx="923" cy="506" r="9" fill="#d5a95c" stroke="#354d4a" stroke-width="3"/>
+<rect x="912" y="530" width="44" height="15" rx="6" fill="#4c5d59" stroke="#354d4a"/>
+<path d="M1118 475L1156 506" fill="none" stroke="#d9cba8" stroke-width="19"/>
+<path d="M1156 506L1145 530" fill="none" stroke="#d9cba8" stroke-width="16"/>
+<circle cx="1118" cy="475" r="10" fill="#739fba" stroke="#354d4a" stroke-width="3"/>
+<circle cx="1156" cy="506" r="9" fill="#d5a95c" stroke="#354d4a" stroke-width="3"/>
+<rect x="1123" y="530" width="44" height="15" rx="6" fill="#4c5d59" stroke="#354d4a"/>
+<text x="738" y="267" font-size="17" class="">Screen guard</text>
+<path d="M850 262L973 265" fill="none" stroke="#647473" stroke-width="2"/>
+<text x="1164" y="260" font-size="17" class="">Rounded</text>
+<text x="1164" y="283" font-size="17" class="">contact rails</text>
+<path d="M1160 290L1138 306" fill="none" stroke="#647473" stroke-width="2"/>
+<text x="738" y="358" font-size="17" class="">Rear arm</text>
+<text x="738" y="381" font-size="17" class="">reservation*</text>
+<path d="M846 372L951 403" fill="none" stroke="#647473" stroke-width="2" stroke-dasharray="5 4"/>
+<text x="1180" y="431" font-size="17" class="">Low battery</text>
+<path d="M1171 438L1091 463" fill="none" stroke="#647473" stroke-width="2"/>
+<text x="737" y="568" font-size="16" class="small">* Optional 13th axis if the legs cannot start an inverted recovery.</text>
+<text x="62" y="650" font-size="22" class="label">03  REPLACEABLE JOINT CARTRIDGE</text>
+<text x="62" y="682" font-size="17" class="small">Bearing support carries the leg load into the frame.</text>
+<rect x="76" y="735" width="106" height="90" rx="5" fill="#d9cba8" stroke="#354d4a"/>
+<text x="88" y="766" font-size="16" class="">Motor +</text>
+<text x="88" y="791" font-size="16" class="">reduction</text>
+<path d="M182 781L591 781" fill="none" stroke="#526562" stroke-width="10"/>
+<rect x="238" y="723" width="27" height="116" rx="0" fill="#9caa9a" stroke="#354d4a"/>
+<rect x="251" y="751" width="22" height="60" rx="0" fill="#c3cfdd" stroke="#354d4a"/>
+<rect x="400" y="723" width="27" height="116" rx="0" fill="#9caa9a" stroke="#354d4a"/>
+<rect x="392" y="751" width="22" height="60" rx="0" fill="#c3cfdd" stroke="#354d4a"/>
+<rect x="289" y="756" width="77" height="51" rx="4" fill="#d5a95c" stroke="#354d4a"/>
+<rect x="310" y="807" width="36" height="59" rx="0" fill="#d9cba8" stroke="#354d4a"/>
+<circle cx="475" cy="781" r="25" fill="#739fba" stroke="#354d4a" stroke-width="3"/>
+<rect x="541" y="752" width="65" height="58" rx="4" fill="#e9e3d5" stroke="#354d4a"/>
+<text x="217" y="710" font-size="16" class="">Yoke + bearings</text>
+<path d="M281 715L263 739" fill="none" stroke="#647473" stroke-width="2"/>
+<path d="M350 715L406 739" fill="none" stroke="#647473" stroke-width="2"/>
+<text x="281" y="899" font-size="16" class="">Output hub / link</text>
+<path d="M330 878L330 866" fill="none" stroke="#647473" stroke-width="2"/>
+<text x="438" y="845" font-size="16" class="">Encoder</text>
+<path d="M472 826L475 805" fill="none" stroke="#647473" stroke-width="2"/>
+<text x="540" y="845" font-size="16" class="">Cover</text>
+<text x="62" y="945" font-size="16" class="small">Metal shaft · output sensing · guarded cable loop · service access</text>
+<text x="737" y="650" font-size="22" class="label">04  RECOVERY TO QUALIFY</text>
+<text x="737" y="682" font-size="17" class="small">Assess → find a contact → controlled roll → verify standing</text>
+<g transform="translate(800 794) rotate(180)">
+<rect x="-30" y="-43" width="60" height="75" rx="7" fill="#d9cba8" stroke="#354d4a"/>
+<rect x="-20" y="-30" width="40" height="33" rx="3" fill="#c3cfdd" stroke="#354d4a"/>
+<path d="M-35 27V-36Q-35 -49 -23 -49H23Q35 -49 35 -36V27" fill="none" stroke="#7da496" stroke-width="4"/>
+<path d="M-23 34L-41 48" fill="none" stroke="#526562" stroke-width="6"/>
+<path d="M-41 48L-32 76" fill="none" stroke="#526562" stroke-width="5"/>
+<path d="M23 34L41 48" fill="none" stroke="#526562" stroke-width="6"/>
+<path d="M41 48L32 76" fill="none" stroke="#526562" stroke-width="5"/>
+</g>
+<text x="758" y="904" font-size="17" class="">Inverted</text>
+<path d="M855 799h32" class="line" marker-end="url(#arrow)"/>
+<g transform="translate(953 794) rotate(85)">
+<rect x="-30" y="-43" width="60" height="75" rx="7" fill="#d9cba8" stroke="#354d4a"/>
+<rect x="-20" y="-30" width="40" height="33" rx="3" fill="#c3cfdd" stroke="#354d4a"/>
+<path d="M-35 27V-36Q-35 -49 -23 -49H23Q35 -49 35 -36V27" fill="none" stroke="#7da496" stroke-width="4"/>
+<path d="M-23 34L-41 48" fill="none" stroke="#526562" stroke-width="6"/>
+<path d="M-41 48L-32 76" fill="none" stroke="#526562" stroke-width="5"/>
+<path d="M23 34L41 48" fill="none" stroke="#526562" stroke-width="6"/>
+<path d="M41 48L32 76" fill="none" stroke="#526562" stroke-width="5"/>
+</g>
+<text x="911" y="904" font-size="17" class="">Roll to side</text>
+<path d="M1008 799h32" class="line" marker-end="url(#arrow)"/>
+<g transform="translate(1106 811) rotate(0)">
+<rect x="-30" y="-43" width="60" height="75" rx="7" fill="#d9cba8" stroke="#354d4a"/>
+<rect x="-20" y="-30" width="40" height="33" rx="3" fill="#c3cfdd" stroke="#354d4a"/>
+<path d="M-35 27V-36Q-35 -49 -23 -49H23Q35 -49 35 -36V27" fill="none" stroke="#7da496" stroke-width="4"/>
+<path d="M-23 34L-41 40" fill="none" stroke="#526562" stroke-width="6"/>
+<path d="M-41 40L-32 45" fill="none" stroke="#526562" stroke-width="5"/>
+<path d="M23 34L41 40" fill="none" stroke="#526562" stroke-width="6"/>
+<path d="M41 40L32 45" fill="none" stroke="#526562" stroke-width="5"/>
+</g>
+<text x="1064" y="904" font-size="17" class="">Crouch</text>
+<path d="M1161 799h32" class="line" marker-end="url(#arrow)"/>
+<g transform="translate(1259 778) rotate(0)">
+<rect x="-30" y="-43" width="60" height="75" rx="7" fill="#d9cba8" stroke="#354d4a"/>
+<rect x="-20" y="-30" width="40" height="33" rx="3" fill="#c3cfdd" stroke="#354d4a"/>
+<path d="M-35 27V-36Q-35 -49 -23 -49H23Q35 -49 35 -36V27" fill="none" stroke="#7da496" stroke-width="4"/>
+<path d="M-23 34L-41 48" fill="none" stroke="#526562" stroke-width="6"/>
+<path d="M-41 48L-32 76" fill="none" stroke="#526562" stroke-width="5"/>
+<path d="M23 34L41 48" fill="none" stroke="#526562" stroke-width="6"/>
+<path d="M41 48L32 76" fill="none" stroke="#526562" stroke-width="5"/>
+</g>
+<text x="1217" y="904" font-size="17" class="">Stand</text>
+<text x="737" y="945" font-size="16" class="small">Sequence of intent. No dynamics, contact or recovery proof yet.</text>
+<text x="42" y="1017" font-size="18" class="" style="fill:#765e2f">NOT TO SCALE · NOT FABRICATION CAD · no actuators selected · no physical performance claimed</text>
+<text x="42" y="1044" font-size="16" class="small">Mack-specific packaging built around established three-axis leg kinematics. See hardware/joints/README.md.</text>
+</svg>

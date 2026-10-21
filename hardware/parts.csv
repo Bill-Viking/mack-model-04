@@ -7,9 +7,11 @@ audio,Speaker and amplifier,1,Not selected,Space and audio test,
 power,Compute regulator,,Not selected,Voltage and peak current,
 power,Robot battery and charging/protection,,Not selected,Energy budget and power design,
 motion,Local controller,1,Not selected,Actuator interface and timeout behavior,
-motion,Servos,,Not selected,Joint loads and degrees of freedom,
+motion,Leg actuators,12,J04 concept count; actuator not selected,Measured torque speed thermal duty and joint envelope,joints/README.md
 mechanical,Joint bearings or bushings,,Not selected,Joint design,
 mechanical,Fasteners and inserts,,Not selected,Measured assembly and CAD,
 mechanical,Printed leg assemblies,4,Accepted visual target,One-leg proof,
 mechanical,Replaceable compliant feet,4,Candidate TPU,Grip and wear test,
 mechanical,Printed mounting base,1,Not designed,Clock measurements and mass budget,
+motion,Rear recovery-arm actuator,1,Conditional J04 reservation; not selected,Required only if twelve-axis inverted recovery is infeasible,joints/README.md
+mechanical,Structural contact rails and screen guard,1,J04 concept; not designed,Protected rest poses and load path into cradle,joints/README.md
