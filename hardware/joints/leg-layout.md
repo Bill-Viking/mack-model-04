@@ -7,6 +7,11 @@ design unit is one complete leg and its connection to the structural base.
 The accepted little-Mac appearance remains the target. The current C01 cartridge
 is a synthetic single-pivot study; it is not the finished hip or a size commitment.
 
+For discussion with a coworker: [one-page mechanical review brief](../../output/pdf/mack-mechanical-review-brief.pdf)
+(2026-10-22, revision 1). It separates catalog facts from proposals, sketches the
+joint chain, compares knee-drive placement and asks four focused review questions.
+Its editable authoring source is [build_mechanical_brief.py](../../tools/build_mechanical_brief.py).
+
 ## The starting arrangement
 
 Use three powered hinges per leg. Two form the hip; the third forms the knee.

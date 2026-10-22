@@ -2,6 +2,10 @@
 
 ## Now
 
+2026-10-22 — **COWORKER REVIEW BRIEF.** Bill requested a one-page brief to run by a coworker. Created `output/pdf/mack-mechanical-review-brief.pdf` and editable ReportLab source `tools/build_mechanical_brief.py`. The 421-word US Letter page covers the goal, WB-8 catalog dimensions/mass, proposed three-axis leg and 30 mm link pitches, supported load path, direct versus proximal knee drive, XL330 size/mass benchmark, four review questions and the next restrained one-leg test. It explicitly separates catalog facts, design assumptions and unproven performance. Two clickable primary-source links included. No private conversations, runtime paths, work-side information or approved voice assets included.
+
+Verified one page with pypdf, checked key values and both source links, and rendered/inspected the full page with Poppler. Final layout is clean; private QA image is in `runtime/brief/`. Requested local PDF panel open (tool returned queued). File prepared locally for Bill; no message sent to the coworker and no external upload. Physical design and live application unchanged. Next remains actual component packaging and mechanical review feedback; dock controls stay deferred.
+
 HANDOFF CAPTURE (hub button-up 2026-10-22, mechanical — verbatim tail, no model read): codex rollout-2026-10-22T07-22-57-01a163fe-6158-79a0-ac64-6a740051f680 · last message 2026-10-22T08:39:31-07:00
   the thread's own title: ACT — RayCue/Research: Mack joint design
   lane RayCue/Research (the folder's only lane) · ASTRA · 111.5 min ago at the capture

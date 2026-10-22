@@ -1,10 +1,10 @@
 lane: RayCue/Research
-written: 2026-10-22T08:15:55-07:00
+written: 2026-10-22T13:25:22-07:00
 by: ACT — RayCue/Research: Mack joint design
 on: MAC
-head: d30cc25 (catalog-scale checkpoint follows)
-status_updated: 2026-10-22T08:15:55-07:00
-where: Joints before docking; catalog scale and proposed 30 + 30 mm links recorded; actual component fit outstanding
+head: 295bb22 (coworker-brief checkpoint follows)
+status_updated: 2026-10-22T13:25:22-07:00
+where: One-page mechanical review brief prepared; joint packaging remains the next design task
 next: machine compares actual actuator packaging for direct and proximal knee drive
 depends_on: actual shell geometry, mass/center of mass and selected actuator/bearings
 open_in: /Users/bill/Projects/RayCue Mac · existing RayCue/Research chat · ACT — RayCue/Research: Mack joint design
@@ -12,6 +12,10 @@ judgment: Preserve approved voice/local memory; geometric checks do not establis
 model: Preserve the user's model choice and read the live dial
 ---
 Read the project status/memory first. Bill has resumed and put joints and mechanical design BEFORE docking controls. Start with hardware/joints/leg-layout.md (J04-L01-D02) and catalog-scale.json. Develop one complete three-axis leg and cradle interface; the old C01 solids model only one example hip pivot. Direct knee drive is a proposed first-prototype baseline, with proximal drive retained for a measured packaging/mass comparison. Neither arrangement nor a motor is newly approved by Bill. Bill supplied a WB-8 catalog screenshot. The manufacturer confirms 80 × 91 × 112 mm and 229 g. The W/D/H mapping follows the screenshot; actual unit geometry, interior and retained mass remain unmeasured. A scaled sketch proposes 30 + 30 mm links; its 172.6 mm overall standing height is a calculated illustration, not a fitted design. XL330 is a size/mass benchmark only, not selected. Place actual component output datums and supporting hardware next. Keep the original appearance, accepted voice and private memory intact. Mack and the old preview servers remain stopped. The following dated shutdown context remains valid for restart and preservation, but it no longer sets the work priority.
+
+## Coworker review brief
+
+Bill requested a one-page mechanical brief. `output/pdf/mack-mechanical-review-brief.pdf` (revision 1, 2026-10-22) is verified as one US Letter page with a clean rendered layout. Source is `tools/build_mechanical_brief.py`. It contains the joint-chain schematic, catalog scale, proposed 30 mm links, two knee-drive alternatives, four review questions and source links. Prepared locally for Bill; not sent or uploaded. Carry any coworker feedback into the existing joint study. No part selection or mechanical qualification follows from this handout.
 
 ## Dock appearance image
 
