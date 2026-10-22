@@ -28,6 +28,12 @@ The [Mack J04 study](../hardware/joints/README.md#references-and-what-they-actua
 
 ## Build material
 
+The [F04 face and vision study](../hardware/display-and-vision.md) records primary
+Waveshare, Raspberry Pi, ZUIKI, Visionox, FlexEnable, optical-supplier, ST and
+under-display-camera research sources checked on 2026-10-21. Catalogued parts are
+leads, not selected Mack hardware. Some manufacturer pages were available only as
+indexed excerpts. No optical CAD or camera code was imported.
+
 The [CAD guide](../hardware/joints/cad/README.md) records build123d 0.12.0 as a
 development dependency installed from PyPI. Original J04 source is outside
 `vendor/`; no upstream joint CAD was copied. The

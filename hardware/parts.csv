@@ -15,3 +15,8 @@ mechanical,Replaceable compliant feet,4,Candidate TPU,Grip and wear test,
 mechanical,Printed mounting base,1,Not designed,Clock measurements and mass budget,
 motion,Rear recovery-arm actuator,1,Conditional J04 reservation; not selected,Required only if twelve-axis inverted recovery is infeasible,joints/README.md
 mechanical,Structural contact rails and screen guard,1,J04 concept; not designed,Protected rest poses and load path into cradle,joints/README.md
+display,2.8-inch DSI LCD alternative,,F04 catalogue candidate; not selected,Compute interface and mechanical fit,https://www.waveshare.com/product/2.8inch-dsi-lcd.htm
+optics,Curved clear front cover,1,F04 proposed custom part; not designed,Measured aperture and optical distortion test,display-and-vision.md
+vision,Concealed camera assembly,,F04 required function; count and module unselected,Tint transmission field of view driver and perception tests,display-and-vision.md
+optics,Camera window and light baffle,,F04 proposed; not selected,Visible-band transmission concealment and display crosstalk,display-and-vision.md
+optics,Beamsplitter fixture,,F04 optional experiment; not selected,Volume and reflected-display/transmitted-camera image tests,display-and-vision.md

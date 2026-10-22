@@ -16,3 +16,8 @@ display_compute_mass,,g,scale; selected assembly,
 walking_base_mass,,g,scale; selected assembly,
 battery_mass,,g,scale; selected battery,
 assembled_center_of_gravity_height,,mm,measurement method TBD,
+screen_surround_top_usable_height,,mm,visible opening to usable internal top surround,Reserve camera aperture and baffle; no measured value yet
+screen_to_rear_keepout_depth,,mm,front cover mounting datum to nearest internal obstruction,Include connectors and removal path
+front_cover_horizontal_sagitta,,mm,centre bulge relative to named horizontal edge chord,State measured versus proposed target
+front_cover_vertical_sagitta,,mm,centre bulge relative to named vertical edge chord,State measured versus proposed target
+camera_window_available_width,,mm,clear optical aperture in dark surround,Field of view and tint remain unqualified

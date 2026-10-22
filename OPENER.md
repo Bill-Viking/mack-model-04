@@ -1,10 +1,10 @@
 lane: RayCue/Research
-written: 2026-10-21T17:00:23-07:00
+written: 2026-10-21T17:11:25-07:00
 by: ACT — RayCue/Research: Mac OS 9 and walking robot
 on: MAC
-head: e61d7d8 (J04 concept; CAD/workflow checkpoint follows)
-status_updated: 2026-10-21T17:00:23-07:00
-where: Original J04-C01 draft CAD and preview ready; measured fit and Dell imports next
+head: 2d13854 (CAD checkpoint pushed; F04 optical study follows)
+status_updated: 2026-10-21T17:11:25-07:00
+where: J04-C01 CAD and F04 curved-face/hidden-camera study ready; physical intake next
 next: measured hardware intake and Dell tool inspection
 depends_on: actual shell geometry, mass/center of mass and selected actuator/bearings
 open_in: /Users/bill/Projects/RayCue Mac · existing RayCue/Research chat
@@ -12,6 +12,14 @@ judgment: Preserve approved voice/local memory; geometric checks do not establis
 model: Preserve the user's model choice and read the live dial
 ---
 Read STATUS.md first. This is the current handoff; dated history remains in STATUS.md and docs/build-log.md. This chat stays active until Bill ends it.
+
+## Current face and camera direction
+
+Bill wants a convex original-Mac screen appearance and concealed camera hardware, ideally behind the screen. P12 and hardware/display-and-vision.md record the goal. The proposed first fixture is a flat colour display under a curved clear front with a camera behind a transmissive dark border. This is behind the shared cover, not through LCD pixels. Final optical route remains open. Compare a folded beamsplitter for camera alignment behind the apparent image; true under-display OLED needs a specialised compatible panel/driver/camera and correction pipeline. No suitable small turnkey combination was established in this search.
+
+Primary references and catalogued candidates are in the study; no purchase, supplier contact, optical test or camera installation. The transparent 1.51-inch OLED is only an experiment lead, unsuitable for the full colour desktop. Measure face aperture, surround space and depth, then test cover/tint/baffles against bare-camera images with display off/black/white/patterns and changing light/motion. Independent floor/body sensing remains required.
+
+Schematic: hardware/face-optics-concept.svg. Browser preview http://127.0.0.1:9848/face-optics-concept.svg, exec29126, serves only hardware/. Private proof runtime/cad/f04-optics.png. Keep the preview available. No live software, voice or memory change.
 
 ## Current mechanical work
 

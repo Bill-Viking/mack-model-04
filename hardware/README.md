@@ -27,6 +27,12 @@ No Dell connection, native CAD import, FEA result or manufacturing order is clai
 
 ## Existing design files
 
+The [F04 face and vision study](display-and-vision.md) compares a curved clear
+cover with concealed border cameras, a folded beamsplitter display and true
+under-display OLED. It includes a [section drawing](face-optics-concept.svg),
+documented component leads and a removable optical-fixture plan. No optical
+performance or fit has been demonstrated yet.
+
 - [Screen bezel STL](../vendor/macintosh-mini/maclock-screen-bezel/maclock-screen-bezel.stl): upstream printable frame and clips.
 - [Screen bezel STEP](../vendor/macintosh-mini/maclock-screen-bezel/maclock-screen-bezel.step): editable solids.
 - [CAD parameters](../vendor/macintosh-mini/maclock-screen-bezel/params.py) and [geometry source](../vendor/macintosh-mini/maclock-screen-bezel/bezel.py): unchanged build123d source.

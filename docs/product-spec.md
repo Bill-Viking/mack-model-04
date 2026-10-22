@@ -16,6 +16,7 @@ The current browser desktop connects to real local AI, durable memory and read-o
 - Identity: **she/her**, with SAL-inspired plain, calm conversation. Identity and memory persist independently of models and bodies.
 - Long-term direction: grow a personalized intelligence through a continuing history with her person, then carry her into a humanoid body for fuller everyday interaction, years from now. The first physical release remains the accepted four-legged Mac. A later body requires separate engineering and qualification.
 - Appearance: [Bill's accepted image](../concepts/raycue-build-target.png), a dominant beige compact Mac body, compact underside base, four short articulated legs, and rounded dark feet.
+- Face and vision intent, added 2026-10-21: a convex CRT-like screen appearance, with camera hardware visually concealed and ideally behind the screen. Evaluate a common curved cover, hidden optical windows and true under-display alternatives; the final optical route remains open.
 - Motion intent, added 2026-10-21: dexterous foot/body placement and self-righting after a fall. Qualify the recoverable poses and surfaces explicitly; do not promise recovery from every fall.
 - Starting enclosure: Bill's RayCue clock. Preserve its character while engineering the internal structure and base around measured loads.
 - Everyday experience: an original classic Mac-style interface over modern intelligence and robotics. Authentic vintage applications are a minor, optional mode.
@@ -62,6 +63,7 @@ These acceptance requirements define the complete embodied product. Host-side co
 | P09 | Fitted electrical and mechanical design | Shell closes; cables clear every joint; mounts carry load; service access works. Record mass/center of gravity, rail voltage/current, heat, and sound with the complete assembly. |
 | P10 | Repeatable ownership | A clean installation, calibration, backup/restore, failed-update recovery, and routine charging/service procedure work from the project instructions. |
 | P11 | Dexterity and self-righting | Demonstrate controlled three-dimensional foot placement and recovery from qualified left/right side, rear, front-guard and inverted resting poses. Record surface, mass/center of mass, attempts, time, contact/clearance, current/temperature and stop/failure behavior. Screen is not an intended contact. Unrecoverable cases stop and request help. [Joint concept and test stages](../hardware/joints/README.md). |
+| P12 | Curved face and concealed vision | Bill accepts the curved compact-Mac appearance and camera concealment on the actual assembly under agreed lighting/viewing conditions. Demonstrate useful vision through the chosen cover/display stack with real desktop content, motion and dim/bright scenes. Record optical route, field of view, image quality/latency, capture state and disable control. Behind-cover placement is not claimed as behind-pixel imaging. [Optical study](../hardware/display-and-vision.md). |
 
 ## First embodied release
 

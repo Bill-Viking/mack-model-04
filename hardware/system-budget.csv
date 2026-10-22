@@ -1,10 +1,10 @@
 assembly,quantity,mass_each_g,power_idle_each_W,power_active_each_W,power_peak_each_W,rail_V,width_mm,depth_mm,height_mm,status,evidence
 retained_clock_shell,1,,,,,,,,,unmeasured,Record included parts to avoid double counting
-display_and_mount,1,,,,,,,,,unselected,Include display driver and mounting hardware
+display_and_mount,1,,,,,,,,,unselected,Include display driver curved cover bezel and baffles; avoid duplicate optical mass
 main_compute_and_cooling,1,,,,,,,,,unselected,Benchmark voice and display within thermal envelope
 body_controller,1,,,,,,,,,unselected,Include required interface electronics
 audio_assembly,1,,,,,,,,,unselected,Microphone speaker amplifier and mounts
-sensor_assembly,,,,,,,,,,unselected,Expand into measured individual sensors after selection
+sensor_assembly,,,,,,,,,,unselected,Include camera module and its mount; optical cover/baffles counted with display; sensor counts unselected
 battery_assembly,1,,,,,,,,,unselected,Track stored energy separately from consumption
 power_conversion_and_protection,1,,,,,,,,,unselected,Account for conversion losses without counting consumer power twice
 structural_base,1,,,,,,,,,undesigned,Frame mounts and included fasteners

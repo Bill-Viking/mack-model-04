@@ -174,6 +174,17 @@ and [Dell brief](../hardware/dell-cad-handoff.md) covering actual installation
 inspection, source ownership, measured inputs, structural/contact analysis and a
 first manufactured joint/leg. No hardware purchase or vendor upload was made.
 
+## 2026-10-21 — A curved face and concealed vision
+
+Bill added the curved compact-Mac face and concealed cameras as a product goal.
+The [F04 optical study](../hardware/display-and-vision.md) compares a flat colour
+panel behind a curved clear cover with cameras in the dark border, a folded
+beamsplitter arrangement placing a camera behind the apparent image, and a
+purpose-built under-display OLED. The first is the proposed initial fixture;
+the final architecture remains open. Added primary-source component leads, a
+section drawing and optical test requirements. P12 records acceptance on the
+assembled face. No optical prototype, camera installation or supplier order yet.
+
 ## What comes next
 
 - Trial everyday microphone use, disconnected reboot and the future assisted mode.

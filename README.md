@@ -52,6 +52,7 @@ physical mannerisms still need qualification.
 - Four short articulated legs have rounded beige covers and dark visible joints.
 - Rounded dark feet provide the contact points.
 - The screen shows a classic Mac desktop with a menu bar, icons, and dialogs such as “Hello, Bill.”
+- The face should have the convex appearance of a compact-Mac CRT, with camera hardware concealed and ideally behind the screen. The [optical study](hardware/display-and-vision.md) compares practical cover and display arrangements.
 - Personality comes through the desktop, voice, and stance.
 
 Use this image as the baseline for CAD and packaging decisions. Preserve its overall proportions as the actual clock, motors, battery, and joint supports are fitted. Keep the [original generated concept](concepts/raycue-walking-mac-v1.png) for history.
@@ -95,6 +96,7 @@ The desktop, local AI conversation and durable memory run on the host Mac. The r
 | [Joints and self-righting](hardware/joints/README.md) | Proposed three-axis legs, serviceable joints, body protection and recovery tests. |
 | [First joint CAD](hardware/joints/cad/README.md) | Editable cartridge study, STEP solids and an offline 3D preview; example dimensions only. |
 | [Engineering and manufacture](hardware/engineering-workflow.md) | Scripted CAD, home Dell Creo/Ansys work, load cases and a staged Protolabs prototype route. |
+| [Curved face and vision](hardware/display-and-vision.md) | Curved-cover and hidden-camera options, parts research, optical paths and the first fixture. |
 | [Hardware integration](hardware/integration-plan.md) | Fitted electronics, sensors, structure, power, and physical proof sequence. |
 | [Software workspace](software/README.md) | Intended components and the Continuum code to evaluate first. |
 | [Research notes](docs/research-notes.md) | Earlier investigation, printer/material recommendations, and source discrepancies. |

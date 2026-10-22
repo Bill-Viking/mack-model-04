@@ -1,6 +1,6 @@
 # Mack — fitted electronics and walking body
 
-Engineering proposal v0.1, 2026-10-20. Implements [P05–P11](../docs/product-spec.md). No components, dimensions, pin assignments, load limits or power topology are approved by this document.
+Engineering proposal v0.1, updated 2026-10-21. Implements [P05–P12](../docs/product-spec.md). No components, dimensions, pin assignments, load limits or power topology are approved by this document.
 
 ## Package the whole robot
 
@@ -8,7 +8,7 @@ Treat the clock, base, legs, battery, compute, display, audio and sensors as one
 
 | Zone | Proposed contents | Design evidence needed |
 | --- | --- | --- |
-| Screen and upper shell | Display, main compute, audio; optional camera if selected. | Usable internal volume, connectors, viewing angle, microphone isolation, airflow, wireless performance and service access. |
+| Screen and upper shell | Display, curved front cover, concealed camera assembly, main compute and audio. | Usable volume, camera sightline, cover distortion/transmission, display crosstalk, connectors, viewing angle, microphone isolation, cooling and service access. |
 | Underside base | Structural frame, body controller, power distribution; battery as low as practical. | Mounting datums, leg load paths, center of gravity, battery removal, ground clearance and stop access. |
 | Four legs | Supported joints, actuators, covers, cable paths and compliant feet. | Link geometry, joint ranges, load/current/temperature measurements, cable bend clearance and replaceable wear parts. |
 
@@ -41,9 +41,14 @@ These are proposed functions, not a shopping list. Counts, placement and interfa
 | Power and heat | Rail voltage/current, battery and relevant device/actuator temperature | Required channels depend on chosen parts and power architecture. | Load peaks, brownout, low-energy and heating responses recorded with the full assembly. |
 | Joint state | Available actuator position/current/temperature feedback or added sensing | Feedback capability changes motor/controller selection and wiring. | Detect or explicitly bound stalled/failed movement; no fictional feedback for an open-loop servo. |
 | User input and interruption | Accessible stop input; deliberate interaction/mute controls | Reachable during a fault; local path independent of UI and AI. | Stop under host/link failure; deliberate recovery and no automatic movement on restart. |
-| Visual understanding | Optional camera | Aperture, light, compute cost and capture indication. | Useful perception demonstrated within compute/power budget; retention agreed before recording. |
+| Visual understanding | Camera assembly; count and optical route unselected | Curved cover and concealed optics per the F04 study; aperture, light loss, baffles, compute cost and capture indication. | Useful perception through the assembled face, including display-content interference and motion; retention agreed before recording. |
 
 Sensor observations used for immediate body protection must be available to the local controller or another independently qualified local path. A cloud vision response cannot be the sole obstacle or edge protection.
+
+The [F04 study](display-and-vision.md) carries Bill's curved-screen and concealed
+camera intent. A camera behind a shared curved cover is distinct from one behind
+active display pixels. Reserve optical volume and access in the packaging model
+before closing the upper shell; no camera or optical stack is selected yet.
 
 ## Electrical work package
 
