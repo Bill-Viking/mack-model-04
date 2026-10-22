@@ -1,0 +1,37 @@
+{
+  "revision": "J04-L01-S01",
+  "status": "CATALOG SCALE AND PROPOSED LINK GEOMETRY; NOT A FITTED ASSEMBLY",
+  "checked_on": "2026-10-22",
+  "clock": {
+    "source": "https://www.raycue.com/products/maclock",
+    "catalog_model": "WB-8",
+    "owned_unit_label_verified": false,
+    "published_dimensions_mm": [80, 91, 112],
+    "published_net_mass_g": 229,
+    "working_axis_mapping_mm": {"width_Y": 80, "depth_X": 91, "height_Z": 112},
+    "axis_mapping_evidence": "Width/depth/height order follows Bill's supplied search screenshot. Manufacturer text confirms the three numbers but does not label their axes. Verify on the actual unit.",
+    "mass_scope": "Complete catalog clock; retained shell and completed robot masses are unknown.",
+    "shape_scope": "Rectangular outside envelope only; taper, feet, underside recesses, wall thickness and mounting geometry are unknown."
+  },
+  "actuator_size_reference": {
+    "model": "ROBOTIS XL330-M288-T",
+    "source": "https://emanual.robotis.com/docs/en/dxl/x/xl330-m288/",
+    "published_dimensions_W_H_D_mm": [20, 34, 26],
+    "published_mass_g": 18,
+    "count_example": 12,
+    "summed_actuator_mass_g": 216,
+    "selected": false,
+    "scope": "Size and mass benchmark only; mounting, output datums, horn, supports, connectors and moving cable clearance are not modeled. Plastic gears and continuous loaded performance require evaluation."
+  },
+  "illustrative_leg": {
+    "datum": "Clock bottom center; +X through face, +Y left, +Z up",
+    "hip_origins_mm": [[30, 34, -10], [30, -34, -10], [-30, 34, -10], [-30, -34, -10]],
+    "sideways_hip_offset_mm": 12,
+    "upper_link_mm": 30,
+    "lower_link_mm": 30,
+    "outward_spread_deg": 12,
+    "knee_bend_magnitude_deg": 70,
+    "foot_envelope_mm": {"X": 18, "Y": 16, "Z": 10},
+    "provenance": "All leg, hip and foot values are proposed study inputs. No bearing, motor, bracket or cable fit is claimed. Front and rear knees are mirrored in X for the illustration."
+  }
+}

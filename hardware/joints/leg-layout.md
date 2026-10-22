@@ -1,6 +1,6 @@
 # Mack — design the leg before the dock
 
-J04-L01-D01 · 2026-10-22 · **proposed architecture; dimensions and hardware unselected**.
+J04-L01-D02 · 2026-10-22 · **proposed architecture; catalog body size available, hardware unselected**.
 
 Bill put joint and mechanical design ahead of docking controls. The immediate
 design unit is one complete leg and its connection to the structural base.
@@ -119,9 +119,61 @@ The illustration changes pose only. It has no contact solver, collision test,
 motor model, mass model or body-stability result. Slider endpoints are viewing
 limits, not component or controller limits. It supplies no actuator commands.
 
+## Catalog scale now available
+
+Bill supplied a search screenshot on 2026-10-22. The
+[RayCue WB-8 product listing](https://www.raycue.com/products/maclock) independently
+confirms **80 × 91 × 112 mm** and **229 g net mass**. The working mapping is
+80 mm width, 91 mm depth and 112 mm height, following the screenshot. RayCue's
+text does not label the dimension axes, so that mapping still needs a unit check.
+These are catalog values, not measurements of Bill's clock or its interior.
+The screenshot's 9.9 oz / 0.28 kg conversion is inconsistent with 229 g;
+229 g is 8.08 oz / 0.229 kg. Use the manufacturer's metric value.
+
+[catalog-scale.json](catalog-scale.json) records the evidence and separates the
+catalog dimensions from proposed leg dimensions. The old C01 example is
+40 × 108 × 100 mm including its motor placeholder. That is approximately the
+scale of the entire donor body, not a credible repeated compact leg package.
+Do not shrink its shafts, bearings and clearances proportionally and assume
+that the resulting hardware will carry the load.
+
+The first scaled sketch uses **30 mm upper and lower links**, measured between
+joint axes. Four hip-spread origins sit at X = ±30 mm, Y = ±34 mm,
+Z = −10 mm relative to the clock's bottom center. The second hip axis is
+12 mm outward from the first, rotated by the hip-spread angle. These placements
+are proposals; the sketch does not establish available underside mounting space.
+It shows the whole catalog body instead of the earlier cropped body.
+
+For a symmetric stance with 12° outward spread and 70° knee bend, the hip swing
+is half the knee bend in the opposite sense. Mirror front/rear knee directions
+and left/right spread. With a 10 mm high illustrative foot, this produces about
+**60.6 mm clearance from the ground to the clock bottom**, **172.6 mm overall
+height**, and **111.9 mm between left/right foot centers**. These are calculated
+proportions, not measured robot dimensions. A crouch changes the stance width
+and body height together. The preview places a floor beneath the resulting feet;
+it does not solve contact, balance, friction or collision.
+
+Use the compact [ROBOTIS XL330-M288-T](https://emanual.robotis.com/docs/en/dxl/x/xl330-m288/)
+only as a packaging benchmark: its published case dimensions are
+20 × 34 × 26 mm (W × H × D) and its mass is 18 g. Twelve sum to 216 g, before
+horns, external bearings, brackets, wiring or links. Its 34 mm case dimension is
+already larger than the proposed 30 mm link pitch. Axis positions and case
+orientation could permit overhang, but a knee package cannot be treated as a
+small circle or presumed to fit inside the cosmetic link. This is the immediate
+reason to compare direct and proximal knee drives in actual component CAD.
+The reference has plastic gears; no load, impact, wear or continuous-torque
+suitability is inferred from its size or published stall torque.
+
+The 229 g donor mass is not a retained-shell mass or a robot target. Adding it
+to the 216 g motor example gives 445 g only for the hypothetical combination
+of an unchanged clock and twelve bare actuators. Removing donor electronics
+changes that subtotal; adding compute, battery and structure changes it again.
+Keep the completed-system mass budget open.
+
 ## Inputs for the next fitted CAD assembly
 
-First obtain clock width, height, depth and complete mass, with units. Then inspect
+Use the catalog envelope for proportion studies now. Confirm the actual model,
+axis order and exterior dimensions when the unit is available, then inspect
 usable underside space, structural mounting possibilities, retained shell/display
 mass and internal keep-outs. These observations belong in
 [measurements.csv](../measurements.csv), with their method and uncertainty.

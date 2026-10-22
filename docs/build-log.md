@@ -267,7 +267,10 @@ The immediate focus is **joint and leg design before docking controls**.
 two-axis hip, knee and passive foot, separates the structural and motor load
 paths, and lists the missing retention, sensing, cable and mounting details.
 It proposes direct knee drive for the first leg prototype and retains a proximal
-drive comparison. No actuator or fitted dimensions have been selected.
+drive comparison. Bill supplied the donor-clock catalog size; RayCue confirms
+80 × 91 × 112 mm and 229 g. The study now uses that envelope for a proposed
+30 + 30 mm leg sketch and records a compact actuator size/mass benchmark.
+No actuator or fitted dimensions have been selected.
 
 - Trial everyday microphone use, disconnected reboot and the future assisted mode.
 - Evaluate models on memory accuracy, response time and actual compute requirements.

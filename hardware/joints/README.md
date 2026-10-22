@@ -9,7 +9,10 @@ fall. This study develops that requirement around the accepted four-legged Mac.
 **Current design focus (2026-10-22):** Bill put joints and mechanical design ahead
 of docking controls. The [complete-leg layout study](leg-layout.md) develops the
 three-axis arrangement, a direct-knee prototype baseline, structural/drive paths
-and the interfaces still missing from C01. Physical dimensions remain unmeasured.
+and the interfaces still missing from C01. The WB-8 catalog envelope is now
+80 × 91 × 112 mm and 229 g; actual dimensions remain unmeasured. The study
+records a first 30 + 30 mm leg proportion sketch and a compact actuator size
+benchmark, without selecting hardware or claiming a fitted assembly.
 
 ![Mack joint and recovery concept](joint-concept.svg)
 

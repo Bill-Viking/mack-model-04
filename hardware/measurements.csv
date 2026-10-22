@@ -1,8 +1,8 @@
 item,value,unit,method_or_datum,notes
-clock_model,,,label,Unverified
-shell_width,,mm,maximum outside width,
-shell_depth,,mm,maximum outside depth,
-shell_height,,mm,base to highest point,
+clock_model,,,label,Unit label unverified; WB-8 catalog reference in joints/catalog-scale.json
+shell_width,,mm,maximum outside width,Catalog working width 80 mm; actual measurement and dimension axis mapping unverified
+shell_depth,,mm,maximum outside depth,Catalog working depth 91 mm; actual measurement and dimension axis mapping unverified
+shell_height,,mm,base to highest point,Catalog working height 112 mm; actual measurement unverified
 internal_width,,mm,minimum usable clearance,
 internal_depth,,mm,minimum usable clearance,
 internal_height,,mm,minimum usable clearance,
@@ -10,7 +10,7 @@ screen_opening_width,,mm,visible opening,
 screen_opening_height,,mm,visible opening,
 screen_mount_hole_spacing_x,,mm,hole centers; identify in photo,
 screen_mount_hole_spacing_y,,mm,hole centers; identify in photo,
-complete_clock_mass,,g,scale; record included components,
+complete_clock_mass,,g,scale; record included components,Catalog complete clock 229 g; actual mass and retained shell mass unmeasured
 empty_shell_mass,,g,scale; record removed components,
 display_compute_mass,,g,scale; selected assembly,
 walking_base_mass,,g,scale; selected assembly,
