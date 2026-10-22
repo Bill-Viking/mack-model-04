@@ -1,0 +1,17 @@
+Tool: built-in image_gen
+Generated: 2026-10-21
+Reference: concepts/raycue-build-target.png
+Output: concepts/mack-charging-dock-v1.png
+Status: aspirational appearance study, not measured CAD or demonstrated charging. The generated low foot tray differs from D04's proposed clear-floor foot paths. Marker placement, access and electrical/mechanical details still need engineering. Original accepted robot reference remains unchanged.
+
+Final prompt:
+
+Use case: product-mockup.
+Create one photorealistic, beautifully composed product concept of Mack resting in her charging dock.
+Input image 1 is the authoritative identity and industrial-design reference for Mack. Preserve that exact little vintage compact-Mac robot design: warm textured beige case, original proportions, recessed carry handle and top ventilation slots, curved CRT-like glass with black surround, rainbow Apple badge, front floppy slot, compact underside frame, exactly four short beige articulated legs with dark joints and rounded dark rubber feet. Do not redesign her as a modern monitor, an animal, a humanoid, or a toy with eyes on the case.
+Change her pose to a comfortably settled charging posture: body lowered slightly, legs relaxed and folded naturally beside the dock, all feet resting on the floor. A low central support saddle bears the underside structural frame; do not support the robot on the electrical pins or cosmetic screen enclosure. Keep all four legs plausible and discernible, with the far leg allowed to be partly occluded.
+Design the matching charging station in the same late-1980s/1990s beige industrial aesthetic: restrained, low-profile rounded plinth with a narrow raised central cradle under Mack, discreet guide surfaces, dark anti-slip base, concealed underside charging contacts, tiny green status LED, neatly routed low-voltage cable exiting rearward. Feet have open floor space alongside the cradle. Include a small unobtrusive dock alignment panel on a low offset bracket in front of Mack, aimed toward her camera, kept below/outside the screen so the face is fully visible. It must look integrated and plausible, not a large tower or sci-fi apparatus. Add a small tasteful nameplate reading exactly "M.A.C. MODEL 04".
+Screen: preserve the original classic Mac OS 9-inspired blue desktop, gray menu bar, Macintosh HD and Trash icons, and a small classic dialog with a smiling monochrome computer icon. Dialog text exactly "Charging..." with a simple green battery indicator. No giant modern battery overlay, no human face.
+Scene: warm realistic home interior with Mack and dock placed on a wood floor near a wall; softly blurred books and a plant in the distance. Gentle natural window light, soft contact shadows, realistic matte plastic grain, rubber, metal joints and subtle curved-glass reflections.
+Camera: low three-quarter front product-photography view showing the recognizable Mac face, relaxed legs, complete dock and their physical connection. Entire robot and station comfortably within the frame, with breathing room. Landscape composition, high detail, restrained realistic optics and depth of field.
+This is an aspirational physical product rendering, not a diagram. No labels, arrows, dimensions, watermarks, extra robots, floating parts, exposed wires, glowing neon, bulky futuristic dock, or extra limbs. Preserve the original reference's charm and silhouette above all.

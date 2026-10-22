@@ -12,6 +12,15 @@ the actual body. This study does not add movement to the desktop application.
 [Concept drawing](charging-dock-concept.svg) · [battery architecture](battery-power.md)
 · [dimensional and control inputs](dock-parameters.csv).
 
+![Realistic appearance concept of Mack in a matching charging dock](../concepts/mack-charging-dock-v1.png)
+
+Appearance study generated from the original accepted Mack reference with the
+built-in image tool; [prompt and provenance](../concepts/mack-charging-dock-v1-prompt.txt).
+The low tray shown under the feet is a visual variant of the clear-floor saddle
+proposal below, not an approved mechanism. Marker placement, access, dimensions
+and electrical details still require engineering. The original robot target is
+unchanged; this rendering does not demonstrate working charging or navigation.
+
 ## Physical proposal
 
 Mack approaches facing the dock's marker, walks over a low central saddle, then

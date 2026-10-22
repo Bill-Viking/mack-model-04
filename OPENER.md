@@ -1,10 +1,10 @@
 lane: RayCue/Research
-written: 2026-10-21T20:02:23-07:00
+written: 2026-10-21T20:19:31-07:00
 by: ACT — RayCue/Research: Mac OS 9 and walking robot
 on: MAC
-head: 31821c7 (hydrogen clarification pushed; D04 dock study follows)
-status_updated: 2026-10-21T20:02:23-07:00
-where: J04 CAD and optics/recovery/power/training plans; D04 autonomous dock concept ready
+head: 6f9af02 (D04 dock study pushed; realistic dock appearance image follows)
+status_updated: 2026-10-21T20:19:31-07:00
+where: D04 dock study and realistic appearance image; original Mack target preserved
 next: measured cradle/foot/guard interface and unpowered dock fixture; docking-state mock
 depends_on: actual shell geometry, mass/center of mass and selected actuator/bearings
 open_in: /Users/bill/Projects/RayCue Mac · existing RayCue/Research chat
@@ -12,6 +12,10 @@ judgment: Preserve approved voice/local memory; geometric checks do not establis
 model: Preserve the user's model choice and read the live dial
 ---
 Read STATUS.md first. This is the current handoff; dated history remains in STATUS.md and docs/build-log.md. This chat stays active until Bill ends it.
+
+## Dock appearance image
+
+Bill requested a realistic concept of Mack resting in her dock with the original little Mac design preserved. concepts/mack-charging-dock-v1.png is the inspected 1536×1024 built-in image_gen result, made with concepts/raycue-build-target.png as the reference. Exact prompt/provenance is in concepts/mack-charging-dock-v1-prompt.txt. D04 and hardware README link it. The low foot tray is an appearance variant, not a ratified replacement for D04's clear-floor saddle; marker and contact/clearance details remain unengineered. Do not overwrite the original accepted target or claim this is a physical photograph or tested dock. Live application/voice/memory and static previews were untouched.
 
 ## Battery direction
 

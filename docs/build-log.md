@@ -251,6 +251,15 @@ P13 and staged mechanical/electrical/offline acceptance. B04 records a possible
 future fuel-cell/battery hybrid; no hydrogen fit or equal-mass endurance advantage
 has been demonstrated. No dock, navigation stack or charging software built yet.
 
+## 2026-10-21 — Mack resting in her dock
+
+Generated a [realistic dock appearance study](../concepts/mack-charging-dock-v1.png)
+using the original accepted robot image as the design reference. Preserved the
+beige compact Mac, curved face, floppy slot and four short legs; added a matching
+station and classic Charging dialog. Saved the exact prompt and tool provenance.
+The rendered foot tray is a visual alternative to D04's clear-floor saddle, not
+a fitted or approved mechanical change. No hardware performance is implied.
+
 ## What comes next
 
 - Trial everyday microphone use, disconnected reboot and the future assisted mode.

@@ -35,6 +35,8 @@ The [D04 charging dock](charging-dock.md) and [concept drawing](charging-dock-co
 propose autonomous return to a supported home station, marker-guided alignment,
 protected contacts and verified net charging. Dimensional/control inputs remain
 blank; no dock or navigation/charging controller is built yet.
+The [realistic dock appearance study](../concepts/mack-charging-dock-v1.png)
+preserves the original little Mac body and explores a matching beige station.
 
 The [B04 battery study](battery-power.md) establishes lithium-ion as the working
 power direction, compares fuel-cell overhead and two cell-size benchmarks, and
