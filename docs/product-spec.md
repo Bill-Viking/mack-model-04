@@ -20,6 +20,7 @@ The current browser desktop connects to real local AI, durable memory and read-o
 - Motion intent, added 2026-10-21: dexterous foot/body placement and self-righting after a fall. Qualify the recoverable poses and surfaces explicitly; do not promise recovery from every fall.
 - Development intent, added 2026-10-21: a modest [virtual physical practice room](motion-training.md) for walking, maneuvering, obstacles and steps. Train and test before staged hardware transfer; no current learned locomotion or stair-climbing capability is claimed.
 - Optional energy feature, added 2026-10-21: a roof solar panel if measured energy benefit justifies it. [S04](../hardware/solar-feasibility.md) evaluates supplemental charging and a larger solar dock alternative; no solar-autonomy promise or selected hardware.
+- Power direction, added 2026-10-21: develop a high-efficiency lithium-ion battery system. [B04](../hardware/battery-power.md) compares a fuel-cell alternative and defines energy, peak-power, packaging and braking requirements. Actual capacity, voltage and runtime remain unselected/unmeasured.
 - Starting enclosure: Bill's RayCue clock. Preserve its character while engineering the internal structure and base around measured loads.
 - Everyday experience: an original classic Mac-style interface over modern intelligence and robotics. Authentic vintage applications are a minor, optional mode.
 - System foundation: Linux with Mack's own interface, AI integration, memory, and robot software.

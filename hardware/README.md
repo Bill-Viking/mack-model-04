@@ -31,6 +31,11 @@ No Dell connection, native CAD import, FEA result or manufacturing order is clai
 
 ## Existing design files
 
+The [B04 battery study](battery-power.md) establishes lithium-ion as the working
+power direction, compares fuel-cell overhead and two cell-size benchmarks, and
+defines runtime assumptions, regulated loads, motor peaks and braking-energy
+requirements. Pack capacity, voltage and supplier remain unselected.
+
 The [S04 solar feasibility study](solar-feasibility.md) evaluates an optional roof
 panel against real small-panel ratings, indoor-light output and explicitly assumed
 energy scenarios. It reserves a protected panel/charger interface; actual roof fit,

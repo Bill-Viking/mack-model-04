@@ -5,8 +5,8 @@ main_compute_and_cooling,1,,,,,,,,,unselected,Benchmark voice and display within
 body_controller,1,,,,,,,,,unselected,Include required interface electronics
 audio_assembly,1,,,,,,,,,unselected,Microphone speaker amplifier and mounts
 sensor_assembly,,,,,,,,,,unselected,Include camera module and its mount; optical cover/baffles counted with display; sensor counts unselected
-battery_assembly,1,,,,,,,,,unselected,Track stored energy separately from consumption
-power_conversion_and_protection,1,,,,,,,,,unselected,Account for conversion losses without counting consumer power twice
+battery_assembly,1,,,,,,,,,B04 lithium-ion direction; pack unselected,Track usable Wh separately; include internal pack protection enclosure and connectors in pack mass
+power_conversion_and_protection,1,,,,,,,,,unselected,External electronics only if internal BMS counted with pack; account for losses without counting consumer power twice
 structural_base,1,,,,,,,,,undesigned,Frame mounts and included fasteners
 leg_actuator,12,,,,,,,,,J04 concept count; unselected,Three per leg; actual masses power and duty not measured
 leg_structure_and_foot,4,,,,,,,,,undesigned,Exclude actuators already counted above

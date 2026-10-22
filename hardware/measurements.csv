@@ -24,3 +24,6 @@ camera_window_available_width,,mm,clear optical aperture in dark surround,Field 
 roof_solar_usable_width,,mm,named contiguous roof patch excluding vents handle and guards,Optional S04 intake; annotate patch outline
 roof_solar_usable_depth,,mm,same named patch as width,Account for curvature margins mounting and wiring
 roof_solar_guard_recess,,mm,minimum panel clearance inside protective envelope,Include loaded deflection and pad compression
+battery_bay_usable_width,,mm,named cradle mounting datums after joint swept-volume keepouts,B04 intake; allow insulation retention and connectors
+battery_bay_usable_depth,,mm,same cradle datums as width,Record removal route separately
+battery_bay_usable_height,,mm,cradle support datum to nearest obstruction,Include required clearance and loaded frame deflection

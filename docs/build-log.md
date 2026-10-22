@@ -227,6 +227,20 @@ body without claiming that quadruped policies transfer unchanged to a humanoid.
 This is a future development plan. No simulation engine was installed, training
 run launched or motion capability added to the live Mack application.
 
+## 2026-10-21 — Lithium-ion power direction
+
+Bill asked about a powercell and otherwise requested a high-efficiency lithium-ion
+battery. [B04](../hardware/battery-power.md) compares hydrogen fuel-cell system
+overhead with rechargeable lithium-ion and sets the latter as the working
+direction. “Powercell” is interpreted as fuel cell pending clarification; a USB
+power-bank interpretation is also addressed. Pack voltage and capacity are open.
+
+Added 18650/21700 energy and bare-cell mass benchmarks, explicitly assumed runtime
+scenarios, a functional power diagram and requirements for local supervision,
+regulated compute, actuator peaks, returned braking energy, low-power parking and
+retention through rolling. Added battery-bay intake fields; measured budgets remain
+blank. No selected battery, circuit release, purchase or physical runtime test.
+
 ## What comes next
 
 - Trial everyday microphone use, disconnected reboot and the future assisted mode.

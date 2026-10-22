@@ -5,7 +5,7 @@ compute,Compute board,1,Not selected,Voice/display benchmark and power budget,
 audio,Microphone,1,Not selected,Interface and fit,
 audio,Speaker and amplifier,1,Not selected,Space and audio test,
 power,Compute regulator,,Not selected,Voltage and peak current,
-power,Robot battery and charging/protection,,Not selected,Energy budget and power design,
+power,Robot battery and charging/protection,,B04 lithium-ion direction; pack and topology unselected,Measured energy peak current temperature packaging and returned-energy behavior,battery-power.md
 motion,Local controller,1,Not selected,Actuator interface and timeout behavior,
 motion,Leg actuators,12,J04 concept count; actuator not selected,Measured torque speed thermal duty and joint envelope,joints/README.md
 mechanical,Joint bearings or bushings,,Not selected,Joint design,

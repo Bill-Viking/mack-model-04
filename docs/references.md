@@ -28,6 +28,12 @@ The [Mack J04 study](../hardware/joints/README.md#references-and-what-they-actua
 
 ## Build material
 
+The [B04 battery study](../hardware/battery-power.md) uses Molicel P30B/P50B
+manufacturer datasheets, Horizon's historical H-12 manufacturer manual hosted by
+Fuel Cell Store, and TI pack-management/backdrive guidance (checked 2026-10-21).
+These are component benchmarks and engineering references, not selected hardware
+or validated Mack runtime. No supplier material was copied into the repository.
+
 The [T04 motion-training plan](motion-training.md) links MuJoCo's engine, Python
 and terrain documentation, Google DeepMind's MuJoCo Playground and NVIDIA's Isaac
 Lab installation guidance (checked 2026-10-21). These inform a future small physics

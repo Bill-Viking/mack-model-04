@@ -53,6 +53,13 @@ before closing the upper shell; no camera or optical stack is selected yet.
 
 ## Electrical work package
 
+The [B04 power study](battery-power.md) uses a protected, serviceable lithium-ion
+pack low in the cradle as the working direction. It separates stored energy from
+peak-current capability and proposes regulated compute power, an independently
+controlled actuator branch and local battery supervision. Select pack voltage and
+capacity from measured loads and usable volume. Include returned motor energy,
+full-pack braking and loss-of-power behavior in R04 recovery qualification.
+
 Produce a reviewed schematic and harness/pin map covering battery protection and charging, regulated compute supply, actuator power, grounding/return paths, switching, protection devices, connectors and accessible isolation. Specify voltage/current ratings and connector keying from selected hardware; the reference clock PCB does not establish these.
 
 Test actuator transient load while compute, display and audio run. Record voltage at the consumers, current peaks, temperatures and reset behavior. Check charge/run behavior as a separate mode. No battery pack, charger, wire gauge or fuse value is selected here.
