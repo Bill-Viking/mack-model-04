@@ -8,6 +8,12 @@ fall. This study develops that requirement around the accepted four-legged Mac.
 
 ![Mack joint and recovery concept](joint-concept.svg)
 
+**First CAD draft:** [J04-C01](cad/README.md) now supplies original parametric
+hip-spread cartridge solids, STEP exports and an offline 3D viewer. Its dimensions
+are example inputs, not measured packaging or load-qualified hardware. The
+[engineering workflow](../engineering-workflow.md) takes that draft through the
+home Dell's Creo/Ansys tools, component selection and manufactured prototypes.
+
 ## Recommended architecture
 
 Use **three independently driven joints on each of four legs**, for twelve powered
@@ -202,9 +208,10 @@ proposed engineering targets, not Bill-ratified specifications or a reliability
 claim. Include ordinary placement, varied leg configurations and controlled
 low-energy tip-overs; impact-drop qualification is a separate test programme.
 
-The next build artifact is a measured parametric one-leg assembly and a restrained
-test fixture. This study supplies no printable load-bearing part, fit guarantee,
-wired controller or executable recovery policy.
+The first cartridge packaging draft is now in [cad/](cad/README.md). Next is a
+measured and component-specific joint, followed by a one-leg assembly and restrained
+test fixture. Neither this study nor the draft supplies a load-qualified printable
+part, fit guarantee, wired controller or executable recovery policy.
 
 ## References and what they actually establish
 

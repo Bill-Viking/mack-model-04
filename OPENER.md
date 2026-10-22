@@ -1,73 +1,55 @@
 lane: RayCue/Research
-written: 2026-10-21T16:41:00-07:00
+written: 2026-10-21T17:00:23-07:00
 by: ACT — RayCue/Research: Mac OS 9 and walking robot
 on: MAC
-head: 986073b (separate inputs; J04 design study follows)
-status_updated: 2026-10-21T16:41:00-07:00
-where: Separate inputs live; J04 joint/self-righting concept drafted for measured CAD
-next: bill
-depends_on: shell geometry and complete mass/center of mass for joint sizing
+head: e61d7d8 (J04 concept; CAD/workflow checkpoint follows)
+status_updated: 2026-10-21T17:00:23-07:00
+where: Original J04-C01 draft CAD and preview ready; measured fit and Dell imports next
+next: measured hardware intake and Dell tool inspection
+depends_on: actual shell geometry, mass/center of mass and selected actuator/bearings
 open_in: /Users/bill/Projects/RayCue Mac · existing RayCue/Research chat
-judgment: Preserve local memory and independent control; benchmark models and qualify offline voice before onboard claims
+judgment: Preserve approved voice/local memory; geometric checks do not establish mechanical performance
 model: Preserve the user's model choice and read the live dial
 ---
-Read STATUS.md first, then software/mack/VOICE.md, docs/personality-and-voice.md and docs/product-spec.md.
+Read STATUS.md first. This is the current handoff; dated history remains in STATUS.md and docs/build-log.md. This chat stays active until Bill ends it.
 
-Latest mechanical direction: Bill asked for dexterous joints and self-righting. hardware/joints/README.md and joint-concept.svg define a proposed 12-axis leg system, supported serviceable cartridges, compliant feet, protected cradle contacts and reserved rear recovery arm if inverted reach fails. P11 and roadmap now include recovery. Candidate ranges and numerical test targets are proposals, not approvals or measured results. No motor, fitted CAD, simulation, physical mechanism or recovery controller is qualified. Next: measured shell/mass/center of mass → collision/reach model → restrained cartridge/leg. Primary references and diagram/link/CSV/arithmetic checks recorded in STATUS. Desktop and private memory unchanged.
+## Current mechanical work
 
-Latest layout, superseding older notes: Bill asked for separate text and voice inputs. Type a message / Send text is independent of Speak to Mack / Live transcript. Finish speaking & reply ends capture and submits only voice; Turn microphone off reviews without sending, then Reply to voice message submits. Both drafts survive use of the other input. Cancel restores the prior voice draft. Explicit actions replace the old review checkbox. Side-by-side panels stack in narrow windows. 27 JS checks and isolated prerecorded browser QA pass; production SQL unchanged, Studio Display retained, unsent “hello” restored. Screenshot runtime/listening/separate-text-voice-inputs.png. QA tab/server closed; production exec74151 remains live.
+Bill wants fully designed dexterous joints and self-righting for Mack. He has personal Creo and Ansys installations on the home Dell, versions/modules unknown, and welcomes other tools for direct help. The Mac now has build123d 0.12.0 in runtime/cad/venv with Python 3.12. Do not alter the speech .venv for CAD.
 
-Acceptance: Bill confirmed “Yes, my words appear.” Real microphone/transcript acceptance is met. Source metadata accompanies new requests so the model can distinguish speech transcripts from typing. Old incorrect replies remain in history. Preserve approved voice v1 and local memory.
+hardware/joints/cad/ contains original editable J04-C01-D01 source, example JSON, STEP assembly/parts, an offline WebGL preview and geometry evidence. Six solids represent a yoke, shaft, moving hub/link, two bearing envelopes and motor block. Dimensions are entirely synthetic. Nominal envelope 40×108×100 mm; this is not a selected cartridge size. Missing coupling, shaft/bearing retention, fitted motor mount, encoder, cable path, stops, tolerances/materials and real body interfaces are documented in the CAD guide.
 
-Latest interaction: Turn microphone on → speak and see Live transcript → Turn microphone off to review → Send to Mack for her answer. At 60 seconds capture stops for review without sending. A separate Send can also finish an active recording. The live transcript box is visible even when off. Browser QA with labeled prerecorded speech verified live words, off retaining an editable transcript and no SQL change until explicit Send; production memory unchanged. 27 JS checks pass. Production reloaded, Studio Display still selected, microphone off. Ask for Bill's actual spoken result without treating the QA sample as proof of his speech. Earlier Talk to Mack / Finish & send instructions are superseded.
+Geometry checks passed: six valid solids, no unintended neutral overlap, 33 sampled link positions ±80°, minimum 10 mm clearance excluding intentional shaft contact, STEP re-import, individual STEP solids, invalid-gap/collision rejection and a resized variant. Browser motion/parts separation/view/reset/zoom checked, console clean. Not continuous clearance, strength, thermal, fatigue, walking or recovery proof.
 
-Latest interface fix: added Microphone chooser with exact device selection and browser-local persistence. Studio Display Microphone is explicitly selected in the production in-app browser, verified across reload and actual capture. Missing devices are refused without fallback; refresh enumerates without opening a mic. 27 JS checks pass, including new exact-selection and unavailable-device checks. Browser console clean. Capture cancelled; no diagnostic transcript submitted. Bill should click Talk to Mack and speak; full speech/reply acceptance remains pending. No backend or approved-voice changes.
+hardware/engineering-workflow.md defines actual loads, CAD ownership, Creo/Ansys import/analysis and staged Protolabs manufacture. hardware/dell-cad-handoff.md is a complete future Dell brief. No Dell session/connection started; no native import or FEA done. Next: clock measurements/masses/CoM, actual component envelopes, complete one-joint design and restrained fixture. No upload/quote/order made. Do not order a full set from the example solids.
 
-Latest microphone fix: MacBook lid remained closed, so changed the macOS default input from its disconnected built-in microphone to Studio Display Microphone. Verified System Settings, hardware inventory, Mack's active device label and a changing nonzero meter in the existing in-app browser. “Sound detected” appeared; intelligible speech from Bill is not yet confirmed. Cancelled the 48-second diagnostic capture without sending it. Microphone is off between turns. Bill should click Talk to Mack and speak toward the display. IAB is working for capture now; the earlier Chrome-only workaround is no longer required. Preserve his memory and voice.
+J04 architecture remains a proposal: three driven axes per leg (12), supported cartridges, compliant feet, protected cradle and conditional 13th recovery-arm axis. The tall body's inverted reach must be proven. Proposed ranges and test targets are not ratified component limits. No physical robot or controller is connected. Preserve original vendor files; all 93 hashes pass.
 
-Latest interface change: Talk to Mack shows a live local transcript during recording, with one preview request about every second, a sound indicator and a final full transcription before submission. Warm recognition is measured at 0.14–0.23 seconds on short test samples; first startup took 1.87 seconds. Prerecorded browser QA showed words at the two-second mark and verified final review/cancellation; this is not Bill's physical mic acceptance. 66 Python + 25 JS checks pass. The built-in mic remains selected and the lid was still closed at 14:42. Bill has a pending trial prompt to open the lid and test the live words. Preserve his memory and accepted voice.
+## Live pages
 
-Latest research: docs/model-strategy.md now covers downloadable Muse Glimmer 30B, Qwen3.8-27B, Gemma 4 and EmbeddingGemma 2. Glimmer/Qwen are the recommended first Mac comparison; no new weights are installed or selected. Muse Spark Open is now downloadable but far too large here. NVIDIA Bolt E4B is only announced for October 23. Preserve the approved voice and existing memory while evaluating candidates in isolated data.
+Mack: http://127.0.0.1:9844/ — exec74151, PID44486 when last checked.
+CAD preview: http://127.0.0.1:9847/preview.html — exec42944, PID68775 when last checked; serves only hardware/joints/cad/exports. Keep it available for Bill. Offline preview.html is self-contained.
 
-WHERE WE ARE
+Always resolve current PIDs before process actions. Never stop shared Ollama. Previous QA servers and the old drawing preview9846 are stopped. Private CAD screenshot: runtime/cad/j04-c01-separated.png.
 
-Goal: Mack is a personalized intelligence with her own Linux-based system, a classic Mac desktop, local AI and lasting memory. The first body is the four-legged Mac; a humanoid body is the long-term goal, years away. She keeps her identity and memory across models, voice engines and bodies.
+## Accepted interaction and voice
 
-1. Local Qwen3.6:35b conversation, SQLite memory, editable Memories/Trash and read-only status/clock/memory-search tools work on Bill's M2 Max.
-2. Qwen3-TTS 1.7B Base now generates new speech from Bill's selected SAL reference clip locally. MLX Audio 0.6.1 is isolated in .venv. The pinned model, clip, transcript and outputs are private ignored files.
-3. Bill approved the second light-echo audition: “that’s it, lock that voice in.” Mack voice v1 is now the default. The versioned software/mack/voice-profile.json drives synthesis and guards the reference, transcript and installation recipe. The accepted recording is preserved privately. The live browser selects Approved v1 · light echo with automatic reading on. Do not continue tuning or request approval again for this voice.
-4. The desktop verifies Preparing voice → actual Speaking, Stop, completion and saved preferences. 50 Python + 15 JS checks pass. A default API request reproduced the accepted WAV byte-for-byte on this Mac after locking. Production memory is unchanged across restarts and auditions.
+Bill confirmed his real words appear in Live transcript. Studio Display Microphone is the explicit persisted input; earlier built-in-microphone failures and blanket Chrome-only advice are superseded.
 
-Bill has accepted the sound. Preserve voice v1 while progressing toward full offline speech and the wider product. Future voice changes should use a separate version and compare against the preserved audition. Acceptance records Bill’s listening judgment, not an independently measured exact film match. Conversational restraint still needs tuning: Qwen sometimes adds unnecessary offers or questions.
+Two independent input panels are live: Type a message / Send text, and Speak to Mack / Live transcript. Finish speaking & reply sends the voice draft; Turn microphone off reviews it, then Reply to voice message sends. Cancel restores only the earlier voice draft. Unsent typed text survives voice use. The final layout passed 27 JS checks and isolated browser QA; production SQL was unchanged through deployment. Bill's last unsent typed draft was “hello”; do not reset it while doing CAD work.
 
-LIVE SERVICE
+Approved voice v1 is locked. Qwen3-TTS 1.7B Base with pinned MLX Audio 0.6.1 reproduces Bill's accepted light-echo greeting on this Mac. software/mack/voice-profile.json is the public recipe/fingerprint record. Private reference and approved recording remain outside Git. Do not retune or ask for acceptance again. Approved audition SHA256: 6192f95cd23edf174d3451619cfc6f1647e5e6ec0e3a1f85f8f84c0b5164a1fb.
 
-http://127.0.0.1:9844/ stays running for Bill, unified-exec session 1868, PID 94662 at deployment. Resolve the current PID before any process action. The isolated transcript QA server/tab have been stopped. Both production views were reloaded. Never stop the shared Ollama service.
+Local Qwen3-ASR-0.6B-8bit handles bounded capture and live provisional transcription; completed exchanges are archived in runtime/mack/memory.sqlite3. Source provenance distinguishes typed/microphone/edited transcripts. Keep existing personal data and old conversations intact. Curated memories and Conversations support recoverable Trash. No audio reference, recording, weights, SQLite database or credentials belong in Git.
 
-PRIVATE LOCAL ASSETS
+Conversation uses installed Qwen3.6:35b. Process-scoped internet-denied ASR, recall and speech tests passed; disconnected reboot, wider quality/latency and Linux/onboard qualification remain open. Everyday use and the mock-body contract remain software work. New model research is in docs/model-strategy.md; no newly researched weights were downloaded or selected.
 
-runtime/mack/memory.sqlite3 contains personal memory/history. runtime/voice/config.json points to a hash-checked WAV and fixed local model. runtime/voice/auditions/mack-first-hello.wav is the dry audition (6.08 seconds); mack-film-study.wav is the second (6.25 seconds, actual API generation 4.6 seconds). Original reference and provenance are in private-media/sal-reference/. A content-addressed copy is in private-media/voice-reference/. The accepted baseline is runtime/voice/approved/mack-voice-v1/audition.wav (SHA256 6192f95cd23edf174d3451619cfc6f1647e5e6ec0e3a1f85f8f84c0b5164a1fb), alongside reference/transcript/configuration copies. verification.wav is a later identical test output; the original accepted sample was not replaced. Neither media, transcripts, weights nor databases belong in Git. Generated speech jobs use temporary directories that are removed after the request.
+## Product and public record
 
-Voice synthesis uses offline model-loading flags and no cloud fallback. Local input is implemented and OS-scoped offline tests pass. Bill’s live microphone acceptance, disconnected reboot, streaming, warm-model optimization and Linux/onboard qualification remain open. A private Whisper Tiny spot check hallucinated repetitions over silence; it is not an accepted evaluator or connected speech-input feature.
+Mack is her own Linux-based personal system with a classic Mac interface, durable local memory and optional future cloud assistance. First body: little four-leg Mac. Long-term: preserve the personalized intelligence and history into a humanoid body, years away. Each body needs its own tested controller. Continuum, Terrarium and Exocortex are proposed separate services.
 
-LOCAL LISTENING — CURRENT TURN
+Public repository: https://github.com/Bill-Viking/mack-model-04. Bill controls edits; only Bill-Viking was listed as collaborator/admin, no pending invitations, when checked. No account-wide permissions/visibility change was made. Preserve all separate no-remote project rules.
 
-Local Qwen3-ASR-0.6B-8bit is installed under runtime/listening/ and connected to Talk to Mack → Finish & send → local model → approved voice. The old online browser dictation path is removed. Recordings are temporary, at most 60 seconds; cancellation/timeout releases tracks/processes. Conversation archive is durable, searchable and recoverable, with schema-2 migration preserving old records. New Conversation no longer deletes history. AI recall is bounded word matching with the existing fact-edit boundary.
+Resonance already published the approved personalized-intelligence vision posts and the approved greeting video once on Facebook and X. Facebook retained Friends; X Public. Exact permalinks/proofs are in the private application receipts mack-vision-publications-20261021.context.json and mack-voice-publications-20261021.context.json. Do not duplicate those posts.
 
-63 Python + 21 JS checks pass. OS-scoped offline tests passed for transcription, exact approved synthesis, and isolated Qwen3.6 archive recall after restart. See software/mack/LISTENING.md for model revision, setup, timings and limits. The shared Ollama service was untouched.
-
-Bill says his microphone did not work. Chrome permission is allowed; changed its input from Bose NC 700 UC backup to MacBook Pro Microphone (Built-in), explicitly requested by Bill. Chrome spoken replies are now on. Await Bill's real result; typed messages and a model saying it heard him are not microphone evidence. IAB microphone startup timed out. Production Chrome tab 1005073246 at port9844 is the trial; preserve it. Final input-device-name/status and honest-input instructions are now live after idle restart/reload. QA server port9845 is stopped and temporary QA tab9 is closed. The actual input blocker is now identified: AppleClamshellState=Yes, so the MacBook built-in microphone is physically disconnected by the closed lid. Studio Display Microphone is available. Await Bill’s choice to switch to it or open the lid, then verify real spoken input and audible reply.
-
-NEXT PRODUCT WORK
-
-Keep the accepted voice v1. Qualify disconnected speech, then fully local speech recognition and an enforced offline/assisted routing policy. Build and verify the mock-body contract, then measured packaging/mass/power budgets. The RayCue model, actual dimensions/mass, actuators, controller, sensors and battery remain unselected. No sensors or motors are connected. Continuum, Terrarium and Exocortex remain proposed separate services; preserve their project boundaries and do not copy the private Agent 99 personality into this public repo.
-
-PUBLIC WORK
-
-https://github.com/Bill-Viking/mack-model-04 is public. The README, specification and architecture make personalized intelligence and eventual humanoid embodiment explicit. docs/public-introduction.md holds approved Facebook/X copy. Resonance confirmed both posts were published once and verified after reload. Facebook retained Friends audience; X is Public. Exact permalinks and proofs live in Resonance's private application report mack-vision-publications-20261021.context.json. Do not duplicate either post.
-
-Bill's repository rule is public viewing with editing under his control. For Mack, GitHub lists only Bill-Viking as a collaborator (admin), with no pending invitations, verified 2026-10-21. Do not grant others write access. Assistants act on Bill's behalf within authorized work. Preserve the separate private/local-only rules for other projects; this was not a bulk visibility change or an account-wide permissions audit.
-
-Bill subsequently authorized the approved voice clip on Facebook and X. Resonance published one playable title-card video on each, retaining Facebook Friends / X Public, with AI labels and the project link. Both were reloaded and playback-checked. Exact links and screenshots are in the private receipt mack-voice-publications-20261021.context.json. Original baseline WAV is unchanged. Do not repeat these voice posts.
-
-Keep the loose root PNG untracked. Keep vendor snapshots and notices unchanged. No iCloud writes. This chat remains active until Bill ends it.
+Keep the loose root PNG untracked. No iCloud writes. Update STATUS/this opener with the next verified result; do not archive or stamp off just because one turn ends.

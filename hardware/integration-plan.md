@@ -53,6 +53,11 @@ Test actuator transient load while compute, display and audio run. Record voltag
 
 ## Mechanical proof sequence
 
+The [engineering workflow](engineering-workflow.md) defines CAD ownership, the
+home Dell import/analysis work and staged manufacturing. The first
+[J04-C01 model](joints/cad/README.md) is example cartridge geometry; it does not
+replace the measured intake or qualify the joint's missing mechanical interfaces.
+
 Fit models → one supported joint → one restrained loaded leg → four-leg base with representative dummy mass → complete stationary Mack → restrained integrated motion → supervised floor walking. Save CAD revision, parts, firmware, calibration, measured load, surface, limit settings and results for each test.
 
 Before each powered test, set the numerical pass limits for that configuration. Do not mark a gait qualified from animation or simulation. Confirm stability, grip, joint heating, current, cable clearance, loosened fasteners and stopping/recovery through repeated runs.

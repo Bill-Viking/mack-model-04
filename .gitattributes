@@ -7,3 +7,5 @@ vendor/*/SOURCE.md whitespace
 *.webp binary
 *.stl binary
 *.step -text
+# Keep the CAD kernel's generated STEP formatting intact.
+hardware/joints/cad/exports/*.step -whitespace

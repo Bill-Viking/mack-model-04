@@ -73,7 +73,7 @@ Real vintage Mac applications are an optional extra. A separate emulator may eve
 
 ## Where the project stands
 
-The desktop, local AI conversation and durable memory run on the host Mac. The repository also contains the concept, architecture, model research, build plan, hardware intake sheets, and pinned upstream source material. A working leg and verified electrical design remain to be built.
+The desktop, local AI conversation and durable memory run on the host Mac. The repository also contains the concept, architecture, model research, build plan, hardware intake sheets, the first original parametric joint cartridge study, and pinned upstream source material. A working leg and verified electrical design remain to be built.
 
 - **Ready:** the interactive desktop, local Qwen conversation, durable editable memories and conversation archive, local speech input, bounded read-only tools, she/her identity and SAL-inspired personality, installed-model selection, optional local speech output, expression previews, accepted concept and pinned CAD/PCB/robot references.
 - **Next software milestone:** test everyday microphone use, evaluate model quality/latency, and implement the explicitly simulated body contract. Continuum, Terrarium and Exocortex adapters are proposed separate services.
@@ -93,6 +93,8 @@ The desktop, local AI conversation and durable memory run on the host Mac. The r
 | [References and reuse](docs/references.md) | Which projects we use, what we brought in, and what needs adaptation. |
 | [Hardware workspace](hardware/README.md) | CAD/PCB entry points, measurements, and candidate parts. |
 | [Joints and self-righting](hardware/joints/README.md) | Proposed three-axis legs, serviceable joints, body protection and recovery tests. |
+| [First joint CAD](hardware/joints/cad/README.md) | Editable cartridge study, STEP solids and an offline 3D preview; example dimensions only. |
+| [Engineering and manufacture](hardware/engineering-workflow.md) | Scripted CAD, home Dell Creo/Ansys work, load cases and a staged Protolabs prototype route. |
 | [Hardware integration](hardware/integration-plan.md) | Fitted electronics, sensors, structure, power, and physical proof sequence. |
 | [Software workspace](software/README.md) | Intended components and the Continuum code to evaluate first. |
 | [Research notes](docs/research-notes.md) | Earlier investigation, printer/material recommendations, and source discrepancies. |

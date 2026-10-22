@@ -23,4 +23,9 @@ Local AI 0.3 covers the desktop/runtime boundary, persistent facts and conversat
 
 The existing bezel is printable reference material. The robot picture does not contain printable leg geometry. Imported Continuum tests and abstractions can be evaluated before adopting code; no upstream geometry or limits are accepted without Mack-specific validation.
 
-No purchase-ready BOM, leg CAD, bootable device image, or live Mack motor driver exists yet. Each gate will carry its own revision, test conditions, results and remaining limits.
+The first [J04-C01 cartridge CAD](../hardware/joints/cad/README.md) now provides
+example solids and geometry checks. The [engineering workflow](../hardware/engineering-workflow.md)
+covers the home Dell's Creo/Ansys tools and staged manufactured prototypes. G1 and
+G5 remain open: no fitted complete-leg CAD, purchase-ready BOM, bootable device
+image or live Mack motor driver exists yet. Each gate will carry its own revision,
+test conditions, results and remaining limits.

@@ -12,6 +12,19 @@ rear recovery-arm interface. It includes a [concept drawing](joints/joint-concep
 load calculations to perform and a staged recovery test plan. This is a design
 proposal, not printable load-qualified CAD.
 
+## Direct CAD and the Dell engineering tools
+
+The [first J04-C01 cartridge](joints/cad/README.md) has editable build123d source,
+example parameters, STEP solids and an interactive offline preview. The Mac can
+generate and check this geometry directly. It is an untoleranced packaging study;
+the RayCue dimensions and purchased components remain unknown.
+
+Bill's home Dell has personal Creo and Ansys installations. The
+[engineering workflow](engineering-workflow.md) defines their roles, load cases,
+prototype sequence and Protolabs release package. The [Dell brief](dell-cad-handoff.md)
+starts with actual version/module inspection and a neutral-format import trial.
+No Dell connection, native CAD import, FEA result or manufacturing order is claimed.
+
 ## Existing design files
 
 - [Screen bezel STL](../vendor/macintosh-mini/maclock-screen-bezel/maclock-screen-bezel.stl): upstream printable frame and clips.

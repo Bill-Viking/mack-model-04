@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Mack · J04 joint study</title>
+<style>
+:root{color-scheme:light;--ink:#283c45;--muted:#5d6d70;--line:#d4d6cb;--paper:#f5f3e9;--blue:#356c7a}
+*{box-sizing:border-box}body{margin:0;background:var(--paper);color:var(--ink);font:15px/1.5 -apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
+header{padding:25px 32px 18px;border-bottom:1px solid var(--line);display:flex;gap:18px;align-items:center;justify-content:space-between}
+.plate{font:11px/1.5 ui-monospace,monospace;letter-spacing:.13em;text-transform:uppercase;color:var(--muted)}
+h1{font-size:28px;font-weight:550;letter-spacing:-.7px;margin:3px 0}h2{font-size:17px;margin:0 0 10px;font-weight:600}
+p{margin:9px 0}.badge{font-size:11px;letter-spacing:.09em;background:#e9dfbf;border:1px solid #c3b389;padding:8px 11px;border-radius:3px;text-align:center;max-width:235px}
+main{display:grid;grid-template-columns:minmax(0,1fr) 320px;max-width:1600px;margin:auto}
+.workspace{padding:22px;min-width:0}.scene{height:565px;min-height:380px;position:relative;border:1px solid var(--line);border-radius:5px;background:#eeeee4;overflow:hidden}
+canvas{display:block;width:100%;height:100%;touch-action:none;cursor:grab}canvas:active{cursor:grabbing}canvas:focus-visible{outline:3px solid var(--blue);outline-offset:-4px}
+.scene-label{position:absolute;left:20px;top:16px;pointer-events:none;font-size:12px;color:var(--muted)}
+.scene-label strong{display:block;font-weight:600;color:var(--ink)}.hint{position:absolute;bottom:15px;right:18px;pointer-events:none;color:var(--muted);font-size:12px}
+.toolbar{display:flex;flex-wrap:wrap;gap:8px;margin:14px 0;align-items:center}button,.download{font:inherit;font-size:13px;border:1px solid #abb6b3;background:#fcfcf6;color:var(--ink);border-radius:3px;padding:7px 12px;cursor:pointer;text-decoration:none}
+button:hover,.download:hover{background:#e4eae5}button:focus-visible,input:focus-visible,a:focus-visible{outline:3px solid #629da9;outline-offset:2px}
+.angle-control{padding:14px 17px;border:1px solid var(--line);border-radius:4px;background:#faf9f2}.angle-heading{display:flex;justify-content:space-between;gap:10px}output{font:600 17px ui-monospace,monospace;color:var(--blue)}
+input[type=range]{width:100%;margin:12px 0 0;accent-color:var(--blue)}input[type=checkbox]{accent-color:var(--blue)}
+.ticks{display:flex;justify-content:space-between;color:var(--muted);font-size:11px}.muted{color:var(--muted);font-size:13px}.note{margin:12px 0 0;max-width:750px}
+aside{border-left:1px solid var(--line);padding:25px 24px}.section{padding-bottom:22px;margin-bottom:21px;border-bottom:1px solid var(--line)}
+.legend{list-style:none;margin:12px 0 0;padding:0}.legend li{display:flex;align-items:center;gap:10px;margin:9px 0;font-size:13px}.swatch{width:12px;height:12px;border-radius:50%;border:1px solid #0002;flex-shrink:0}
+.metric{font:25px ui-monospace,monospace;color:var(--blue);margin:8px 0 3px}.smallcaps{font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+.download{display:inline-block;margin-top:8px}.check{font-size:13px;margin:8px 0}.check::before{content:'✓';color:#426759;margin-right:7px}
+footer{padding:14px 32px;border-top:1px solid var(--line);color:var(--muted);font:11px/1.6 ui-monospace,monospace}
+@media(max-width:900px){main{grid-template-columns:1fr}aside{border-left:0;border-top:1px solid var(--line);display:grid;grid-template-columns:1fr 1fr;gap:24px}.section{margin:0}.scene{height:460px}header{padding:20px}h1{font-size:24px}}
+@media(max-width:550px){header{align-items:flex-start;flex-direction:column;gap:8px}.workspace{padding:12px}aside{display:block;padding:20px}.section{margin-bottom:20px}.scene{height:390px}.hint{max-width:150px;text-align:right}.badge{max-width:none}.scene-label{left:12px}.toolbar{gap:6px}}
+</style>
+</head>
+<body>
+<header><div><div class="plate">M.A.C. Model 04 / Mechanical development</div><h1>The first joint, in three dimensions.</h1><div class="muted">J04-C01 · Hip-spread cartridge · Draft D01</div></div><div class="badge">EXAMPLE DIMENSIONS<br>NOT FOR MANUFACTURE</div></header>
+<main>
+<section class="workspace" aria-label="Interactive joint model">
+<div class="scene">
+<canvas id="model" tabindex="0" aria-label="Joint model. Drag to rotate; use arrow keys to rotate, plus and minus to zoom. View buttons are below."></canvas>
+<div class="scene-label"><strong id="view-state">Assembled · nominal geometry</strong><span id="size"></span></div>
+<div class="hint">Drag to rotate · scroll to zoom<br>Millimetres · local shaft axis Z</div>
+</div>
+<div class="toolbar" aria-label="View controls"><button id="iso">Isometric</button><button id="end">Shaft end</button><button id="side">Side</button><button id="reset">Reset view</button><label class="muted"><input id="explode" type="checkbox"> Separate parts</label></div>
+<div class="angle-control"><div class="angle-heading"><label for="angle">Explore hip-spread motion</label><output id="angle-value" for="angle">0°</output></div><input type="range" id="angle" min="-80" max="80" value="0" step="1"><div class="ticks"><span>−80°</span><span>Neutral</span><span>+80°</span></div></div>
+<p class="muted note" id="motion-note">This moves the nominal output link only. It is a geometry preview, with no motor, physics or self-righting controller running.</p>
+</section>
+<aside>
+<div class="section"><h2>A supported output</h2><p class="muted">Two spaced bearing envelopes sit in a rigid yoke. The shaft and central link show the proposed load path; the dark block reserves room for a motor.</p><ul class="legend" id="legend"></ul></div>
+<div class="section"><h2>Geometry check</h2><div class="metric" id="clearance"></div><div class="smallcaps">Smallest sampled link clearance</div><p class="check" id="poses"></p><p class="check">6 valid solids after STEP re-import</p><p class="muted">Clearance excludes the intentional shaft contact. Missing cables, fasteners, stops and coupling can change the result.</p></div>
+<div class="section"><h2>What comes next</h2><p class="muted">Measure the clock and mass distribution. Select the actuator and bearings. Add retention, coupling and cable routing before structural analysis and a restrained joint test.</p><a class="download" href="j04-c01-draft.step" download>Download draft STEP</a></div>
+<p class="muted">No material, motor, bearing fit or load rating is approved. The assembly is an original packaging study.</p>
+</aside>
+</main>
+<footer>J04-C01-D01 · build123d geometry · Offline viewer, no external dependencies · Mack engineering study / 2026-10-21</footer>
+<script>
+"use strict";
+const data = /* MODEL_DATA */;
+const canvas = document.getElementById('model');
+const gl = canvas.getContext('webgl', {antialias:true, alpha:false});
+if(!gl){canvas.insertAdjacentText('afterend','This browser cannot display WebGL. The STEP download remains available.');throw new Error('WebGL unavailable');}
+function shader(type, source){const result=gl.createShader(type);gl.shaderSource(result,source);gl.compileShader(result);if(!gl.getShaderParameter(result,gl.COMPILE_STATUS))throw new Error(gl.getShaderInfoLog(result));return result;}
+const program=gl.createProgram();
+gl.attachShader(program,shader(gl.VERTEX_SHADER,'attribute vec3 position; attribute vec3 color; varying vec3 tint; void main(){gl_Position=vec4(position,1.0);tint=color;}'));
+gl.attachShader(program,shader(gl.FRAGMENT_SHADER,'precision mediump float; varying vec3 tint; void main(){gl_FragColor=vec4(tint,1.0);}'));
+gl.linkProgram(program);if(!gl.getProgramParameter(program,gl.LINK_STATUS))throw new Error(gl.getProgramInfoLog(program));
+gl.useProgram(program);const buffer=gl.createBuffer();gl.bindBuffer(gl.ARRAY_BUFFER,buffer);
+for(const [name,offset] of [['position',0],['color',12]]){const index=gl.getAttribLocation(program,name);gl.enableVertexAttribArray(index);gl.vertexAttribPointer(index,3,gl.FLOAT,false,24,offset);}
+gl.enable(gl.DEPTH_TEST);gl.clearColor(238/255,238/255,228/255,1);
+const $ = id => document.getElementById(id);
+const labels = {yoke:'Yoke / draft structural geometry',shaft:'Shaft / nominal solid',output_link:'Output hub and link / moving',bearing_rear:'Rear bearing / envelope only',bearing_front:'Front bearing / envelope only',motor_envelope:'Motor / envelope only'};
+for (const part of data.parts) {
+  const li=document.createElement('li'), swatch=document.createElement('span');
+  swatch.className='swatch'; swatch.style.background=part.color;li.append(swatch,document.createTextNode(labels[part.name]));$('legend').append(li);
+}
+$('size').textContent=data.report.assembly_size_mm.map(v=>Number(v.toFixed(1))).join(' × ')+' mm · neutral envelope';
+$('clearance').textContent=data.report.sampled_link_clearance_mm.toFixed(1)+' mm';
+$('poses').textContent=data.report.sampled_angles_deg.length+' sampled poses without solid overlap';
+$('angle').min=data.parameters.sweep_min_deg;$('angle').max=data.parameters.sweep_max_deg;
+let yaw=.72,pitch=.3,zoom=1,angle=0,exploded=false,width=1,height=1;
+const offsets={yoke:0,shaft:130,output_link:70,bearing_rear:-20,bearing_front:20,motor_envelope:-35};
+function view(v){const x=Math.cos(yaw)*v[0]+Math.sin(yaw)*v[2],d=-Math.sin(yaw)*v[0]+Math.cos(yaw)*v[2];return [x,Math.cos(pitch)*v[1]-Math.sin(pitch)*d,Math.sin(pitch)*v[1]+Math.cos(pitch)*d];}
+function draw(){
+  gl.clear(gl.COLOR_BUFFER_BIT|gl.DEPTH_BUFFER_BIT);
+  const scale=Math.min(width/195,height/190)*zoom*(exploded?.8:1);
+  const project=p=>[2*p[0]*scale/width,2*(p[1]*scale-5)/height,-p[2]/400];
+  const lines=[];
+  for(let i=-120;i<=120;i+=20){for(const axis of [0,2]){const a=[-120,-47,-120],b=[120,-47,120];a[axis]=i;b[axis]=i;for(const v of [a,b])lines.push(...project(view(v)),.83,.85,.81);}}
+  gl.bufferData(gl.ARRAY_BUFFER,new Float32Array(lines),gl.DYNAMIC_DRAW);gl.drawArrays(gl.LINES,0,lines.length/6);
+  const vertices=[];const rad=angle*Math.PI/180;
+  for(const part of data.parts){
+    const points=part.vertices.map(vertex=>{let [x,y,z]=vertex;if(part.name==='output_link'){[x,y]=[x*Math.cos(rad)-y*Math.sin(rad),x*Math.sin(rad)+y*Math.cos(rad)];}if(exploded)z+=offsets[part.name]-30;return view([x,y,z]);});
+    for(const indices of part.triangles){const p=indices.map(i=>points[i]);const u=p[1].map((v,i)=>v-p[0][i]),v=p[2].map((v,i)=>v-p[0][i]);const n=[u[1]*v[2]-u[2]*v[1],u[2]*v[0]-u[0]*v[2],u[0]*v[1]-u[1]*v[0]];const norm=Math.hypot(...n);if(norm<1e-9)continue;const light=.56+.36*Math.abs((-.3*n[0]+.5*n[1]+.81*n[2])/norm);const rgb=[1,3,5].map(i=>Math.min(1,(parseInt(part.color.slice(i,i+2),16)*light+15)/255));for(const vertex of p)vertices.push(...project(vertex),...rgb);}
+  }
+  gl.bufferData(gl.ARRAY_BUFFER,new Float32Array(vertices),gl.DYNAMIC_DRAW);gl.drawArrays(gl.TRIANGLES,0,vertices.length/6);
+}
+function resize(){const r=canvas.getBoundingClientRect(),dpr=Math.min(devicePixelRatio||1,2);width=r.width;height=r.height;canvas.width=Math.round(width*dpr);canvas.height=Math.round(height*dpr);gl.viewport(0,0,canvas.width,canvas.height);draw();}
+new ResizeObserver(resize).observe(canvas);
+$('angle').addEventListener('input',e=>{angle=Number(e.target.value);$('angle-value').value=angle+'°';draw();});
+$('explode').addEventListener('change',e=>{exploded=e.target.checked;$('view-state').textContent=exploded?'Separated parts · illustrative spacing':'Assembled · nominal geometry';$('motion-note').textContent=exploded?'Parts are displaced for inspection. Their separated positions are not part of the clearance check.':'This moves the nominal output link only. It is a geometry preview, with no motor, physics or self-righting controller running.';draw();});
+$('iso').onclick=()=>{yaw=.72;pitch=.3;draw();};$('end').onclick=()=>{yaw=0;pitch=0;draw();};$('side').onclick=()=>{yaw=Math.PI/2;pitch=0;draw();};
+$('reset').onclick=()=>{yaw=.72;pitch=.3;zoom=1;angle=0;exploded=false;$('angle').value='0';$('angle-value').value='0°';$('explode').checked=false;$('explode').dispatchEvent(new Event('change'));};
+let drag=null;
+canvas.addEventListener('pointerdown',e=>{drag={id:e.pointerId,x:e.clientX,y:e.clientY};canvas.setPointerCapture(e.pointerId);});
+canvas.addEventListener('pointermove',e=>{if(!drag||drag.id!==e.pointerId)return;yaw+=(e.clientX-drag.x)*.008;pitch=Math.max(-1.4,Math.min(1.4,pitch+(e.clientY-drag.y)*.008));drag.x=e.clientX;drag.y=e.clientY;draw();});
+canvas.addEventListener('pointerup',()=>drag=null);canvas.addEventListener('pointercancel',()=>drag=null);
+canvas.addEventListener('wheel',e=>{e.preventDefault();zoom=Math.max(.45,Math.min(2.5,zoom*Math.exp(-e.deltaY*.001)));draw();},{passive:false});
+canvas.addEventListener('keydown',e=>{if(!['ArrowLeft','ArrowRight','ArrowUp','ArrowDown','+','=','-'].includes(e.key))return;e.preventDefault();if(e.key==='ArrowLeft')yaw-=.1;if(e.key==='ArrowRight')yaw+=.1;if(e.key==='ArrowUp')pitch=Math.min(1.4,pitch+.1);if(e.key==='ArrowDown')pitch=Math.max(-1.4,pitch-.1);if(e.key==='+'||e.key==='=')zoom=Math.min(2.5,zoom*1.1);if(e.key==='-')zoom=Math.max(.45,zoom/1.1);draw();});
+</script>
+</body>
+</html>

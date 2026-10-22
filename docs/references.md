@@ -28,6 +28,14 @@ The [Mack J04 study](../hardware/joints/README.md#references-and-what-they-actua
 
 ## Build material
 
+The [CAD guide](../hardware/joints/cad/README.md) records build123d 0.12.0 as a
+development dependency installed from PyPI. Original J04 source is outside
+`vendor/`; no upstream joint CAD was copied. The
+[engineering workflow](../hardware/engineering-workflow.md) links primary PTC,
+Ansys and Protolabs documentation reviewed on 2026-10-21. Those are workflow and
+process references, not proof of Dell license capabilities or a manufacturing
+release. The pinned imported-source manifest remains unchanged.
+
 - [Original WonderMac video](https://www.youtube.com/watch?v=dRr5iVjMfqs).
 - [Macintosh Mini build video](https://www.youtube.com/watch?v=zAbAf5-H5Yo).
 - [Waveshare 2.8-inch DPI panel](https://www.waveshare.com/2.8inch-dpi-lcd.htm) and [setup documentation](https://www.waveshare.com/wiki/2.8inch_DPI_LCD).

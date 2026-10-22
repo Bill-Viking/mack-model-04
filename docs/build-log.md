@@ -157,6 +157,23 @@ The concept drawing is an original schematic. No fitted CAD, motor selection,
 physical prototype, simulation result or working self-righting policy is claimed.
 Measure the donor clock and assembly mass before the one-leg fixture is designed.
 
+## 2026-10-21 — The first editable joint model
+
+The [J04-C01 draft](../hardware/joints/cad/README.md) adds the first original
+editable joint geometry: a yoke, supported shaft, output link, two bearing
+envelopes and a motor envelope. The example generates on the Mac with build123d
+0.12.0, exports STEP and supplies a standalone rotatable preview. Six valid solids
+survive export/re-import; 33 sampled positions from −80° to +80° have no nominal
+link interference. The smallest sampled clearance is 10 mm, excluding intentional
+shaft contact. These are synthetic dimensions and geometric checks, not load or
+recovery results.
+
+Bill confirmed Creo and Ansys are on his home Dell and welcomed other tools that
+enable direct design work. Added an [engineering workflow](../hardware/engineering-workflow.md)
+and [Dell brief](../hardware/dell-cad-handoff.md) covering actual installation
+inspection, source ownership, measured inputs, structural/contact analysis and a
+first manufactured joint/leg. No hardware purchase or vendor upload was made.
+
 ## What comes next
 
 - Trial everyday microphone use, disconnected reboot and the future assisted mode.
