@@ -28,6 +28,11 @@ The [Mack J04 study](../hardware/joints/README.md#references-and-what-they-actua
 
 ## Build material
 
+The [T04 motion-training plan](motion-training.md) links MuJoCo's engine, Python
+and terrain documentation, Google DeepMind's MuJoCo Playground and NVIDIA's Isaac
+Lab installation guidance (checked 2026-10-21). These inform a future small physics
+practice room. No simulator, example robot, policy or dependency was imported.
+
 The [S04 solar study](../hardware/solar-feasibility.md) uses Voltaic P124's
 August 2026 datasheet, Epishine MultiCell v1.6.5, Raspberry Pi's own load discussion
 and TI's solar-charger documentation (checked 2026-10-21). Panel output is kept

@@ -139,6 +139,13 @@ Stopping may require a controlled stance or another body-specific response. Simp
 
 ## Physical integration
 
+The [virtual practice room](motion-training.md) is the proposed physics-training
+track for walking, maneuvering, obstacles, steps and recovery. It is distinct
+from the lightweight mock adapter used to test this service contract. A motion
+policy, whether engineered or learned, remains below the named-skill boundary
+and within the local controller's independent limits. Training truth and episode
+logs must remain labeled as simulation, separate from personal conversation memory.
+
 The main computer handles display, voice and behavior. A separate local controller handles the body. The base carries structural loads through a designed frame; the decorative clock enclosure is not assumed to support leg loads. Battery position, joint travel, cable routes, antenna clearance, cooling and service access are part of one packaging model.
 
 Power design must distinguish compute/audio/sensor requirements from actuator peak demand. Regulated rails, protection, charging, return-current paths, connectors, and startup/brownout behavior need a reviewed schematic and measured load tests. The imported Macintosh Mini board is reference material, not approved robot wiring. See the [hardware plan](../hardware/integration-plan.md).

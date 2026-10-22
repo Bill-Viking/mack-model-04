@@ -17,7 +17,7 @@ measured inputs, selected components, analysis and physical trials.
 | build123d on the Mac | Scripted dimensions, solid geometry, variants, STEP exports and geometry checks. | The D01 example generates and re-imports on Mac arm64/Python 3.12. New variants must be checked separately. |
 | Creo on the home Dell | Detailed native parts, assembly datums, mechanisms, drawings and tolerances if selected as the next design master. | Exact version, installed capabilities, import units/solids and regeneration recorded locally. |
 | Ansys on the home Dell | Structural/contact models and other analyses available in the installed modules. | Exact solver/modules, material data, boundary conditions, mesh convergence and correlation recorded. |
-| Later multibody simulator | Leg workspace, ground contact, whole-body balance and candidate recovery trajectories. | Model identity, mass/inertia, actuator dynamics and friction matched to bench data; no simulator selected yet. |
+| Proposed MuJoCo/Python practice room | Leg workspace, contacts, balance, obstacle/step curriculum and candidate recovery policies; see [T04](../docs/motion-training.md). | No installation yet. Check model identity/units, mass/inertia, actuator behavior and friction against bench data; policy transfer still needs physical qualification. |
 | Protolabs or another reviewed fabricator | Process review, quotes and manufactured prototype parts. | Revision-specific quote, material/process/critical dimensions accepted before an order. |
 
 The assistant can edit and run the scripted CAD here. Direct native Creo/Ansys

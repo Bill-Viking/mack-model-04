@@ -214,6 +214,19 @@ Reserved intake fields and panel/charger budget entries. The panel must sit insi
 the rollover guards without taking ground loads or blocking cooling. No panel,
 battery or charger selected, installed or ordered; no autonomy claim is made.
 
+## 2026-10-21 — A virtual practice room
+
+Bill proposed a modest physical simulation where Mack can learn to walk and
+maneuver around obstacles and steps. [T04](motion-training.md) records a staged
+curriculum, a proposed MuJoCo/Python starting point, body-model requirements and
+local movement-policy boundaries. Baseline controls come before training; measured
+joint/leg data calibrates the simulation, and unseen test layouts plus restrained
+hardware trials precede deployment. The environment can later support a different
+body without claiming that quadruped policies transfer unchanged to a humanoid.
+
+This is a future development plan. No simulation engine was installed, training
+run launched or motion capability added to the live Mack application.
+
 ## What comes next
 
 - Trial everyday microphone use, disconnected reboot and the future assisted mode.

@@ -1,10 +1,10 @@
 lane: RayCue/Research
-written: 2026-10-21T17:25:00-07:00
+written: 2026-10-21T17:29:00-07:00
 by: ACT — RayCue/Research: Mac OS 9 and walking robot
 on: MAC
-head: 5921163 (R04 checkpoint pushed; S04 optional solar study follows)
-status_updated: 2026-10-21T17:25:00-07:00
-where: J04-C01 CAD plus F04 optics, R04 recovery and S04 optional solar studies ready
+head: 0a0f9bc (S04 checkpoint pushed; T04 virtual practice-room plan follows)
+status_updated: 2026-10-21T17:29:00-07:00
+where: J04-C01 CAD plus F04 optics, R04 recovery, S04 solar and T04 training plans ready
 next: measured hardware intake and directed body contact/clearance model; Dell tool inspection
 depends_on: actual shell geometry, mass/center of mass and selected actuator/bearings
 open_in: /Users/bill/Projects/RayCue Mac · existing RayCue/Research chat
@@ -12,6 +12,12 @@ judgment: Preserve approved voice/local memory; geometric checks do not establis
 model: Preserve the user's model choice and read the live dial
 ---
 Read STATUS.md first. This is the current handoff; dated history remains in STATUS.md and docs/build-log.md. This chat stays active until Bill ends it.
+
+## Future virtual practice room
+
+Bill proposed a simple virtual physical environment for learning walking, maneuvering, obstacles and steps. docs/motion-training.md (T04-D01) records the future curriculum and proposed MuJoCo/Python starting point, with Playground as a later accelerated-learning candidate. No simulator installed or training launched by this plan. Check actual accelerator/backend support before promising training throughput on either machine.
+
+First implementation milestone: labeled approximate whole-body model, floor, block, ramp and one adjustable step, with reset/replay and bounded baseline controls. Current J04-C01 is only a synthetic joint draft, not that body. Calibrate masses/inertia, motor limits/delays, contacts and sensors from fixtures. Use unseen evaluation layouts and the R04 directional recovery matrix; physical tests still close G5/G6. No household-stair claim. The physics training world is distinct from the service-contract mock. Keep movement policies below the AI's named-skill boundary and within independent stopping/limit enforcement; do not put simulation episodes into personal conversation memory. Reuse room generators for a future humanoid, not quadruped weights without new validation.
 
 ## Optional solar direction
 

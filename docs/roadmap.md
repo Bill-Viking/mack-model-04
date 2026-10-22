@@ -17,6 +17,13 @@ The goal is the complete [Mack product](product-spec.md): its own system on Linu
 
 ## Dependencies and next work
 
+Bill's [virtual practice-room plan](motion-training.md) adds a future physics and
+learning track: simple configurable obstacles, ramps, steps, edges and R04 recovery
+starts. MuJoCo/Python is the proposed first tool. Begin with a labeled approximate
+body and baseline controller, then calibrate from measured joint/leg data before
+training and transfer. This supports G5/G6; simulation success does not close their
+physical acceptance gates. No simulator or learned controller is installed yet.
+
 G1 physical intake and G2 host software can progress independently. G3 follows the host service boundary. G4 needs the packaging/power evidence and selected board. G5 needs the mass/load budget and actuator choice; it can proceed alongside stationary electronics. G6 uses representative mass, and G7 requires both G4 and G6. Reassess the mass and power budgets when any part changes.
 
 Local AI 0.3 covers the desktop/runtime boundary, persistent facts and conversation archive, installed-model switching, local inference, Qwen3-ASR input and approved local voice output. Process-scoped offline checks pass on the development Mac. G2 stays open for the simulated body contract; G3 stays open for everyday microphone acceptance, disconnected reboot, broader latency/quality evaluation and interruption qualification. Immediate software work: the simulated body path and model/voice evaluation. Immediate physical input: clock model, exterior dimensions and total mass, followed by internal clearances and retained-part masses. See [measurements](../hardware/measurements.csv), [system budget](../hardware/system-budget.csv), and [integration plan](../hardware/integration-plan.md).
