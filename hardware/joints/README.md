@@ -6,6 +6,11 @@ Bill requested dexterous joints and the ability for Mack to right herself after 
 fall. This study develops that requirement around the accepted four-legged Mac.
 “J04” is a working engineering designation, not a new product name.
 
+**Current design focus (2026-10-22):** Bill put joints and mechanical design ahead
+of docking controls. The [complete-leg layout study](leg-layout.md) develops the
+three-axis arrangement, a direct-knee prototype baseline, structural/drive paths
+and the interfaces still missing from C01. Physical dimensions remain unmeasured.
+
 ![Mack joint and recovery concept](joint-concept.svg)
 
 The [R04 all-direction recovery study](recovery-envelope.md) expands this concept

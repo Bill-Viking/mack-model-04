@@ -1,17 +1,17 @@
 lane: RayCue/Research
-written: 2026-10-21T20:42:51-07:00
-by: ARCH — RayCue/Research: Mack voice, body and dock designs
+written: 2026-10-22T07:47:42-07:00
+by: ACT — RayCue/Research: Mack joint design
 on: MAC
-head: 4fb4db3 (realistic dock concept pushed; shutdown handoff follows)
-status_updated: 2026-10-21T20:42:51-07:00
-where: Saved for shutdown; Mack and all project preview servers stopped
-next: machine verifies local state at resume; measured dock/joint intake or mock body
+head: 47be1d6 (joint-layout checkpoint follows)
+status_updated: 2026-10-22T07:47:42-07:00
+where: Joints before docking; complete-leg architecture proposed, measured fit outstanding
+next: machine fits complete leg after shell/component intake
 depends_on: actual shell geometry, mass/center of mass and selected actuator/bearings
-open_in: /Users/bill/Projects/RayCue Mac · existing RayCue/Research chat
+open_in: /Users/bill/Projects/RayCue Mac · existing RayCue/Research chat · ACT — RayCue/Research: Mack joint design
 judgment: Preserve approved voice/local memory; geometric checks do not establish mechanical performance
 model: Preserve the user's model choice and read the live dial
 ---
-Read the project status/memory first. This sitting closed because Bill is shutting down the home Mac and leaving. Dated history remains in STATUS.md and docs/build-log.md. The stopped-service record below supersedes earlier preview/PID receipts. No office-system transfer is part of this handoff.
+Read the project status/memory first. Bill has resumed and put joints and mechanical design BEFORE docking controls. Start with hardware/joints/leg-layout.md (J04-L01-D01). Develop one complete three-axis leg and cradle interface; the old C01 solids model only one example hip pivot. Direct knee drive is a proposed first-prototype baseline, with proximal drive retained for a measured packaging/mass comparison. Neither arrangement nor a motor is newly approved by Bill. Clock width/height/depth/mass were requested and remain unknown. Use dimensionless or explicitly illustrative geometry until measurements arrive. Keep the original appearance, accepted voice and private memory intact. Mack and the old preview servers remain stopped. The following dated shutdown context remains valid for restart and preservation, but it no longer sets the work priority.
 
 ## Dock appearance image
 
@@ -109,7 +109,7 @@ Goal: build Mack as a personal intelligence in the original little Mac body, wit
 
 Right now: no physical body or dock has been built. The GitHub record carries the public design work; private runtime stays on the home Mac. This is not a work-machine transfer package.
 
-Bill’s next move: choose the next Mack work item when resuming the project.
-Machine’s next move: verify repository/service state, preserve voice and memory, then continue measured hardware intake or the explicitly simulated body/docking contract. Restart local previews only when requested or needed for that work.
+Bill’s next input: actual clock width, height, depth and mass, when available; joint design is the selected work item.
+Machine’s next move: develop the complete joint/leg packaging and its mechanical interfaces. Docking controls wait. Restart Mack only when requested or needed; preserve voice and memory.
 
 Close receipt: clock and process checks completed; Mack data verified; STATUS and this opener saved for commit/push. The final home-brain push follows this chat’s stamp/claim release.
