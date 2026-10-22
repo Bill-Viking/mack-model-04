@@ -1,12 +1,16 @@
 # Mack J04 — joint and recovery design study
 
-Concept revision 0.1 · 2026-10-21 · **proposed, not load-qualified or fabrication-ready**.
+Concept revision 0.2 · 2026-10-21 · **proposed, not load-qualified or fabrication-ready**.
 
 Bill requested dexterous joints and the ability for Mack to right herself after a
 fall. This study develops that requirement around the accepted four-legged Mac.
 “J04” is a working engineering designation, not a new product name.
 
 ![Mack joint and recovery concept](joint-concept.svg)
+
+The [R04 all-direction recovery study](recovery-envelope.md) expands this concept
+to forward/backward pitch, sideways roll and diagonal contacts. It supersedes the
+original assumption that a single extra rear-arm axis would cover recovery.
 
 **First CAD draft:** [J04-C01](cad/README.md) now supplies original parametric
 hip-spread cartridge solids, STEP exports and an offline 3D viewer. Its dimensions
@@ -105,23 +109,25 @@ Design the following together:
 
 - Put the battery and dense electronics as low as feasible, while retaining ground
   clearance and cooling. Record the actual complete-assembly center of mass.
-- Add replaceable rounded side/rear contact rails tied to the cradle and a raised
-  front perimeter guard so the screen is not an intended ground contact.
+- Add replaceable rounded front/roof/rear/side contact rails tied to the cradle,
+  with corner transitions that protect the curved screen and camera window
+  throughout fore/aft, sideways and diagonal motion.
   Rails must not block vents or act as handles that load only the clock skin.
 - Let legs fold close to the body and reach useful pushing contacts in side-resting
   poses. Prove clearance of the entire link and cable sweep, not only the foot.
-- **Reserve a rear recovery-arm mounting interface and swept volume.** If the
-  short legs cannot make useful ground contact from an inverted resting pose,
-  add one independently driven folding arm with a rounded contact shoe.
+- **Reserve recovery-mechanism interfaces and swept volume.** If the short legs
+  cannot make useful ground contacts, compare additional contact mechanisms
+  against the full directed recovery matrix before selecting their axis count.
 
-That arm would bring the total to **thirteen powered axes**. Candidate geometry:
-a rear-mounted pivot with its axis parallel to body X, and an arm sweeping in the
-Y–Z plane to push laterally during a roll. Its folded envelope, deployed reach,
-ground contact and protected load path are not yet solved. A passive rounded rail
-alone cannot be assumed to start the roll. Do not remove the arm reservation until
-the twelve-axis design demonstrates every required recovery pose.
+The initial candidate was a rear-mounted X-axis pivot sweeping an arm in Y–Z to
+push laterally. That remains a side-roll candidate, **not proof of fore/aft pitch
+recovery about Y**. R04 compares leg-only contact reach, this original arm, a
+transverse paddle or front/rear pair, and a two-axis folding arm. Folded envelopes,
+deployed reach, forces and load paths remain unsolved. Twelve leg axes remain the
+baseline; additional recovery axes are **TBD**, not a fixed thirteenth axis. A
+passive rounded rail alone cannot be assumed to start or complete a roll.
 
-The arm is a recovery aid, not a tail for balance or a manipulation tool. Compare
+Any added mechanism is a recovery aid, not a manipulation tool. Compare
 its added mass and power with longer legs or a revised chassis. A low, wide stance
 may matter more than the exact pictured proportions; preserve Mack's recognizable
 character while allowing the engineering to change her underside.
@@ -175,9 +181,10 @@ The protective response may use bounded damping or a chosen pose; blanket torque
 removal can cause collapse, while rigid holding can increase impact. Engineer that
 response with the actual transmission. It is not specified by this sequence alone.
 
-Classify left side, right side, rear, front-guard and inverted resting poses. Choose
-only a recovery path validated for that pose and surface. Assess temperature,
-remaining energy, available joints and space before moving. Begin with supervised
+Classify left side, right side, rear, front-guard, inverted and mixed edge/corner
+poses, and distinguish settled from still tumbling. Choose only a directed recovery
+path validated for that pose and surface; reversing a path needs its own evidence.
+Assess temperature, remaining energy, available joints and space before moving. Begin with supervised
 permission; later automatic recovery is allowed only while explicitly armed in a
 qualified operating envelope. A reboot never re-arms movement.
 
@@ -193,16 +200,16 @@ wedging, broken hardware, stairs or a fall off a table.
 | Stage | Work product | Evidence required to advance |
 | --- | --- | --- |
 | 1. Measured envelope | Clock survey, mass/center of mass, component blocks and hip datums. | Filled measurements and mass budget; shell, screen, frame and harness clearances. |
-| 2. Geometric model | Parametric assembly and collision model for all three axes, rails and optional arm. | Reachable feet and collision-free candidate recovery paths from every required rest pose; no animation-only claim. |
+| 2. Geometric model | Parametric assembly and collision model for all leg axes, full body guards and optional recovery mechanisms. | Whole-orientation protective envelope plus reachable, collision-free directed paths in the R04 matrix; no animation-only claim. |
 | 3. One joint | Bearing-supported cartridge on a restrained fixture. | Torque/speed/current/heat, backlash, stops, cable life and power-loss response against written limits. |
 | 4. One leg | Loaded three-axis assembly with foot contact sensing. | Workspace, static/dynamic load cases, compliance, ground force and bounded interruption. |
 | 5. Dummy body | Four-leg cradle with representative mass/inertia and protected shell surrogate. | Stand/step and guided side recoveries; validate the simulation's contact/friction assumptions. |
-| 6. Recovery matrix | Supervised recovery on selected level indoor surfaces. | Left/right/rear/front-guard/inverted starts; logged orientation, torque/current, slip, time and intervention. Include stop and failed-attempt cases. |
+| 6. Recovery matrix | Supervised R04 directed recovery cases on selected level indoor surfaces. | Fore/aft, sideways, inverted and mixed starts; log orientation, contacts, optical clearance, torque/current, slip, time and intervention. Controlled rolls and impact cases have separate acceptance. |
 | 7. Integrated Mack | Display, compute, battery, harness and final guards installed. | Repeat qualified cases with actual mass/center of mass, thermal and voltage behavior; confirm voice/AI failure cannot defeat stopping. |
 
 Before each powered test, write numerical limits for that fixture. Suggested initial
-recovery acceptance target for review: **10 consecutive recoveries per resting-pose
-and surface combination, within 30 seconds and no more than two attempts**, no
+recovery acceptance target for review: **10 consecutive recoveries per qualified
+directed recovery case and surface, within 30 seconds and no more than two attempts**, no
 screen contact, manual assistance or exceeded component limits. These numbers are
 proposed engineering targets, not Bill-ratified specifications or a reliability
 claim. Include ordinary placement, varied leg configurations and controlled

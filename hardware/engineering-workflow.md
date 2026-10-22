@@ -36,7 +36,7 @@ Ansys does not establish that those integrated extensions are installed.
 | Stage | Design work | Exit evidence |
 | --- | --- | --- |
 | A — Physical intake | Measure RayCue exterior, internal keep-outs, mounting datums, retained masses and center of mass. Set intended payload, speed, surfaces, runtime and maximum size. | Filled [measurements](measurements.csv) and [system budget](system-budget.csv), with methods, photos and uncertainty. Unmeasured values stay blank. |
-| B — Architecture and component envelopes | Package the cradle, battery, compute, sensors, three-axis legs and conditional recovery arm. Compare actuator choices against torque/speed/thermal requirements. | Actual supplier models/datasheets, calculated joint demands and a reachable recovery-contact path. Preserve the accepted appearance where feasible. |
+| B — Architecture and component envelopes | Package the cradle, battery, compute, sensors, three-axis legs and candidate recovery mechanisms. Compare actuator choices against torque/speed/thermal requirements. | Actual supplier models/datasheets, calculated joint demands and directed R04 recovery-contact paths. Prove pitch as well as roll coverage before fixing extra axis count. Preserve the accepted appearance where feasible. |
 | C — One complete joint | Design shaft/hub coupling, bearing fits/retention, supports, fasteners, encoder, stops, cable routing and covers. Design its restrained test fixture. | Assembly/disassembly sequence, tolerance stack and tool access; real actuator interfaces; collision checks across travel. |
 | D — One leg | Connect three qualified joint designs and a compliant foot. Include foot sensing and harness motion. | Workspace and singularities, load cases, analysis and restrained loaded-leg evidence. |
 | E — Dummy four-leg body | Install representative mass/inertia, battery surrogate and protected contact geometry. | Standing/stepping, interruption and selected self-righting trials under the [J04 test plan](joints/README.md#prototype-and-acceptance-plan). |
@@ -59,9 +59,9 @@ Record speed, acceleration, duty cycle and actuator limits alongside the torque.
 | --- | --- | --- |
 | Standing and crouching | Actual support polygon, full carried mass, plausible unequal foot loads and friction. | Joint torque, bearing reactions, link/yoke deflection and frame load distribution. |
 | Stepping and body lean | Support transitions, foot lever arms, acceleration and off-axis forces. | Combined bending/torsion, joint travel and actuator torque/speed margins. |
-| Recovery push/roll | Measured center of mass, body contact edge, foot/arm reach and friction. | Required force/torque, usable contacts, slip risk and energy; whole-body dynamics treated separately. |
+| Recovery push/roll | Measured CoM/inertia, changing body contacts, foot/arm reach and friction; both pitch senses, both roll senses and mixed contacts in R04. | Required force/torque, optical clearance, usable contacts, slip risk, energy barrier and descent/braking; whole-body dynamics treated separately. |
 | Stalled or interrupted motion | Selected actuator current/torque limit, stop geometry and actual power-loss response. | Local overload and stop/fastener demand without assuming a powered holding torque after power loss. |
-| Tip-over/impact | Defined fall configuration, impact velocity, compliance, damping and contact. | Transient demand or a justified conservative bound; no arbitrary universal impact multiplier. |
+| Tip-over/impact | Defined forward/backward/sideways/diagonal fall configuration, impact velocity, compliance, damping and successive contacts. | Transient demand, frame/optics and battery retention, or a justified conservative bound; no arbitrary universal impact multiplier. |
 | Repeated use and heat | Actual load history, dwell, ambient/motor heat, assembly preload and material process. | Fatigue/creep/loosening and temperature effects where credible material data and tools exist. |
 
 For an Ansys study, preserve the CAD revision/hash, solver/version, units, material
@@ -82,7 +82,12 @@ available, verified analysis capabilities.
 A successful stress calculation does not establish walking stability or
 self-righting. Ground contact, reach, actuator dynamics, sensing and a recovery
 controller need simulation and restrained physical correlation. The tall body may
-require the reserved rear recovery arm even when the legs are strong enough.
+require an additional recovery mechanism even when the legs are strong enough.
+The [R04 matrix](joints/recovery-envelope.md#qualification-matrix-to-populate)
+separates fore/aft pitch, sideways roll, mixed contacts and accidental tumbling.
+Model and qualify each direction independently, including contact handovers and
+stopping near the center-of-mass height maximum. Keep the convex face and cameras
+inside the loaded, tolerance-adjusted protective envelope throughout each path.
 
 ## Materials and fabrication route
 

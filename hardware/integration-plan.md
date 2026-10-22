@@ -22,7 +22,7 @@ Before selecting motors or committing CAD:
 
 1. Inventory what remains from the clock and what is removed. Establish available internal volume and a mass breakdown without double-counting.
 2. Lay out the display, compute, audio, battery and controller with their connectors and cable clearances. Reserve installation/removal paths.
-3. Evaluate the [J04 joint and recovery proposal](joints/README.md): twelve leg actuators (three per leg), with space reserved for a thirteenth recovery-arm actuator. This preferred concept follows Bill’s dexterity/self-righting requirement; actuator models and final geometry remain unselected. Prove inverted contact reach before dropping the arm reservation.
+3. Evaluate the [J04 joint and recovery proposal](joints/README.md): twelve leg actuators (three per leg), with additional recovery mechanism axes/count TBD. The [R04 study](joints/recovery-envelope.md) requires fore/aft, sideways, inverted and mixed-contact coverage. The original side-sweeping rear arm alone does not establish pitch recovery. Prove contact reach, usable forces and the complete protected path before selecting or dropping added mechanisms.
 4. Calculate joint demands across proposed stances and steps, including support changes and dynamic loads; then validate on a restrained leg. Dividing total mass by four is not a sufficient motor-sizing method.
 5. Budget electrical average and peak demand, heat and runtime for actual operating modes. A larger battery also adds mass and may increase actuator demand; iterate the complete design.
 

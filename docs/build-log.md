@@ -185,6 +185,22 @@ the final architecture remains open. Added primary-source component leads, a
 section drawing and optical test requirements. P12 records acceptance on the
 assembled face. No optical prototype, camera installation or supplier order yet.
 
+## 2026-10-21 — Recovery in every direction
+
+Bill explicitly added front-to-back and back-to-front rolling. The
+[R04 study](../hardware/joints/recovery-envelope.md) now separates fore/aft pitch,
+sideways roll and mixed edge/corner cases. It distinguishes a protective envelope,
+recovery from a settled pose, controlled rolling and accidental-tumble loads.
+Each reverse path needs its own evidence.
+
+Found an architecture gap: the original X-axis rear arm was a side-roll candidate,
+not proof of pitch recovery. Twelve leg axes remain the baseline; added recovery
+axes/count are now TBD pending leg reach, paddle and two-axis-arm comparisons.
+Expanded the guards to cover front, roof, rear, sides and corner transitions, with
+loaded clearances for the curved cover and concealed camera window. Updated P11,
+G6, integration, load cases and parts/budget reservations. Added an original
+orientation-map SVG. No new whole-body CAD, dynamics or physical result is claimed.
+
 ## What comes next
 
 - Trial everyday microphone use, disconnected reboot and the future assisted mode.

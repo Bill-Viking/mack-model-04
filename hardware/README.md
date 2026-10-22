@@ -8,9 +8,13 @@ The [integration plan](integration-plan.md) treats electronics, sensing, battery
 
 The [J04 design study](joints/README.md) proposes three powered axes per leg, a
 bearing-supported cartridge, compliant feet, protective frame rails and a reserved
-rear recovery-arm interface. It includes a [concept drawing](joints/joint-concept.svg),
+recovery-mechanism interface with extra axes TBD. It includes a [concept drawing](joints/joint-concept.svg),
 load calculations to perform and a staged recovery test plan. This is a design
 proposal, not printable load-qualified CAD.
+
+The [R04 recovery envelope](joints/recovery-envelope.md) adds front-to-back,
+back-to-front, sideways and diagonal cases, full-path face protection, and the
+missing pitch assessment for the original side-sweeping arm.
 
 ## Direct CAD and the Dell engineering tools
 

@@ -6,8 +6,8 @@
 <text x="42" y="48" font-size="18" class="" style="fill:#526562">M.A.C. MODEL 04  /  MECHANICAL DEVELOPMENT</text>
 <text x="40" y="101" font-size="38" class="label">J04 — joints that help Mack get back up</text>
 <rect x="1042" y="65" width="316" height="39" rx="4" fill="#e5d6ad" stroke="#bba66b"/>
-<text x="1057" y="91" font-size="18" class="">CONCEPT STUDY · REV 0.1</text>
-<text x="42" y="132" font-size="19" class="">12 powered leg axes · compliant feet · body protection · space reserved for a recovery arm</text>
+<text x="1057" y="91" font-size="18" class="">CONCEPT STUDY · REV 0.2</text>
+<text x="42" y="132" font-size="19" class="">12 powered leg axes · compliant feet · body protection · recovery mechanism still open</text>
 <rect x="40" y="160" width="645" height="425" rx="8" fill="#fffdf5" stroke="#c3c9be"/>
 <rect x="715" y="160" width="645" height="425" rx="8" fill="#fffdf5" stroke="#c3c9be"/>
 <rect x="40" y="610" width="645" height="370" rx="8" fill="#fffdf5" stroke="#c3c9be"/>
@@ -68,12 +68,12 @@
 <text x="1164" y="260" font-size="17" class="">Rounded</text>
 <text x="1164" y="283" font-size="17" class="">contact rails</text>
 <path d="M1160 290L1138 306" fill="none" stroke="#647473" stroke-width="2"/>
-<text x="738" y="358" font-size="17" class="">Rear arm</text>
+<text x="738" y="358" font-size="17" class="">Recovery aid</text>
 <text x="738" y="381" font-size="17" class="">reservation*</text>
 <path d="M846 372L951 403" fill="none" stroke="#647473" stroke-width="2" stroke-dasharray="5 4"/>
 <text x="1180" y="431" font-size="17" class="">Low battery</text>
 <path d="M1171 438L1091 463" fill="none" stroke="#647473" stroke-width="2"/>
-<text x="737" y="568" font-size="16" class="small">* Optional 13th axis if the legs cannot start an inverted recovery.</text>
+<text x="737" y="568" font-size="16" class="small">* Extra axes TBD; see R04 for fore/aft and sideways coverage.</text>
 <text x="62" y="650" font-size="22" class="label">03  REPLACEABLE JOINT CARTRIDGE</text>
 <text x="62" y="682" font-size="17" class="small">Bearing support carries the leg load into the frame.</text>
 <rect x="76" y="735" width="106" height="90" rx="5" fill="#d9cba8" stroke="#354d4a"/>

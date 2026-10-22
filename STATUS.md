@@ -2,6 +2,12 @@
 
 ## Now
 
+2026-10-21 17:20 PDT: Bill explicitly required **front-to-back and back-to-front rolling**, extending the recovery scope beyond sideways motion. Added R04-D01 (`hardware/joints/recovery-envelope.md` plus an original SVG) with separate pitch/roll directions, mixed edge/corner starts, full protective-envelope requirements, directed recovery cases, controlled-roll candidates and independent tumble/impact load cases. Front/roof/rear/side/corner guards must protect the convex cover and concealed camera window throughout the path, including compression, deflection and tolerances.
+
+Architecture correction: the previous X-axis rear arm sweeps in YZ for side-roll assistance; that alone does not establish fore/aft pitch recovery. Twelve leg axes remain the baseline, while recovery mechanism count/axes are now TBD. R04 compares leg-only reach, the original arm, Y-axis paddle(s) and a two-axis arm. No mechanism selected or additional motor count approved. Updated J04 rev0.2, P11, G6, engineering loads, integration, optics cross-reference and parts/budget reservations. This supersedes the fixed conditional-13th-axis assumption in older dated entries.
+
+Verified changed SVG XML/internal references, CSV columns, 83 local document links and browser visual layout. Recovery preview: http://127.0.0.1:9848/joints/recovery-envelope.svg using the existing hardware-only server; private proof runtime/cad/r04-recovery.png (1159×1029). J04-C01 geometry and production Mack were unchanged. No whole-body simulation, contact-force solution, impact analysis or physical recovery test has been done. Next engineering output: measured body/leg/guard assembly and contact/clearance report against the R04 matrix, then choose any extra recovery actuation.
+
 2026-10-21 17:11 PDT: Bill added the **convex compact-Mac face and visually concealed cameras, ideally behind the screen**, as a product goal. Added P12, the F04 optical study (`hardware/display-and-vision.md`), an original front/section/beamsplitter SVG, primary-source component leads, optical intake fields and parts/budget reservations. Proposed first fixture: flat colour panel behind a custom curved clear cover, camera behind a transmissive dark surround outside active pixels. This is a proposal, not Bill's acceptance of a final optical route. Behind-cover is explicitly distinguished from behind-pixel imaging. A folded beamsplitter can place a camera behind the apparent image; purpose-built under-display OLED remains an OEM/development lead. No suitable small turnkey convex colour/hidden-camera module with a verified host interface was established by this search.
 
 Research: ZUIKI's own product announcement describes flat LCD plus curved acrylic; Waveshare 2.8-inch DPI/DSI are flat display candidates; Pi Camera Module 3 is a documented bench-camera candidate; Waveshare 1.51-inch transparent OLED is too low-resolution/monochrome for the desktop. Visionox and under-display restoration research establish special optical design and image-quality problems; FlexEnable is a curved-display technology lead. Beamsplitter supplier and ST cover-crosstalk guidance inform fixture constraints. Some manufacturer pages were available only through indexed excerpts; no full selected-assembly datasheet/CAD/driver validation or stock/price verification claimed. No vendor contacted, part ordered, optics built, physical vision tested or camera service enabled. No supplier files copied.
@@ -146,7 +152,8 @@ The host desktop, local AI and durable-memory runtime are implemented; no body r
 - [ ] Evaluate imported Continuum mock tests and select reusable memory/control pieces.
 - [ ] Develop packaging and mass/power budgets before choosing fitted hardware.
 - [x] Draft the joint/self-righting architecture, original schematic and recovery qualification plan.
-- [ ] Measure and model the J04 leg, protected resting contacts and inverted recovery reach.
+- [x] Record bidirectional fore/aft, sideways and mixed-contact recovery coverage, protective envelope and pitch gap in the initial arm concept.
+- [ ] Measure and model the J04 leg/body/guards and solve contact reach, clearance and usable forces for the directed R04 matrix; choose extra actuation only from those results.
 - [ ] Design and test one restrained leg with representative load.
 - [ ] Build the four-leg base with dummy mass, then integrate the stationary Mac.
 - [ ] Integrate sensing and independent body control; qualify the complete battery-powered robot against P01–P09.

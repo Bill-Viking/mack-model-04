@@ -13,8 +13,8 @@ mechanical,Fasteners and inserts,,Not selected,Measured assembly and CAD,
 mechanical,Printed leg assemblies,4,Accepted visual target,One-leg proof,
 mechanical,Replaceable compliant feet,4,Candidate TPU,Grip and wear test,
 mechanical,Printed mounting base,1,Not designed,Clock measurements and mass budget,
-motion,Rear recovery-arm actuator,1,Conditional J04 reservation; not selected,Required only if twelve-axis inverted recovery is infeasible,joints/README.md
-mechanical,Structural contact rails and screen guard,1,J04 concept; not designed,Protected rest poses and load path into cradle,joints/README.md
+motion,Recovery mechanism actuators,,R04 conditional reservation; count and axes TBD,Full directed pitch roll and mixed-contact matrix,joints/recovery-envelope.md
+mechanical,Structural contact rails and screen guard,1,J04/R04 concept; not designed,Full path face roof rear side and corner protection tied to cradle,joints/recovery-envelope.md
 display,2.8-inch DSI LCD alternative,,F04 catalogue candidate; not selected,Compute interface and mechanical fit,https://www.waveshare.com/product/2.8inch-dsi-lcd.htm
 optics,Curved clear front cover,1,F04 proposed custom part; not designed,Measured aperture and optical distortion test,display-and-vision.md
 vision,Concealed camera assembly,,F04 required function; count and module unselected,Tint transmission field of view driver and perception tests,display-and-vision.md

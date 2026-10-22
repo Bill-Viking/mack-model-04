@@ -28,6 +28,11 @@ The [Mack J04 study](../hardware/joints/README.md#references-and-what-they-actua
 
 ## Build material
 
+The [R04 recovery study](../hardware/joints/recovery-envelope.md) applies the
+force/moment formulation from [Lynch and Park, Modern Robotics §3.4](https://modernrobotics.northwestern.edu/nu-gm-book-resource/3-4-wrenches/)
+(checked 2026-10-21) to distinguish pitch from roll authority. Its proposed
+mechanisms and test matrix are Mack design work, not externally validated results.
+
 The [F04 face and vision study](../hardware/display-and-vision.md) records primary
 Waveshare, Raspberry Pi, ZUIKI, Visionox, FlexEnable, optical-supplier, ST and
 under-display-camera research sources checked on 2026-10-21. Catalogued parts are

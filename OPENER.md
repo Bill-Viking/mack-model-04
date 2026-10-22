@@ -1,17 +1,25 @@
 lane: RayCue/Research
-written: 2026-10-21T17:11:25-07:00
+written: 2026-10-21T17:20:00-07:00
 by: ACT — RayCue/Research: Mac OS 9 and walking robot
 on: MAC
-head: 2d13854 (CAD checkpoint pushed; F04 optical study follows)
-status_updated: 2026-10-21T17:11:25-07:00
-where: J04-C01 CAD and F04 curved-face/hidden-camera study ready; physical intake next
-next: measured hardware intake and Dell tool inspection
+head: 0f22332 (F04 checkpoint pushed; R04 directional recovery study follows)
+status_updated: 2026-10-21T17:20:00-07:00
+where: J04-C01 CAD plus F04 optics and R04 all-direction recovery requirements ready
+next: measured hardware intake and directed body contact/clearance model; Dell tool inspection
 depends_on: actual shell geometry, mass/center of mass and selected actuator/bearings
 open_in: /Users/bill/Projects/RayCue Mac · existing RayCue/Research chat
 judgment: Preserve approved voice/local memory; geometric checks do not establish mechanical performance
 model: Preserve the user's model choice and read the live dial
 ---
 Read STATUS.md first. This is the current handoff; dated history remains in STATUS.md and docs/build-log.md. This chat stays active until Bill ends it.
+
+## Current recovery direction
+
+Bill explicitly added front-to-back and back-to-front rolling. hardware/joints/recovery-envelope.md (R04-D01) now distinguishes pitch about body Y, side roll about X, mixed edge/corner starts, accidental tumbling and commanded rolling. Each direction needs separate evidence. Design frame-connected front/roof/rear/side/corner contacts so the curved face and camera window stay clear through the entire loaded path. A complete geometric orientation sweep is not a qualified 360-degree rolling skill.
+
+The original X-axis rear arm was only a side-roll candidate; fore/aft recovery is unsolved. Extra mechanism count/axes are TBD, superseding the fixed conditional 13th-axis assumption. Compare leg-only reach, the original arm, Y-axis paddle(s) and a two-axis arm before choosing. R04 has seven unverified case families and the required evidence. No whole-body CAD/dynamics/impact/controller result exists. The J04-C01 draft is unchanged.
+
+Preview: http://127.0.0.1:9848/joints/recovery-envelope.svg, same hardware-only server exec29126. Original SVG visually inspected; private proof runtime/cad/r04-recovery.png, 1159×1029. XML/references, CSV columns and local document links checked. Production Mack, CAD preview and optical schematic remain available.
 
 ## Current face and camera direction
 
@@ -31,7 +39,7 @@ Geometry checks passed: six valid solids, no unintended neutral overlap, 33 samp
 
 hardware/engineering-workflow.md defines actual loads, CAD ownership, Creo/Ansys import/analysis and staged Protolabs manufacture. hardware/dell-cad-handoff.md is a complete future Dell brief. No Dell session/connection started; no native import or FEA done. Next: clock measurements/masses/CoM, actual component envelopes, complete one-joint design and restrained fixture. No upload/quote/order made. Do not order a full set from the example solids.
 
-J04 architecture remains a proposal: three driven axes per leg (12), supported cartridges, compliant feet, protected cradle and conditional 13th recovery-arm axis. The tall body's inverted reach must be proven. Proposed ranges and test targets are not ratified component limits. No physical robot or controller is connected. Preserve original vendor files; all 93 hashes pass.
+J04 architecture remains a proposal: three driven axes per leg (12), supported cartridges, compliant feet, protected cradle and additional recovery mechanism axes TBD under R04. The tall body's inverted reach and fore/aft contacts must be proven. Proposed ranges and test targets are not ratified component limits. No physical robot or controller is connected. Preserve original vendor files; all 93 hashes passed at the CAD checkpoint.
 
 ## Live pages
 

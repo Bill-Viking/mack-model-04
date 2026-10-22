@@ -7,6 +7,11 @@ with Mack's camera or cameras ideally behind the screen and visually concealed.
 This is a product direction. The optical architecture, component count, acceptable
 camera visibility and actual dimensions remain to be qualified.
 
+The [R04 recovery envelope](joints/recovery-envelope.md) adds a shared mechanical
+constraint: the convex cover and camera window must clear the floor through
+forward/backward, sideways and diagonal paths, including loaded guard deflection.
+A border protecting only the flat face-down pose is insufficient evidence.
+
 ![Curved face and camera optical paths](face-optics-concept.svg)
 
 ## Recommended first experiment
