@@ -2,6 +2,41 @@
 
 ## Now
 
+HANDOFF CAPTURE (hub button-up 2026-10-22, mechanical — verbatim tail, no model read): codex rollout-2026-10-22T07-22-57-01a163fe-6158-79a0-ac64-6a740051f680 · last message 2026-10-22T08:39:31-07:00
+  the thread's own title: ACT — RayCue/Research: Mack joint design
+  lane RayCue/Research (the folder's only lane) · ASTRA · 111.5 min ago at the capture
+  the repo, read before this capture: 1 untracked, not carried: ChatGPT Image Oct 19, 2026, 11_03_05 AM.png
+  the last exchange, verbatim:
+  --- [2026-10-22T15:14:50.912Z] ASSISTANT
+  The first sketch puts her at about **173 mm tall overall**, with 30 mm links. Crouching lowers her to about **158 mm**.
+
+  The main packaging question is now clear: can the knee motor and its supports fit within those short legs? The sketch establishes proportions; the motor mounting and bearing arrangement still need to be designed.
+
+  --- [2026-10-22T15:17:39.878Z] ASSISTANT
+  **MACK** `MAC · ASTRA · XHIGH`
+
+  That gives us a usable starting size. RayCue confirms **80 × 91 × 112 mm and 229 g**. The screenshot’s conversion is wrong: 229 g is **8.08 oz**. That is the complete donor clock’s mass, not Mack’s finished weight. [RayCue specifications](https://www.raycue.com/products/maclock)
+
+  I’ve scaled the first proposal around **two hip joints, one knee, and 30 mm upper and lower links**. The leg dimensions are adjustable design assumptions.
+
+  visualize{"path":"/Users/bill/.codex/visualizations/2026/10/22/01a163fe-6158-79a0-ac64-6a740051f680/mack-body-scale.html"}
+
+  **The important next decision is where the knee motor goes.** One compact reference motor measures 20 ×  …[+310 chars]
+
+  --- [2026-10-22T15:38:15.639Z] USER
+  <send_user_message_question_reply>
+  [{"questionItemId":"[\"request_user_input_async\",\"call_0b6053fc6ecd41aabd54ce3492d98a2f\",0]","question":"Do you have the RayCue clock’s width, height, depth and weight? Approximate measurements are useful—please include units. I can work out the joint arrangement now and keep its size adjustable until we have those.","answer":"did you find hte dimensiosnand wight"}]
+  </send_user_message_question_reply>
+
+  --- [2026-10-22T15:39:31.985Z] ASSISTANT
+  **MACK** `MAC · ASTRA · XHIGH`
+
+  Yes—RayCue’s official listing confirms **80 × 91 × 112 mm** and **229 g (8.08 oz)** for the WB-8. [Official specifications](https://www.raycue.com/products/maclock)
+
+  I’ve saved those as our starting dimensions for the joint design. The weight is for the original clock; Mack’s completed weight is still to be determined.
+  this block quotes; it does not explain. A session with a model may upgrade it to plain words (`buttonup.py capture --work-order`).
+
+
 2026-10-22 — **CATALOG SCALE ESTABLISHED.** Bill supplied a RayCue WB-8 dimensions screenshot. RayCue's official listing confirms 80 × 91 × 112 mm and 229 g; the working W/D/H axis mapping follows the screenshot and remains to be checked on the actual unit. Corrected the screenshot's inconsistent weight conversion: 229 g = 8.08 oz, not 9.9 oz. Catalog provenance is in `hardware/joints/catalog-scale.json`; physical intake values remain blank and have cross-reference notes.
 
 Updated the complete-leg study to J04-L01-D02 with a proposed 30 + 30 mm link sketch, four hip locations, a 12 mm lateral axis offset and mirrored knees. At the illustrated 12° spread / 70° knee stance, calculated clock-bottom clearance is 60.6 mm, overall height 172.6 mm and foot-center width 111.9 mm. These are kinematic proportions only. No motor/bracket/bearing or cable geometry is fitted. ROBOTIS XL330-M288-T is a catalog size/mass benchmark only: 20 × 34 × 26 mm and 18 g each, 216 g for twelve. Its case size makes direct-knee packaging a real unresolved question; no actuator selected and no motor performance qualified. Existing C01 geometry is unchanged.
