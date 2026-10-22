@@ -15,3 +15,4 @@ recovery_mechanism_assembly,,,,,,,,,,conditional; count and axes TBD,R04 pitch r
 protective_contact_rails,1,,,,,,,,,proposed; undesigned,Include front roof rear side and corner guards plus mounts; exclude shared base mass
 solar_panel_and_mount,,,,,,,,,,S04 optional; unselected,Count panel mount and dedicated wiring; record generation separately from consumer draw
 solar_charger_and_power_path,,,,,,,,,,S04 optional; unselected,Count added hardware and quiescent draw; avoid duplicate conversion losses
+onboard_docking_interface,1,,,,,,,,,D04 proposed; unselected,Robot contacts shoes and dedicated detection only; exclude stationary dock and shared charger/gauge

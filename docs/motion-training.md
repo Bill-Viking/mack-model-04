@@ -47,6 +47,7 @@ Primary documentation checked 2026-10-21; pin actual versions when implementatio
 | 6. Grip and disturbances | Patchy friction, mild unevenness and bounded pushes. | Recover balance and adapt steps without excessive slip or joint demand. |
 | 7. Falls and recovery | A clear recovery area with controlled starting orientations. | The directed front/back, sideways, inverted and mixed-contact cases in [R04](../hardware/joints/recovery-envelope.md). |
 | 8. Edges and blocked routes | Simulated drop-offs, missing readings and a blocked goal. | Detect uncertainty, stop before an edge and decline an unreachable route. No physical table-edge trial implied. |
+| 9. Return and recharge | D04 saddle/marker geometry, approach lane, obstructed or moved dock and simulated power/contact states. | Navigate to staging, align, settle and retreat; enforce energy/retry limits and distinguish contact from charging. Electrical/thermal qualification remains physical bench work. |
 
 Make obstacle height, tread depth, spacing, ramp angle, friction and starting pose
 configurable, with units and recorded random seeds. Size the course from Mack's

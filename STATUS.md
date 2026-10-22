@@ -2,6 +2,12 @@
 
 ## Now
 
+2026-10-21 20:02 PDT: Bill requested **a dock Mack can find and use to recharge herself when energy runs low**, confirmed **lithium-ion as primary**, and asked about a future hydrogen version. Added D04-D01 (`hardware/charging-dock.md`, `charging-dock-concept.svg`, `dock-parameters.csv`). Proposed low central saddle with cradle support pads, clear foot paths, tapered guides, recessed contacts, marker/camera alignment, final sensing handover and an initially disabled charging source. All dimensions, electrical ratings and physical-control thresholds remain unset. P13 and G7 now include qualified offline return/recharge; T04 includes docking practice and injected faults. Robot-side dock hardware is budgeted separately from the stationary station.
+
+D04 separates local map/staging from near-dock alignment and contact from net charging. Return energy includes route, approach, bounded retries, safe stop and uncertainty; no guessed low-battery percentage. Proposed states cover charge validation, full/temperature-inhibited status, blocked/moved/unpowered dock, stale sensing, contact loss, critical energy, deliberate undocking and reboot without resumed motion. Depleted-pack wake/service recovery remains to be selected. AprilTag and Nav2's source tutorial reviewed as references, with no imports or installation; former Nav2 site URLs returned 404. B04 now records a possible fuel-cell/battery hybrid for sustained power plus motor bursts, with complete-system mass/energy/orientation/refueling feasibility still open; no hydrogen equipment or automatic fueling dock selected.
+
+Verified SVG XML/internal references, CSV structure and blank design inputs, 121 local links/anchors and diff whitespace. Inspected both halves of the drawing in the browser and corrected overlapping labels. Dock preview http://127.0.0.1:9848/charging-dock-concept.svg uses the existing hardware-only server (PID81029 when checked); private proof runtime/cad/d04-dock.png and d04-dock-lower.png, each 1265×712. No dock CAD solids, power circuit, navigation/controller software, simulation or physical docking test implemented; production voice/memory/application unchanged. Next deliverable: measured cradle/foot/guard interface and adjustable unpowered dock fixture, alongside a software-only docking-state mock.
+
 2026-10-21 19:21 PDT: Bill confirmed that **powercell means hydrogen fuel cell**. Resolved the pending terminology in B04, the build log and current handoff. The comparison and lithium-ion working recommendation remain unchanged; no new component selection or hardware action.
 
 2026-10-21 17:37 PDT: Bill asked whether a **powercell** would work and otherwise requested a **high-efficiency lithium-ion battery**. Asked whether he meant hydrogen fuel cell or rechargeable power bank; no answer yet. B04-D01 (`hardware/battery-power.md`) states the hydrogen interpretation and covers both. Working recommendation is protected, serviceable lithium-ion low in the cradle. Pack voltage, topology, capacity and supplier remain open. Linked the study into product/integration/reference records, added three blank battery-bay intake fields, and clarified complete-pack versus external protection mass accounting.
@@ -169,6 +175,8 @@ The host desktop, local AI and durable-memory runtime are implemented; no body r
 - [ ] Develop packaging and mass/power budgets before choosing fitted hardware.
 - [x] Establish B04 lithium-ion power direction with fuel-cell comparison and explicit energy/peak/braking requirements.
 - [ ] Measure battery bay and loaded-joint demand; select and bench-qualify the complete pack and power system.
+- [x] Record D04 autonomous dock concept, local return-energy/state requirements, P13 and staged tests; confirm lithium-ion primary and separate hydrogen research.
+- [ ] Measure dock/cradle clearances; build an unpowered saddle fixture and docking-state mock before qualified power and floor trials.
 - [x] Evaluate roof solar at feasibility level and record its conditional role, sources and explicit energy assumptions.
 - [ ] Measure roof fit, parked/active loads and net harvested energy before deciding whether to install solar.
 - [x] Draft the joint/self-righting architecture, original schematic and recovery qualification plan.

@@ -1,0 +1,78 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1400" height="1080" viewBox="0 0 1400 1080" style="width:100%;height:auto;display:block" role="img" aria-labelledby="title desc">
+<title id="title">Mack D04: a home station for autonomous recharging</title>
+<desc id="desc">Side and top schematics show Mack lowering her structural cradle onto a guided central saddle with protected electrical contacts. A marker guides approach; floor paths remain clear for her feet. Proposed design only, with no selected dimensions or tested docking behavior.</desc>
+<defs><marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M1 1L9 5L1 9" fill="none" stroke="#536e68" stroke-width="1.7"/></marker></defs>
+<style>text{font-family:Arial,Helvetica,sans-serif;fill:#243d37}.muted{fill:#536e68}.bold{font-weight:700}.line{fill:none;stroke:#536e68;stroke-width:2}.arrow{fill:none;stroke:#536e68;stroke-width:2;marker-end:url(#arrow)}</style>
+<rect width="1400" height="1080" fill="#f2f0e7"/>
+<text x="42" y="47" font-size="18" class="muted">M.A.C. MODEL 04 / POWER + AUTONOMY</text>
+<text x="40" y="98" font-size="38" class="bold">D04 — a place for Mack to come home</text>
+<text x="42" y="132" font-size="19" class="muted">Lithium-ion primary · guided contact charging · offline return and alignment</text>
+<rect x="40" y="162" width="830" height="416" rx="9" fill="#fffdf6" stroke="#c2c8ba"/>
+<text x="64" y="202" font-size="23" class="bold">01  SIDE VIEW · settle onto the frame</text>
+<path d="M75 528H835" class="line"/>
+<rect x="196" y="252" width="216" height="203" rx="18" fill="#d6c5a0" stroke="#334e47" stroke-width="3"/>
+<path d="M392 285Q410 334 392 385" fill="none" stroke="#658cae" stroke-width="10"/>
+<circle cx="404" cy="274" r="5" fill="#334e47"/>
+<rect x="212" y="455" width="186" height="30" rx="8" fill="#b9ab8c" stroke="#334e47" stroke-width="2"/>
+<path d="M226 478L177 499L192 521M381 478L433 500L420 521" fill="none" stroke="#334e47" stroke-width="13" stroke-linecap="round"/>
+<ellipse cx="188" cy="522" rx="24" ry="7" fill="#334e47"/>
+<ellipse cx="422" cy="522" rx="24" ry="7" fill="#334e47"/>
+<path d="M248 527V503L267 491H395L414 503V527Z" fill="#a5b6a3" stroke="#334e47" stroke-width="2"/>
+<rect x="264" y="485" width="23" height="9" rx="2" fill="#334e47"/>
+<rect x="371" y="485" width="23" height="9" rx="2" fill="#334e47"/>
+<rect x="303" y="483" width="46" height="13" rx="3" fill="#ece6d6" stroke="#8d7445"/>
+<path d="M316 488V493M335 488V493" stroke="#ac873e" stroke-width="4"/>
+<path d="M414 518H647V527H414" fill="#a5b6a3" stroke="#334e47" stroke-width="2"/>
+<rect x="618" y="276" width="14" height="243" fill="#a5b6a3" stroke="#334e47" stroke-width="2"/>
+<rect x="588" y="247" width="78" height="102" rx="5" fill="#e8dfc7" stroke="#334e47" stroke-width="2"/>
+<rect x="599" y="260" width="56" height="56" fill="#fffdf6" stroke="#334e47" stroke-dasharray="5 3"/>
+<text x="627" y="293" text-anchor="middle" font-size="15" class="bold">TAG</text>
+<text x="627" y="335" text-anchor="middle" font-size="12">placeholder</text>
+<path d="M414 276L580 285" fill="none" stroke="#658cae" stroke-width="2" stroke-dasharray="7 5"/>
+<text x="441" y="233" font-size="17" class="muted">Camera sightline</text>
+<path d="M304 221V244" class="arrow"/>
+<text x="92" y="241" font-size="17">Lower to rest</text>
+<path d="M464 399H431" class="arrow"/>
+<text x="470" y="391" font-size="17">Face stays clear</text>
+<path d="M463 465L397 487" class="arrow"/>
+<text x="470" y="460" font-size="17">Support pads</text>
+<text x="470" y="481" font-size="17">carry the load</text>
+<text x="66" y="558" font-size="18" class="muted">Contacts sit inside the support interface; pins do not support body weight.</text>
+<rect x="894" y="162" width="466" height="416" rx="9" fill="#fffdf6" stroke="#c2c8ba"/>
+<text x="918" y="202" font-size="23" class="bold">A DOCK THAT CAN CONFIRM</text>
+<text x="918" y="244" font-size="20" class="bold">Locate</text>
+<text x="918" y="273" font-size="18">Local map → marker → close sensing.</text>
+<text x="918" y="316" font-size="20" class="bold">Seat</text>
+<text x="918" y="345" font-size="18">Guides meet cradle shoes, not legs.</text>
+<text x="918" y="388" font-size="20" class="bold">Validate</text>
+<text x="918" y="417" font-size="18">Seating + connection + charger health.</text>
+<text x="918" y="460" font-size="20" class="bold">Recharge</text>
+<text x="918" y="489" font-size="18">Measure net energy into the battery.</text>
+<text x="918" y="544" font-size="17" class="muted">No internet or language-model decision</text>
+<text x="918" y="565" font-size="17" class="muted">required for the local power response.</text>
+<rect x="40" y="602" width="646" height="270" rx="9" fill="#fffdf6" stroke="#c2c8ba"/>
+<text x="64" y="641" font-size="23" class="bold">02  TOP VIEW · keep foot paths open</text>
+<rect x="277" y="667" width="186" height="31" rx="4" fill="#d6c5a0" stroke="#334e47"/>
+<text x="370" y="688" font-size="16" text-anchor="middle">Marker mast</text>
+<path d="M305 711H435V778L466 822H274L305 778Z" fill="#a5b6a3" stroke="#334e47" stroke-width="2"/>
+<rect x="345" y="727" width="50" height="31" rx="3" fill="#e8dfc7" stroke="#8d7445"/>
+<path d="M370 842V782" class="arrow"/>
+<text x="66" y="724" font-size="18">Clear floor</text>
+<path d="M236 711V815" stroke="#9cad96" stroke-width="30" stroke-dasharray="11 10" opacity=".5"/>
+<path d="M528 711V815" stroke="#9cad96" stroke-width="40" stroke-dasharray="11 10" opacity=".5"/>
+<text x="66" y="760" font-size="17" class="muted">Feet walk beside</text>
+<text x="66" y="783" font-size="17" class="muted">the central saddle.</text>
+<text x="409" y="847" font-size="17">Approach</text>
+<rect x="710" y="602" width="650" height="270" rx="9" fill="#fffdf6" stroke="#c2c8ba"/>
+<text x="734" y="641" font-size="23" class="bold">03  ENERGY TO GET HOME</text>
+<text x="734" y="683" font-size="20">Return before the reserve is consumed:</text>
+<text x="734" y="722" font-size="21" class="bold">route + approach + bounded retries</text>
+<text x="734" y="753" font-size="21" class="bold">+ safe stop + uncertainty</text>
+<text x="734" y="800" font-size="18" class="muted">Blocked route or missing dock → stop and ask.</text>
+<text x="734" y="832" font-size="18" class="muted">Target charge reached → remain parked until needed.</text>
+<rect x="40" y="896" width="1320" height="97" rx="9" fill="#e8dfc7" stroke="#c8b78b"/>
+<text x="64" y="932" font-size="21" class="bold">Power output defaults off. Confirm the connection before enabling charge.</text>
+<text x="64" y="967" font-size="19">Disable current before separation. Loss of contact, power or valid sensing has an explicit fault response.</text>
+<text x="42" y="1031" font-size="18" class="muted">D04-D01 · NOT TO SCALE · no fitted dimensions, electrical ratings, navigation software or charging test yet</text>
+<text x="42" y="1059" font-size="16" class="muted">Read charging-dock.md for the proposed states, energy budget, interlocks and staged acceptance plan.</text>
+</svg>

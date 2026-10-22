@@ -241,6 +241,16 @@ regulated compute, actuator peaks, returned braking energy, low-power parking an
 retention through rolling. Added battery-bay intake fields; measured budgets remain
 blank. No selected battery, circuit release, purchase or physical runtime test.
 
+## 2026-10-21 — A home station for autonomous recharging
+
+Bill confirmed lithium-ion as primary and requested a dock for autonomous return
+and recharging. [D04](../hardware/charging-dock.md) now proposes a supported saddle,
+clear foot paths, calibrated marker, recessed contacts, local energy reserve and
+bounded docking states. Added an original concept drawing, blank design inputs,
+P13 and staged mechanical/electrical/offline acceptance. B04 records a possible
+future fuel-cell/battery hybrid; no hydrogen fit or equal-mass endurance advantage
+has been demonstrated. No dock, navigation stack or charging software built yet.
+
 ## What comes next
 
 - Trial everyday microphone use, disconnected reboot and the future assisted mode.

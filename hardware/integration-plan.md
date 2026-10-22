@@ -1,6 +1,6 @@
 # Mack — fitted electronics and walking body
 
-Engineering proposal v0.1, updated 2026-10-21. Implements [P05–P12](../docs/product-spec.md). No components, dimensions, pin assignments, load limits or power topology are approved by this document.
+Engineering proposal v0.1, updated 2026-10-21. Implements [P05–P13](../docs/product-spec.md). No components, dimensions, pin assignments, load limits or power topology are approved by this document.
 
 ## Package the whole robot
 
@@ -71,6 +71,13 @@ Record generation separately from consumption; panel presence does not mean net
 charging. Keep the normal battery/dock baseline independent of sunlight.
 
 ## Mechanical proof sequence
+
+The [D04 dock](charging-dock.md) adds an external support saddle, calibrated
+marker, gated charging source and robot-side recessed contacts/cradle shoes.
+Reserve its interface clear of the battery, leg sweep and R04 ground-contact
+envelope. Qualify return-energy estimates, alignment, measured net charging and
+loss-of-power/blocked-route behavior. Keep stationary dock mass out of the moving
+robot budget. Lithium-ion is primary; a fuel-cell hybrid remains separate research.
 
 The [engineering workflow](engineering-workflow.md) defines CAD ownership, the
 home Dell import/analysis work and staged manufacturing. The first

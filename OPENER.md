@@ -1,11 +1,11 @@
 lane: RayCue/Research
-written: 2026-10-21T19:21:52-07:00
+written: 2026-10-21T20:02:23-07:00
 by: ACT — RayCue/Research: Mac OS 9 and walking robot
 on: MAC
-head: e446fdc (B04 checkpoint pushed; hydrogen clarification follows)
-status_updated: 2026-10-21T19:21:52-07:00
-where: J04-C01 CAD plus F04 optics, R04 recovery, S04 solar, T04 training and B04 battery plans ready
-next: measured hardware intake and directed body contact/clearance model; Dell tool inspection
+head: 31821c7 (hydrogen clarification pushed; D04 dock study follows)
+status_updated: 2026-10-21T20:02:23-07:00
+where: J04 CAD and optics/recovery/power/training plans; D04 autonomous dock concept ready
+next: measured cradle/foot/guard interface and unpowered dock fixture; docking-state mock
 depends_on: actual shell geometry, mass/center of mass and selected actuator/bearings
 open_in: /Users/bill/Projects/RayCue Mac · existing RayCue/Research chat
 judgment: Preserve approved voice/local memory; geometric checks do not establish mechanical performance
@@ -14,6 +14,12 @@ model: Preserve the user's model choice and read the live dial
 Read STATUS.md first. This is the current handoff; dated history remains in STATUS.md and docs/build-log.md. This chat stays active until Bill ends it.
 
 ## Battery direction
+
+Bill explicitly confirmed lithium-ion as primary and requested autonomous docking. D04 (hardware/charging-dock.md) proposes a supported central saddle, guided/recessed contacts and marker-led final approach after local navigation to staging. P13 and G7 now require offline return/recharge evidence; T04 adds dock and fault practice. No physical capability, circuit or executable docking service added. The stationary dock is excluded from carried robot mass; new onboard-interface row excludes shared charger/gauge mass.
+
+Return reserve is route + approach + bounded retries + safe stop + uncertainty in Wh, with conservative measured inputs and no guessed percentage. Source defaults off; independent seating/connection checks precede charging; report net battery charging separately from contact/full/inhibited states. Qualify sudden contact loss, reverse blocking, depleted-pack wake/service, blocked/moved/unpowered dock, stale sensors, stop and reboot. Stop/help when conditions or energy are insufficient; no indefinite search or resumed movement after reboot. A future hydrogen hybrid is plausible research, not a selected system or demonstrated fit/endurance benefit.
+
+Dock preview: http://127.0.0.1:9848/charging-dock-concept.svg on the existing hardware-only server, PID81029 when checked. IAB17 marked deliverable. Browser layout inspected and label overlaps repaired; private screenshots runtime/cad/d04-dock.png and d04-dock-lower.png (1265×712). SVG XML, CSV blank parameters, 121 local links/anchors and whitespace checks pass. First physical step remains measured geometry, then an adjustable unpowered fixture; a software-only state mock can progress separately. AprilTag/Nav2 are references only. Preserve production Mack and the existing CAD/face/recovery previews.
 
 Bill confirmed that powercell means hydrogen fuel cell; he otherwise requested high-efficiency lithium-ion. hardware/battery-power.md compares hydrogen and recommends protected serviceable lithium-ion mounted low. Pack voltage/capacity/topology and supplier are unselected. Molicel cell comparisons are benchmarks, not a four-cell commitment or measured fit. Four P50B cells: 72 Wh typical and 284 g summed maximum cell mass before pack hardware; with an assumed 80% usable-energy allowance and assumed 30 W battery-side load, 1.92 h. Actual consumption/runtime unknown. Historical H-12 fuel-cell example illustrates supporting-system overhead, not current market leadership.
 

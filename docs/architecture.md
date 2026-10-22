@@ -139,6 +139,13 @@ Stopping may require a controlled stance or another body-specific response. Simp
 
 ## Physical integration
 
+The [D04 dock](../hardware/charging-dock.md) proposes a local energy supervisor
+and return/align/seat/charge/undock state machine. Navigation leads to a staging
+pose; near-dock sensing and body control handle final placement. Charging status
+comes from the charger and battery telemetry. The language model does not control
+contact power or bypass stopping limits. Required energy reserve and faults are
+evaluated locally without internet. No docking service is implemented yet.
+
 The [virtual practice room](motion-training.md) is the proposed physics-training
 track for walking, maneuvering, obstacles, steps and recovery. It is distinct
 from the lightweight mock adapter used to test this service contract. A motion

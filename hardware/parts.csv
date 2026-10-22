@@ -22,3 +22,6 @@ optics,Camera window and light baffle,,F04 proposed; not selected,Visible-band t
 optics,Beamsplitter fixture,,F04 optional experiment; not selected,Volume and reflected-display/transmitted-camera image tests,display-and-vision.md
 power,Roof solar panel,,S04 optional; not selected,Usable roof fit and measured net Wh after shade and heat,solar-feasibility.md
 power,Solar charging and power-path electronics,,S04 optional; topology unselected,Battery chemistry voltage limits low-light startup and net energy,solar-feasibility.md
+power,Onboard docking contacts and cradle shoes,1,D04 proposed; parts unselected,R04 clearances seating contact resistance and isolation,charging-dock.md
+dock,Station saddle guides and marker mount,1,D04 external station; undesigned,Cradle fit foot paths stability and camera visibility,charging-dock.md
+dock,Station DC supply and gated contact assembly,1,D04 external station; ratings unselected,Selected pack charge load thermal limits and contact interlocks,charging-dock.md

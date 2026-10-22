@@ -28,6 +28,12 @@ The [Mack J04 study](../hardware/joints/README.md#references-and-what-they-actua
 
 ## Build material
 
+The [D04 dock study](../hardware/charging-dock.md) links the official AprilTag
+repository and Nav2's source docking tutorial (checked 2026-10-21). Marker pose
+and staging/contact/battery feedback are reference concepts; no detector, ROS
+package, navigation controller or upstream configuration was imported. Original
+station geometry and local energy/interlock requirements are proposals.
+
 The [B04 battery study](../hardware/battery-power.md) uses Molicel P30B/P50B
 manufacturer datasheets, Horizon's historical H-12 manufacturer manual hosted by
 Fuel Cell Store, and TI pack-management/backdrive guidance (checked 2026-10-21).

@@ -1,0 +1,19 @@
+parameter,value,unit,selection_basis
+saddle_support_height,,mm,Measured stable resting pose and leg travel
+saddle_entry_height,,mm,Minimum walking clearance including deflection
+guide_capture_width,,mm,Measured cradle shoes plus allowed approach error
+support_pad_spacing,,mm,Static stability and cradle load paths
+contact_recess_and_travel,,mm,Selected connector stroke plus guarded separation sequence
+marker_corner_spacing,,mm,Selected real tag and calibrated camera detection range
+marker_center_height,,mm,F04 field of view throughout validated approach
+approach_lateral_tolerance,,mm,Fixture contact and foot clearance tests
+approach_yaw_tolerance,,deg,Fixture capture and contact tests
+approach_speed_limit,,m/s,Measured stopping foot support and sensing latency
+observation_max_age,,s,Control deadline and approach speed
+maximum_docking_attempts,,count,Measured attempt energy and remaining reserve
+maximum_attempt_time,,s,Measured approach with bounded fault response
+critical_stop_reserve,,Wh,Measured qualified stop and compute shutdown plus uncertainty
+charge_target,,percent,Selected pack operating policy and service-life objectives
+charge_current_limit,,A,Pack charger connector and thermal qualification
+charge_confirmation_window,,s,Measured gauge update rate and net charge detection
+source_off_confirmation_current,,A,Connector and power-path separation requirements

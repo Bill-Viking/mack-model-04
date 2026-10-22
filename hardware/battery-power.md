@@ -2,8 +2,8 @@
 
 Design study B04-D01 · 2026-10-21 · **architecture and sizing examples; no pack, wiring or measured runtime yet**.
 
-Bill confirmed that “powercell” means a **hydrogen fuel cell** and otherwise
-requested a high-efficiency lithium-ion battery. The working direction is a rechargeable,
+Bill confirmed that “powercell” means a **hydrogen fuel cell** and subsequently
+confirmed **lithium-ion as primary**, with an autonomous charging dock. The direction is a rechargeable,
 protected, serviceable **lithium-ion pack mounted low in the structural cradle**.
 Pack voltage, capacity, dimensions and supplier remain open until the body and
 actuator loads are measured.
@@ -23,6 +23,20 @@ and rollover protection together. A stack sized below her short motor peaks
 would also need an energy buffer such as a battery. A fuel cell’s watts describe
 output power, not how long its fuel supply lasts. On that basis, retain fuel cells
 as later research and proceed with the simpler rechargeable battery architecture.
+
+Bill also asked about a future hydrogen version. A **fuel-cell/battery hybrid** is
+a plausible research architecture: the stack supplies sustained power through a
+controlled DC conversion path, while a lithium-ion buffer handles motor bursts and
+provides energy for stopping/shutdown. Evaluate returned motor energy separately;
+the stack is not presumed to absorb it. This is feasibility work, not a commitment
+that the equipment fits the present RayCue body or extends runtime at equal mass.
+
+Compare complete usable energy and sustained power against the lithium baseline,
+including fuel/container, regulator, valves, ventilation/cooling, converter and
+buffer. Establish orientation/tumble behavior, thermal management, leak detection,
+refueling/service arrangements and retained crash loads for a chosen system before
+body design. A larger future body may offer more packaging room, but still needs
+its own engineering. No hydrogen equipment selected or refueling system designed.
 
 ## Capacity and packaging benchmarks
 
@@ -139,4 +153,6 @@ finished face/body sees recovery trials.
 Actual values belong in [measurements](measurements.csv) and the
 [assembly budget](system-budget.csv); illustrative cell values do not fill their
 unknown fields. No pack purchase, charger design release or physical test has
-occurred. Dock/battery operation remains independent of optional solar.
+occurred. Dock/battery operation remains independent of optional solar. The
+[D04 charging dock](charging-dock.md) adds autonomous return, supported parking,
+verified electrical charging and bounded failure; those behaviors remain proposed.

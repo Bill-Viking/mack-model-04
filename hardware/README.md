@@ -31,6 +31,11 @@ No Dell connection, native CAD import, FEA result or manufacturing order is clai
 
 ## Existing design files
 
+The [D04 charging dock](charging-dock.md) and [concept drawing](charging-dock-concept.svg)
+propose autonomous return to a supported home station, marker-guided alignment,
+protected contacts and verified net charging. Dimensional/control inputs remain
+blank; no dock or navigation/charging controller is built yet.
+
 The [B04 battery study](battery-power.md) establishes lithium-ion as the working
 power direction, compares fuel-cell overhead and two cell-size benchmarks, and
 defines runtime assumptions, regulated loads, motor peaks and braking-energy
