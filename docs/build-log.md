@@ -232,8 +232,8 @@ run launched or motion capability added to the live Mack application.
 Bill asked about a powercell and otherwise requested a high-efficiency lithium-ion
 battery. [B04](../hardware/battery-power.md) compares hydrogen fuel-cell system
 overhead with rechargeable lithium-ion and sets the latter as the working
-direction. “Powercell” is interpreted as fuel cell pending clarification; a USB
-power-bank interpretation is also addressed. Pack voltage and capacity are open.
+direction. Bill subsequently confirmed that “powercell” meant a hydrogen fuel
+cell. Pack voltage and capacity are open.
 
 Added 18650/21700 energy and bare-cell mass benchmarks, explicitly assumed runtime
 scenarios, a functional power diagram and requirements for local supervision,

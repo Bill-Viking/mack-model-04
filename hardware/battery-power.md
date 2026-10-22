@@ -2,9 +2,8 @@
 
 Design study B04-D01 · 2026-10-21 · **architecture and sizing examples; no pack, wiring or measured runtime yet**.
 
-Bill asked whether a “powercell” would work and otherwise requested a
-high-efficiency lithium-ion battery. This comparison interprets powercell as a
-hydrogen fuel cell, pending clarification. The working direction is a rechargeable,
+Bill confirmed that “powercell” means a **hydrogen fuel cell** and otherwise
+requested a high-efficiency lithium-ion battery. The working direction is a rechargeable,
 protected, serviceable **lithium-ion pack mounted low in the structural cradle**.
 Pack voltage, capacity, dimensions and supplier remain open until the body and
 actuator loads are measured.
@@ -24,11 +23,6 @@ and rollover protection together. A stack sized below her short motor peaks
 would also need an energy buffer such as a battery. A fuel cell’s watts describe
 output power, not how long its fuel supply lasts. On that basis, retain fuel cells
 as later research and proceed with the simpler rechargeable battery architecture.
-
-If “powercell” meant a USB power bank, that is another battery system. It could
-serve a bench prototype only after checking sustained/transient output, voltage
-negotiation, shutdown behavior and charge/run support against the actual loads.
-Do not presume a general-purpose USB output can accept motor-return energy.
 
 ## Capacity and packaging benchmarks
 

@@ -1,9 +1,9 @@
 lane: RayCue/Research
-written: 2026-10-21T17:37:26-07:00
+written: 2026-10-21T19:21:52-07:00
 by: ACT — RayCue/Research: Mac OS 9 and walking robot
 on: MAC
-head: 4bca877 (T04 checkpoint pushed; B04 battery design study follows)
-status_updated: 2026-10-21T17:37:26-07:00
+head: e446fdc (B04 checkpoint pushed; hydrogen clarification follows)
+status_updated: 2026-10-21T19:21:52-07:00
 where: J04-C01 CAD plus F04 optics, R04 recovery, S04 solar, T04 training and B04 battery plans ready
 next: measured hardware intake and directed body contact/clearance model; Dell tool inspection
 depends_on: actual shell geometry, mass/center of mass and selected actuator/bearings
@@ -15,7 +15,7 @@ Read STATUS.md first. This is the current handoff; dated history remains in STAT
 
 ## Battery direction
 
-Bill asked about a powercell and otherwise requested high-efficiency lithium-ion. An optional clarification (hydrogen fuel cell versus power bank) is unanswered; B04 states that assumption and covers both. hardware/battery-power.md recommends protected serviceable lithium-ion mounted low. Pack voltage/capacity/topology and supplier are unselected. Molicel cell comparisons are benchmarks, not a four-cell commitment or measured fit. Four P50B cells: 72 Wh typical and 284 g summed maximum cell mass before pack hardware; with an assumed 80% usable-energy allowance and assumed 30 W battery-side load, 1.92 h. Actual consumption/runtime unknown. Historical H-12 fuel-cell example illustrates supporting-system overhead, not current market leadership.
+Bill confirmed that powercell means hydrogen fuel cell; he otherwise requested high-efficiency lithium-ion. hardware/battery-power.md compares hydrogen and recommends protected serviceable lithium-ion mounted low. Pack voltage/capacity/topology and supplier are unselected. Molicel cell comparisons are benchmarks, not a four-cell commitment or measured fit. Four P50B cells: 72 Wh typical and 284 g summed maximum cell mass before pack hardware; with an assumed 80% usable-energy allowance and assumed 30 W battery-side load, 1.92 h. Actual consumption/runtime unknown. Historical H-12 fuel-cell example illustrates supporting-system overhead, not current market leadership.
 
 B04 functional architecture separates regulated compute and controlled actuator loads, requires local supervision, qualification of peaks/sag, orderly low-energy rest/shutdown and braking-energy handling when the battery cannot accept energy. Tie battery retention and added inertia into R04. Solar stays optional; whole-system low-power parking must be measured. Battery-bay intake fields are empty. No power hardware selected, ordered, built or tested. Arithmetic, CSV structure/unknowns and 89 local links/anchors passed. No software/voice/memory changes. Next: measured bay/body mass and loaded-joint demand, then choose and bench-qualify the power system.
 
