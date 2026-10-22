@@ -2,6 +2,10 @@
 
 ## Now
 
+2026-10-21 17:25 PDT: Bill suggested a **roof solar panel if it supplies enough useful power**. Added S04-D01 (`hardware/solar-feasibility.md`) with primary-source panel/indoor-harvesting evidence, optional protected roof packaging, charger/power-path constraints and a measured net-energy decision gate. Recommended evaluating supplemental solar plus a genuinely low-power parked mode; normal battery/dock remains primary. A larger stationary solar dock is an alternative, not selected hardware. Added optional product intent, roof intake fields and unselected panel/charger parts/budget entries. R04 now requires the panel to remain inside the guard envelope and out of roof contact loads.
+
+Evidence: Voltaic P124 August 2026 datasheet specifies 113×66×2.6 mm, 31.6 g, nominal 1.35 W and expected 1.14 W; no actual roof fit established. Epishine MultiCell v1.6.5 mean output is 20.3 µW/cm² under its specified 500-lux LED test, demonstrating the indoor milliwatt scale. Example only: 1.14 W × 4 equivalent full-sun hours × assumed 0.80 delivered-energy factor = 3.648 Wh before parked draw, equivalent to 14.6 minutes at an assumed 15 W total battery-side load. At continuous 0.10 W parked draw the net example falls to 1.248 Wh; break-even average load is 0.152 W. Mack's area, battery, operating loads and real exposure remain unmeasured. Arithmetic, CSV columns and 81 local links checked. No part purchased, supplier contacted, solar hardware installed or runtime behavior changed. Next solar work: measured roof fit and bench logging of delivered/net battery Wh with heat, shade, power-path losses and parked consumption.
+
 2026-10-21 17:20 PDT: Bill explicitly required **front-to-back and back-to-front rolling**, extending the recovery scope beyond sideways motion. Added R04-D01 (`hardware/joints/recovery-envelope.md` plus an original SVG) with separate pitch/roll directions, mixed edge/corner starts, full protective-envelope requirements, directed recovery cases, controlled-roll candidates and independent tumble/impact load cases. Front/roof/rear/side/corner guards must protect the convex cover and concealed camera window throughout the path, including compression, deflection and tolerances.
 
 Architecture correction: the previous X-axis rear arm sweeps in YZ for side-roll assistance; that alone does not establish fore/aft pitch recovery. Twelve leg axes remain the baseline, while recovery mechanism count/axes are now TBD. R04 compares leg-only reach, the original arm, Y-axis paddle(s) and a two-axis arm. No mechanism selected or additional motor count approved. Updated J04 rev0.2, P11, G6, engineering loads, integration, optics cross-reference and parts/budget reservations. This supersedes the fixed conditional-13th-axis assumption in older dated entries.
@@ -151,6 +155,8 @@ The host desktop, local AI and durable-memory runtime are implemented; no body r
 - [ ] Evaluate model quality, cold/warm latency and resources; implement a scoped cloud adapter and staged model upgrade/rollback flow.
 - [ ] Evaluate imported Continuum mock tests and select reusable memory/control pieces.
 - [ ] Develop packaging and mass/power budgets before choosing fitted hardware.
+- [x] Evaluate roof solar at feasibility level and record its conditional role, sources and explicit energy assumptions.
+- [ ] Measure roof fit, parked/active loads and net harvested energy before deciding whether to install solar.
 - [x] Draft the joint/self-righting architecture, original schematic and recovery qualification plan.
 - [x] Record bidirectional fore/aft, sideways and mixed-contact recovery coverage, protective envelope and pitch gap in the initial arm concept.
 - [ ] Measure and model the J04 leg/body/guards and solve contact reach, clearance and usable forces for the directed R04 matrix; choose extra actuation only from those results.

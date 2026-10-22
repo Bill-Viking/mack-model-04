@@ -21,3 +21,6 @@ screen_to_rear_keepout_depth,,mm,front cover mounting datum to nearest internal 
 front_cover_horizontal_sagitta,,mm,centre bulge relative to named horizontal edge chord,State measured versus proposed target
 front_cover_vertical_sagitta,,mm,centre bulge relative to named vertical edge chord,State measured versus proposed target
 camera_window_available_width,,mm,clear optical aperture in dark surround,Field of view and tint remain unqualified
+roof_solar_usable_width,,mm,named contiguous roof patch excluding vents handle and guards,Optional S04 intake; annotate patch outline
+roof_solar_usable_depth,,mm,same named patch as width,Account for curvature margins mounting and wiring
+roof_solar_guard_recess,,mm,minimum panel clearance inside protective envelope,Include loaded deflection and pad compression

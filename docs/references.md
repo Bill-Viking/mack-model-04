@@ -28,6 +28,12 @@ The [Mack J04 study](../hardware/joints/README.md#references-and-what-they-actua
 
 ## Build material
 
+The [S04 solar study](../hardware/solar-feasibility.md) uses Voltaic P124's
+August 2026 datasheet, Epishine MultiCell v1.6.5, Raspberry Pi's own load discussion
+and TI's solar-charger documentation (checked 2026-10-21). Panel output is kept
+separate from assumed conversion factors and unmeasured Mack loads. No solar
+hardware or supplier document was imported.
+
 The [R04 recovery study](../hardware/joints/recovery-envelope.md) applies the
 force/moment formulation from [Lynch and Park, Modern Robotics §3.4](https://modernrobotics.northwestern.edu/nu-gm-book-resource/3-4-wrenches/)
 (checked 2026-10-21) to distinguish pitch from roll authority. Its proposed

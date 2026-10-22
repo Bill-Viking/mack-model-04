@@ -11,6 +11,7 @@ Treat the clock, base, legs, battery, compute, display, audio and sensors as one
 | Screen and upper shell | Display, curved front cover, concealed camera assembly, main compute and audio. | Usable volume, camera sightline, cover distortion/transmission, display crosstalk, connectors, viewing angle, microphone isolation, cooling and service access. |
 | Underside base | Structural frame, body controller, power distribution; battery as low as practical. | Mounting datums, leg load paths, center of gravity, battery removal, ground clearance and stop access. |
 | Four legs | Supported joints, actuators, covers, cable paths and compliant feet. | Link geometry, joint ranges, load/current/temperature measurements, cable bend clearance and replaceable wear parts. |
+| Roof, optional | Recessed solar panel and protected wiring. | Net harvested Wh, usable area after vents/guards, temperature, added CoM/inertia and full rollover clearance; see [S04](solar-feasibility.md). |
 
 The clock's cosmetic shell cannot be presumed to carry gait loads. Design a frame that connects the body mass and leg mounts. Keep battery placement adjustable during balance trials. Do not derive scale or joint axes from the concept image.
 
@@ -55,6 +56,12 @@ before closing the upper shell; no camera or optical stack is selected yet.
 Produce a reviewed schematic and harness/pin map covering battery protection and charging, regulated compute supply, actuator power, grounding/return paths, switching, protection devices, connectors and accessible isolation. Specify voltage/current ratings and connector keying from selected hardware; the reference clock PCB does not establish these.
 
 Test actuator transient load while compute, display and audio run. Record voltage at the consumers, current peaks, temperatures and reset behavior. Check charge/run behavior as a separate mode. No battery pack, charger, wire gauge or fuse value is selected here.
+
+Bill requested roof solar if it produces enough useful energy. The
+[solar study](solar-feasibility.md) recommends evaluating it as supplemental
+charging, with a compatible regulated charge/power path and low-power parked mode.
+Record generation separately from consumption; panel presence does not mean net
+charging. Keep the normal battery/dock baseline independent of sunlight.
 
 ## Mechanical proof sequence
 

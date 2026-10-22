@@ -83,6 +83,11 @@ a diagonal roll. F04's cover and R04's guard geometry must therefore be checked
 in the same assembly. Retain and support the battery and electronics for inverted
 and impact load directions; gravity must not be their retaining mechanism.
 
+If the [S04 optional roof panel](../solar-feasibility.md) is adopted, recess it
+inside this same envelope. The roof guard carries inverted/rolling loads; the
+panel is not a contact pad. Include its mounting mass and wiring in the model,
+and evaluate the guard's solar shading before declaring a net benefit.
+
 ## Force, energy and control checks
 
 For a force at a ground contact, calculate its moment about the candidate support

@@ -201,6 +201,19 @@ loaded clearances for the curved cover and concealed camera window. Updated P11,
 G6, integration, load cases and parts/budget reservations. Added an original
 orientation-map SVG. No new whole-body CAD, dynamics or physical result is claimed.
 
+## 2026-10-21 — Is a solar roof worthwhile?
+
+Bill suggested a roof panel if it produces useful power. The
+[S04 feasibility study](../hardware/solar-feasibility.md) records a real compact
+panel benchmark, indoor-harvesting limits and daily-energy arithmetic with visible
+assumptions. The recommendation is optional supplemental solar with a low-power
+parked mode, keeping normal battery/dock power. A larger external solar dock is an
+alternative. Actual roof fit, loads and net gain remain unmeasured.
+
+Reserved intake fields and panel/charger budget entries. The panel must sit inside
+the rollover guards without taking ground loads or blocking cooling. No panel,
+battery or charger selected, installed or ordered; no autonomy claim is made.
+
 ## What comes next
 
 - Trial everyday microphone use, disconnected reboot and the future assisted mode.

@@ -20,3 +20,5 @@ optics,Curved clear front cover,1,F04 proposed custom part; not designed,Measure
 vision,Concealed camera assembly,,F04 required function; count and module unselected,Tint transmission field of view driver and perception tests,display-and-vision.md
 optics,Camera window and light baffle,,F04 proposed; not selected,Visible-band transmission concealment and display crosstalk,display-and-vision.md
 optics,Beamsplitter fixture,,F04 optional experiment; not selected,Volume and reflected-display/transmitted-camera image tests,display-and-vision.md
+power,Roof solar panel,,S04 optional; not selected,Usable roof fit and measured net Wh after shade and heat,solar-feasibility.md
+power,Solar charging and power-path electronics,,S04 optional; topology unselected,Battery chemistry voltage limits low-light startup and net energy,solar-feasibility.md

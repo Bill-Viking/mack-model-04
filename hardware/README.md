@@ -31,6 +31,11 @@ No Dell connection, native CAD import, FEA result or manufacturing order is clai
 
 ## Existing design files
 
+The [S04 solar feasibility study](solar-feasibility.md) evaluates an optional roof
+panel against real small-panel ratings, indoor-light output and explicitly assumed
+energy scenarios. It reserves a protected panel/charger interface; actual roof fit,
+net benefit and hardware selection remain open.
+
 The [F04 face and vision study](display-and-vision.md) compares a curved clear
 cover with concealed border cameras, a folded beamsplitter display and true
 under-display OLED. It includes a [section drawing](face-optics-concept.svg),

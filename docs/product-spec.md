@@ -18,6 +18,7 @@ The current browser desktop connects to real local AI, durable memory and read-o
 - Appearance: [Bill's accepted image](../concepts/raycue-build-target.png), a dominant beige compact Mac body, compact underside base, four short articulated legs, and rounded dark feet.
 - Face and vision intent, added 2026-10-21: a convex CRT-like screen appearance, with camera hardware visually concealed and ideally behind the screen. Evaluate a common curved cover, hidden optical windows and true under-display alternatives; the final optical route remains open.
 - Motion intent, added 2026-10-21: dexterous foot/body placement and self-righting after a fall. Qualify the recoverable poses and surfaces explicitly; do not promise recovery from every fall.
+- Optional energy feature, added 2026-10-21: a roof solar panel if measured energy benefit justifies it. [S04](../hardware/solar-feasibility.md) evaluates supplemental charging and a larger solar dock alternative; no solar-autonomy promise or selected hardware.
 - Starting enclosure: Bill's RayCue clock. Preserve its character while engineering the internal structure and base around measured loads.
 - Everyday experience: an original classic Mac-style interface over modern intelligence and robotics. Authentic vintage applications are a minor, optional mode.
 - System foundation: Linux with Mack's own interface, AI integration, memory, and robot software.

@@ -1,10 +1,10 @@
 lane: RayCue/Research
-written: 2026-10-21T17:20:00-07:00
+written: 2026-10-21T17:25:00-07:00
 by: ACT — RayCue/Research: Mac OS 9 and walking robot
 on: MAC
-head: 0f22332 (F04 checkpoint pushed; R04 directional recovery study follows)
-status_updated: 2026-10-21T17:20:00-07:00
-where: J04-C01 CAD plus F04 optics and R04 all-direction recovery requirements ready
+head: 5921163 (R04 checkpoint pushed; S04 optional solar study follows)
+status_updated: 2026-10-21T17:25:00-07:00
+where: J04-C01 CAD plus F04 optics, R04 recovery and S04 optional solar studies ready
 next: measured hardware intake and directed body contact/clearance model; Dell tool inspection
 depends_on: actual shell geometry, mass/center of mass and selected actuator/bearings
 open_in: /Users/bill/Projects/RayCue Mac · existing RayCue/Research chat
@@ -12,6 +12,12 @@ judgment: Preserve approved voice/local memory; geometric checks do not establis
 model: Preserve the user's model choice and read the live dial
 ---
 Read STATUS.md first. This is the current handoff; dated history remains in STATUS.md and docs/build-log.md. This chat stays active until Bill ends it.
+
+## Optional solar direction
+
+Bill would add a roof panel if its useful energy justifies it. hardware/solar-feasibility.md (S04-D01) recommends testing supplemental direct-sun charging plus low-power parking; a bigger external solar dock is an alternative. No solar requirement to install regardless of benefit, no selected panel/charger/battery and no measured roof fit. Optional intake/parts/budget entries stay blank.
+
+Voltaic P124 is a size/output benchmark: 113×66×2.6 mm, 31.6 g, expected 1.14 W per August 2026 datasheet. Explicitly assumed 4 equivalent full-sun hours and 80% additional delivered-energy factor yield 3.648 Wh before parked draw, or 14.6 minutes at a hypothetical 15 W battery-side load. This is not measured Mack runtime or a local weather forecast. Indoor-specialist Epishine data gives about 2.03 mW per 100 cm² active area at its specified 500-lux LED conditions. A solar roof does not establish continuous AI/walking power. Measure net battery Wh, actual load modes and temperatures. Keep cells inside R04 guards; roof contacts go through the frame and cannot load the panel. No new server or live software change.
 
 ## Current recovery direction
 
