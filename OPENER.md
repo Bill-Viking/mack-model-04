@@ -1,17 +1,17 @@
 lane: RayCue/Research
-written: 2026-10-21T20:19:31-07:00
-by: ACT — RayCue/Research: Mac OS 9 and walking robot
+written: 2026-10-21T20:42:51-07:00
+by: ARCH — RayCue/Research: Mack voice, body and dock designs
 on: MAC
-head: 6f9af02 (D04 dock study pushed; realistic dock appearance image follows)
-status_updated: 2026-10-21T20:19:31-07:00
-where: D04 dock study and realistic appearance image; original Mack target preserved
-next: measured cradle/foot/guard interface and unpowered dock fixture; docking-state mock
+head: 4fb4db3 (realistic dock concept pushed; shutdown handoff follows)
+status_updated: 2026-10-21T20:42:51-07:00
+where: Saved for shutdown; Mack and all project preview servers stopped
+next: machine verifies local state at resume; measured dock/joint intake or mock body
 depends_on: actual shell geometry, mass/center of mass and selected actuator/bearings
 open_in: /Users/bill/Projects/RayCue Mac · existing RayCue/Research chat
 judgment: Preserve approved voice/local memory; geometric checks do not establish mechanical performance
 model: Preserve the user's model choice and read the live dial
 ---
-Read STATUS.md first. This is the current handoff; dated history remains in STATUS.md and docs/build-log.md. This chat stays active until Bill ends it.
+Read the project status/memory first. This sitting closed because Bill is shutting down the home Mac and leaving. Dated history remains in STATUS.md and docs/build-log.md. The stopped-service record below supersedes earlier preview/PID receipts. No office-system transfer is part of this handoff.
 
 ## Dock appearance image
 
@@ -47,7 +47,7 @@ Bill explicitly added front-to-back and back-to-front rolling. hardware/joints/r
 
 The original X-axis rear arm was only a side-roll candidate; fore/aft recovery is unsolved. Extra mechanism count/axes are TBD, superseding the fixed conditional 13th-axis assumption. Compare leg-only reach, the original arm, Y-axis paddle(s) and a two-axis arm before choosing. R04 has seven unverified case families and the required evidence. No whole-body CAD/dynamics/impact/controller result exists. The J04-C01 draft is unchanged.
 
-Preview: http://127.0.0.1:9848/joints/recovery-envelope.svg, same hardware-only server exec29126. Original SVG visually inspected; private proof runtime/cad/r04-recovery.png, 1159×1029. XML/references, CSV columns and local document links checked. Production Mack, CAD preview and optical schematic remain available.
+Preview: http://127.0.0.1:9848/joints/recovery-envelope.svg, same hardware-only server exec29126. Original SVG visually inspected; private proof runtime/cad/r04-recovery.png, 1159×1029. XML/references, CSV columns and local document links checked. These preview servers are stopped at close; the files remain available.
 
 ## Current face and camera direction
 
@@ -55,7 +55,7 @@ Bill wants a convex original-Mac screen appearance and concealed camera hardware
 
 Primary references and catalogued candidates are in the study; no purchase, supplier contact, optical test or camera installation. The transparent 1.51-inch OLED is only an experiment lead, unsuitable for the full colour desktop. Measure face aperture, surround space and depth, then test cover/tint/baffles against bare-camera images with display off/black/white/patterns and changing light/motion. Independent floor/body sensing remains required.
 
-Schematic: hardware/face-optics-concept.svg. Browser preview http://127.0.0.1:9848/face-optics-concept.svg, exec29126, serves only hardware/. Private proof runtime/cad/f04-optics.png. Keep the preview available. No live software, voice or memory change.
+Schematic: hardware/face-optics-concept.svg. Browser preview http://127.0.0.1:9848/face-optics-concept.svg, exec29126, serves only hardware/. Private proof runtime/cad/f04-optics.png. The preview server is stopped at close. No live software, voice or memory change.
 
 ## Current mechanical work
 
@@ -69,18 +69,17 @@ hardware/engineering-workflow.md defines actual loads, CAD ownership, Creo/Ansys
 
 J04 architecture remains a proposal: three driven axes per leg (12), supported cartridges, compliant feet, protected cradle and additional recovery mechanism axes TBD under R04. The tall body's inverted reach and fore/aft contacts must be proven. Proposed ranges and test targets are not ratified component limits. No physical robot or controller is connected. Preserve original vendor files; all 93 hashes passed at the CAD checkpoint.
 
-## Live pages
+## Stopped services and restart
 
-Mack: http://127.0.0.1:9844/ — exec74151, PID44486 when last checked.
-CAD preview: http://127.0.0.1:9847/preview.html — exec42944, PID68775 when last checked; serves only hardware/joints/cad/exports. Keep it available for Bill. Offline preview.html is self-contained.
+At close, no listeners on 9844–9848 and no matching project application/speech/preview worker were found. They had already exited, so no kill was required. Old exec IDs and PIDs elsewhere in this record are historical and must not be reused. Browser pages may be cached.
 
-Always resolve current PIDs before process actions. Never stop shared Ollama. Previous QA servers and the old drawing preview9846 are stopped. Private CAD screenshot: runtime/cad/j04-c01-separated.png.
+For the resuming home session: inspect ports/processes first. Start Mack.command is the existing launcher for tools/serve_desktop.py at http://127.0.0.1:9844/. Do not reinstall models or reset memory/voice. Start a loopback-only static server on 9847 from hardware/joints/cad/exports for preview.html, and on 9848 from hardware/ for face-optics-concept.svg, joints/recovery-envelope.svg and charging-dock-concept.svg, only when needed. Never serve the whole project root. Shared Ollama belongs to the machine, not this chat. Private CAD screenshot: runtime/cad/j04-c01-separated.png.
 
 ## Accepted interaction and voice
 
 Bill confirmed his real words appear in Live transcript. Studio Display Microphone is the explicit persisted input; earlier built-in-microphone failures and blanket Chrome-only advice are superseded.
 
-Two independent input panels are live: Type a message / Send text, and Speak to Mack / Live transcript. Finish speaking & reply sends the voice draft; Turn microphone off reviews it, then Reply to voice message sends. Cancel restores only the earlier voice draft. Unsent typed text survives voice use. The final layout passed 27 JS checks and isolated browser QA; production SQL was unchanged through deployment. Bill's last unsent typed draft was “hello”; do not reset it while doing CAD work.
+Two independent input panels are implemented: Type a message / Send text, and Speak to Mack / Live transcript. Finish speaking & reply sends the voice draft; Turn microphone off reviews it, then Reply to voice message sends. Cancel restores only the earlier voice draft. Unsent typed text survives voice use. The final layout passed 27 JS checks and isolated browser QA; production SQL was unchanged through deployment. Bill's last unsent typed draft was “hello”; do not reset it while doing CAD work.
 
 Approved voice v1 is locked. Qwen3-TTS 1.7B Base with pinned MLX Audio 0.6.1 reproduces Bill's accepted light-echo greeting on this Mac. software/mack/voice-profile.json is the public recipe/fingerprint record. Private reference and approved recording remain outside Git. Do not retune or ask for acceptance again. Approved audition SHA256: 6192f95cd23edf174d3451619cfc6f1647e5e6ec0e3a1f85f8f84c0b5164a1fb.
 
@@ -96,4 +95,21 @@ Public repository: https://github.com/Bill-Viking/mack-model-04. Bill controls e
 
 Resonance already published the approved personalized-intelligence vision posts and the approved greeting video once on Facebook and X. Facebook retained Friends; X Public. Exact permalinks/proofs are in the private application receipts mack-vision-publications-20261021.context.json and mack-voice-publications-20261021.context.json. Do not duplicate those posts.
 
-Keep the loose root PNG untracked. No iCloud writes. Update STATUS/this opener with the next verified result; do not archive or stamp off just because one turn ends.
+Keep the loose root PNG untracked. No iCloud writes. Bill explicitly ended this sitting; retitle ARCH and release only this chat’s claim/stamp after saving. Do not hide the chat.
+
+
+## WHERE WE ARE — for the next home session
+
+Goal: build Mack as a personal intelligence in the original little Mac body, with lithium-ion power, dexterous legs and autonomous charging.
+
+1. ✅ Local conversation, approved voice, listening and memory are implemented on the development Mac.
+2. ✅ Original joint CAD study and optical, recovery, power, training and dock plans are saved.
+3. ✅ The realistic dock image and its prompt are saved; Bill said he loves it.
+4. ✅ Project services are stopped; private memory passed its integrity check.
+
+Right now: no physical body or dock has been built. The GitHub record carries the public design work; private runtime stays on the home Mac. This is not a work-machine transfer package.
+
+Bill’s next move: choose the next Mack work item when resuming the project.
+Machine’s next move: verify repository/service state, preserve voice and memory, then continue measured hardware intake or the explicitly simulated body/docking contract. Restart local previews only when requested or needed for that work.
+
+Close receipt: clock and process checks completed; Mack data verified; STATUS and this opener saved for commit/push. The final home-brain push follows this chat’s stamp/claim release.
