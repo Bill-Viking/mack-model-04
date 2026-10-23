@@ -1,5 +1,10 @@
 # Mack — public introduction
 
+[Visual one-page project brief](../output/pdf/mack-project-visual-brief.pdf)
+(2026-10-23): accepted appearance and dock concepts, the four main capabilities,
+current development-Mac software, planned body and next leg-test milestone.
+[Image preview](../output/pdf/mack-project-visual-brief.png).
+
 These approved captions describe the project's long-term goal. Resonance published
 both updates on 2026-10-21 and verified them after reload. The X post is Public;
 the Facebook post retained its Friends audience. Their wording distinguishes the
