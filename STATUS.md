@@ -2,6 +2,35 @@
 
 ## Now
 
+HANDOFF CAPTURE (hub button-up 2026-10-24, mechanical — verbatim tail, no model read): codex rollout-2026-10-22T07-22-57-01a163fe-6158-79a0-ac64-6a740051f680 · last message 2026-10-24T08:37:59-07:00
+  the thread's own title: ACT — RayCue/Research: Mack joint design
+  lane RayCue/Research (the folder's only lane) · ASTRA · 216.3 min ago at the capture
+  the repo, read before this capture: 1 untracked, not carried: ChatGPT Image Oct 19, 2026, 11_03_05 AM.png
+  the last exchange, verbatim:
+  --- [2026-10-23T17:19:09.910Z] ASSISTANT
+  **MACK** `MAC · ASTRA · XHIGH`
+
+  Here’s the visual one-page project overview, ready to print or share.
+
+  :codex-file-citation{path="/Users/bill/Projects/RayCue Mac/output/pdf/mack-project-visual-brief.pdf" purpose="output"}
+
+  ![Mack project briefing](</Users/bill/Projects/RayCue Mac/output/pdf/mack-project-visual-brief.png>)
+
+  --- [2026-10-24T15:37:23.186Z] USER
+  <external_codex_apps_open_page>{"page_id":null}</external_codex_apps_open_page>
+
+  --- [2026-10-24T15:37:23.189Z] USER
+  this is such a cute form factor... you really nailed it
+
+  --- [2026-10-24T15:37:59.807Z] ASSISTANT
+  **MACK** `MAC · ASTRA · XHIGH`
+
+  Thanks, Bill. She looks like a little Mac that decided to get up and follow you around.
+
+  That compact body, those short legs, the rounded feet—that’s her character. We’ll preserve it as we engineer the real hardware.
+  this block quotes; it does not explain. A session with a model may upgrade it to plain words (`buttonup.py capture --work-order`).
+
+
 2026-10-23 — **VISUAL PROJECT BRIEF.** Bill requested a very visual one-page briefing sheet about the whole project. Created `output/pdf/mack-project-visual-brief.pdf` plus a full-page PNG preview and editable `tools/build_project_brief.py`. The accepted Mack appearance image dominates the page; the existing dock concept, four capability icons, catalog clock size/mass, three-stage development path and future identity/memory continuity complete the overview. Working desktop/local AI/voice/memory are explicitly scoped to the development Mac; camera, body, self-righting and autonomous charging remain planned. The earlier mechanical review sheet is preserved.
 
 Verified one US Letter page, two embedded concept images, two clickable source/build links and required scope text with pypdf. Embedded Arial fonts; rendered final page with Poppler and visually inspected the complete layout. Original concept images were not edited. The brief contains no private runtime, conversation history or work-side material. Prepared locally; no external message or upload. Joint design still precedes docking controls. Next engineering work remains real component packaging and a restrained one-leg proof.
