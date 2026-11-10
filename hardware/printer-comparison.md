@@ -1,8 +1,8 @@
 # W04 stage 2 — printer comparison
 
-Read 2026-11-10 for the [workshop road](workshop-road.md). **No printer is selected or
-purchased; the pick below is a recommendation for Bill to accept or change, and he places any
-order himself.** Prices are the US stores' own pages on that date, in US dollars, printer only,
+Read 2026-11-10 for the [workshop road](workshop-road.md). **Bill selected the Bambu Lab P2S,
+printer only, the same day ("P2S"). It is not yet ordered, and he places the order himself.**
+The pick below is the recommendation he accepted. Prices are the US stores' own pages on that date, in US dollars, printer only,
 before tax and shipping. Every one was a sale price, so each is checked again at checkout.
 
 ## What was read, and how
@@ -75,6 +75,20 @@ Alternatives, each for one reason:
 
 This is a judgment from store pages and reported reviews. No machine was tested, and no part of
 Mack has been load-checked, so the case for fibre-filled material is still a likelihood.
+
+## Ordering the P2S
+
+Read from the store's P2S page on 2026-11-10:
+
+- The page opens with **P2S Combo** selected, at $649.00. The printer-only option is labelled
+  **P2S**; with it selected the price is the $449.00 in the table.
+- Orders ship from the US warehouse within 1 to 3 business days of processing, with free
+  shipping in the 48 contiguous states and 30-day price protection.
+- The box list is the printer, a build plate, an accessory box and a spool holder. No filament
+  is listed, so the first spools go in the same order.
+
+On arrival, before the first print: turn on the local-network setting, then print the tolerance
+coupon named in the workshop road.
 
 ## With the order
 

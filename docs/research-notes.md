@@ -12,7 +12,7 @@ Research checked 2026-10-19. This is a project map, not an installation or a ver
 
 ## Printer and materials — initial recommendation
 
-Checked 2026-10-19. A desktop FDM/FFF filament printer with a heated bed, automatic leveling and support for PLA, PETG and TPU is appropriate for the proposed separately printed housings, base and brackets. Recommended starting candidate: [Bambu Lab A1](https://us.store.bambulab.com/products/a1), 256 × 256 × 256 mm build volume. [A1 mini](https://us.store.bambulab.com/products/a1-mini), 180 × 180 × 180 mm, is a smaller alternative if every part plus its supports fits. No printer selected or purchased. Single-color printing is enough: make the ivory housings and black feet separately; AMS is optional.
+Checked 2026-10-19. A desktop FDM/FFF filament printer with a heated bed, automatic leveling and support for PLA, PETG and TPU is appropriate for the proposed separately printed housings, base and brackets. Recommended starting candidate: [Bambu Lab A1](https://us.store.bambulab.com/products/a1), 256 × 256 × 256 mm build volume. [A1 mini](https://us.store.bambulab.com/products/a1-mini), 180 × 180 × 180 mm, is a smaller alternative if every part plus its supports fits. No printer selected or purchased as of that date; superseded 2026-11-10 by the [printer comparison](../hardware/printer-comparison.md), from which Bill selected the Bambu Lab P2S. Single-color printing is enough: make the ivory housings and black feet separately; AMS is optional.
 
 Proposed material use, subject to prototype testing:
 

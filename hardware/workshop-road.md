@@ -2,8 +2,8 @@
 
 Revision W04-D01, 2026-11-10. Bill asked for a road, not a shopping trip: design the prototype
 parts so he can print them at home, choose a printer, set up an electronics bench, and source
-parts such as servos and sensors that can be bought today. **Nothing here is selected or
-purchased.** Model names and prices are RECALLED (knowledge to mid-2026) and get a live check
+parts such as servos and sensors that can be bought today. **Nothing here is purchased, and
+only the printer is selected (stage 2, 2026-11-10).** Model names and prices are RECALLED (knowledge to mid-2026) and get a live check
 before any order; the gates are the ones in the [build roadmap](../docs/roadmap.md).
 
 ## The order, and why
@@ -53,7 +53,8 @@ A1 class still prints every first-stage part.
 stores that day. The lineup had moved on from the recalled names above: Prusa's enclosed machine
 is now the CORE One+, Elegoo's is the Centauri Carbon 2, and Bambu Lab has added the X2D. Its
 recommended pick is the Bambu Lab P2S, with four alternatives each named for one reason.
-Nothing is purchased.
+**Bill selected the P2S, printer only, on 2026-11-10.** It is not yet ordered; nothing is
+purchased.
 
 First prints, whichever machine: a tolerance coupon (holes, shaft fits, a servo pocket, a
 heat-set insert boss), then one leg's hinge frames once they are redrawn.
