@@ -94,6 +94,10 @@ All candidates. The leg study used one servo only as a size and mass benchmark.
 | Current and voltage monitor | INA219 or INA228 class breakout | Logs what a leg draws | — |
 | Battery | None yet | [B04](battery-power.md) needs measured peak current | Measured current |
 
+**Priced 2026-11-10:** the [first order](first-order.md) read the stores that day and changes
+two things in the lines below. One servo is enough for this stage, and the maker's OpenRB-150
+board replaces the U2D2 adapter because it runs a 5 V servo from USB alone. Nothing is ordered.
+
 A sensible first order is small: calipers, a scale, two benchmark servos and their adapter.
 A measured servo also settles the output-axis offset that the leg study carries as RECALLED,
 whether or not the maker's drawing is downloaded.
