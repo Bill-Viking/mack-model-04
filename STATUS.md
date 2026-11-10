@@ -278,10 +278,11 @@ The host desktop, local AI and durable-memory runtime are implemented; no body r
 - [x] Lay out the workshop road: printer, electronics bench and parts buyable today (hardware/workshop-road.md, W04-D01, 2026-11-10).
 - [x] Compare printers at live store prices (hardware/printer-comparison.md, 2026-11-10).
 - [x] Bill selected the Bambu Lab P2S, printer only (2026-11-10: "P2S").
-- [ ] Bill orders the P2S himself (store option "P2S", not "P2S Combo"; $449 on 2026-11-10) with first spools of PLA and PETG; record the order and the arrival.
+- [ ] Bill orders the P2S himself (store option "P2S", not "P2S Combo"; $449 on 2026-11-10) with one spool of PLA Basic ($17.99); links and what to look for are in hardware/buy-list.md. PETG joins a later order (its page was not readable 2026-11-10). Record the order and the arrival.
 - [ ] On the printer's arrival: local-network setting first, then design and print the tolerance coupon (W04 stage 2).
 - [x] Price the small first order (hardware/first-order.md, 2026-11-10).
-- [ ] Bill places the first order himself: OpenRB-150 Starter Kit, SC-2KG scale, and the calipers if he has none; record the order and the arrival.
+- [x] Hand Bill one buy list with direct links, each page re-read (hardware/buy-list.md, 2026-11-10 14:59; four stops, $629.72, or $545.77 without calipers).
+- [ ] Bill places the first order himself: OpenRB-150 Starter Kit, SC-2KG scale, and the calipers if he has none (links in hardware/buy-list.md); record the order and the arrival.
 - [ ] On the servo's arrival: weigh and measure it, replace the recalled 11 mm offset in every J04-L02 parameter file, re-run placement A.
 - [ ] Price the bench list as an order sheet after the printer pick (W04 stage 3).
 - [ ] Develop packaging and mass/power budgets before choosing fitted hardware.

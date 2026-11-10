@@ -1,10 +1,10 @@
 lane: RayCue/Research
-written: 2026-11-10T13:06:33-08:00
+written: 2026-11-10T14:59:48-08:00
 by: ACT — RayCue/Research: Mack joint design
 on: MAC
-head: 4644279 (the first-order commit follows)
-status_updated: 2026-11-10T13:06:33-08:00
-where: Leg packaged; P2S selected; first order priced; both orders are Bill's; leg rulings wait on Bill
+head: 6bd6a0f (the buy-list commit follows)
+status_updated: 2026-11-10T14:59:48-08:00
+where: Leg packaged; buy list handed (hardware/buy-list.md); orders are Bill's; leg rulings wait
 next: bill
 depends_on: nothing
 open_in: /Users/bill/Projects/RayCue Mac · fresh Claude session · ACT — RayCue/Research: Mack joint design
