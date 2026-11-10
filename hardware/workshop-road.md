@@ -49,6 +49,12 @@ hinge plates whose stiffness sets joint accuracy, and an enclosure keeps the fib
 higher-temperature materials available without buying twice. If the budget says open-frame, the
 A1 class still prints every first-stage part.
 
+**Compared 2026-11-10:** the [printer comparison](printer-comparison.md) read the makers' US
+stores that day. The lineup had moved on from the recalled names above: Prusa's enclosed machine
+is now the CORE One+, Elegoo's is the Centauri Carbon 2, and Bambu Lab has added the X2D. Its
+recommended pick is the Bambu Lab P2S, with four alternatives each named for one reason.
+Nothing is purchased.
+
 First prints, whichever machine: a tolerance coupon (holes, shaft fits, a servo pocket, a
 heat-set insert boss), then one leg's hinge frames once they are redrawn.
 
