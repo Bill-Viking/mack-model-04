@@ -260,6 +260,24 @@ station and classic Charging dialog. Saved the exact prompt and tool provenance.
 The rendered foot tray is a visual alternative to D04's clear-floor saddle, not
 a fitted or approved mechanical change. No hardware performance is implied.
 
+## 2026-11-10 — One leg with its actuators in place
+
+The [J04-L02 packaging study](../hardware/joints/leg-packaging.md) puts a
+20 × 34 × 26 mm, 18 g benchmark actuator block at each of a leg's three joints,
+with a carrier, hinge frames, a foot, the cradle plate, the WB-8 box and the
+other three legs frozen at stance, in an editable build123d model with a STEP
+export, an offline viewer and a geometry report. The sketch's hip origins do not
+hold the blocks: the hip-spread case rises into the cradle, the hip-swing case
+runs into it and into the body, and a direct knee on a 30 mm link overlaps the
+hip-swing case by 16 mm. Three moved placements are measured for height, width,
+interior claim, mass and hip-swing inertia; one keeps everything outside the
+shell at the cost of 25 to 41 mm of height. Every remaining interference is
+listed by part pair and pose, and three drawing choices in the hinge frames
+account for nearly all of them. The proximal knee adds about 21 g per leg and
+halves the hip-swing inertia at the placement compared, with a link-length
+caveat. The actuator's output-axis offset is a recalled value, not yet read from
+the drawing. No placement, drive or motor is selected; nothing is load-qualified.
+
 ## What comes next
 
 The immediate focus is **joint and leg design before docking controls**.
@@ -268,8 +286,10 @@ two-axis hip, knee and passive foot, separates the structural and motor load
 paths, and lists the missing retention, sensing, cable and mounting details.
 It proposes direct knee drive for the first leg prototype and retains a proximal
 drive comparison. Bill supplied the donor-clock catalog size; RayCue confirms
-80 × 91 × 112 mm and 229 g. The study now uses that envelope for a proposed
-30 + 30 mm leg sketch and records a compact actuator size/mass benchmark.
+80 × 91 × 112 mm and 229 g. The [leg packaging model](../hardware/joints/leg-packaging.md)
+now measures that sketch against benchmark actuator blocks and compares three
+hip placements and both knee drives. Next are the redrawn hinge frames, the
+actuator drawing, the clock's physical intake and a cable route.
 No actuator or fitted dimensions have been selected.
 
 - Trial everyday microphone use, disconnected reboot and the future assisted mode.

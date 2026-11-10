@@ -70,6 +70,40 @@ Do not send these solids as a load-bearing fabrication release. No STL is suppli
 as a ready-to-print functional part. Follow the [engineering workflow](../../engineering-workflow.md)
 to develop a fitted, toleranced design and a restrained test fixture.
 
+## J04-L02 — one leg packaged
+
+**D01 / benchmark blocks / not for manufacture.** [leg_packaging.py](leg_packaging.py)
+builds one front-left leg from a parameter file: the WB-8 body box and a cradle
+plate, a benchmark actuator block at the hip spread, the hip swing and the knee,
+the carrier and hinge frames that hold them, a foot pad, and the other three legs
+mirrored at their stance pose. It poses the leg by the layout study's chain,
+sweeps a discrete pose grid against every part pair, and writes a STEP assembly,
+a three-slider viewer and a geometry report with datums, masses, Σm·r² about the
+hip swing, the solids inside the body box, the cradle windows it had to cut and
+every overlapping pair with its poses. The study that reads it is
+[leg-packaging.md](../leg-packaging.md); the builder's brief and hand-back are in
+[briefs/](briefs/).
+
+| File | Purpose |
+| --- | --- |
+| [j04-l02.example.json](j04-l02.example.json) | The sketch's hip origins and links, with the benchmark block; every value carries its provenance. |
+| [j04-l02.candidate-A-under.json](j04-l02.candidate-A-under.json), [C-hip-inside](j04-l02.candidate-C-hip-inside.json), [D-hips-inside](j04-l02.candidate-D-hips-inside.json) | The three moved placements; `links.L1_direct` / `links.L1_proximal` give each knee drive its link length. |
+| [exports/l02-sketch-direct/](exports/l02-sketch-direct/), [exports/l02-A-under-direct/](exports/l02-A-under-direct/), [exports/l02-A-under-proximal/](exports/l02-A-under-proximal/) | Fine-grid runs: `j04-l02-<variant>.step`, `geometry-check.json`, `preview.html`. |
+| [exports/l02-comparison.json](exports/l02-comparison.json) | All eight coarse-grid runs, the eight stance-pose checks and the three fine runs in one file. |
+| [compare_l02_runs.py](compare_l02_runs.py) | Prints the comparison table, finding lists and pose maps from any set of run folders. |
+| [leg-viewer-template.html](leg-viewer-template.html) | Source of the three-slider viewer. |
+
+```sh
+runtime/cad/venv/bin/python hardware/joints/cad/leg_packaging.py --parameters hardware/joints/cad/j04-l02.candidate-A-under.json --variant proximal --out runtime/cad/l02-trial
+```
+
+`--quick` doubles every sweep step (36 poses instead of 175). A direct fine-grid run
+takes about five minutes on the Mac; a proximal one about twice that. The report's
+`pose_table` lists every sampled pose with its hit counts, and each pair's
+`colliding_pose_indices` points into it; `collision_samples` keeps only the first
+eight. Rigid envelopes on a sampled grid are not a continuous clearance proof, and
+no cable, cover, stop, encoder, fastener or shell interior is modelled.
+
 ## Rebuild
 
 Use a separate Python 3.12 environment. Mack's voice `.venv` is unrelated and must

@@ -1,0 +1,126 @@
+{
+  "revision": "J04-L02-D01",
+  "status": "PACKAGING STUDY WITH BENCHMARK ACTUATOR BLOCKS \u2014 NOT A FITTED, SELECTED OR LOAD-QUALIFIED DESIGN",
+  "provenance": "Body numbers are the WB-8 catalog envelope (axis mapping unverified). Hip origins, offsets and link lengths are the J04-L01-S01 sketch values, kept so the model lists what that sketch collides with. Actuator block is the XL330-M288-T size/mass benchmark; it is not selected. Every bracket, plate, shaft, bearing, pulley and belt is a proposed envelope with an assumed density, not a purchased part.",
+  "units": "mm, g, deg; body frame: origin at clock bottom centre, +X forward through the face, +Y left, +Z up",
+  "body": {
+    "width_Y": 80,
+    "depth_X": 91,
+    "height_Z": 112,
+    "source": "https://www.raycue.com/products/maclock \u2014 80 x 91 x 112 mm, 229 g; W/D/H mapping follows Bill's screenshot",
+    "interior": "unknown; anything inside this envelope is reported as inside-shell volume, not as a clear fit"
+  },
+  "cradle": {
+    "thickness": 4,
+    "inset": 2,
+    "z_top": 0,
+    "window_clearance": 3,
+    "density_g_cm3": 1.25,
+    "density_provenance": "assumed printed polymer, not selected"
+  },
+  "actuator": {
+    "name": "XL330-M288-T size/mass benchmark block",
+    "source": "https://emanual.robotis.com/docs/en/dxl/x/xl330-m288/ \u2014 Dimensions (W x H x D) 20.0 x 34.0 x 26.0 mm; Weight 18 g; read 2026-11-10",
+    "W": 20.0,
+    "H": 34.0,
+    "D": 26.0,
+    "mass_g": 18.0,
+    "axis_along": "D",
+    "axis_offset_from_near_end": 11.0,
+    "axis_offset_provenance": "RECALLED from the ROBOTIS XL330 2D drawing, NOT read this sitting. Verify from XL330.pdf (https://www.robotis.com/service/download.php?no=1986) before any fit claim.",
+    "horn_diameter": 12.0,
+    "horn_height": 2.0,
+    "idler_diameter": 12.0,
+    "idler_height": 2.0,
+    "horn_provenance": "proposed envelopes for the output horn and the opposite-side idler boss; not read from the drawing",
+    "selected": false
+  },
+  "hip": {
+    "P1": [
+      30.0,
+      34.0,
+      -10.0
+    ],
+    "P1_provenance": "J04-L01-S01 sketch hip origin for the front-left leg; other legs mirror the signs of X and Y",
+    "d": 12.0,
+    "h2": 0.0,
+    "offset_provenance": "sketch: second hip axis 12 mm outward, no drop",
+    "j1_case_long_dir": "inboard",
+    "j1_horn_dir": "+X",
+    "j2_case_long_dir": "down",
+    "j2_horn_dir": "outboard",
+    "j2_axial_offset": 0.0,
+    "carrier_plate_half_span": 20.0,
+    "carrier_hub_radius": 9.0
+  },
+  "links": {
+    "L1": 30.0,
+    "L2": 30.0,
+    "length_provenance": "J04-L01-S01 sketch: 30 + 30 mm between joint axes",
+    "plate_thickness": 2.0,
+    "plate_width": 14.0,
+    "hub_radius": 9.0,
+    "web_half_width": 6.0,
+    "clearance": 1.5,
+    "density_g_cm3": 1.25,
+    "density_provenance": "assumed printed polymer for plates, webs, hubs and channels; not selected"
+  },
+  "knee": {
+    "variant": "direct",
+    "mount_side": "outboard",
+    "case_long_dir": "up",
+    "horn_dir": "outboard",
+    "pulley_diameter": 12.0,
+    "pulley_width": 6.0,
+    "belt_thickness": 1.5,
+    "belt_mass_g": 3.0,
+    "shaft_diameter": 5.0,
+    "bearing_id_od_w": [
+      5.0,
+      11.0,
+      4.0
+    ],
+    "bearing_mass_g": 1.0,
+    "pulley_density_g_cm3": 2.7,
+    "shaft_density_g_cm3": 7.85,
+    "transmission_provenance": "proposed GT2-class pulley and belt envelopes and a 5 mm shaft with flanged-bearing envelopes; nothing selected",
+    "mount_side_note": "read only by the proximal variant; the direct variant is always inline"
+  },
+  "foot": {
+    "X": 18.0,
+    "Y": 16.0,
+    "Z": 10.0,
+    "density_g_cm3": 1.2,
+    "density_provenance": "assumed elastomer pad; passive tilt seat not modelled"
+  },
+  "hardware_allowance_g_per_joint": 6.0,
+  "hardware_allowance_provenance": "proposed allowance per joint for fasteners, spacers and output bearing; not counted parts",
+  "poses": {
+    "stance": {
+      "a": 12.0,
+      "b": -35.0,
+      "c": 70.0
+    },
+    "stance_provenance": "J04-L01-S01: 12 deg outward spread, 70 deg knee bend, hip swing half the knee bend in the opposite sense; front-left leg",
+    "sweep": {
+      "a": [
+        -30,
+        30,
+        15
+      ],
+      "b": [
+        -90,
+        90,
+        30
+      ],
+      "c": [
+        0,
+        120,
+        30
+      ]
+    },
+    "sweep_scope": "viewing/search ranges, not component or controller limits"
+  },
+  "neighbors": true,
+  "clearance_floor": 1.5
+}

@@ -11,3 +11,9 @@ __pycache__/
 node_modules/
 runtime/
 recordings/
+
+# desktop-app session config (local only)
+.claude/
+
+# headless builder run logs (local only; they quote private session rules)
+hardware/joints/cad/briefs/*.log

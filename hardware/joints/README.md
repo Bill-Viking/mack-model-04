@@ -26,6 +26,15 @@ are example inputs, not measured packaging or load-qualified hardware. The
 [engineering workflow](../engineering-workflow.md) takes that draft through the
 home Dell's Creo/Ansys tools, component selection and manufactured prototypes.
 
+**Leg packaging study (2026-11-10):** [J04-L02](leg-packaging.md) places benchmark
+actuator blocks at all three joints of one leg, with carrier, hinge frames, foot,
+cradle and the three neighbouring legs, and measures the result: the sketch's hip
+origins collide with the blocks at both hips and at a direct knee; three moved
+placements are compared for height, width, interior claim, mass and hip-swing
+inertia; every interference is listed by part pair and pose, and the direct knee
+is compared with a proximal belt-driven knee at one placement. The model is
+[cad/leg_packaging.py](cad/leg_packaging.py). Nothing is selected or approved.
+
 ## Recommended architecture
 
 Use **three independently driven joints on each of four legs**, for twelve powered

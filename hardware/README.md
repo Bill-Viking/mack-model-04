@@ -21,7 +21,10 @@ missing pitch assessment for the original side-sweeping arm.
 The [first J04-C01 cartridge](joints/cad/README.md) has editable build123d source,
 example parameters, STEP solids and an interactive offline preview. The Mac can
 generate and check this geometry directly. It is an untoleranced packaging study;
-the RayCue dimensions and purchased components remain unknown.
+the RayCue dimensions and purchased components remain unknown. The
+[J04-L02 leg packaging model](joints/leg-packaging.md) extends it to one whole leg
+with benchmark actuator blocks, three hip placements, a direct-against-proximal
+knee comparison and a pose-by-pose interference list; still nothing selected.
 
 Bill's home Dell has personal Creo and Ansys installations. The
 [engineering workflow](engineering-workflow.md) defines their roles, load cases,
