@@ -1,9 +1,9 @@
 lane: RayCue/Research
-written: 2026-11-11T08:35:00-08:00
+written: 2026-11-11T08:23:00-08:00
 by: ACT — RayCue/Research: Mack joint design
 on: MAC
-head: e035f3a (the animation commit follows)
-status_updated: 2026-11-11T08:35:00-08:00
+head: 1e5b47e (a timestamp fix follows)
+status_updated: 2026-11-11T08:23:00-08:00
 where: Leg packaged; lists handed; animations made; RES drafts wait on Bill
 next: bill
 depends_on: nothing
