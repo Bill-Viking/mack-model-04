@@ -46,6 +46,8 @@ The formal designation has the deliberately industrial tone of an old computing 
 | --- | --- |
 | The whole design on one page, by discipline, with open questions | [Technical specification](docs/technical-spec.md) |
 | A candid review of the work so far | [Design review, 2026-11-11](docs/review/design-review-2026-11-11.md) |
+| Move one leg's three joints with sliders, live in the browser | [direct knee](https://bill-viking.github.io/mack-model-04/hardware/joints/cad/exports/l02-A-under-direct/preview.html) · [belt knee](https://bill-viking.github.io/mack-model-04/hardware/joints/cad/exports/l02-A-under-proximal/preview.html) · [first sketch](https://bill-viking.github.io/mack-model-04/hardware/joints/cad/exports/l02-sketch-direct/preview.html) |
+| Animations to play, pause and turn, live in the browser | [leg and walk animations](https://bill-viking.github.io/mack-model-04/hardware/joints/cad/exports/l02-animation/animation.html) |
 | 3D models to turn with the mouse | [hardware/joints/models](hardware/joints/models/) |
 | The numbers behind the figures | [Leg packaging study](hardware/joints/leg-packaging.md) |
 | Editable CAD sources and STEP files | [hardware/joints/cad](hardware/joints/cad/) |
