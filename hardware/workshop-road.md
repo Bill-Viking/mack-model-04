@@ -61,7 +61,7 @@ heat-set insert boss), then one leg's hinge frames once they are redrawn.
 
 ## Stage 3 — the bench
 
-Essentials first. Planning allowance about US$250–450 for this list, RECALLED and unpriced.
+Essentials first. **Priced 2026-11-11:** the [bench list](bench-list.md) reads $272.33 at three stores, with the logic analyzer, inserts, screws and crimp kit left for later. The table below is the original plan.
 
 | Item | Job | Note |
 |---|---|---|
