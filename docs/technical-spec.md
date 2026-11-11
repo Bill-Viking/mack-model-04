@@ -224,7 +224,7 @@ Automatic model promotion/rollback, richer learned routines, project bridges and
 
 ## Budgets
 
-The engineering budget is blank for mass, power, energy and cost; populated quantity cells are concept counts, not completed estimates. The following reproduces the review's first-pass discussion estimate, not an approved target or populated BOM. [System budget](../hardware/system-budget.csv), [review estimate](review/design-review-2026-11-11.md#4-there-is-no-budget-mass-power-energy-and-cost-are-all-blank).
+The engineering budget now holds tagged first-pass mass and actuator-power ranges and recorded-price subtotals, with unsupported quantities left blank and separate tethered-walker and complete-product totals and battery-energy examples in the [budget summary](../hardware/system-budget-summary.md). The following reproduces the review's first-pass discussion estimate, not an approved target or populated BOM. [System budget](../hardware/system-budget.csv), [review estimate](review/design-review-2026-11-11.md#4-there-is-no-budget-mass-power-energy-and-cost-are-all-blank).
 
 | Item | Estimate | Standing |
 | --- | --- | --- |
