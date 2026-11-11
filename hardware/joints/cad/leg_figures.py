@@ -146,7 +146,7 @@ class Figure:
         self.text(48, 108, title, size=44)
         self.text(48, 151, 'front-left leg shown', color=palette['muted'])
         footer = re.search(r'`(CAD packaging study J04-L02[^`]+)`', brief).group(1)
-        self.text(48, 966, footer, sources=[
+        self.text(48, 974, footer, sources=[
             provenance(BRIEF, 'Drawing method / footer / study identifier', '04'),
             provenance(BRIEF, 'Drawing method / footer / study identifier', '02')])
 
@@ -179,11 +179,11 @@ class Figure:
             self.numbers.append(dict(text=' / '.join(lines), **source))
         return box
 
-    def label(self, view, lines, feature, y, sources=(), side='right'):
+    def label(self, view, lines, feature, y, sources=()):
         """One margin column, one straight leader, terminating at the feature silhouette."""
-        x = view.label_x if side == 'right' else view.left_label_x
+        x = view.label_x
         box = self.text(x, y, lines, sources=sources, label=True)
-        start = (box[0]-12, y-8) if side == 'right' else (box[2]+12, y-8)
+        start = (box[0]-12, y-8) if view.label_side == 'right' else (box[2]+12, y-8)
         features = [feature] if isinstance(feature, str) else feature
         candidates = []
         for name in features:
@@ -228,12 +228,27 @@ class Figure:
             baselines = sorted(label['box'][1] for label in self.labels
                                if view.column_start <= label['box'][0] < view.column_end)
             assert all(b-a >= 56 for a, b in zip(baselines, baselines[1:])), 'Label stack below 56 px'
+            leaders = [leader for leader in self.leaders if leader['view'] == view.name]
+            assert all(b['end'][1] >= a['end'][1] for a, b in zip(leaders, leaders[1:])), 'Feature heights out of label order'
         for leader in self.leaders:
             for text in self.text_boxes:
                 assert not segment_inside(leader['start'], leader['end'], rectangle(text['box'])), 'Leader crosses text'
         for first, second in itertools.combinations(self.leaders, 2):
             a, b, c, d = first['start'], first['end'], second['start'], second['end']
             assert not segments_intersect(a, b, c, d), 'Leaders cross or touch'
+        links = [dimension for dimension in self.dimensions if dimension['kind'] == 'link']
+        for first, second in itertools.combinations(links, 2):
+            assert not segments_intersect(*first['line_px'], *second['line_px']), 'Link dimensions cross'
+        for dimension in links:
+            for segment in dimension['segments_px']:
+                for text in self.text_boxes:
+                    assert not segment_inside(*segment, rectangle(text['box'])), 'Link dimension crosses text'
+        for view in self.views:
+            if view.receipt['body_crop_mm'] is not None:
+                assert view.receipt['cradle_to_ground_px'] >= 580-EPS
+            for part in view.parts.values():
+                x0, y0, x1, y1 = part['box']
+                assert 0 <= x0 < x1 <= 1600 and 0 <= y0 < y1 <= 1000, 'Solid outside canvas'
         payload = ET.tostring(self.root, encoding='unicode', xml_declaration=True)+'\n'
         root = ET.fromstring(payload)
         assert root.attrib['viewBox'] == '0 0 1600 1000'
@@ -249,6 +264,7 @@ class Figure:
                              label_count=len(self.labels), text_box_count=len(self.text_boxes),
                              leader_count=len(self.leaders), leaders_clear_of_text_and_each_other=True,
                              leaders_may_cross_geometry=True,
+                             feature_height_order=True, link_dimensions_clear=True,
                              labels=self.labels, leaders=self.leaders,
                              numbers=self.numbers, views=[v.receipt for v in self.views],
                              dimensions=self.dimensions)
@@ -256,17 +272,21 @@ class Figure:
 
 class View:
     def __init__(self, figure, model, meshes, name, projection, origin_x, ground_y, scale,
-                 label_x, ground, style='normal'):
+                 label_x, ground, style='normal', body_crop=None, label_side='right'):
         self.figure, self.model, self.name = figure, model, name
         self.projection, self.origin_x, self.ground_y, self.scale = projection, origin_x, ground_y, scale
         self.ground, self.label_x = ground, label_x
+        self.label_side = label_side
         self.column_start, self.column_end = label_x-1, label_x+350
         self.parts = {}
         depth_axis = 1 if projection == 'SIDE' else 0
         # Looking along -Y/-X: increasing camera-axis coordinate is nearer.
         for name, vertices in meshes.items():
+            if name == 'body_envelope' and body_crop is not None:
+                vertices = [(x, y, min(z, body_crop)) for x, y, z in vertices]
             polygon = hull([self.point(vertex) for vertex in vertices])
             self.parts[name] = dict(polygon=polygon, box=bounds(polygon),
+                                    lowest_z_mm=min(v[2] for v in vertices),
                                     depth=sum(v[depth_axis] for v in vertices)/len(vertices))
         ordered = sorted(self.parts, key=lambda n: self.parts[n]['depth'])
         overlay = (ACTUATORS if style == 'actuators' else
@@ -290,11 +310,18 @@ class View:
                 fill, stroke = 'none', figure.palette['muted']
                 if style == 'actuators':
                     stroke = pale(stroke)
-            figure.element('polygon', points=' '.join(f'{x:.6f},{y:.6f}' for x, y in part['polygon']),
-                           fill=fill, stroke=stroke, stroke_width=width,
-                           data_part=name, data_view=self.name,
-                           data_depth_mm=f'{part["depth"]:.9f}',
-                           data_layer='xray' if name in overlay else 'normal')
+            attributes = dict(fill=fill, stroke=stroke, stroke_width=width,
+                              data_part=name, data_view=self.name,
+                              data_depth_mm=f'{part["depth"]:.9f}',
+                              data_layer='xray' if name in overlay else 'normal')
+            if name == 'body_envelope' and body_crop is not None:
+                x0, y0, x1, y1 = part['box']
+                figure.element('path', d=f'M {x0} {y0} V {y1} H {x1} V {y0}', **attributes)
+                figure.line((x0, y0), (x1, y0), color=stroke, width=width,
+                            stroke_dasharray='10 8', data_body_break=self.name)
+            else:
+                figure.element('polygon', points=' '.join(f'{x:.6f},{y:.6f}' for x, y in part['polygon']),
+                               **attributes)
             figure.polygons.append(dict(name=name, view=self.name, box=part['box']))
         lo = min(part['box'][0] for part in self.parts.values())-20
         hi = max(part['box'][2] for part in self.parts.values())+20
@@ -303,7 +330,14 @@ class View:
                             ground_z_mm=ground, ground_y_px=ground_y,
                             source_solids=len(self.parts), painter_order=ordered,
                             xray_parts=[n for n in ordered if n in overlay],
-                            body='outline', neighbours_drawn=False)
+                            body='cropped outline' if body_crop else 'outline',
+                            body_crop_mm=body_crop,
+                            cradle_to_ground_px=(model.p['cradle']['z_top']-ground)*scale,
+                            clock_top_to_ground_px=(model.p['body']['height_Z']-ground)*scale,
+                            below_ground=[dict(solid=n, lowest_z_mm=p['lowest_z_mm'],
+                                               below_ground_mm=ground-p['lowest_z_mm'])
+                                          for n, p in self.parts.items() if p['lowest_z_mm'] < ground-EPS],
+                            neighbours_drawn=False)
         figure.views.append(self)
 
     def point(self, vertex):
@@ -344,21 +378,36 @@ class View:
                         figure.line(tip, (tip[0]+8*tangent[0]+side*4*normal[0],
                                           tip[1]+8*tangent[1]+side*4*normal[1]), color=figure.palette['blue'], width=2)
 
-    def link_dimension(self, start, end, length, key, offset):
+    def link_dimension(self, start, end, length, key, label):
         a, b = self.point(start), self.point(end)
         dx, dy = b[0]-a[0], b[1]-a[1]
         normal = (-dy/math.hypot(dx, dy), dx/math.hypot(dx, dy))
+        # Offset away from the feature column, on the outside of the bent chain.
+        direction = 1 if self.label_side == 'left' else -1
+        if normal[0]*direction < 0:
+            normal = (-normal[0], -normal[1])
+        offset = float(re.search(r'offset (\d+) px', self.figure.brief).group(1))
         p, q = [(v[0]+normal[0]*offset, v[1]+normal[1]*offset) for v in (a, b)]
         f = self.figure
-        f.line(a, p, width=1)
-        f.line(b, q, width=1)
-        f.line(p, q, color=f.palette['blue'])
+        segments = [(a, p), (b, q), (p, q)]
         for point in (p, q):
-            f.line((point[0]-4, point[1]-4), (point[0]+4, point[1]+4), color=f.palette['blue'])
-        x = min(p[0], q[0])-80
-        y = (p[1]+q[1])/2
-        f.text(x, y, f'{length:g} mm', sources=[provenance(PARAMETERS, key, length, f'{length:g}')])
-        f.dimensions.append(dict(kind='link', key=key, endpoints_mm=[start, end], nominal_mm=length))
+            segments.append(((point[0]-5*normal[0], point[1]-5*normal[1]),
+                             (point[0]+5*normal[0], point[1]+5*normal[1])))
+        for segment in segments:
+            f.line(*segment, color=f.palette['blue'], width=1.2)
+        text = f'{label} {length:g} mm'
+        width = len(text)*.56*24
+        # Centre the text vertically beside its line, beyond all solid boxes.
+        boxes = [part['box'] for name, part in self.parts.items()
+                 if name not in ('body_envelope', 'cradle')]
+        x = max(box[2] for box in boxes)+20 if direction > 0 else min(box[0] for box in boxes)-width-20
+        y = (p[1]+q[1])/2+24*.4
+        f.text(x, y, text, sources=[provenance(PARAMETERS, key, length, f'{length:g}')])
+        assert abs(cross(p, q, (p[0]+dx, p[1]+dy))) < 1e-5, 'Dimension is not parallel'
+        f.dimensions.append(dict(kind='link', key=key, endpoints_mm=[start, end], nominal_mm=length,
+                                 offset_px=offset, line_px=[p, q], segments_px=segments,
+                                 label_column_side=self.label_side,
+                                 text_center_y_px=y-24*.4))
 
     def height_dimension(self, value, source):
         f = self.figure
@@ -368,7 +417,8 @@ class View:
         for y in (top, self.ground_y):
             f.line((x-6, y), (x+6, y), width=1.8)
             f.line((x+10, y), (x+30, y), width=1)
-        f.text(x-5, top-20, f'{value:.1f} mm', sources=[source])
+        text = f'{value:.1f} mm'
+        f.text(x-20-len(text)*.56*24, (top+self.ground_y)/2+24*.4, text, sources=[source])
         f.dimensions.append(dict(kind='height', ground_z_mm=self.ground,
                                  clock_top_z_mm=self.model.p['body']['height_Z'],
                                  full_precision_mm=value, printed_mm=f'{value:.1f}'))
@@ -411,79 +461,85 @@ def build_models():
 def make_figures(models, meshes, reports, palette, brief):
     direct = models['direct']
     ground = reports['direct']['row']['stance']['foot_bottom_z_mm']
-    scale = 2.2
+    crop = float(re.search(r'only its lowest\s+(\d+) mm', brief).group(1))
+    scale = 580/(direct.p['cradle']['z_top']-ground)
     figures = []
     f = Figure('leg-axes.svg', 'One leg, three powered axes', palette, brief)
-    side = View(f, direct, meshes['direct'], 'SIDE', 'SIDE', 230, 760, scale, 475, ground)
-    front = View(f, direct, meshes['direct'], 'FRONT', 'FRONT', 1005, 760, scale, 1260, ground)
-    f.text(100, 208, 'SIDE', color=palette['muted'])
-    f.text(900, 208, 'FRONT', color=palette['muted'])
+    side = View(f, direct, meshes['direct'], 'SIDE', 'SIDE', 285, 934, scale, 48, ground,
+                body_crop=crop, label_side='left')
+    front = View(f, direct, meshes['direct'], 'FRONT', 'FRONT', 1080, 934, scale, 1310, ground, body_crop=crop)
+    f.text(420, 151, 'SIDE', color=palette['muted'])
+    f.text(1040, 151, 'FRONT', color=palette['muted'])
+    legend = re.search(r'`(ring = joint axis[^`]+)`', brief).group(1)
+    f.text(420, 184, legend, color=palette['muted'])
     for view in (side, front):
         view.axes()
-    f.label(side, 'J2 hip swing', ('upper_horn_plate', 'upper_idler_plate'), 574,
+    f.label(side, 'J2 hip swing', ('upper_horn_plate', 'upper_idler_plate'), 555,
             [provenance(HERE/'leg_packaging.py', 'Model.axes[1] / hip swing', 2)])
-    f.label(side, 'J3 knee', ('lower_horn_plate', 'lower_idler_plate'), 650,
+    f.label(side, 'J3 knee', ('lower_horn_plate', 'lower_idler_plate'), 740,
             [provenance(HERE/'leg_packaging.py', 'Model.axes[2] / knee', 3)])
-    f.label(side, 'Foot', 'foot', 738)
-    f.label(front, 'J1 hip spread', ('j1_actuator', 'carrier_horn_plate', 'carrier_idler_plate'), 552,
-            [provenance(HERE/'leg_packaging.py', 'Model.axes[0] / hip spread', 1)])
+    f.label(side, 'Foot', 'foot', 890)
     body = direct.p['body']
-    f.label(front, ['Body (clock)', f'{body["width_Y"]:g} × {body["depth_X"]:g} × {body["height_Z"]:g} mm'],
-            'body_envelope', 330, [provenance(PARAMETERS, f'body.{k}', body[k], f'{body[k]:g}')
+    f.label(front, ['Body (clock)', f'{body["width_Y"]:g} × {body["depth_X"]:g} × {body["height_Z"]:g} mm', '· cropped'],
+            'body_envelope', 220, [provenance(PARAMETERS, f'body.{k}', body[k], f'{body[k]:g}')
                                     for k in ('width_Y', 'depth_X', 'height_Z')])
+    f.label(front, 'J1 hip spread', ('j1_actuator', 'carrier_horn_plate', 'carrier_idler_plate'), 370,
+            [provenance(HERE/'leg_packaging.py', 'Model.axes[0] / hip spread', 1)])
     p2, p3, p4 = direct.chain(**direct.p['poses']['stance'])
-    side.link_dimension(p2, p3, direct.p['links']['L1'], 'links.L1_direct', 110)
-    side.link_dimension(p3, p4, direct.p['links']['L2'], 'links.L2', 95)
-    f.scale_bar(100, 856, scale)
+    side.link_dimension(p2, p3, direct.p['links']['L1'], 'links.L1_direct', 'Upper link')
+    side.link_dimension(p3, p4, direct.p['links']['L2'], 'links.L2', 'Lower link')
+    f.scale_bar(80, 916, scale)
     figures.append(f)
 
     f = Figure('actuator-space.svg', 'Where the three actuators sit', palette, brief)
-    side = View(f, direct, meshes['direct'], 'SIDE', 'SIDE', 230, 742, scale, 475, ground, 'actuators')
-    front = View(f, direct, meshes['direct'], 'FRONT', 'FRONT', 1005, 742, scale, 1260, ground, 'actuators')
+    side = View(f, direct, meshes['direct'], 'SIDE', 'SIDE', 285, 934, scale, 670, ground, 'actuators', body_crop=crop)
+    front = View(f, direct, meshes['direct'], 'FRONT', 'FRONT', 1080, 934, scale, 1310, ground, 'actuators', body_crop=crop)
     disclosure = re.search(r'`(Actuators drawn on top;[^`]+)`', brief).group(1)
-    f.text(48, 192, disclosure, color=palette['muted'])
-    f.text(100, 230, 'SIDE', color=palette['muted'])
-    f.text(900, 230, 'FRONT', color=palette['muted'])
-    f.label(side, 'J2 actuator', 'j2_actuator', 570,
+    f.text(48, 184, disclosure, color=palette['muted'])
+    f.text(420, 151, 'SIDE', color=palette['muted'])
+    f.text(1040, 151, 'FRONT', color=palette['muted'])
+    f.label(side, 'J2 actuator', 'j2_actuator', 555,
             [provenance(HERE/'leg_packaging.py', 'Model.build / j2_actuator', 2)])
-    f.label(side, ['J3 actuator', '(knee)'], 'knee_actuator', 660,
+    f.label(side, ['J3 actuator', '(knee)'], 'knee_actuator', 740,
             [provenance(HERE/'leg_packaging.py', 'Model.build / knee_actuator / third axis', 3)])
-    f.label(front, 'J1 actuator', 'j1_actuator', 540,
+    f.label(front, 'J1 actuator', 'j1_actuator', 370,
             [provenance(HERE/'leg_packaging.py', 'Model.build / j1_actuator', 1)])
     ac = direct.p['actuator']
-    f.element('rect', x=600, y=780, width=925, height=126, rx=5,
+    f.element('rect', x=48, y=600, width=270, height=258, rx=5,
               fill='none', stroke=palette['line'], stroke_width=1.5)
-    f.text(625, 820, f'Each block: {ac["W"]:g} × {ac["H"]:g} × {ac["D"]:g} mm · {ac["mass_g"]:g} g',
+    f.text(70, 638, ['Each block:', f'{ac["W"]:g} × {ac["H"]:g} × {ac["D"]:g} mm', f'· {ac["mass_g"]:g} g'],
            sources=[provenance(PARAMETERS, f'actuator.{k}', ac[k], f'{ac[k]:g}') for k in ('W', 'H', 'D', 'mass_g')])
-    f.text(625, 868, 'Size and mass benchmark, not a selected motor')
+    f.text(70, 756, ['Size and mass', 'benchmark, not a', 'selected motor'])
     assert len(ACTUATORS) == 3 and len(animation.LEGS) == 4
-    f.text(48, 912, 'Three per leg · twelve in all', sources=[])
+    f.text(670, 910, 'Three per leg · twelve in all', sources=[])
     f.numbers.extend([provenance(HERE/'leg_packaging.py', 'Model.build / actuator blocks per leg', len(ACTUATORS), 'Three'),
                       provenance(HERE/'leg_animation.py', 'LEGS × Model.build actuator count', len(animation.LEGS)*len(ACTUATORS), 'twelve')])
-    f.scale_bar(100, 830, scale)
+    f.scale_bar(80, 916, scale)
     figures.append(f)
 
     f = Figure('knee-layouts.svg', 'Two knee layouts, neither chosen', palette, brief)
-    for variant, x, label_x, title in [('direct', 230, 475, 'Direct knee'),
-                                       ('proximal', 1030, 1275, 'Belt-driven knee')]:
+    scale = 680/max(report['row']['stance']['overall_height_mm'] for report in reports.values())
+    for variant, x, label_x, title, caption_x in [('direct', 480, 710, 'Direct knee', 48),
+                                                  ('proximal', 1160, 1340, 'Belt-driven knee', 700)]:
         model, report = models[variant], reports[variant]
         row, key = report['row'], report['key']
-        view = View(f, model, meshes[variant], variant, 'SIDE', x, 754, scale,
+        view = View(f, model, meshes[variant], variant, 'SIDE', x, 820, scale,
                     label_x, row['stance']['foot_bottom_z_mm'], 'knee')
-        f.text(x-110, 205, title, size=30)
-        f.label(view, 'knee actuator', 'knee_actuator', 634 if variant == 'direct' else 570)
+        f.text(caption_x, 210, title, size=30)
+        f.label(view, 'knee actuator', 'knee_actuator', 700 if variant == 'direct' else 600)
         if variant == 'proximal':
-            f.label(view, 'belt and pulleys', ('belt', 'pulley_hip', 'pulley_knee'), 666)
+            f.label(view, 'belt and pulleys', ('belt', 'pulley_hip', 'pulley_knee'), 730)
         mass, height = row['mass']['leg_total_g'], row['stance']['overall_height_mm']
         length = model.p['links']['L1']
         height_source = provenance(COMPARISON, f'sweeps.{key}.stance.overall_height_mm', height, f'{height:.1f}')
         view.height_dimension(height, height_source)
-        f.text(x-110, 808, f'Leg mass {mass:.1f} g', sources=[
+        f.text(x-110, 866, f'Leg mass {mass:.1f} g', sources=[
             provenance(COMPARISON, f'sweeps.{key}.mass.leg_total_g', mass, f'{mass:.1f}')])
-        f.text(x-110, 846, f'Standing height {height:.1f} mm', sources=[height_source])
-        f.text(x-110, 884, f'Upper link {length:g} mm', sources=[
+        f.text(x-110, 904, f'Standing height {height:.1f} mm', sources=[height_source])
+        f.text(x-110, 942, f'Upper link {length:g} mm', sources=[
             provenance(PARAMETERS, f'links.L1_{variant}', length, f'{length:g}')])
-    f.scale_bar(650, 922, scale)
+    assert math.isclose(max(view.receipt['clock_top_to_ground_px'] for view in f.views), 680)
+    f.scale_bar(800, 919, scale)
     figures.append(f)
     return figures
 

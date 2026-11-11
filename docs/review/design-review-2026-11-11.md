@@ -105,6 +105,10 @@ the development Mac.
 ### 9. Smaller items
 - The electrical design has no rail plan: twelve benchmark actuators can each draw 1.47 A at
   stall (CATALOG), 17.6 A together, on a 5 V rail that must not brown out the computer.
+- In the belt-knee model the inboard lower-link plate reaches 5.8 mm below the foot sole at
+  stance (CALCULATED from the model, found while drawing the figures). That layout's 207.8 mm
+  standing height is measured to the foot, so the plate would touch the ground first; the
+  plate needs shortening before the two knee layouts are compared on height.
 - Cable routes through three moving joints per leg are still undrawn.
 - The build-target image and desktop mock-up carry another company's logo and interface
   look. Worth a deliberate decision before wider publicity.

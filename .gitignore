@@ -17,3 +17,4 @@ recordings/
 
 # headless builder run logs (local only; they quote private session rules)
 hardware/joints/cad/briefs/*.log
+docs/review/*.log
