@@ -1,9 +1,9 @@
 lane: RayCue/Research
-written: 2026-11-11T09:55:00-08:00
+written: 2026-11-11T09:52:00-08:00
 by: ACT — RayCue/Research: Mack joint design
 on: MAC
-head: 8734280 (an opener commit follows)
-status_updated: 2026-11-11T09:55:00-08:00
+head: 4b38c8c (a timestamp fix follows)
+status_updated: 2026-11-11T09:52:00-08:00
 where: Review and spec published; next design is short legs with a base; posts with RES
 next: bill
 depends_on: nothing
