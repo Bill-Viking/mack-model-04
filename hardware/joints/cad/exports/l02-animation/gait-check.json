@@ -1,0 +1,547 @@
+{
+  "scenes": {
+    "leg": {
+      "frames": 60,
+      "legs": {
+        "FL": {
+          "max_ik_error_mm": 1.5518261583224925e-06,
+          "joint_ranges_deg": {
+            "a": [
+              -2.9178284305208173,
+              26.917828430520817
+            ],
+            "b": [
+              -59.863047384201366,
+              -10.136952615798638
+            ],
+            "c": [
+              40.164343138958365,
+              99.83565686104163
+            ]
+          },
+          "sweep_limits_deg": {
+            "a": [
+              -30,
+              30
+            ],
+            "b": [
+              -90,
+              90
+            ],
+            "c": [
+              0,
+              120
+            ]
+          },
+          "all_inside_sweep": true,
+          "max_stance_slip_mm": null,
+          "minimum_stance_foot_height_mm": null,
+          "maximum_stance_foot_height_mm": null
+        }
+      },
+      "max_ik_error_mm": 1.5518261583224925e-06,
+      "all_inside_sweep": true,
+      "foot_centre_track_width_mm": null
+    },
+    "overview": {
+      "frames": 60,
+      "legs": {
+        "FL": {
+          "max_ik_error_mm": 5.010000633797648e-06,
+          "joint_ranges_deg": {
+            "a": [
+              12.0,
+              14.494163576298714
+            ],
+            "b": [
+              -47.36415422831927,
+              -35.0
+            ],
+            "c": [
+              70.0,
+              100.98828295697874
+            ]
+          },
+          "sweep_limits_deg": {
+            "a": [
+              -30,
+              30
+            ],
+            "b": [
+              -90,
+              90
+            ],
+            "c": [
+              0,
+              120
+            ]
+          },
+          "all_inside_sweep": true,
+          "max_stance_slip_mm": null,
+          "minimum_stance_foot_height_mm": -3.367142554111524e-06,
+          "maximum_stance_foot_height_mm": 4.697662589592255e-06
+        },
+        "FR": {
+          "max_ik_error_mm": 5.010000633797648e-06,
+          "joint_ranges_deg": {
+            "a": [
+              12.0,
+              14.494163576298714
+            ],
+            "b": [
+              -47.36415422831927,
+              -35.0
+            ],
+            "c": [
+              70.0,
+              100.98828295697874
+            ]
+          },
+          "sweep_limits_deg": {
+            "a": [
+              -30,
+              30
+            ],
+            "b": [
+              -90,
+              90
+            ],
+            "c": [
+              0,
+              120
+            ]
+          },
+          "all_inside_sweep": true,
+          "max_stance_slip_mm": null,
+          "minimum_stance_foot_height_mm": -3.367142554111524e-06,
+          "maximum_stance_foot_height_mm": 4.697662589592255e-06
+        },
+        "RL": {
+          "max_ik_error_mm": 5.010000633797648e-06,
+          "joint_ranges_deg": {
+            "a": [
+              12.0,
+              14.494163576298714
+            ],
+            "b": [
+              -47.36415422831927,
+              -35.0
+            ],
+            "c": [
+              70.0,
+              100.98828295697874
+            ]
+          },
+          "sweep_limits_deg": {
+            "a": [
+              -30,
+              30
+            ],
+            "b": [
+              -90,
+              90
+            ],
+            "c": [
+              0,
+              120
+            ]
+          },
+          "all_inside_sweep": true,
+          "max_stance_slip_mm": null,
+          "minimum_stance_foot_height_mm": -3.367142554111524e-06,
+          "maximum_stance_foot_height_mm": 4.697662589592255e-06
+        },
+        "RR": {
+          "max_ik_error_mm": 5.010000633797648e-06,
+          "joint_ranges_deg": {
+            "a": [
+              12.0,
+              14.494163576298714
+            ],
+            "b": [
+              -47.36415422831927,
+              -35.0
+            ],
+            "c": [
+              70.0,
+              100.98828295697874
+            ]
+          },
+          "sweep_limits_deg": {
+            "a": [
+              -30,
+              30
+            ],
+            "b": [
+              -90,
+              90
+            ],
+            "c": [
+              0,
+              120
+            ]
+          },
+          "all_inside_sweep": true,
+          "max_stance_slip_mm": null,
+          "minimum_stance_foot_height_mm": -3.367142554111524e-06,
+          "maximum_stance_foot_height_mm": 4.697662589592255e-06
+        }
+      },
+      "max_ik_error_mm": 5.010000633797648e-06,
+      "all_inside_sweep": true,
+      "foot_centre_track_width_mm": [
+        129.7738714982876,
+        129.77387794565774
+      ]
+    },
+    "walk-prototype": {
+      "frames": 60,
+      "legs": {
+        "FL": {
+          "max_ik_error_mm": 9.312950102817644e-06,
+          "joint_ranges_deg": {
+            "a": [
+              8.837860322693555,
+              16.92581405060591
+            ],
+            "b": [
+              -44.68473511287557,
+              -26.121196259463048
+            ],
+            "c": [
+              60.057062145873594,
+              87.69418019625459
+            ]
+          },
+          "sweep_limits_deg": {
+            "a": [
+              -30,
+              30
+            ],
+            "b": [
+              -90,
+              90
+            ],
+            "c": [
+              0,
+              120
+            ]
+          },
+          "all_inside_sweep": true,
+          "max_stance_slip_mm": 5.6223086547563375e-06,
+          "minimum_stance_foot_height_mm": -5.326424656004747e-06,
+          "maximum_stance_foot_height_mm": 8.691705360774904e-06
+        },
+        "FR": {
+          "max_ik_error_mm": 9.312949995124338e-06,
+          "joint_ranges_deg": {
+            "a": [
+              8.837860322693551,
+              16.92581405060592
+            ],
+            "b": [
+              -44.684735112875565,
+              -26.121196259463087
+            ],
+            "c": [
+              60.05706214587335,
+              87.69418019625459
+            ]
+          },
+          "sweep_limits_deg": {
+            "a": [
+              -30,
+              30
+            ],
+            "b": [
+              -90,
+              90
+            ],
+            "c": [
+              0,
+              120
+            ]
+          },
+          "all_inside_sweep": true,
+          "max_stance_slip_mm": 5.622308220320794e-06,
+          "minimum_stance_foot_height_mm": -5.326422993334745e-06,
+          "maximum_stance_foot_height_mm": 8.691705218666357e-06
+        },
+        "RL": {
+          "max_ik_error_mm": 9.101653874983474e-06,
+          "joint_ranges_deg": {
+            "a": [
+              8.837860201605372,
+              16.925814044478997
+            ],
+            "b": [
+              -44.68473508473139,
+              -26.121200819961278
+            ],
+            "c": [
+              60.05707395790981,
+              87.69418033122822
+            ]
+          },
+          "sweep_limits_deg": {
+            "a": [
+              -30,
+              30
+            ],
+            "b": [
+              -90,
+              90
+            ],
+            "c": [
+              0,
+              120
+            ]
+          },
+          "all_inside_sweep": true,
+          "max_stance_slip_mm": 5.912464956764593e-06,
+          "minimum_stance_foot_height_mm": -2.7152516679507244e-07,
+          "maximum_stance_foot_height_mm": 8.471059416592652e-06
+        },
+        "RR": {
+          "max_ik_error_mm": 9.101653695150502e-06,
+          "joint_ranges_deg": {
+            "a": [
+              8.837860201605364,
+              16.925814044478994
+            ],
+            "b": [
+              -44.68473508473133,
+              -26.121200819961192
+            ],
+            "c": [
+              60.05708469606127,
+              87.6941803312282
+            ]
+          },
+          "sweep_limits_deg": {
+            "a": [
+              -30,
+              30
+            ],
+            "b": [
+              -90,
+              90
+            ],
+            "c": [
+              0,
+              120
+            ]
+          },
+          "all_inside_sweep": true,
+          "max_stance_slip_mm": 5.912464088131664e-06,
+          "minimum_stance_foot_height_mm": -2.7152526627105544e-07,
+          "maximum_stance_foot_height_mm": 8.471059246062396e-06
+        }
+      },
+      "max_ik_error_mm": 9.312950102817644e-06,
+      "all_inside_sweep": true,
+      "foot_centre_track_width_mm": [
+        129.77387093461277,
+        129.77387844797457
+      ],
+      "stride_used_mm": 24,
+      "lift_mm": 10,
+      "body_speed_mm_per_cycle": 30.0,
+      "max_stance_slip_mm": 5.912464956764593e-06,
+      "minimum_stance_foot_height_mm": -5.326424656004747e-06,
+      "max_absolute_stance_height_mm": 8.691705360774904e-06
+    },
+    "walk-concept": {
+      "frames": 60,
+      "legs": {
+        "FL": {
+          "max_ik_error_mm": 9.312950102817644e-06,
+          "joint_ranges_deg": {
+            "a": [
+              8.837860322693555,
+              16.92581405060591
+            ],
+            "b": [
+              -44.68473511287557,
+              -26.121196259463048
+            ],
+            "c": [
+              60.057062145873594,
+              87.69418019625459
+            ]
+          },
+          "sweep_limits_deg": {
+            "a": [
+              -30,
+              30
+            ],
+            "b": [
+              -90,
+              90
+            ],
+            "c": [
+              0,
+              120
+            ]
+          },
+          "all_inside_sweep": true,
+          "max_stance_slip_mm": 5.6223086547563375e-06,
+          "minimum_stance_foot_height_mm": -5.326424656004747e-06,
+          "maximum_stance_foot_height_mm": 8.691705360774904e-06
+        },
+        "FR": {
+          "max_ik_error_mm": 9.312949995124338e-06,
+          "joint_ranges_deg": {
+            "a": [
+              8.837860322693551,
+              16.92581405060592
+            ],
+            "b": [
+              -44.684735112875565,
+              -26.121196259463087
+            ],
+            "c": [
+              60.05706214587335,
+              87.69418019625459
+            ]
+          },
+          "sweep_limits_deg": {
+            "a": [
+              -30,
+              30
+            ],
+            "b": [
+              -90,
+              90
+            ],
+            "c": [
+              0,
+              120
+            ]
+          },
+          "all_inside_sweep": true,
+          "max_stance_slip_mm": 5.622308220320794e-06,
+          "minimum_stance_foot_height_mm": -5.326422993334745e-06,
+          "maximum_stance_foot_height_mm": 8.691705218666357e-06
+        },
+        "RL": {
+          "max_ik_error_mm": 9.101653874983474e-06,
+          "joint_ranges_deg": {
+            "a": [
+              8.837860201605372,
+              16.925814044478997
+            ],
+            "b": [
+              -44.68473508473139,
+              -26.121200819961278
+            ],
+            "c": [
+              60.05707395790981,
+              87.69418033122822
+            ]
+          },
+          "sweep_limits_deg": {
+            "a": [
+              -30,
+              30
+            ],
+            "b": [
+              -90,
+              90
+            ],
+            "c": [
+              0,
+              120
+            ]
+          },
+          "all_inside_sweep": true,
+          "max_stance_slip_mm": 5.912464956764593e-06,
+          "minimum_stance_foot_height_mm": -2.7152516679507244e-07,
+          "maximum_stance_foot_height_mm": 8.471059416592652e-06
+        },
+        "RR": {
+          "max_ik_error_mm": 9.101653695150502e-06,
+          "joint_ranges_deg": {
+            "a": [
+              8.837860201605364,
+              16.925814044478994
+            ],
+            "b": [
+              -44.68473508473133,
+              -26.121200819961192
+            ],
+            "c": [
+              60.05708469606127,
+              87.6941803312282
+            ]
+          },
+          "sweep_limits_deg": {
+            "a": [
+              -30,
+              30
+            ],
+            "b": [
+              -90,
+              90
+            ],
+            "c": [
+              0,
+              120
+            ]
+          },
+          "all_inside_sweep": true,
+          "max_stance_slip_mm": 5.912464088131664e-06,
+          "minimum_stance_foot_height_mm": -2.7152526627105544e-07,
+          "maximum_stance_foot_height_mm": 8.471059246062396e-06
+        }
+      },
+      "max_ik_error_mm": 9.312950102817644e-06,
+      "all_inside_sweep": true,
+      "foot_centre_track_width_mm": [
+        129.77387093461277,
+        129.77387844797457
+      ],
+      "stride_used_mm": 24,
+      "lift_mm": 10,
+      "body_speed_mm_per_cycle": 30.0,
+      "max_stance_slip_mm": 5.912464956764593e-06,
+      "minimum_stance_foot_height_mm": -5.326424656004747e-06,
+      "max_absolute_stance_height_mm": 8.691705360774904e-06
+    }
+  },
+  "forward_chain_check": {
+    "random_poses": 10,
+    "max_error_mm": 0.0
+  },
+  "rejected_strides_mm": [],
+  "parameter_sha256": "b45ab459000368416e46a16d58dadfe7276c160d6e586f0a864c89e9fda5aac6",
+  "not_checked": [
+    "interference between parts in motion",
+    "static stability or centre of mass",
+    "joint torque or speed",
+    "any load"
+  ],
+  "ground_reference": "Nominal prototype rigid pad: centroid XY and lowest box support Z; slip is centroid XY in an unwrapped ground frame, not contact-patch slip. Concept rounding is appearance only and reuses the nominal pad datum.",
+  "browser_proof": "UNRUN here; page render, visual quality, WebGL, console and actual browser capture belong to caller.",
+  "known_from_J04-L02-D01": "the packaged leg has named overlaps in its hinge frames at sampled poses; this animation does not resolve them",
+  "sha256": {
+    "j04-l02.candidate-A-under.json": "b45ab459000368416e46a16d58dadfe7276c160d6e586f0a864c89e9fda5aac6",
+    "leg_animation.py": "6e651aafd32c6ae118b0603848a1b17e50c8f53c999f3eaed2d0c640b102b2ac",
+    "render_frames.py": "4d6f01a385a6bbc20d978418f924f706f6cf3b95956d7006d213f92d8b9d4d3a",
+    "exports/l02-animation/animation.html": "c8a39ac322004151e7a1ec0c83abb5c0ec58e79d6dca2f5567e9b84851be33dc"
+  },
+  "source_sha256": {
+    "leg_packaging.py": "b55fab3a3a05f8df8ca38abacf8306e49de02e2477a15e0272ddda120e3e668e",
+    "leg-viewer-template.html": "6309a2c5cf4cd4a746a03fdf1c274c070bf5e9619b442869a90f75d6c70fa412"
+  },
+  "mesh_counts": {
+    "prototype": {
+      "parts": 25,
+      "triangles": 3652
+    },
+    "concept": {
+      "parts": 11,
+      "triangles": 15084
+    }
+  }
+}
