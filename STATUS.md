@@ -290,7 +290,8 @@ The host desktop, local AI and durable-memory runtime are implemented; no body r
 - [ ] On the servo's arrival: weigh and measure it, replace the recalled 11 mm offset in every J04-L02 parameter file, re-run placement A.
 - [x] Price the bench list as an order sheet after the printer pick (W04 stage 3; hardware/bench-list.md, store pages read 2026-11-11 07:1x: Jameco HY3005 supply $145.95, nine hand tools at Adafruit $96.40, PINE64 Pinecil V2 and cable $29.98; $272.33; logic analyzer, inserts and tip, screws, crimp kit and wick wait, each with its reason).
 - [x] Make still views and four animations of the leg and the walk for sharing (J04-L02-V01, 2026-11-11; output/social/2026-11-11/).
-- [ ] Bill rules on RES's Facebook and X drafts and on the final-design concept look; RES posts only on his yes.
+- [x] Bill approved RES's Facebook and X drafts with the animations: «Yes, post and push», 2026-11-11 08:2x; repo pushed (main at 0b61fde).
+- [ ] RES posts the two approved posts from the docket in Bill's Downloads folder (Mack-posts-2026-11-11/POST-DOCKET.md) and mails back the permalinks. This window could not post: Bill's Chrome is not connected to the app and the app's browser is not signed in to either site. Letter pm-04780fdcd4ab waits for a Resonance window.
 - [ ] Bill places the bench order from hardware/bench-list.md (three stores, $272.33 before tax and shipping).
 - [ ] Develop packaging and mass/power budgets before choosing fitted hardware.
 - [x] Establish B04 lithium-ion power direction with fuel-cell comparison and explicit energy/peak/braking requirements.
