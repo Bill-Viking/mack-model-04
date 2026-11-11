@@ -1,0 +1,1139 @@
+{
+  "revision": "J04-L03-D01-base-short",
+  "variants": {
+    "direct": {
+      "variant": "direct",
+      "parameter_sha256": "734269b951f41ee15157dc683c3d815ca8f5e785d2069c7323b05b8a5e096224",
+      "generator_sha256": "c5cfcaf33821c51df9b806ea9365e35346da00143b3a3316a07172061b11fa40",
+      "quick": false,
+      "solved_stance_pose_deg": {
+        "a": 12.0,
+        "b": -50.58187096263282,
+        "c": 101.16374192526564
+      },
+      "under_shell_height_mm": 54.99999999979465,
+      "overall_height_mm": 166.99999999979465,
+      "stance_reached": true,
+      "within_range": true,
+      "ground_contact_ok": false,
+      "leg_mass_g": 90.53836082741088,
+      "four_leg_mass_g": 362.15344330964354,
+      "total_mass_g": 981.5434433096435,
+      "com_mm": [
+        1.532865665017106e-17,
+        6.131462660068405e-17,
+        20.590671924442322
+      ],
+      "com_height_above_floor_mm": 75.59067192423697,
+      "support": {
+        "contact_points_mm": {
+          "FL": [
+            28.13733650573131,
+            52.63324276907157,
+            -54.99999999979465
+          ],
+          "FR": [
+            28.13733650573131,
+            -52.63324276907157,
+            -54.99999999979465
+          ],
+          "RL": [
+            -28.13733650573131,
+            52.63324276907157,
+            -54.99999999979465
+          ],
+          "RR": [
+            -28.13733650573131,
+            -52.63324276907157,
+            -54.99999999979465
+          ]
+        },
+        "four_feet_margins_mm": {
+          "margin_front": 28.13733650573131,
+          "margin_rear": 28.13733650573131,
+          "margin_left": 52.63324276907157,
+          "margin_right": 52.63324276907157
+        },
+        "minimum_margin_mm": 28.13733650573131,
+        "tip_angle_deg": 20.4169231794984,
+        "three_feet": [
+          {
+            "lifted_leg": "FL",
+            "signed_margin_mm": 0.0,
+            "edge_signed_distances_mm": [
+              52.63324276907157,
+              0.0,
+              28.137336505731305
+            ]
+          },
+          {
+            "lifted_leg": "FR",
+            "signed_margin_mm": 0.0,
+            "edge_signed_distances_mm": [
+              0.0,
+              52.63324276907157,
+              28.137336505731305
+            ]
+          },
+          {
+            "lifted_leg": "RL",
+            "signed_margin_mm": 0.0,
+            "edge_signed_distances_mm": [
+              52.63324276907157,
+              28.137336505731305,
+              0.0
+            ]
+          },
+          {
+            "lifted_leg": "RR",
+            "signed_margin_mm": 0.0,
+            "edge_signed_distances_mm": [
+              28.137336505731305,
+              52.63324276907157,
+              0.0
+            ]
+          }
+        ],
+        "com_height_above_floor_mm": 75.59067192423697,
+        "assumptions": "Masses and positions tagged ASSUMED in the parameters drive CoM and support. Shell 229 g is catalog complete-clock mass, assumed fully retained.",
+        "method": "Rectangle axis-aligned margins. Triangle edges oriented counterclockwise; minimum inward signed perpendicular edge distance, negative outside."
+      },
+      "stance_static_torque": {
+        "reference_mass": {
+          "mass_kg": 1.0,
+          "pose_deg": {
+            "a": 12.0,
+            "b": -50.58187096263282,
+            "c": 101.16374192526564
+          },
+          "contact_point_mm": [
+            28.13733650573131,
+            52.63324276907157,
+            -54.99999999979465
+          ],
+          "axis_points_mm": [
+            [
+              26.0,
+              24.0,
+              -14.0
+            ],
+            [
+              32.0,
+              56.76794462458249,
+              -7.034958357605062
+            ],
+            [
+              55.175980965612155,
+              60.72850629567259,
+              -25.667936045861843
+            ]
+          ],
+          "axis_directions": [
+            [
+              1,
+              0,
+              0
+            ],
+            [
+              0,
+              0.9781476007338057,
+              0.20791169081775934
+            ],
+            [
+              0,
+              0.9781476007338057,
+              0.20791169081775934
+            ]
+          ],
+          "rows": [
+            {
+              "feet": 4,
+              "load_per_foot_N": 2.4516625,
+              "J1_Nm": 0.07019904755032894,
+              "J2_Nm": 0.00926300617092071,
+              "J3_Nm": 0.06484104319644497,
+              "J1_stall_share": 0.1349981683660172,
+              "J2_stall_share": 0.017813473405616752,
+              "J3_stall_share": 0.12469431383931726
+            },
+            {
+              "feet": 3,
+              "load_per_foot_N": 3.268883333333333,
+              "J1_Nm": 0.09359873006710524,
+              "J2_Nm": 0.012350674894560945,
+              "J3_Nm": 0.08645472426192664,
+              "J1_stall_share": 0.17999755782135624,
+              "J2_stall_share": 0.023751297874155662,
+              "J3_stall_share": 0.16625908511908968
+            },
+            {
+              "feet": 2,
+              "load_per_foot_N": 4.903325,
+              "J1_Nm": 0.14039809510065787,
+              "J2_Nm": 0.01852601234184142,
+              "J3_Nm": 0.12968208639288994,
+              "J1_stall_share": 0.2699963367320344,
+              "J2_stall_share": 0.035626946811233504,
+              "J3_stall_share": 0.2493886276786345
+            }
+          ],
+          "method": "Magnitude of ((contact-axis_point)/1000 cross vertical force) dot posed unit axis. Equal load sharing; external vertical contact force only."
+        },
+        "model_mass": {
+          "mass_kg": 0.9815434433096435,
+          "pose_deg": {
+            "a": 12.0,
+            "b": -50.58187096263282,
+            "c": 101.16374192526564
+          },
+          "contact_point_mm": [
+            28.13733650573131,
+            52.63324276907157,
+            -54.99999999979465
+          ],
+          "axis_points_mm": [
+            [
+              26.0,
+              24.0,
+              -14.0
+            ],
+            [
+              32.0,
+              56.76794462458249,
+              -7.034958357605062
+            ],
+            [
+              55.175980965612155,
+              60.72850629567259,
+              -25.667936045861843
+            ]
+          ],
+          "axis_directions": [
+            [
+              1,
+              0,
+              0
+            ],
+            [
+              0,
+              0.9781476007338057,
+              0.20791169081775934
+            ],
+            [
+              0,
+              0.9781476007338057,
+              0.20791169081775934
+            ]
+          ],
+          "rows": [
+            {
+              "feet": 4,
+              "load_per_foot_N": 2.4064132520831287,
+              "J1_Nm": 0.06890341484960726,
+              "J2_Nm": 0.009092042972403989,
+              "J3_Nm": 0.06364430080682794,
+              "J1_stall_share": 0.1325065670184755,
+              "J2_stall_share": 0.017484698023853825,
+              "J3_stall_share": 0.1223928861669768
+            },
+            {
+              "feet": 3,
+              "load_per_foot_N": 3.208551002777505,
+              "J1_Nm": 0.09187121979947634,
+              "J2_Nm": 0.01212272396320532,
+              "J3_Nm": 0.08485906774243725,
+              "J1_stall_share": 0.17667542269130065,
+              "J2_stall_share": 0.02331293069847177,
+              "J3_stall_share": 0.1631905148893024
+            },
+            {
+              "feet": 2,
+              "load_per_foot_N": 4.8128265041662575,
+              "J1_Nm": 0.1378068296992145,
+              "J2_Nm": 0.018184085944807978,
+              "J3_Nm": 0.12728860161365588,
+              "J1_stall_share": 0.265013134036951,
+              "J2_stall_share": 0.03496939604770765,
+              "J3_stall_share": 0.2447857723339536
+            }
+          ],
+          "method": "Magnitude of ((contact-axis_point)/1000 cross vertical force) dot posed unit axis. Equal load sharing; external vertical contact force only."
+        }
+      },
+      "proportions": {
+        "width_across_hips_mm": 158.45644145101437,
+        "overall_width_mm": 158.66481946374088,
+        "overall_length_mm": 142.58708090114197,
+        "beyond_face_mm": 25.793540450570987,
+        "track_width_mm": 105.26648553814314,
+        "wheelbase_mm": 56.27467301146262,
+        "base_height_mm": 27.0,
+        "base_below_shell_mm": 27.0,
+        "inside_shell_mm": 0.0,
+        "below_shell_bbox_mm": {
+          "min": [
+            -71.29354045057097,
+            -79.33240973187046,
+            -56.07157778521586
+          ],
+          "max": [
+            71.29354045057099,
+            79.33240973187043,
+            8.43769498715119e-15
+          ]
+        },
+        "build_target_reference_mm": {
+          "visible_base_below_shell": 15.0,
+          "track_width_at_feet": 115.0,
+          "width_across_hips": 100.0,
+          "provenance": "ASSUMED. Same scaling from the same picture, good to about 20 percent. For comparison only; not requirements."
+        },
+        "differences_from_build_target_mm": {
+          "visible_base_below_shell": 12.0,
+          "track_width_at_feet": -9.733514461856856,
+          "width_across_hips": 58.45644145101437
+        }
+      },
+      "sweep": {
+        "total_poses": 175,
+        "colliding_poses": 154,
+        "clear_poses": 21,
+        "pair_counts_by_class": {
+          "own_leg": {
+            "tested_pairs": 122,
+            "colliding_pairs": 9,
+            "pair_pose_collisions": 405
+          },
+          "base": {
+            "tested_pairs": 45,
+            "colliding_pairs": 4,
+            "pair_pose_collisions": 140
+          },
+          "shell": {
+            "tested_pairs": 15,
+            "colliding_pairs": 10,
+            "pair_pose_collisions": 232
+          },
+          "neighbour": {
+            "tested_pairs": 855,
+            "colliding_pairs": 24,
+            "pair_pose_collisions": 233
+          }
+        }
+      },
+      "height_sweep": [
+        {
+          "target_mm": 50.0,
+          "pose_deg": {
+            "a": 12.0,
+            "b": -56.197394826449454,
+            "c": 112.39478965289891
+          },
+          "under_shell_height_mm": 49.99999999522943,
+          "stance_reached": true,
+          "achievable_range_mm": [
+            41.49844586052215,
+            78.20814238960232
+          ],
+          "endpoint_heights_mm": [
+            78.20814238960232,
+            41.49844586052215
+          ],
+          "bisection_iterations": 30,
+          "error_mm": -4.7705697170385974e-09,
+          "method": "Bisection c in [0,130], b=-c/2; each height from posed foot BRep bounding box.",
+          "knee_forward_offset_mm": 24.928775228702484,
+          "beyond_face_mm": 27.24532693195482,
+          "colliding_pair_counts": {
+            "own_leg": 1,
+            "base": 0,
+            "shell": 0,
+            "neighbour": 0
+          },
+          "static_torque_reference_four_feet": {
+            "feet": 4,
+            "load_per_foot_N": 2.4516625,
+            "J1_Nm": 0.06759346279107321,
+            "J2_Nm": 0.009963565258341902,
+            "J3_Nm": 0.06974495680839332,
+            "J1_stall_share": 0.12998742844437156,
+            "J2_stall_share": 0.01916070241988827,
+            "J3_stall_share": 0.1341249169392179
+          }
+        },
+        {
+          "target_mm": 55.0,
+          "pose_deg": {
+            "a": 12.0,
+            "b": -50.58187096263282,
+            "c": 101.16374192526564
+          },
+          "under_shell_height_mm": 54.99999999979465,
+          "stance_reached": true,
+          "achievable_range_mm": [
+            41.49844586052215,
+            78.20814238960232
+          ],
+          "endpoint_heights_mm": [
+            78.20814238960232,
+            41.49844586052215
+          ],
+          "bisection_iterations": 32,
+          "error_mm": -2.0534685063466895e-10,
+          "method": "Bisection c in [0,130], b=-c/2; each height from posed foot BRep bounding box.",
+          "knee_forward_offset_mm": 23.175980965612155,
+          "beyond_face_mm": 25.793540450570987,
+          "colliding_pair_counts": {
+            "own_leg": 1,
+            "base": 0,
+            "shell": 0,
+            "neighbour": 0
+          },
+          "static_torque_reference_four_feet": {
+            "feet": 4,
+            "load_per_foot_N": 2.4516625,
+            "J1_Nm": 0.07019904755032894,
+            "J2_Nm": 0.00926300617092071,
+            "J3_Nm": 0.06484104319644497,
+            "J1_stall_share": 0.1349981683660172,
+            "J2_stall_share": 0.017813473405616752,
+            "J3_stall_share": 0.12469431383931726
+          }
+        },
+        {
+          "target_mm": 60.0,
+          "pose_deg": {
+            "a": 12.0,
+            "b": -44.47006373433396,
+            "c": 88.94012746866792
+          },
+          "under_shell_height_mm": 59.99999999915977,
+          "stance_reached": true,
+          "achievable_range_mm": [
+            41.49844586052215,
+            78.20814238960232
+          ],
+          "endpoint_heights_mm": [
+            78.20814238960232,
+            41.49844586052215
+          ],
+          "bisection_iterations": 31,
+          "error_mm": -8.402309958910337e-10,
+          "method": "Bisection c in [0,130], b=-c/2; each height from posed foot BRep bounding box.",
+          "knee_forward_offset_mm": 21.01609514954545,
+          "beyond_face_mm": 23.78539551247131,
+          "colliding_pair_counts": {
+            "own_leg": 1,
+            "base": 0,
+            "shell": 0,
+            "neighbour": 0
+          },
+          "static_torque_reference_four_feet": {
+            "feet": 4,
+            "load_per_foot_N": 2.4516625,
+            "J1_Nm": 0.07280463230687473,
+            "J2_Nm": 0.008399740202917217,
+            "J3_Nm": 0.05879818142042046,
+            "J1_stall_share": 0.14000890828245138,
+            "J2_stall_share": 0.01615334654407157,
+            "J3_stall_share": 0.11307342580850088
+          }
+        },
+        {
+          "target_mm": 65.0,
+          "pose_deg": {
+            "a": 12.0,
+            "b": -37.60295714135282,
+            "c": 75.20591428270563
+          },
+          "under_shell_height_mm": 65.00000000017641,
+          "stance_reached": true,
+          "achievable_range_mm": [
+            41.49844586052215,
+            78.20814238960232
+          ],
+          "endpoint_heights_mm": [
+            78.20814238960232,
+            41.49844586052215
+          ],
+          "bisection_iterations": 32,
+          "error_mm": 1.7641355043451767e-10,
+          "method": "Bisection c in [0,130], b=-c/2; each height from posed foot BRep bounding box.",
+          "knee_forward_offset_mm": 18.30558163875753,
+          "beyond_face_mm": 21.024726058564355,
+          "colliding_pair_counts": {
+            "own_leg": 1,
+            "base": 0,
+            "shell": 0,
+            "neighbour": 0
+          },
+          "static_torque_reference_four_feet": {
+            "feet": 4,
+            "load_per_foot_N": 2.4516625,
+            "J1_Nm": 0.07541021706428115,
+            "J2_Nm": 0.007316398642788802,
+            "J3_Nm": 0.051214790499521615,
+            "J1_stall_share": 0.14501964820054067,
+            "J2_stall_share": 0.014069997389978465,
+            "J3_stall_share": 0.09848998172984925
+          }
+        },
+        {
+          "target_mm": 70.0,
+          "pose_deg": {
+            "a": 12.0,
+            "b": -29.43663648562506,
+            "c": 58.87327297125012
+          },
+          "under_shell_height_mm": 69.99999999867492,
+          "stance_reached": true,
+          "achievable_range_mm": [
+            41.49844586052215,
+            78.20814238960232
+          ],
+          "endpoint_heights_mm": [
+            78.20814238960232,
+            41.49844586052215
+          ],
+          "bisection_iterations": 31,
+          "error_mm": -1.3250769370642956e-09,
+          "method": "Bisection c in [0,130], b=-c/2; each height from posed foot BRep bounding box.",
+          "knee_forward_offset_mm": 14.743821933460822,
+          "beyond_face_mm": 17.100686805020068,
+          "colliding_pair_counts": {
+            "own_leg": 1,
+            "base": 0,
+            "shell": 0,
+            "neighbour": 0
+          },
+          "static_torque_reference_four_feet": {
+            "feet": 4,
+            "load_per_foot_N": 2.4516625,
+            "J1_Nm": 0.07801580182037536,
+            "J2_Nm": 0.005892829898127952,
+            "J3_Nm": 0.04124980928689569,
+            "J1_stall_share": 0.15003038811610644,
+            "J2_stall_share": 0.011332365188707599,
+            "J3_stall_share": 0.07932655632095326
+          }
+        },
+        {
+          "target_mm": 75.0,
+          "pose_deg": {
+            "a": 12.0,
+            "b": -18.278849869966507,
+            "c": 36.557699739933014
+          },
+          "under_shell_height_mm": 74.99999999532213,
+          "stance_reached": true,
+          "achievable_range_mm": [
+            41.49844586052215,
+            78.20814238960232
+          ],
+          "endpoint_heights_mm": [
+            78.20814238960232,
+            41.49844586052215
+          ],
+          "bisection_iterations": 25,
+          "error_mm": -4.677872311731335e-09,
+          "method": "Bisection c in [0,130], b=-c/2; each height from posed foot BRep bounding box.",
+          "knee_forward_offset_mm": 9.409258926758831,
+          "beyond_face_mm": 10.753816372539212,
+          "colliding_pair_counts": {
+            "own_leg": 0,
+            "base": 0,
+            "shell": 0,
+            "neighbour": 0
+          },
+          "static_torque_reference_four_feet": {
+            "feet": 4,
+            "load_per_foot_N": 2.4516625,
+            "J1_Nm": 0.0806213865755048,
+            "J2_Nm": 0.0037607048276265182,
+            "J3_Nm": 0.026324933793385612,
+            "J1_stall_share": 0.15504112802981693,
+            "J2_stall_share": 0.007232124668512535,
+            "J3_stall_share": 0.050624872679587714
+          }
+        }
+      ],
+      "brief_conflicts": []
+    },
+    "proximal": {
+      "variant": "proximal",
+      "parameter_sha256": "734269b951f41ee15157dc683c3d815ca8f5e785d2069c7323b05b8a5e096224",
+      "generator_sha256": "c5cfcaf33821c51df9b806ea9365e35346da00143b3a3316a07172061b11fa40",
+      "quick": false,
+      "solved_stance_pose_deg": {
+        "a": 12.0,
+        "b": -51.545380926690996,
+        "c": 103.09076185338199
+      },
+      "under_shell_height_mm": 54.99999999869695,
+      "overall_height_mm": 166.99999999869695,
+      "stance_reached": true,
+      "within_range": true,
+      "ground_contact_ok": true,
+      "leg_mass_g": 118.20098387661216,
+      "four_leg_mass_g": 472.8039355064486,
+      "total_mass_g": 1092.1939355064485,
+      "com_mm": [
+        1.3775705889397274e-17,
+        5.51028235575891e-17,
+        18.401302940741605
+      ],
+      "com_height_above_floor_mm": 73.40130293943855,
+      "support": {
+        "contact_points_mm": {
+          "FL": [
+            28.084495140424046,
+            48.54388038937812,
+            -54.99999999869695
+          ],
+          "FR": [
+            28.084495140424046,
+            -48.54388038937812,
+            -54.99999999869695
+          ],
+          "RL": [
+            -28.084495140424046,
+            48.54388038937812,
+            -54.99999999869695
+          ],
+          "RR": [
+            -28.084495140424046,
+            -48.54388038937812,
+            -54.99999999869695
+          ]
+        },
+        "four_feet_margins_mm": {
+          "margin_front": 28.084495140424046,
+          "margin_rear": 28.084495140424046,
+          "margin_left": 48.54388038937812,
+          "margin_right": 48.54388038937812
+        },
+        "minimum_margin_mm": 28.084495140424046,
+        "tip_angle_deg": 20.937638229947247,
+        "three_feet": [
+          {
+            "lifted_leg": "FL",
+            "signed_margin_mm": 0.0,
+            "edge_signed_distances_mm": [
+              48.54388038937812,
+              0.0,
+              28.084495140424046
+            ]
+          },
+          {
+            "lifted_leg": "FR",
+            "signed_margin_mm": 0.0,
+            "edge_signed_distances_mm": [
+              0.0,
+              48.54388038937812,
+              28.084495140424046
+            ]
+          },
+          {
+            "lifted_leg": "RL",
+            "signed_margin_mm": 0.0,
+            "edge_signed_distances_mm": [
+              48.54388038937812,
+              28.084495140424046,
+              0.0
+            ]
+          },
+          {
+            "lifted_leg": "RR",
+            "signed_margin_mm": 0.0,
+            "edge_signed_distances_mm": [
+              28.084495140424046,
+              48.54388038937812,
+              0.0
+            ]
+          }
+        ],
+        "com_height_above_floor_mm": 73.40130293943855,
+        "assumptions": "Masses and positions tagged ASSUMED in the parameters drive CoM and support. Shell 229 g is catalog complete-clock mass, assumed fully retained.",
+        "method": "Rectangle axis-aligned margins. Triangle edges oriented counterclockwise; minimum inward signed perpendicular edge distance, negative outside."
+      },
+      "stance_static_torque": {
+        "reference_mass": {
+          "mass_kg": 1.0,
+          "pose_deg": {
+            "a": 12.0,
+            "b": -51.545380926690996,
+            "c": 103.09076185338199
+          },
+          "contact_point_mm": [
+            28.084495140424046,
+            48.54388038937812,
+            -54.99999999869695
+          ],
+          "axis_points_mm": [
+            [
+              26.0,
+              24.0,
+              -14.0
+            ],
+            [
+              32.0,
+              60.19146122715081,
+              -6.307267439742905
+            ],
+            [
+              55.49302915745572,
+              64.07043583204481,
+              -24.5564081598295
+            ]
+          ],
+          "axis_directions": [
+            [
+              1,
+              0,
+              0
+            ],
+            [
+              0,
+              0.9781476007338057,
+              0.20791169081775934
+            ],
+            [
+              0,
+              0.9781476007338057,
+              0.20791169081775934
+            ]
+          ],
+          "rows": [
+            {
+              "feet": 4,
+              "load_per_foot_N": 2.4516625,
+              "J1_Nm": 0.060173311155123727,
+              "J2_Nm": 0.009389724403986395,
+              "J3_Nm": 0.06572807082790476,
+              "J1_stall_share": 0.11571790606754562,
+              "J2_stall_share": 0.018057162315358453,
+              "J3_stall_share": 0.12640013620750915
+            },
+            {
+              "feet": 3,
+              "load_per_foot_N": 3.268883333333333,
+              "J1_Nm": 0.08023108154016496,
+              "J2_Nm": 0.012519632538648526,
+              "J3_Nm": 0.08763742777053968,
+              "J1_stall_share": 0.15429054142339416,
+              "J2_stall_share": 0.024076216420477935,
+              "J3_stall_share": 0.16853351494334554
+            },
+            {
+              "feet": 2,
+              "load_per_foot_N": 4.903325,
+              "J1_Nm": 0.12034662231024745,
+              "J2_Nm": 0.01877944880797279,
+              "J3_Nm": 0.13145614165580952,
+              "J1_stall_share": 0.23143581213509123,
+              "J2_stall_share": 0.036114324630716906,
+              "J3_stall_share": 0.2528002724150183
+            }
+          ],
+          "method": "Magnitude of ((contact-axis_point)/1000 cross vertical force) dot posed unit axis. Equal load sharing; external vertical contact force only."
+        },
+        "model_mass": {
+          "mass_kg": 1.0921939355064485,
+          "pose_deg": {
+            "a": 12.0,
+            "b": -51.545380926690996,
+            "c": 103.09076185338199
+          },
+          "contact_point_mm": [
+            28.084495140424046,
+            48.54388038937812,
+            -54.99999999869695
+          ],
+          "axis_points_mm": [
+            [
+              26.0,
+              24.0,
+              -14.0
+            ],
+            [
+              32.0,
+              60.19146122715081,
+              -6.307267439742905
+            ],
+            [
+              55.49302915745572,
+              64.07043583204481,
+              -24.5564081598295
+            ]
+          ],
+          "axis_directions": [
+            [
+              1,
+              0,
+              0
+            ],
+            [
+              0,
+              0.9781476007338057,
+              0.20791169081775934
+            ],
+            [
+              0,
+              0.9781476007338057,
+              0.20791169081775934
+            ]
+          ],
+          "rows": [
+            {
+              "feet": 4,
+              "load_per_foot_N": 2.6776909144085783,
+              "J1_Nm": 0.06572092552296867,
+              "J2_Nm": 0.010255400050110842,
+              "J3_Nm": 0.07178780035077588,
+              "J1_stall_share": 0.1263863952364782,
+              "J2_stall_share": 0.01972192317329008,
+              "J3_stall_share": 0.13805346221303053
+            },
+            {
+              "feet": 3,
+              "load_per_foot_N": 3.570254552544771,
+              "J1_Nm": 0.08762790069729155,
+              "J2_Nm": 0.013673866733481123,
+              "J3_Nm": 0.09571706713436785,
+              "J1_stall_share": 0.1685151936486376,
+              "J2_stall_share": 0.026295897564386776,
+              "J3_stall_share": 0.1840712829507074
+            },
+            {
+              "feet": 2,
+              "load_per_foot_N": 5.355381828817157,
+              "J1_Nm": 0.13144185104593734,
+              "J2_Nm": 0.020510800100221684,
+              "J3_Nm": 0.14357560070155176,
+              "J1_stall_share": 0.2527727904729564,
+              "J2_stall_share": 0.03944384634658016,
+              "J3_stall_share": 0.27610692442606105
+            }
+          ],
+          "method": "Magnitude of ((contact-axis_point)/1000 cross vertical force) dot posed unit axis. Equal load sharing; external vertical contact force only."
+        }
+      },
+      "proportions": {
+        "width_across_hips_mm": 239.71110900109855,
+        "overall_width_mm": 249.80160819993998,
+        "overall_length_mm": 128.98605831491145,
+        "beyond_face_mm": 18.993029157455737,
+        "track_width_mm": 97.08776077875623,
+        "wheelbase_mm": 56.16899028084809,
+        "base_height_mm": 27.0,
+        "base_below_shell_mm": 27.0,
+        "inside_shell_mm": 0.0,
+        "below_shell_bbox_mm": {
+          "min": [
+            -64.49302915745571,
+            -124.90080409997,
+            -54.99999999869696
+          ],
+          "max": [
+            64.49302915745574,
+            124.90080409996997,
+            7.549516567451064e-15
+          ]
+        },
+        "build_target_reference_mm": {
+          "visible_base_below_shell": 15.0,
+          "track_width_at_feet": 115.0,
+          "width_across_hips": 100.0,
+          "provenance": "ASSUMED. Same scaling from the same picture, good to about 20 percent. For comparison only; not requirements."
+        },
+        "differences_from_build_target_mm": {
+          "visible_base_below_shell": 12.0,
+          "track_width_at_feet": -17.912239221243766,
+          "width_across_hips": 139.71110900109855
+        }
+      },
+      "sweep": {
+        "total_poses": 175,
+        "colliding_poses": 150,
+        "clear_poses": 25,
+        "pair_counts_by_class": {
+          "own_leg": {
+            "tested_pairs": 237,
+            "colliding_pairs": 5,
+            "pair_pose_collisions": 230
+          },
+          "base": {
+            "tested_pairs": 69,
+            "colliding_pairs": 4,
+            "pair_pose_collisions": 140
+          },
+          "shell": {
+            "tested_pairs": 23,
+            "colliding_pairs": 7,
+            "pair_pose_collisions": 174
+          },
+          "neighbour": {
+            "tested_pairs": 1863,
+            "colliding_pairs": 17,
+            "pair_pose_collisions": 144
+          }
+        }
+      },
+      "height_sweep": [
+        {
+          "target_mm": 50.0,
+          "pose_deg": {
+            "a": 12.0,
+            "b": -57.09463989594951,
+            "c": 114.18927979189903
+          },
+          "under_shell_height_mm": 50.00000000780277,
+          "stance_reached": true,
+          "achievable_range_mm": [
+            42.33009262379319,
+            79.03978915287335
+          ],
+          "endpoint_heights_mm": [
+            79.03978915287335,
+            42.33009262379319
+          ],
+          "bisection_iterations": 31,
+          "error_mm": 7.80276820933068e-09,
+          "method": "Bisection c in [0,130], b=-c/2; each height from posed foot BRep bounding box.",
+          "knee_forward_offset_mm": 25.187071382862,
+          "beyond_face_mm": 20.687071382862015,
+          "colliding_pair_counts": {
+            "own_leg": 1,
+            "base": 0,
+            "shell": 0,
+            "neighbour": 0
+          },
+          "static_torque_reference_four_feet": {
+            "feet": 4,
+            "load_per_foot_N": 2.4516625,
+            "J1_Nm": 0.057567726402992264,
+            "J2_Nm": 0.010066801400684918,
+            "J3_Nm": 0.07046760980479437,
+            "J1_stall_share": 0.11070716615960051,
+            "J2_stall_share": 0.01935923346285561,
+            "J3_stall_share": 0.13551463423998916
+          }
+        },
+        {
+          "target_mm": 55.0,
+          "pose_deg": {
+            "a": 12.0,
+            "b": -51.545380926690996,
+            "c": 103.09076185338199
+          },
+          "under_shell_height_mm": 54.99999999869695,
+          "stance_reached": true,
+          "achievable_range_mm": [
+            42.33009262379319,
+            79.03978915287335
+          ],
+          "endpoint_heights_mm": [
+            79.03978915287335,
+            42.33009262379319
+          ],
+          "bisection_iterations": 30,
+          "error_mm": -1.3030501122557325e-09,
+          "method": "Bisection c in [0,130], b=-c/2; each height from posed foot BRep bounding box.",
+          "knee_forward_offset_mm": 23.493029157455723,
+          "beyond_face_mm": 18.993029157455737,
+          "colliding_pair_counts": {
+            "own_leg": 1,
+            "base": 0,
+            "shell": 0,
+            "neighbour": 0
+          },
+          "static_torque_reference_four_feet": {
+            "feet": 4,
+            "load_per_foot_N": 2.4516625,
+            "J1_Nm": 0.060173311155123727,
+            "J2_Nm": 0.009389724403986395,
+            "J3_Nm": 0.06572807082790476,
+            "J1_stall_share": 0.11571790606754562,
+            "J2_stall_share": 0.018057162315358453,
+            "J3_stall_share": 0.12640013620750915
+          }
+        },
+        {
+          "target_mm": 60.0,
+          "pose_deg": {
+            "a": 12.0,
+            "b": -45.52996368147433,
+            "c": 91.05992736294866
+          },
+          "under_shell_height_mm": 59.99999999763664,
+          "stance_reached": true,
+          "achievable_range_mm": [
+            42.33009262379319,
+            79.03978915287335
+          ],
+          "endpoint_heights_mm": [
+            79.03978915287335,
+            42.33009262379319
+          ],
+          "bisection_iterations": 29,
+          "error_mm": -2.363357509693742e-09,
+          "method": "Bisection c in [0,130], b=-c/2; each height from posed foot BRep bounding box.",
+          "knee_forward_offset_mm": 21.40850707634886,
+          "beyond_face_mm": 16.90850707634886,
+          "colliding_pair_counts": {
+            "own_leg": 1,
+            "base": 0,
+            "shell": 0,
+            "neighbour": 0
+          },
+          "static_torque_reference_four_feet": {
+            "feet": 4,
+            "load_per_foot_N": 2.4516625,
+            "J1_Nm": 0.06277889591144788,
+            "J2_Nm": 0.008556579911446318,
+            "J3_Nm": 0.05989605938012424,
+            "J1_stall_share": 0.12072864598355361,
+            "J2_stall_share": 0.016454961368165995,
+            "J3_stall_share": 0.115184729577162
+          }
+        },
+        {
+          "target_mm": 65.0,
+          "pose_deg": {
+            "a": 12.0,
+            "b": -38.81464771227911,
+            "c": 77.62929542455822
+          },
+          "under_shell_height_mm": 64.99999999464558,
+          "stance_reached": true,
+          "achievable_range_mm": [
+            42.33009262379319,
+            79.03978915287335
+          ],
+          "endpoint_heights_mm": [
+            79.03978915287335,
+            42.33009262379319
+          ],
+          "bisection_iterations": 31,
+          "error_mm": -5.354422683012672e-09,
+          "method": "Bisection c in [0,130], b=-c/2; each height from posed foot BRep bounding box.",
+          "knee_forward_offset_mm": 18.804090877964825,
+          "beyond_face_mm": 14.304090877964839,
+          "colliding_pair_counts": {
+            "own_leg": 1,
+            "base": 0,
+            "shell": 0,
+            "neighbour": 0
+          },
+          "static_torque_reference_four_feet": {
+            "feet": 4,
+            "load_per_foot_N": 2.4516625,
+            "J1_Nm": 0.0653844806667658,
+            "J2_Nm": 0.0075156434629277975,
+            "J3_Nm": 0.052609504240494584,
+            "J1_stall_share": 0.12573938589762654,
+            "J2_stall_share": 0.01445316050563038,
+            "J3_stall_share": 0.10117212353941266
+          }
+        },
+        {
+          "target_mm": 70.0,
+          "pose_deg": {
+            "a": 12.0,
+            "b": -30.927387711126357,
+            "c": 61.854775422252715
+          },
+          "under_shell_height_mm": 70.000000002584,
+          "stance_reached": true,
+          "achievable_range_mm": [
+            42.33009262379319,
+            79.03978915287335
+          ],
+          "endpoint_heights_mm": [
+            79.03978915287335,
+            42.33009262379319
+          ],
+          "bisection_iterations": 31,
+          "error_mm": 2.584002345429326e-09,
+          "method": "Bisection c in [0,130], b=-c/2; each height from posed foot BRep bounding box.",
+          "knee_forward_offset_mm": 15.418540599540641,
+          "beyond_face_mm": 10.918540599540648,
+          "colliding_pair_counts": {
+            "own_leg": 1,
+            "base": 0,
+            "shell": 0,
+            "neighbour": 0
+          },
+          "static_torque_reference_four_feet": {
+            "feet": 4,
+            "load_per_foot_N": 2.4516625,
+            "J1_Nm": 0.06799006542777931,
+            "J2_Nm": 0.006162502330842076,
+            "J3_Nm": 0.043137516315894534,
+            "J1_stall_share": 0.13075012582265252,
+            "J2_stall_share": 0.011850966020850145,
+            "J3_stall_share": 0.08295676214595102
+          }
+        },
+        {
+          "target_mm": 75.0,
+          "pose_deg": {
+            "a": 12.0,
+            "b": -20.534537544008344,
+            "c": 41.06907508801669
+          },
+          "under_shell_height_mm": 75.00000000047145,
+          "stance_reached": true,
+          "achievable_range_mm": [
+            42.33009262379319,
+            79.03978915287335
+          ],
+          "endpoint_heights_mm": [
+            79.03978915287335,
+            42.33009262379319
+          ],
+          "bisection_iterations": 31,
+          "error_mm": 4.714451051768265e-10,
+          "method": "Bisection c in [0,130], b=-c/2; each height from posed foot BRep bounding box.",
+          "knee_forward_offset_mm": 10.52315813527882,
+          "beyond_face_mm": 6.023158135278827,
+          "colliding_pair_counts": {
+            "own_leg": 0,
+            "base": 0,
+            "shell": 0,
+            "neighbour": 0
+          },
+          "static_torque_reference_four_feet": {
+            "feet": 4,
+            "load_per_foot_N": 2.4516625,
+            "J1_Nm": 0.07059565018355503,
+            "J2_Nm": 0.004205909509905733,
+            "J3_Nm": 0.02944136656934008,
+            "J1_stall_share": 0.13576086573760582,
+            "J2_stall_share": 0.008088287519049487,
+            "J3_stall_share": 0.0566180126333463
+          }
+        }
+      ],
+      "brief_conflicts": [
+        "Proximal prescribed foot outer-face span is asymmetric about P5. A centroid=P5 check would fail. Geometry retained; rigid centroid check includes the axial midpoint offset and literal error is separately reported."
+      ]
+    }
+  },
+  "l02_A_under_direct": {
+    "overall_height_mm": 223.78821594317793,
+    "clock_bottom_clearance_mm": 111.78821594317795,
+    "stance_width_mm": 129.77387491860753,
+    "leg_mass_g": 97.05428281171241,
+    "total_poses": 175,
+    "colliding_poses": 175,
+    "source": "exports/l02-A-under-direct/geometry-check.json",
+    "source_sha256": "194d5b3bffef4ceb1541f4c8777627d04880e0a16447bd077dc9eb8bd2320db0"
+  },
+  "rounding": "JSON retains full floats; printed tables round once to 0.1 mm/degree/gram, 0.001 N m, whole percentages.",
+  "printed_tables": {
+    "direct": "| Metric | Model |\n|---|---:|\n| Stance a / b / c (deg) | 12.0 / -50.6 / 101.2 |\n| Under shell (mm) | 55.0 |\n| Overall height (mm) | 167.0 |\n| Leg mass (g) | 90.5 |\n| Four legs (g) | 362.2 |\n| Total mass (g) | 981.5 |\n| CoM height above floor (mm) | 75.6 |\n| Stance reached / in range / ground contact | True / True / False |\n| CoM XYZ (mm) | 0.0 / 0.0 / 20.6 |\n| width_across_hips_mm | 158.5 |\n| overall_width_mm | 158.7 |\n| overall_length_mm | 142.6 |\n| beyond_face_mm | 25.8 |\n| track_width_mm | 105.3 |\n| wheelbase_mm | 56.3 |\n| base_height_mm | 27.0 |\n| base_below_shell_mm | 27.0 |\n| inside_shell_mm | 0.0 |\n| margin_front (mm) | 28.1 |\n| margin_rear (mm) | 28.1 |\n| margin_left (mm) | 52.6 |\n| margin_right (mm) | 52.6 |\n| Minimum-margin tip angle (deg) | 20.4 |\n| Lifted FL, signed margin (mm) | 0.0 |\n| Lifted FR, signed margin (mm) | 0.0 |\n| Lifted RL, signed margin (mm) | 0.0 |\n| Lifted RR, signed margin (mm) | 0.0 |\n| Sweep total / colliding / clear poses | 175 / 154 / 21 |\n\n| Height target / actual (mm) | a / b / c (deg) | Reached | Knee forward (mm) | Beyond face (mm) | Own / base / shell / neighbour pairs | J1 / J2 / J3 (N m), 1 kg / 4 feet |\n|---|---|---|---:|---:|---|---|\n| 50.0 / 50.0 | 12.0 / -56.2 / 112.4 | True | 24.9 | 27.2 | 1 / 0 / 0 / 0 | 0.068 / 0.010 / 0.070 |\n| 55.0 / 55.0 | 12.0 / -50.6 / 101.2 | True | 23.2 | 25.8 | 1 / 0 / 0 / 0 | 0.070 / 0.009 / 0.065 |\n| 60.0 / 60.0 | 12.0 / -44.5 / 88.9 | True | 21.0 | 23.8 | 1 / 0 / 0 / 0 | 0.073 / 0.008 / 0.059 |\n| 65.0 / 65.0 | 12.0 / -37.6 / 75.2 | True | 18.3 | 21.0 | 1 / 0 / 0 / 0 | 0.075 / 0.007 / 0.051 |\n| 70.0 / 70.0 | 12.0 / -29.4 / 58.9 | True | 14.7 | 17.1 | 1 / 0 / 0 / 0 | 0.078 / 0.006 / 0.041 |\n| 75.0 / 75.0 | 12.0 / -18.3 / 36.6 | True | 9.4 | 10.8 | 0 / 0 / 0 / 0 | 0.081 / 0.004 / 0.026 |",
+    "proximal": "| Metric | Model |\n|---|---:|\n| Stance a / b / c (deg) | 12.0 / -51.5 / 103.1 |\n| Under shell (mm) | 55.0 |\n| Overall height (mm) | 167.0 |\n| Leg mass (g) | 118.2 |\n| Four legs (g) | 472.8 |\n| Total mass (g) | 1092.2 |\n| CoM height above floor (mm) | 73.4 |\n| Stance reached / in range / ground contact | True / True / True |\n| CoM XYZ (mm) | 0.0 / 0.0 / 18.4 |\n| width_across_hips_mm | 239.7 |\n| overall_width_mm | 249.8 |\n| overall_length_mm | 129.0 |\n| beyond_face_mm | 19.0 |\n| track_width_mm | 97.1 |\n| wheelbase_mm | 56.2 |\n| base_height_mm | 27.0 |\n| base_below_shell_mm | 27.0 |\n| inside_shell_mm | 0.0 |\n| margin_front (mm) | 28.1 |\n| margin_rear (mm) | 28.1 |\n| margin_left (mm) | 48.5 |\n| margin_right (mm) | 48.5 |\n| Minimum-margin tip angle (deg) | 20.9 |\n| Lifted FL, signed margin (mm) | 0.0 |\n| Lifted FR, signed margin (mm) | 0.0 |\n| Lifted RL, signed margin (mm) | 0.0 |\n| Lifted RR, signed margin (mm) | 0.0 |\n| Sweep total / colliding / clear poses | 175 / 150 / 25 |\n\n| Height target / actual (mm) | a / b / c (deg) | Reached | Knee forward (mm) | Beyond face (mm) | Own / base / shell / neighbour pairs | J1 / J2 / J3 (N m), 1 kg / 4 feet |\n|---|---|---|---:|---:|---|---|\n| 50.0 / 50.0 | 12.0 / -57.1 / 114.2 | True | 25.2 | 20.7 | 1 / 0 / 0 / 0 | 0.058 / 0.010 / 0.070 |\n| 55.0 / 55.0 | 12.0 / -51.5 / 103.1 | True | 23.5 | 19.0 | 1 / 0 / 0 / 0 | 0.060 / 0.009 / 0.066 |\n| 60.0 / 60.0 | 12.0 / -45.5 / 91.1 | True | 21.4 | 16.9 | 1 / 0 / 0 / 0 | 0.063 / 0.009 / 0.060 |\n| 65.0 / 65.0 | 12.0 / -38.8 / 77.6 | True | 18.8 | 14.3 | 1 / 0 / 0 / 0 | 0.065 / 0.008 / 0.053 |\n| 70.0 / 70.0 | 12.0 / -30.9 / 61.9 | True | 15.4 | 10.9 | 1 / 0 / 0 / 0 | 0.068 / 0.006 / 0.043 |\n| 75.0 / 75.0 | 12.0 / -20.5 / 41.1 | True | 10.5 | 6.0 | 0 / 0 / 0 / 0 | 0.071 / 0.004 / 0.029 |",
+    "l02_A_under_direct": "| L02 comparison | Value |\n|---|---:|\n| overall_height_mm | 223.8 |\n| clock_bottom_clearance_mm | 111.8 |\n| leg_mass_g | 97.1 |\n| stance_width_mm | 129.8 |\n| total / colliding poses | 175 / 175 |"
+  }
+}

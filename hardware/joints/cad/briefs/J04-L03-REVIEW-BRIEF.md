@@ -21,7 +21,10 @@ ASSUMED). A headless builder wrote a new packaging generator and ran two knee va
 - `docs/review/design-review-2026-11-11.md` — findings 2, 3, 5 and 6 are what this build answers.
 - `concepts/raycue-build-target.png` — the picture, if you can view images.
 
-Do not open `STATUS.md`, `OPENER.md`, any `*.log`, or any transcript. No browser. No network.
+Do not open `STATUS.md`, `OPENER.md` or any `*.log`. No browser. No network.
+
+Browser proof already run by the managing window: both `preview.html` files were captured in
+headless Chrome on 2026-11-11 and draw the shell, the base and four legs at the solved stance.
 
 ## Calls the managing window made without a judge (overrule any of them)
 
