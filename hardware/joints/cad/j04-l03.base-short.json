@@ -1,0 +1,141 @@
+{
+  "revision": "J04-L03-D01-base-short",
+  "status": "PACKAGING STUDY WITH BENCHMARK ACTUATOR BLOCKS — NOT A FITTED, SELECTED OR LOAD-QUALIFIED DESIGN",
+  "provenance": "Second leg iteration, after Bill's ruling of 2026-11-11 (short legs under a low base, to match the build-target picture). Body numbers are the WB-8 catalog envelope (axis mapping unverified). The base module, the hip placement, the link lengths and every bracket, plate, shaft, bearing, pulley, belt and foot are design-session proposals with assumed densities, not purchased or measured parts. The actuator block is the XL330-M288-T size/mass benchmark; it is not selected.",
+  "units": "mm, g, deg; body frame: origin at clock bottom centre, +X forward through the face, +Y left, +Z up",
+  "body": {
+    "width_Y": 80,
+    "depth_X": 91,
+    "height_Z": 112,
+    "source": "https://www.raycue.com/products/maclock — 80 x 91 x 112 mm, 229 g; W/D/H mapping follows Bill's screenshot",
+    "interior": "unknown; anything inside this envelope is reported as inside-shell volume, not as a clear fit"
+  },
+  "requirements": {
+    "under_shell_height_mm": {
+      "target": 55.0,
+      "min": 50.0,
+      "max": 60.0,
+      "provenance": "ASSUMED. Scaled by the design session on 2026-11-11 from concepts/raycue-build-target.png against the 112 mm catalog body height: the gap from the table to the underside of the shell reads about half the shell's height. Bill ruled 'Yes, short legs' on 2026-11-11."
+    },
+    "build_target_reference_mm": {
+      "visible_base_below_shell": 15.0,
+      "track_width_at_feet": 115.0,
+      "width_across_hips": 100.0,
+      "provenance": "ASSUMED. Same scaling from the same picture, good to about 20 percent. For comparison only; not requirements."
+    }
+  },
+  "base": {
+    "z_top": 0.0,
+    "top_plate_thickness": 3.0,
+    "bottom_plate_thickness": 2.0,
+    "interior_height": 22.0,
+    "plate_half_width_Y": 28.0,
+    "plate_inset_X": 2.0,
+    "spine_half_width_X": 5.5,
+    "density_g_cm3": 1.25,
+    "density_provenance": "assumed printed polymer, not selected",
+    "note": "Height 27 mm, entirely below the shell (nothing inside the unmeasured shell). The plates are narrower than the shell so the carrier plates can swing; the outboard 7 mm of each J1 case stands proud of the plates under the shell overhang."
+  },
+  "actuator": {
+    "name": "XL330-M288-T size/mass benchmark block",
+    "source": "https://emanual.robotis.com/docs/en/dxl/x/xl330-m288/ — Dimensions (W x H x D) 20.0 x 34.0 x 26.0 mm; Weight 18 g; read 2026-11-10",
+    "W": 20.0,
+    "H": 34.0,
+    "D": 26.0,
+    "mass_g": 18.0,
+    "axis_along": "D",
+    "axis_offset_from_near_end": 11.0,
+    "axis_offset_provenance": "RECALLED from the ROBOTIS XL330 2D drawing, NOT read. To be replaced by a measurement of the first servo.",
+    "horn_diameter": 12.0,
+    "horn_height": 2.0,
+    "idler_diameter": 12.0,
+    "idler_height": 2.0,
+    "horn_provenance": "proposed envelopes for the output horn and the opposite-side idler boss; not read from the drawing",
+    "stall_torque_Nm": 0.52,
+    "stall_torque_provenance": "CATALOG at 5 V, ROBOTIS store page read 2026-11-10",
+    "selected": false
+  },
+  "hip": {
+    "P1": [26.0, 24.0, -14.0],
+    "P1_provenance": "design-session placement: J1 case lying flat inside the base (W vertical), 1 mm clear of each base plate, 1 mm clear of the opposite J1 case at the centreline",
+    "j2_dx": 6.0,
+    "j2_dx_provenance": "H/2 minus the axis offset, so the flat J2 case is centred on x1 and is held by its two end faces between the carrier plates",
+    "d_direct": 33.5,
+    "d_proximal": 37.0,
+    "d_provenance": "smallest outboard offset (0.5 mm steps) at which the innermost leg plate clears the J1 case's outboard corner by the clearance while the carrier spreads: sqrt(11^2 + 10^2) + 1.5 = 16.4 mm from the J1 axis",
+    "h2": 0.0,
+    "j1_case_long_dir": "inboard",
+    "j1_horn_dir": "+X",
+    "j2_case_long_dir": "rearward",
+    "j2_horn_dir": "outboard",
+    "j2_axial_offset": 0.0,
+    "carrier_plate_half_span": 19.0,
+    "carrier_hub_radius": 9.0,
+    "carrier_neck_half_height": 9.0
+  },
+  "links": {
+    "L1": 30.0,
+    "L2": 30.0,
+    "length_provenance": "equal links for both knee variants; 30 mm keeps the shank's knee case clear of the J2 case's near-end corner for a thigh swinging forward of vertical",
+    "plate_thickness": 2.0,
+    "plate_width": 14.0,
+    "hub_radius": 9.0,
+    "clearance": 1.5,
+    "density_g_cm3": 1.25,
+    "density_provenance": "assumed printed polymer for plates, hubs and channels; not selected"
+  },
+  "knee": {
+    "variant": "direct",
+    "direct_case_frame": "lower",
+    "direct_case_long_dir": "down",
+    "horn_dir": "outboard",
+    "proximal_mount_side": "outboard",
+    "pulley_diameter": 12.0,
+    "pulley_width": 6.0,
+    "belt_thickness": 1.5,
+    "belt_mass_g": 3.0,
+    "shaft_diameter": 5.0,
+    "bearing_id_od_w": [5.0, 11.0, 4.0],
+    "bearing_mass_g": 1.0,
+    "pulley_density_g_cm3": 2.7,
+    "shaft_density_g_cm3": 7.85,
+    "transmission_provenance": "proposed GT2-class pulley and belt envelopes and a 5 mm shaft with flanged-bearing envelopes; nothing selected"
+  },
+  "foot": {
+    "radius": 5.0,
+    "density_g_cm3": 1.2,
+    "density_provenance": "assumed elastomer roller; a round foot keeps the contact point under the foot axis whatever the shank angle; passive tilt seat not modelled"
+  },
+  "hardware_allowance_g_per_joint": 6.0,
+  "hardware_allowance_provenance": "proposed allowance per joint for fasteners, spacers and output bearing; not counted parts",
+  "mass_model": {
+    "shell_g": 229.0,
+    "shell_centroid": [0.0, 0.0, 56.0],
+    "shell_provenance": "CATALOG mass of the complete clock, ASSUMED fully retained and uniform in its envelope",
+    "payload_g": 225.0,
+    "payload_centroid": [0.0, 0.0, 56.0],
+    "payload_provenance": "ASSUMED: middle of the design review's 150 to 300 g for compute, display, audio, sensors and harness, placed at the body centre",
+    "battery_g": 118.0,
+    "battery_centroid": [0.0, 0.0, 15.0],
+    "battery_provenance": "ASSUMED: middle of the design review's 94 to 142 g for two cells, placed inside the shell just above the base; the shell interior is unmeasured",
+    "reference_mass_kg": 1.0,
+    "reference_mass_provenance": "the design review's torque table used 1.0 kg; kept so the two tables compare",
+    "g_m_s2": 9.80665
+  },
+  "poses": {
+    "stance_spread_a": 12.0,
+    "stance_rule": "b = -c/2; c solved so that the under-shell height equals requirements.under_shell_height_mm.target",
+    "reference_pose": {"a": 12.0, "b": -35.0, "c": 70.0},
+    "reference_pose_provenance": "the J04-L02 stance pose, kept so the two iterations compare at the same joint angles",
+    "height_sweep_mm": [50.0, 55.0, 60.0, 65.0, 70.0, 75.0],
+    "sweep": {
+      "a": [-30, 30, 15],
+      "b": [-90, 90, 30],
+      "c": [0, 120, 30]
+    },
+    "sweep_scope": "viewing/search ranges, the same grid as J04-L02; not component or controller limits"
+  },
+  "neighbors": true,
+  "clearance_floor": 1.5,
+  "candidate_note": "Base module under the shell with the four hip-spread actuators lying flat inside it. The hip-swing actuator lies flat beside the base, level with it, held by its end faces. The thigh is two plates. In the direct variant the knee actuator is the shank; in the proximal variant it sits on the hip-swing axis outboard of the thigh and drives the knee by a belt."
+}
