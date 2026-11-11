@@ -8,6 +8,21 @@ computed from the model or read from its reports; nothing is typed from memory.
 A settled brief with no open ruling. If you meet a decision it does not settle, stop and return
 it under OPEN. One bounded run.
 
+## RULING for rerun 1 (2026-11-11, from the judge; overrides the LABEL RULE below where they differ)
+
+The first run stopped correctly: the J2 actuator sits inside the carrier plates, so no straight
+leader can reach it without crossing leg geometry. Ruling:
+- Leaders MAY cross leg geometry. They may not cross another leader or pass through another
+  label's text box. Label text boxes still may not intersect each other or any drawn leg
+  polygon's bounding box (labels stay in the free margins).
+- In `actuator-space.svg` the three actuator blocks are drawn LAST, on top of everything in
+  each view regardless of depth (an x-ray view), solid dark with the white outline, and the
+  figure says so in one small line: `Actuators drawn on top; the hip-swing actuator sits inside its carrier`.
+- In `knee-layouts.svg` the knee actuator and the belt, pulleys and shaft are likewise drawn on top.
+- In `leg-axes.svg` normal painter order stays; axis marks, arrows and dimension lines are
+  drawn on top of the geometry.
+A partial `leg_figures.py` from the first run exists; continue from it.
+
 ## What you build
 
 `hardware/joints/cad/leg_figures.py`, run with

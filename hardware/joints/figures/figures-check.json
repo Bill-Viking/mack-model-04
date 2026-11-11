@@ -1,0 +1,51 @@
+{
+  "state": "STOPPED",
+  "browser_proof": "UNRUN; caller owned",
+  "pixel_render": "UNRUN; SVGs were not rendered to pixels",
+  "brain_freshness": "Not established by supplied evidence",
+  "figures": {},
+  "error": "ValueError: No unobstructed straight leader for J2 actuator in SIDE",
+  "sha256": {
+    "hardware/joints/cad/leg_figures.py": "baf9a7616be962584cfa0c527a83ec4f7d46a27098fe5de949cc2f6e0beb3c2c"
+  },
+  "source_sha256": {
+    "hardware/joints/cad/leg_packaging.py": "b55fab3a3a05f8df8ca38abacf8306e49de02e2477a15e0272ddda120e3e668e",
+    "hardware/joints/cad/leg_animation.py": "6e651aafd32c6ae118b0603848a1b17e50c8f53c999f3eaed2d0c640b102b2ac",
+    "hardware/joints/cad/j04-l02.candidate-A-under.json": "b45ab459000368416e46a16d58dadfe7276c160d6e586f0a864c89e9fda5aac6",
+    "hardware/joints/cad/leg-viewer-template.html": "6309a2c5cf4cd4a746a03fdf1c274c070bf5e9619b442869a90f75d6c70fa412",
+    "hardware/joints/cad/exports/l02-comparison.json": "a84c29931dbf265d6fa656a5688a34d15e9fc8f57504d1db081594f2a538d2ea"
+  },
+  "diagnostic": {
+    "front_J2_hull_completely_contained_in": [
+      "carrier_horn_plate",
+      "carrier_idler_plate"
+    ],
+    "containment_method": "Every vertex of the convex J2 hull is in each convex carrier-plate hull, establishing complete hull containment.",
+    "margin_scan": {
+      "projections": [
+        "SIDE",
+        "FRONT"
+      ],
+      "margins_x_px": [
+        60,
+        463
+      ],
+      "leader_start_y_px": {
+        "min": 220,
+        "max": 778,
+        "step": 2
+      },
+      "target_samples_per_edge": 21,
+      "unobstructed_leaders": 0
+    },
+    "scope": "Bounded geometric diagnosis in memory. No SVG or pixel render was made."
+  },
+  "svg_outputs_created": [],
+  "checks_not_run": [
+    "SVG XML parse, footer and external-reference checks",
+    "Complete-figure font and label-overlap checks",
+    "SVG SHA256 checks",
+    "Pixel rendering",
+    "Browser proof"
+  ]
+}
