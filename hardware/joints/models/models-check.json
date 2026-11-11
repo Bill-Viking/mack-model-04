@@ -1,0 +1,2421 @@
+{
+  "state": "BUILT",
+  "units": "mm",
+  "up_axis": "Z",
+  "python": "3.12.13",
+  "build123d": "0.12.0",
+  "script_sha256": "671b6b9f099b7c8613c2e6d6e2607f9f93281adaa0bcb33613149597fca67db5",
+  "source_sha256": {
+    "cad/export_models.py": "671b6b9f099b7c8613c2e6d6e2607f9f93281adaa0bcb33613149597fca67db5",
+    "cad/joint_cartridge.py": "23fd34bc707236270774dff8a93d5b1aa5974dd04196cad317171a26f7b61fec",
+    "cad/leg_packaging.py": "b55fab3a3a05f8df8ca38abacf8306e49de02e2477a15e0272ddda120e3e668e",
+    "cad/leg_animation.py": "6e651aafd32c6ae118b0603848a1b17e50c8f53c999f3eaed2d0c640b102b2ac",
+    "cad/j04-c01.example.json": "4657a464effe2569ce8392a554600072bc5ce7842ffae0580d5887f6df5c00f8",
+    "cad/j04-l02.candidate-A-under.json": "b45ab459000368416e46a16d58dadfe7276c160d6e586f0a864c89e9fda5aac6"
+  },
+  "files": [
+    {
+      "file": "joint-cartridge.stl",
+      "bytes": 176884,
+      "triangle_count": 3536,
+      "sha256": "4439a25d90d0ae525d87ae45f34e4587bd14a380d10271f15da64ce9afeaa04f",
+      "bbox_mm": {
+        "min": [
+          -67.0,
+          -20.0,
+          -46.0
+        ],
+        "max": [
+          33.0,
+          20.0,
+          62.0
+        ]
+      },
+      "size_mm": [
+        100.0,
+        40.0,
+        108.0
+      ],
+      "model_bbox_mm": {
+        "min": [
+          -67.0,
+          -20.0,
+          -46.0
+        ],
+        "max": [
+          33.0,
+          20.0,
+          62.0
+        ]
+      },
+      "bbox_max_error_mm": 0.0,
+      "stance_deg": null,
+      "knee_variant": null,
+      "orientation": "Z up; original local (x, y, z) maps to world (z, x, y)",
+      "parameters": "cad/j04-c01.example.json",
+      "component_count": 6,
+      "components": [
+        {
+          "name": "yoke",
+          "first_triangle": 0,
+          "triangle_count": 1412,
+          "model_volume_mm3": 37832.37758888158,
+          "reflection_xy": [
+            1,
+            1
+          ],
+          "winding_reversed": false,
+          "signed_mesh_volume_mm3": 37825.981335776676,
+          "relative_volume_error": 0.00016906822971611245,
+          "outward_winding_passed": true
+        },
+        {
+          "name": "shaft",
+          "first_triangle": 1412,
+          "triangle_count": 248,
+          "model_volume_mm3": 3317.521842190821,
+          "reflection_xy": [
+            1,
+            1
+          ],
+          "winding_reversed": false,
+          "signed_mesh_volume_mm3": 3312.0248304443694,
+          "relative_volume_error": 0.001656963241821998,
+          "outward_winding_passed": true
+        },
+        {
+          "name": "output_link",
+          "first_triangle": 1660,
+          "triangle_count": 856,
+          "model_volume_mm3": 14463.898727832393,
+          "reflection_xy": [
+            1,
+            1
+          ],
+          "winding_reversed": false,
+          "signed_mesh_volume_mm3": 14453.794463591,
+          "relative_volume_error": 0.0006985851070672207,
+          "outward_winding_passed": true
+        },
+        {
+          "name": "bearing_rear",
+          "first_triangle": 2516,
+          "triangle_count": 504,
+          "model_volume_mm3": 2309.070600388498,
+          "reflection_xy": [
+            1,
+            1
+          ],
+          "winding_reversed": false,
+          "signed_mesh_volume_mm3": 2305.2446104357095,
+          "relative_volume_error": 0.0016569393556631342,
+          "outward_winding_passed": true
+        },
+        {
+          "name": "bearing_front",
+          "first_triangle": 3020,
+          "triangle_count": 504,
+          "model_volume_mm3": 2309.070600388498,
+          "reflection_xy": [
+            1,
+            1
+          ],
+          "winding_reversed": false,
+          "signed_mesh_volume_mm3": 2305.2446104357095,
+          "relative_volume_error": 0.0016569393556631342,
+          "outward_winding_passed": true
+        },
+        {
+          "name": "motor_envelope",
+          "first_triangle": 3524,
+          "triangle_count": 12,
+          "model_volume_mm3": 48000.0,
+          "reflection_xy": [
+            1,
+            1
+          ],
+          "winding_reversed": false,
+          "signed_mesh_volume_mm3": 48000.0,
+          "relative_volume_error": 0.0,
+          "outward_winding_passed": true
+        }
+      ],
+      "degenerate_triangles": 0,
+      "normal_errors": 0,
+      "checks": {
+        "binary_length": true,
+        "under_5_MB": true,
+        "at_least_200_triangles": true,
+        "finite_triangles": true,
+        "no_zero_area_triangles": true,
+        "normals_match_winding": true,
+        "all_components_outward": true,
+        "stance_bbox_within_0_5_mm": true
+      },
+      "passed": true,
+      "tessellation": {
+        "linear_tolerance_mm": 0.25,
+        "angular_tolerance_rad": 0.2,
+        "deflection_mode": "absolute"
+      }
+    },
+    {
+      "file": "leg-direct-knee.stl",
+      "bytes": 182084,
+      "triangle_count": 3640,
+      "sha256": "4ee9ab0ca1769c29c8a9e6f075c50a6309fc68334e40c4ba5edeba32251bd82b",
+      "bbox_mm": {
+        "min": [
+          -43.5,
+          -38.0,
+          -111.78821563720703
+        ],
+        "max": [
+          70.17967987060547,
+          82.5345687866211,
+          0.0
+        ]
+      },
+      "size_mm": [
+        113.67967987060547,
+        120.5345687866211,
+        111.78821563720703
+      ],
+      "model_bbox_mm": {
+        "min": [
+          -43.5,
+          -38.0,
+          -111.78821594317795
+        ],
+        "max": [
+          70.17968306030373,
+          82.53509545631356,
+          0.0
+        ]
+      },
+      "bbox_max_error_mm": 0.0005266696924621783,
+      "stance_deg": {
+        "a": 12.0,
+        "b": -35.0,
+        "c": 70.0
+      },
+      "knee_variant": "direct",
+      "orientation": "Source body frame: +X forward, +Y left, +Z up",
+      "parameters": "cad/j04-l02.candidate-A-under.json",
+      "component_count": 24,
+      "components": [
+        {
+          "name": "cradle",
+          "first_triangle": 0,
+          "triangle_count": 12,
+          "model_volume_mm3": 26448.0,
+          "reflection_xy": [
+            1,
+            1
+          ],
+          "winding_reversed": false,
+          "signed_mesh_volume_mm3": 26448.0,
+          "relative_volume_error": 0.0,
+          "outward_winding_passed": true
+        },
+        {
+          "name": "j1_actuator",
+          "first_triangle": 12,
+          "triangle_count": 12,
+          "model_volume_mm3": 17680.0,
+          "reflection_xy": [
+            1,
+            1
+          ],
+          "winding_reversed": false,
+          "signed_mesh_volume_mm3": 17680.0,
+          "relative_volume_error": 0.0,
+          "outward_winding_passed": true
+        },
+        {
+          "name": "j1_actuator_horn",
+          "first_triangle": 24,
+          "triangle_count": 248,
+          "model_volume_mm3": 226.19467105846508,
+          "reflection_xy": [
+            1,
+            1
+          ],
+          "winding_reversed": false,
+          "signed_mesh_volume_mm3": 225.819877771708,
+          "relative_volume_error": 0.0016569501173623782,
+          "outward_winding_passed": true
+        },
+        {
+          "name": "j1_actuator_idler",
+          "first_triangle": 272,
+          "triangle_count": 248,
+          "model_volume_mm3": 226.19467105846508,
+          "reflection_xy": [
+            1,
+            1
+          ],
+          "winding_reversed": false,
+          "signed_mesh_volume_mm3": 225.81987211548403,
+          "relative_volume_error": 0.001656975123362519,
+          "outward_winding_passed": true
+        },
+        {
+          "name": "j2_actuator",
+          "first_triangle": 520,
+          "triangle_count": 12,
+          "model_volume_mm3": 17680.0,
+          "reflection_xy": [
+            1,
+            1
+          ],
+          "winding_reversed": false,
+          "signed_mesh_volume_mm3": 17679.998649900954,
+          "relative_volume_error": 7.636306822675015e-08,
+          "outward_winding_passed": true
+        },
+        {
+          "name": "j2_actuator_horn",
+          "first_triangle": 532,
+          "triangle_count": 248,
+          "model_volume_mm3": 226.1946710584651,
+          "reflection_xy": [
+            1,
+            1
+          ],
+          "winding_reversed": false,
+          "signed_mesh_volume_mm3": 225.82004982252508,
+          "relative_volume_error": 0.0016561894857513985,
+          "outward_winding_passed": true
+        },
+        {
+          "name": "j2_actuator_idler",
+          "first_triangle": 780,
+          "triangle_count": 248,
+          "model_volume_mm3": 226.19467105846513,
+          "reflection_xy": [
+            1,
+            1
+          ],
+          "winding_reversed": false,
+          "signed_mesh_volume_mm3": 225.8198582820358,
+          "relative_volume_error": 0.00165703628063129,
+          "outward_winding_passed": true
+        },
+        {
+          "name": "carrier_horn_plate",
+          "first_triangle": 1028,
+          "triangle_count": 204,
+          "model_volume_mm3": 3141.703507411168,
+          "reflection_xy": [
+            1,
+            1
+          ],
+          "winding_reversed": false,
+          "signed_mesh_volume_mm3": 3141.090535663461,
+          "relative_volume_error": 0.00019510808268857966,
+          "outward_winding_passed": true
+        },
+        {
+          "name": "carrier_hub_horn",
+          "first_triangle": 1232,
+          "triangle_count": 248,
+          "model_volume_mm3": 254.46900494077335,
+          "reflection_xy": [
+            1,
+            1
+          ],
+          "winding_reversed": false,
+          "signed_mesh_volume_mm3": 254.04736374150755,
+          "relative_volume_error": 0.0016569452117122388,
+          "outward_winding_passed": true
+        },
+        {
+          "name": "carrier_idler_plate",
+          "first_triangle": 1480,
+          "triangle_count": 204,
+          "model_volume_mm3": 3141.703507411168,
+          "reflection_xy": [
+            1,
+            1
+          ],
+          "winding_reversed": false,
+          "signed_mesh_volume_mm3": 3141.090535663464,
+          "relative_volume_error": 0.0001951080826877112,
+          "outward_winding_passed": true
+        },
+        {
+          "name": "carrier_hub_idler",
+          "first_triangle": 1684,
+          "triangle_count": 248,
+          "model_volume_mm3": 254.46900494077335,
+          "reflection_xy": [
+            1,
+            1
+          ],
+          "winding_reversed": false,
+          "signed_mesh_volume_mm3": 254.0473637415075,
+          "relative_volume_error": 0.0016569452117124624,
+          "outward_winding_passed": true
+        },
+        {
+          "name": "carrier_web",
+          "first_triangle": 1932,
+          "triangle_count": 12,
+          "model_volume_mm3": 1664.0,
+          "reflection_xy": [
+            1,
+            1
+          ],
+          "winding_reversed": false,
+          "signed_mesh_volume_mm3": 1663.999962029513,
+          "relative_volume_error": 2.2818802300697335e-08,
+          "outward_winding_passed": true
+        },
+        {
+          "name": "knee_actuator",
+          "first_triangle": 1944,
+          "triangle_count": 12,
+          "model_volume_mm3": 17680.0,
+          "reflection_xy": [
+            1,
+            1
+          ],
+          "winding_reversed": false,
+          "signed_mesh_volume_mm3": 17679.998594055203,
+          "relative_volume_error": 7.952176452011483e-08,
+          "outward_winding_passed": true
+        },
+        {
+          "name": "knee_actuator_horn",
+          "first_triangle": 1956,
+          "triangle_count": 248,
+          "model_volume_mm3": 226.19467105846513,
+          "reflection_xy": [
+            1,
+            1
+          ],
+          "winding_reversed": false,
+          "signed_mesh_volume_mm3": 225.8198949653347,
+          "relative_volume_error": 0.0016568741048438149,
+          "outward_winding_passed": true
+        },
+        {
+          "name": "knee_actuator_idler",
+          "first_triangle": 2204,
+          "triangle_count": 248,
+          "model_volume_mm3": 226.1946710584651,
+          "reflection_xy": [
+            1,
+            1
+          ],
+          "winding_reversed": false,
+          "signed_mesh_volume_mm3": 225.81986391208656,
+          "relative_volume_error": 0.001657011390342022,
+          "outward_winding_passed": true
+        },
+        {
+          "name": "upper_horn_plate",
+          "first_triangle": 2452,
+          "triangle_count": 192,
+          "model_volume_mm3": 999.3802041110052,
+          "reflection_xy": [
+            1,
+            1
+          ],
+          "winding_reversed": false,
+          "signed_mesh_volume_mm3": 998.7999904972198,
+          "relative_volume_error": 0.0005805734508234976,
+          "outward_winding_passed": true
+        },
+        {
+          "name": "upper_idler_plate",
+          "first_triangle": 2644,
+          "triangle_count": 192,
+          "model_volume_mm3": 999.3802041110057,
+          "reflection_xy": [
+            1,
+            1
+          ],
+          "winding_reversed": false,
+          "signed_mesh_volume_mm3": 998.799072685557,
+          "relative_volume_error": 0.0005814918316954574,
+          "outward_winding_passed": true
+        },
+        {
+          "name": "upper_web",
+          "first_triangle": 2836,
+          "triangle_count": 12,
+          "model_volume_mm3": 815.9999999999999,
+          "reflection_xy": [
+            1,
+            1
+          ],
+          "winding_reversed": false,
+          "signed_mesh_volume_mm3": 815.9998197052037,
+          "relative_volume_error": 2.2094950517558737e-07,
+          "outward_winding_passed": true
+        },
+        {
+          "name": "upper_channel_plus",
+          "first_triangle": 2848,
+          "triangle_count": 12,
+          "model_volume_mm3": 1185.0000000000005,
+          "reflection_xy": [
+            1,
+            1
+          ],
+          "winding_reversed": false,
+          "signed_mesh_volume_mm3": 1184.9993144978143,
+          "relative_volume_error": 5.784828574815418e-07,
+          "outward_winding_passed": true
+        },
+        {
+          "name": "upper_channel_minus",
+          "first_triangle": 2860,
+          "triangle_count": 12,
+          "model_volume_mm3": 1185.0000000000005,
+          "reflection_xy": [
+            1,
+            1
+          ],
+          "winding_reversed": false,
+          "signed_mesh_volume_mm3": 1185.0005359139834,
+          "relative_volume_error": 4.522480868843342e-07,
+          "outward_winding_passed": true
+        },
+        {
+          "name": "lower_horn_plate",
+          "first_triangle": 2872,
+          "triangle_count": 372,
+          "model_volume_mm3": 1410.7604082220214,
+          "reflection_xy": [
+            1,
+            1
+          ],
+          "winding_reversed": false,
+          "signed_mesh_volume_mm3": 1409.5988893308365,
+          "relative_volume_error": 0.0008233282451190483,
+          "outward_winding_passed": true
+        },
+        {
+          "name": "lower_idler_plate",
+          "first_triangle": 3244,
+          "triangle_count": 372,
+          "model_volume_mm3": 1410.760408222021,
+          "reflection_xy": [
+            1,
+            1
+          ],
+          "winding_reversed": false,
+          "signed_mesh_volume_mm3": 1409.5975776264454,
+          "relative_volume_error": 0.0008242580304908441,
+          "outward_winding_passed": true
+        },
+        {
+          "name": "lower_web",
+          "first_triangle": 3616,
+          "triangle_count": 12,
+          "model_volume_mm3": 816.0000000000002,
+          "reflection_xy": [
+            1,
+            1
+          ],
+          "winding_reversed": false,
+          "signed_mesh_volume_mm3": 816.0007168032051,
+          "relative_volume_error": 8.784353001340817e-07,
+          "outward_winding_passed": true
+        },
+        {
+          "name": "foot",
+          "first_triangle": 3628,
+          "triangle_count": 12,
+          "model_volume_mm3": 2880.0,
+          "reflection_xy": [
+            1,
+            1
+          ],
+          "winding_reversed": false,
+          "signed_mesh_volume_mm3": 2880.0008780743933,
+          "relative_volume_error": 3.0488694212256937e-07,
+          "outward_winding_passed": true
+        }
+      ],
+      "degenerate_triangles": 0,
+      "normal_errors": 0,
+      "checks": {
+        "binary_length": true,
+        "under_5_MB": true,
+        "at_least_200_triangles": true,
+        "finite_triangles": true,
+        "no_zero_area_triangles": true,
+        "normals_match_winding": true,
+        "all_components_outward": true,
+        "stance_bbox_within_0_5_mm": true
+      },
+      "passed": true,
+      "tessellation": {
+        "linear_tolerance_mm": 0.25,
+        "angular_tolerance_rad": 0.2,
+        "deflection_mode": "absolute"
+      }
+    },
+    {
+      "file": "leg-belt-knee.stl",
+      "bytes": 313284,
+      "triangle_count": 6264,
+      "sha256": "575782f3aded07bdcc11a4e4e4105fa07fec120bf1ad15eaa141577b5197d336",
+      "bbox_mm": {
+        "min": [
+          -43.5,
+          -38.0,
+          -101.5858383178711
+        ],
+        "max": [
+          53.205745697021484,
+          82.5518569946289,
+          0.0
+        ]
+      },
+      "size_mm": [
+        96.70574569702148,
+        120.5518569946289,
+        101.5858383178711
+      ],
+      "model_bbox_mm": {
+        "min": [
+          -43.5,
+          -38.0,
+          -101.58833141623144
+        ],
+        "max": [
+          53.207293090531394,
+          82.55238632758292,
+          0.0
+        ]
+      },
+      "bbox_max_error_mm": 0.002493098360346835,
+      "stance_deg": {
+        "a": 12.0,
+        "b": -35.0,
+        "c": 70.0
+      },
+      "knee_variant": "proximal",
+      "orientation": "Source body frame: +X forward, +Y left, +Z up",
+      "parameters": "cad/j04-l02.candidate-A-under.json",
+      "component_count": 29,
+      "components": [
+        {
+          "name": "cradle",
+          "first_triangle": 0,
+          "triangle_count": 12,
+          "model_volume_mm3": 26448.0,
+          "reflection_xy": [
+            1,
+            1
+          ],
+          "winding_reversed": false,
+          "signed_mesh_volume_mm3": 26448.0,
+          "relative_volume_error": 0.0,
+          "outward_winding_passed": true
+        },
+        {
+          "name": "j1_actuator",
+          "first_triangle": 12,
+          "triangle_count": 12,
+          "model_volume_mm3": 17680.0,
+          "reflection_xy": [
+            1,
+            1
+          ],
+          "winding_reversed": false,
+          "signed_mesh_volume_mm3": 17680.0,
+          "relative_volume_error": 0.0,
+          "outward_winding_passed": true
+        },
+        {
+          "name": "j1_actuator_horn",
+          "first_triangle": 24,
+          "triangle_count": 248,
+          "model_volume_mm3": 226.19467105846508,
+          "reflection_xy": [
+            1,
+            1
+          ],
+          "winding_reversed": false,
+          "signed_mesh_volume_mm3": 225.819877771708,
+          "relative_volume_error": 0.0016569501173623782,
+          "outward_winding_passed": true
+        },
+        {
+          "name": "j1_actuator_idler",
+          "first_triangle": 272,
+          "triangle_count": 248,
+          "model_volume_mm3": 226.19467105846508,
+          "reflection_xy": [
+            1,
+            1
+          ],
+          "winding_reversed": false,
+          "signed_mesh_volume_mm3": 225.81987211548403,
+          "relative_volume_error": 0.001656975123362519,
+          "outward_winding_passed": true
+        },
+        {
+          "name": "j2_actuator",
+          "first_triangle": 520,
+          "triangle_count": 12,
+          "model_volume_mm3": 17680.0,
+          "reflection_xy": [
+            1,
+            1
+          ],
+          "winding_reversed": false,
+          "signed_mesh_volume_mm3": 17679.998649900954,
+          "relative_volume_error": 7.636306822675015e-08,
+          "outward_winding_passed": true
+        },
+        {
+          "name": "j2_actuator_horn",
+          "first_triangle": 532,
+          "triangle_count": 248,
+          "model_volume_mm3": 226.1946710584651,
+          "reflection_xy": [
+            1,
+            1
+          ],
+          "winding_reversed": false,
+          "signed_mesh_volume_mm3": 225.82004982252508,
+          "relative_volume_error": 0.0016561894857513985,
+          "outward_winding_passed": true
+        },
+        {
+          "name": "j2_actuator_idler",
+          "first_triangle": 780,
+          "triangle_count": 248,
+          "model_volume_mm3": 226.19467105846513,
+          "reflection_xy": [
+            1,
+            1
+          ],
+          "winding_reversed": false,
+          "signed_mesh_volume_mm3": 225.8198582820358,
+          "relative_volume_error": 0.00165703628063129,
+          "outward_winding_passed": true
+        },
+        {
+          "name": "carrier_horn_plate",
+          "first_triangle": 1028,
+          "triangle_count": 204,
+          "model_volume_mm3": 3141.703507411168,
+          "reflection_xy": [
+            1,
+            1
+          ],
+          "winding_reversed": false,
+          "signed_mesh_volume_mm3": 3141.090535663461,
+          "relative_volume_error": 0.00019510808268857966,
+          "outward_winding_passed": true
+        },
+        {
+          "name": "carrier_hub_horn",
+          "first_triangle": 1232,
+          "triangle_count": 248,
+          "model_volume_mm3": 254.46900494077335,
+          "reflection_xy": [
+            1,
+            1
+          ],
+          "winding_reversed": false,
+          "signed_mesh_volume_mm3": 254.04736374150755,
+          "relative_volume_error": 0.0016569452117122388,
+          "outward_winding_passed": true
+        },
+        {
+          "name": "carrier_idler_plate",
+          "first_triangle": 1480,
+          "triangle_count": 204,
+          "model_volume_mm3": 3141.703507411168,
+          "reflection_xy": [
+            1,
+            1
+          ],
+          "winding_reversed": false,
+          "signed_mesh_volume_mm3": 3141.090535663464,
+          "relative_volume_error": 0.0001951080826877112,
+          "outward_winding_passed": true
+        },
+        {
+          "name": "carrier_hub_idler",
+          "first_triangle": 1684,
+          "triangle_count": 248,
+          "model_volume_mm3": 254.46900494077335,
+          "reflection_xy": [
+            1,
+            1
+          ],
+          "winding_reversed": false,
+          "signed_mesh_volume_mm3": 254.0473637415075,
+          "relative_volume_error": 0.0016569452117124624,
+          "outward_winding_passed": true
+        },
+        {
+          "name": "carrier_web",
+          "first_triangle": 1932,
+          "triangle_count": 12,
+          "model_volume_mm3": 1664.0,
+          "reflection_xy": [
+            1,
+            1
+          ],
+          "winding_reversed": false,
+          "signed_mesh_volume_mm3": 1663.999962029513,
+          "relative_volume_error": 2.2818802300697335e-08,
+          "outward_winding_passed": true
+        },
+        {
+          "name": "upper_horn_plate",
+          "first_triangle": 1944,
+          "triangle_count": 628,
+          "model_volume_mm3": 1220.6940526798385,
+          "reflection_xy": [
+            1,
+            1
+          ],
+          "winding_reversed": false,
+          "signed_mesh_volume_mm3": 1219.8471341615943,
+          "relative_volume_error": 0.0006938008065041881,
+          "outward_winding_passed": true
+        },
+        {
+          "name": "upper_idler_plate",
+          "first_triangle": 2572,
+          "triangle_count": 628,
+          "model_volume_mm3": 1220.694052679839,
+          "reflection_xy": [
+            1,
+            1
+          ],
+          "winding_reversed": false,
+          "signed_mesh_volume_mm3": 1219.8466183249352,
+          "relative_volume_error": 0.00069422338303633,
+          "outward_winding_passed": true
+        },
+        {
+          "name": "upper_web",
+          "first_triangle": 3200,
+          "triangle_count": 12,
+          "model_volume_mm3": 815.9999999999999,
+          "reflection_xy": [
+            1,
+            1
+          ],
+          "winding_reversed": false,
+          "signed_mesh_volume_mm3": 815.9998197052037,
+          "relative_volume_error": 2.2094950517558737e-07,
+          "outward_winding_passed": true
+        },
+        {
+          "name": "knee_actuator",
+          "first_triangle": 3212,
+          "triangle_count": 12,
+          "model_volume_mm3": 17680.0,
+          "reflection_xy": [
+            1,
+            1
+          ],
+          "winding_reversed": false,
+          "signed_mesh_volume_mm3": 17679.99991783864,
+          "relative_volume_error": 4.6471358148240994e-09,
+          "outward_winding_passed": true
+        },
+        {
+          "name": "knee_actuator_horn",
+          "first_triangle": 3224,
+          "triangle_count": 248,
+          "model_volume_mm3": 226.19467105846513,
+          "reflection_xy": [
+            1,
+            1
+          ],
+          "winding_reversed": false,
+          "signed_mesh_volume_mm3": 225.81988690117797,
+          "relative_volume_error": 0.0016569097562439698,
+          "outward_winding_passed": true
+        },
+        {
+          "name": "knee_actuator_idler",
+          "first_triangle": 3472,
+          "triangle_count": 248,
+          "model_volume_mm3": 226.19467105846513,
+          "reflection_xy": [
+            1,
+            1
+          ],
+          "winding_reversed": false,
+          "signed_mesh_volume_mm3": 225.8199133020452,
+          "relative_volume_error": 0.0016567930387850485,
+          "outward_winding_passed": true
+        },
+        {
+          "name": "knee_mount",
+          "first_triangle": 3720,
+          "triangle_count": 12,
+          "model_volume_mm3": 1120.0,
+          "reflection_xy": [
+            1,
+            1
+          ],
+          "winding_reversed": false,
+          "signed_mesh_volume_mm3": 1120.0012071089131,
+          "relative_volume_error": 1.0777758153121146e-06,
+          "outward_winding_passed": true
+        },
+        {
+          "name": "pulley_hip",
+          "first_triangle": 3732,
+          "triangle_count": 248,
+          "model_volume_mm3": 678.5840131753954,
+          "reflection_xy": [
+            1,
+            1
+          ],
+          "winding_reversed": false,
+          "signed_mesh_volume_mm3": 677.4596228609851,
+          "relative_volume_error": 0.0016569655231764354,
+          "outward_winding_passed": true
+        },
+        {
+          "name": "pulley_knee",
+          "first_triangle": 3980,
+          "triangle_count": 248,
+          "model_volume_mm3": 678.5840131753954,
+          "reflection_xy": [
+            1,
+            1
+          ],
+          "winding_reversed": false,
+          "signed_mesh_volume_mm3": 677.4596287173384,
+          "relative_volume_error": 0.0016569568929209995,
+          "outward_winding_passed": true
+        },
+        {
+          "name": "belt",
+          "first_triangle": 4228,
+          "triangle_count": 12,
+          "model_volume_mm3": 2160.0,
+          "reflection_xy": [
+            1,
+            1
+          ],
+          "winding_reversed": false,
+          "signed_mesh_volume_mm3": 2159.9996899562393,
+          "relative_volume_error": 1.435387780980414e-07,
+          "outward_winding_passed": true
+        },
+        {
+          "name": "lower_plate_in",
+          "first_triangle": 4240,
+          "triangle_count": 372,
+          "model_volume_mm3": 1410.7604082220214,
+          "reflection_xy": [
+            1,
+            1
+          ],
+          "winding_reversed": false,
+          "signed_mesh_volume_mm3": 1409.5974818905322,
+          "relative_volume_error": 0.000824325891704618,
+          "outward_winding_passed": true
+        },
+        {
+          "name": "lower_plate_out",
+          "first_triangle": 4612,
+          "triangle_count": 372,
+          "model_volume_mm3": 1410.7604082220198,
+          "reflection_xy": [
+            1,
+            1
+          ],
+          "winding_reversed": false,
+          "signed_mesh_volume_mm3": 1409.5966435263815,
+          "relative_volume_error": 0.000824920155722958,
+          "outward_winding_passed": true
+        },
+        {
+          "name": "lower_web",
+          "first_triangle": 4984,
+          "triangle_count": 12,
+          "model_volume_mm3": 1848.0000000000005,
+          "reflection_xy": [
+            1,
+            1
+          ],
+          "winding_reversed": false,
+          "signed_mesh_volume_mm3": 1847.9998621320392,
+          "relative_volume_error": 7.460387513914673e-08,
+          "outward_winding_passed": true
+        },
+        {
+          "name": "knee_shaft",
+          "first_triangle": 4996,
+          "triangle_count": 248,
+          "model_volume_mm3": 1511.8914645400882,
+          "reflection_xy": [
+            1,
+            1
+          ],
+          "winding_reversed": false,
+          "signed_mesh_volume_mm3": 1509.3865369671782,
+          "relative_volume_error": 0.0016568170610527135,
+          "outward_winding_passed": true
+        },
+        {
+          "name": "knee_bearing_in",
+          "first_triangle": 5244,
+          "triangle_count": 504,
+          "model_volume_mm3": 301.5928947446202,
+          "reflection_xy": [
+            1,
+            1
+          ],
+          "winding_reversed": false,
+          "signed_mesh_volume_mm3": 301.0931847005492,
+          "relative_volume_error": 0.0016569025755534443,
+          "outward_winding_passed": true
+        },
+        {
+          "name": "knee_bearing_out",
+          "first_triangle": 5748,
+          "triangle_count": 504,
+          "model_volume_mm3": 301.5928947446203,
+          "reflection_xy": [
+            1,
+            1
+          ],
+          "winding_reversed": false,
+          "signed_mesh_volume_mm3": 301.09324956497716,
+          "relative_volume_error": 0.0016566875027551205,
+          "outward_winding_passed": true
+        },
+        {
+          "name": "foot",
+          "first_triangle": 6252,
+          "triangle_count": 12,
+          "model_volume_mm3": 2880.0,
+          "reflection_xy": [
+            1,
+            1
+          ],
+          "winding_reversed": false,
+          "signed_mesh_volume_mm3": 2880.0005171771636,
+          "relative_volume_error": 1.7957540402827968e-07,
+          "outward_winding_passed": true
+        }
+      ],
+      "degenerate_triangles": 0,
+      "normal_errors": 0,
+      "checks": {
+        "binary_length": true,
+        "under_5_MB": true,
+        "at_least_200_triangles": true,
+        "finite_triangles": true,
+        "no_zero_area_triangles": true,
+        "normals_match_winding": true,
+        "all_components_outward": true,
+        "stance_bbox_within_0_5_mm": true
+      },
+      "passed": true,
+      "tessellation": {
+        "linear_tolerance_mm": 0.25,
+        "angular_tolerance_rad": 0.2,
+        "deflection_mode": "absolute"
+      }
+    },
+    {
+      "file": "mack-four-legs-prototype.stl",
+      "bytes": 726884,
+      "triangle_count": 14536,
+      "sha256": "f94e00b74234e098a0ec64212ad62d8d35ebde0fbba4b33ce93fcd58d981d67d",
+      "bbox_mm": {
+        "min": [
+          -70.17967987060547,
+          -82.5345687866211,
+          -111.78821563720703
+        ],
+        "max": [
+          70.17967987060547,
+          82.5345687866211,
+          112.0
+        ]
+      },
+      "size_mm": [
+        140.35935974121094,
+        165.0691375732422,
+        223.78821563720703
+      ],
+      "model_bbox_mm": {
+        "min": [
+          -70.17968306030374,
+          -82.53509545631358,
+          -111.78821594317795
+        ],
+        "max": [
+          70.17968306030373,
+          82.53509545631356,
+          112.0
+        ]
+      },
+      "bbox_max_error_mm": 0.0005266696924906,
+      "stance_deg": {
+        "a": 12.0,
+        "b": -35.0,
+        "c": 70.0
+      },
+      "knee_variant": "direct",
+      "orientation": "Source body frame: +X forward, +Y left, +Z up",
+      "parameters": "cad/j04-l02.candidate-A-under.json",
+      "component_count": 94,
+      "components": [
+        {
+          "name": "body_envelope",
+          "first_triangle": 0,
+          "triangle_count": 12,
+          "model_volume_mm3": 815360.0,
+          "reflection_xy": [
+            1,
+            1
+          ],
+          "winding_reversed": false,
+          "signed_mesh_volume_mm3": 815360.0,
+          "relative_volume_error": 0.0,
+          "outward_winding_passed": true
+        },
+        {
+          "name": "cradle",
+          "first_triangle": 12,
+          "triangle_count": 12,
+          "model_volume_mm3": 26448.0,
+          "reflection_xy": [
+            1,
+            1
+          ],
+          "winding_reversed": false,
+          "signed_mesh_volume_mm3": 26448.0,
+          "relative_volume_error": 0.0,
+          "outward_winding_passed": true
+        },
+        {
+          "name": "FL_j1_actuator",
+          "first_triangle": 24,
+          "triangle_count": 12,
+          "model_volume_mm3": 17680.0,
+          "reflection_xy": [
+            1,
+            1
+          ],
+          "winding_reversed": false,
+          "signed_mesh_volume_mm3": 17680.0,
+          "relative_volume_error": 0.0,
+          "outward_winding_passed": true
+        },
+        {
+          "name": "FL_j1_actuator_horn",
+          "first_triangle": 36,
+          "triangle_count": 248,
+          "model_volume_mm3": 226.19467105846508,
+          "reflection_xy": [
+            1,
+            1
+          ],
+          "winding_reversed": false,
+          "signed_mesh_volume_mm3": 225.819877771708,
+          "relative_volume_error": 0.0016569501173623782,
+          "outward_winding_passed": true
+        },
+        {
+          "name": "FL_j1_actuator_idler",
+          "first_triangle": 284,
+          "triangle_count": 248,
+          "model_volume_mm3": 226.19467105846508,
+          "reflection_xy": [
+            1,
+            1
+          ],
+          "winding_reversed": false,
+          "signed_mesh_volume_mm3": 225.81987211548403,
+          "relative_volume_error": 0.001656975123362519,
+          "outward_winding_passed": true
+        },
+        {
+          "name": "FL_j2_actuator",
+          "first_triangle": 532,
+          "triangle_count": 12,
+          "model_volume_mm3": 17680.0,
+          "reflection_xy": [
+            1,
+            1
+          ],
+          "winding_reversed": false,
+          "signed_mesh_volume_mm3": 17679.998649900954,
+          "relative_volume_error": 7.636306822675015e-08,
+          "outward_winding_passed": true
+        },
+        {
+          "name": "FL_j2_actuator_horn",
+          "first_triangle": 544,
+          "triangle_count": 248,
+          "model_volume_mm3": 226.1946710584651,
+          "reflection_xy": [
+            1,
+            1
+          ],
+          "winding_reversed": false,
+          "signed_mesh_volume_mm3": 225.82004982252508,
+          "relative_volume_error": 0.0016561894857513985,
+          "outward_winding_passed": true
+        },
+        {
+          "name": "FL_j2_actuator_idler",
+          "first_triangle": 792,
+          "triangle_count": 248,
+          "model_volume_mm3": 226.19467105846513,
+          "reflection_xy": [
+            1,
+            1
+          ],
+          "winding_reversed": false,
+          "signed_mesh_volume_mm3": 225.8198582820358,
+          "relative_volume_error": 0.00165703628063129,
+          "outward_winding_passed": true
+        },
+        {
+          "name": "FL_carrier_horn_plate",
+          "first_triangle": 1040,
+          "triangle_count": 204,
+          "model_volume_mm3": 3141.703507411168,
+          "reflection_xy": [
+            1,
+            1
+          ],
+          "winding_reversed": false,
+          "signed_mesh_volume_mm3": 3141.090535663461,
+          "relative_volume_error": 0.00019510808268857966,
+          "outward_winding_passed": true
+        },
+        {
+          "name": "FL_carrier_hub_horn",
+          "first_triangle": 1244,
+          "triangle_count": 248,
+          "model_volume_mm3": 254.46900494077335,
+          "reflection_xy": [
+            1,
+            1
+          ],
+          "winding_reversed": false,
+          "signed_mesh_volume_mm3": 254.04736374150755,
+          "relative_volume_error": 0.0016569452117122388,
+          "outward_winding_passed": true
+        },
+        {
+          "name": "FL_carrier_idler_plate",
+          "first_triangle": 1492,
+          "triangle_count": 204,
+          "model_volume_mm3": 3141.703507411168,
+          "reflection_xy": [
+            1,
+            1
+          ],
+          "winding_reversed": false,
+          "signed_mesh_volume_mm3": 3141.090535663464,
+          "relative_volume_error": 0.0001951080826877112,
+          "outward_winding_passed": true
+        },
+        {
+          "name": "FL_carrier_hub_idler",
+          "first_triangle": 1696,
+          "triangle_count": 248,
+          "model_volume_mm3": 254.46900494077335,
+          "reflection_xy": [
+            1,
+            1
+          ],
+          "winding_reversed": false,
+          "signed_mesh_volume_mm3": 254.0473637415075,
+          "relative_volume_error": 0.0016569452117124624,
+          "outward_winding_passed": true
+        },
+        {
+          "name": "FL_carrier_web",
+          "first_triangle": 1944,
+          "triangle_count": 12,
+          "model_volume_mm3": 1664.0,
+          "reflection_xy": [
+            1,
+            1
+          ],
+          "winding_reversed": false,
+          "signed_mesh_volume_mm3": 1663.999962029513,
+          "relative_volume_error": 2.2818802300697335e-08,
+          "outward_winding_passed": true
+        },
+        {
+          "name": "FL_knee_actuator",
+          "first_triangle": 1956,
+          "triangle_count": 12,
+          "model_volume_mm3": 17680.0,
+          "reflection_xy": [
+            1,
+            1
+          ],
+          "winding_reversed": false,
+          "signed_mesh_volume_mm3": 17679.998594055203,
+          "relative_volume_error": 7.952176452011483e-08,
+          "outward_winding_passed": true
+        },
+        {
+          "name": "FL_knee_actuator_horn",
+          "first_triangle": 1968,
+          "triangle_count": 248,
+          "model_volume_mm3": 226.19467105846513,
+          "reflection_xy": [
+            1,
+            1
+          ],
+          "winding_reversed": false,
+          "signed_mesh_volume_mm3": 225.8198949653347,
+          "relative_volume_error": 0.0016568741048438149,
+          "outward_winding_passed": true
+        },
+        {
+          "name": "FL_knee_actuator_idler",
+          "first_triangle": 2216,
+          "triangle_count": 248,
+          "model_volume_mm3": 226.1946710584651,
+          "reflection_xy": [
+            1,
+            1
+          ],
+          "winding_reversed": false,
+          "signed_mesh_volume_mm3": 225.81986391208656,
+          "relative_volume_error": 0.001657011390342022,
+          "outward_winding_passed": true
+        },
+        {
+          "name": "FL_upper_horn_plate",
+          "first_triangle": 2464,
+          "triangle_count": 192,
+          "model_volume_mm3": 999.3802041110052,
+          "reflection_xy": [
+            1,
+            1
+          ],
+          "winding_reversed": false,
+          "signed_mesh_volume_mm3": 998.7999904972198,
+          "relative_volume_error": 0.0005805734508234976,
+          "outward_winding_passed": true
+        },
+        {
+          "name": "FL_upper_idler_plate",
+          "first_triangle": 2656,
+          "triangle_count": 192,
+          "model_volume_mm3": 999.3802041110057,
+          "reflection_xy": [
+            1,
+            1
+          ],
+          "winding_reversed": false,
+          "signed_mesh_volume_mm3": 998.799072685557,
+          "relative_volume_error": 0.0005814918316954574,
+          "outward_winding_passed": true
+        },
+        {
+          "name": "FL_upper_web",
+          "first_triangle": 2848,
+          "triangle_count": 12,
+          "model_volume_mm3": 815.9999999999999,
+          "reflection_xy": [
+            1,
+            1
+          ],
+          "winding_reversed": false,
+          "signed_mesh_volume_mm3": 815.9998197052037,
+          "relative_volume_error": 2.2094950517558737e-07,
+          "outward_winding_passed": true
+        },
+        {
+          "name": "FL_upper_channel_plus",
+          "first_triangle": 2860,
+          "triangle_count": 12,
+          "model_volume_mm3": 1185.0000000000005,
+          "reflection_xy": [
+            1,
+            1
+          ],
+          "winding_reversed": false,
+          "signed_mesh_volume_mm3": 1184.9993144978143,
+          "relative_volume_error": 5.784828574815418e-07,
+          "outward_winding_passed": true
+        },
+        {
+          "name": "FL_upper_channel_minus",
+          "first_triangle": 2872,
+          "triangle_count": 12,
+          "model_volume_mm3": 1185.0000000000005,
+          "reflection_xy": [
+            1,
+            1
+          ],
+          "winding_reversed": false,
+          "signed_mesh_volume_mm3": 1185.0005359139834,
+          "relative_volume_error": 4.522480868843342e-07,
+          "outward_winding_passed": true
+        },
+        {
+          "name": "FL_lower_horn_plate",
+          "first_triangle": 2884,
+          "triangle_count": 372,
+          "model_volume_mm3": 1410.7604082220214,
+          "reflection_xy": [
+            1,
+            1
+          ],
+          "winding_reversed": false,
+          "signed_mesh_volume_mm3": 1409.5988893308365,
+          "relative_volume_error": 0.0008233282451190483,
+          "outward_winding_passed": true
+        },
+        {
+          "name": "FL_lower_idler_plate",
+          "first_triangle": 3256,
+          "triangle_count": 372,
+          "model_volume_mm3": 1410.760408222021,
+          "reflection_xy": [
+            1,
+            1
+          ],
+          "winding_reversed": false,
+          "signed_mesh_volume_mm3": 1409.5975776264454,
+          "relative_volume_error": 0.0008242580304908441,
+          "outward_winding_passed": true
+        },
+        {
+          "name": "FL_lower_web",
+          "first_triangle": 3628,
+          "triangle_count": 12,
+          "model_volume_mm3": 816.0000000000002,
+          "reflection_xy": [
+            1,
+            1
+          ],
+          "winding_reversed": false,
+          "signed_mesh_volume_mm3": 816.0007168032051,
+          "relative_volume_error": 8.784353001340817e-07,
+          "outward_winding_passed": true
+        },
+        {
+          "name": "FL_foot",
+          "first_triangle": 3640,
+          "triangle_count": 12,
+          "model_volume_mm3": 2880.0,
+          "reflection_xy": [
+            1,
+            1
+          ],
+          "winding_reversed": false,
+          "signed_mesh_volume_mm3": 2880.0008780743933,
+          "relative_volume_error": 3.0488694212256937e-07,
+          "outward_winding_passed": true
+        },
+        {
+          "name": "FR_j1_actuator",
+          "first_triangle": 3652,
+          "triangle_count": 12,
+          "model_volume_mm3": 17680.0,
+          "reflection_xy": [
+            1,
+            -1
+          ],
+          "winding_reversed": true,
+          "signed_mesh_volume_mm3": 17680.0,
+          "relative_volume_error": 0.0,
+          "outward_winding_passed": true
+        },
+        {
+          "name": "FR_j1_actuator_horn",
+          "first_triangle": 3664,
+          "triangle_count": 248,
+          "model_volume_mm3": 226.19467105846508,
+          "reflection_xy": [
+            1,
+            -1
+          ],
+          "winding_reversed": true,
+          "signed_mesh_volume_mm3": 225.819877771708,
+          "relative_volume_error": 0.0016569501173623782,
+          "outward_winding_passed": true
+        },
+        {
+          "name": "FR_j1_actuator_idler",
+          "first_triangle": 3912,
+          "triangle_count": 248,
+          "model_volume_mm3": 226.19467105846508,
+          "reflection_xy": [
+            1,
+            -1
+          ],
+          "winding_reversed": true,
+          "signed_mesh_volume_mm3": 225.81987211548403,
+          "relative_volume_error": 0.001656975123362519,
+          "outward_winding_passed": true
+        },
+        {
+          "name": "FR_j2_actuator",
+          "first_triangle": 4160,
+          "triangle_count": 12,
+          "model_volume_mm3": 17680.0,
+          "reflection_xy": [
+            1,
+            -1
+          ],
+          "winding_reversed": true,
+          "signed_mesh_volume_mm3": 17679.998649900954,
+          "relative_volume_error": 7.636306822675015e-08,
+          "outward_winding_passed": true
+        },
+        {
+          "name": "FR_j2_actuator_horn",
+          "first_triangle": 4172,
+          "triangle_count": 248,
+          "model_volume_mm3": 226.1946710584651,
+          "reflection_xy": [
+            1,
+            -1
+          ],
+          "winding_reversed": true,
+          "signed_mesh_volume_mm3": 225.82004982252508,
+          "relative_volume_error": 0.0016561894857513985,
+          "outward_winding_passed": true
+        },
+        {
+          "name": "FR_j2_actuator_idler",
+          "first_triangle": 4420,
+          "triangle_count": 248,
+          "model_volume_mm3": 226.19467105846513,
+          "reflection_xy": [
+            1,
+            -1
+          ],
+          "winding_reversed": true,
+          "signed_mesh_volume_mm3": 225.8198582820358,
+          "relative_volume_error": 0.00165703628063129,
+          "outward_winding_passed": true
+        },
+        {
+          "name": "FR_carrier_horn_plate",
+          "first_triangle": 4668,
+          "triangle_count": 204,
+          "model_volume_mm3": 3141.703507411168,
+          "reflection_xy": [
+            1,
+            -1
+          ],
+          "winding_reversed": true,
+          "signed_mesh_volume_mm3": 3141.090535663461,
+          "relative_volume_error": 0.00019510808268857966,
+          "outward_winding_passed": true
+        },
+        {
+          "name": "FR_carrier_hub_horn",
+          "first_triangle": 4872,
+          "triangle_count": 248,
+          "model_volume_mm3": 254.46900494077335,
+          "reflection_xy": [
+            1,
+            -1
+          ],
+          "winding_reversed": true,
+          "signed_mesh_volume_mm3": 254.04736374150755,
+          "relative_volume_error": 0.0016569452117122388,
+          "outward_winding_passed": true
+        },
+        {
+          "name": "FR_carrier_idler_plate",
+          "first_triangle": 5120,
+          "triangle_count": 204,
+          "model_volume_mm3": 3141.703507411168,
+          "reflection_xy": [
+            1,
+            -1
+          ],
+          "winding_reversed": true,
+          "signed_mesh_volume_mm3": 3141.090535663464,
+          "relative_volume_error": 0.0001951080826877112,
+          "outward_winding_passed": true
+        },
+        {
+          "name": "FR_carrier_hub_idler",
+          "first_triangle": 5324,
+          "triangle_count": 248,
+          "model_volume_mm3": 254.46900494077335,
+          "reflection_xy": [
+            1,
+            -1
+          ],
+          "winding_reversed": true,
+          "signed_mesh_volume_mm3": 254.0473637415075,
+          "relative_volume_error": 0.0016569452117124624,
+          "outward_winding_passed": true
+        },
+        {
+          "name": "FR_carrier_web",
+          "first_triangle": 5572,
+          "triangle_count": 12,
+          "model_volume_mm3": 1664.0,
+          "reflection_xy": [
+            1,
+            -1
+          ],
+          "winding_reversed": true,
+          "signed_mesh_volume_mm3": 1663.999962029513,
+          "relative_volume_error": 2.2818802300697335e-08,
+          "outward_winding_passed": true
+        },
+        {
+          "name": "FR_knee_actuator",
+          "first_triangle": 5584,
+          "triangle_count": 12,
+          "model_volume_mm3": 17680.0,
+          "reflection_xy": [
+            1,
+            -1
+          ],
+          "winding_reversed": true,
+          "signed_mesh_volume_mm3": 17679.998594055203,
+          "relative_volume_error": 7.952176452011483e-08,
+          "outward_winding_passed": true
+        },
+        {
+          "name": "FR_knee_actuator_horn",
+          "first_triangle": 5596,
+          "triangle_count": 248,
+          "model_volume_mm3": 226.19467105846513,
+          "reflection_xy": [
+            1,
+            -1
+          ],
+          "winding_reversed": true,
+          "signed_mesh_volume_mm3": 225.8198949653347,
+          "relative_volume_error": 0.0016568741048438149,
+          "outward_winding_passed": true
+        },
+        {
+          "name": "FR_knee_actuator_idler",
+          "first_triangle": 5844,
+          "triangle_count": 248,
+          "model_volume_mm3": 226.1946710584651,
+          "reflection_xy": [
+            1,
+            -1
+          ],
+          "winding_reversed": true,
+          "signed_mesh_volume_mm3": 225.81986391208656,
+          "relative_volume_error": 0.001657011390342022,
+          "outward_winding_passed": true
+        },
+        {
+          "name": "FR_upper_horn_plate",
+          "first_triangle": 6092,
+          "triangle_count": 192,
+          "model_volume_mm3": 999.3802041110052,
+          "reflection_xy": [
+            1,
+            -1
+          ],
+          "winding_reversed": true,
+          "signed_mesh_volume_mm3": 998.7999904972198,
+          "relative_volume_error": 0.0005805734508234976,
+          "outward_winding_passed": true
+        },
+        {
+          "name": "FR_upper_idler_plate",
+          "first_triangle": 6284,
+          "triangle_count": 192,
+          "model_volume_mm3": 999.3802041110057,
+          "reflection_xy": [
+            1,
+            -1
+          ],
+          "winding_reversed": true,
+          "signed_mesh_volume_mm3": 998.799072685557,
+          "relative_volume_error": 0.0005814918316954574,
+          "outward_winding_passed": true
+        },
+        {
+          "name": "FR_upper_web",
+          "first_triangle": 6476,
+          "triangle_count": 12,
+          "model_volume_mm3": 815.9999999999999,
+          "reflection_xy": [
+            1,
+            -1
+          ],
+          "winding_reversed": true,
+          "signed_mesh_volume_mm3": 815.9998197052037,
+          "relative_volume_error": 2.2094950517558737e-07,
+          "outward_winding_passed": true
+        },
+        {
+          "name": "FR_upper_channel_plus",
+          "first_triangle": 6488,
+          "triangle_count": 12,
+          "model_volume_mm3": 1185.0000000000005,
+          "reflection_xy": [
+            1,
+            -1
+          ],
+          "winding_reversed": true,
+          "signed_mesh_volume_mm3": 1184.9993144978143,
+          "relative_volume_error": 5.784828574815418e-07,
+          "outward_winding_passed": true
+        },
+        {
+          "name": "FR_upper_channel_minus",
+          "first_triangle": 6500,
+          "triangle_count": 12,
+          "model_volume_mm3": 1185.0000000000005,
+          "reflection_xy": [
+            1,
+            -1
+          ],
+          "winding_reversed": true,
+          "signed_mesh_volume_mm3": 1185.0005359139834,
+          "relative_volume_error": 4.522480868843342e-07,
+          "outward_winding_passed": true
+        },
+        {
+          "name": "FR_lower_horn_plate",
+          "first_triangle": 6512,
+          "triangle_count": 372,
+          "model_volume_mm3": 1410.7604082220214,
+          "reflection_xy": [
+            1,
+            -1
+          ],
+          "winding_reversed": true,
+          "signed_mesh_volume_mm3": 1409.5988893308365,
+          "relative_volume_error": 0.0008233282451190483,
+          "outward_winding_passed": true
+        },
+        {
+          "name": "FR_lower_idler_plate",
+          "first_triangle": 6884,
+          "triangle_count": 372,
+          "model_volume_mm3": 1410.760408222021,
+          "reflection_xy": [
+            1,
+            -1
+          ],
+          "winding_reversed": true,
+          "signed_mesh_volume_mm3": 1409.5975776264454,
+          "relative_volume_error": 0.0008242580304908441,
+          "outward_winding_passed": true
+        },
+        {
+          "name": "FR_lower_web",
+          "first_triangle": 7256,
+          "triangle_count": 12,
+          "model_volume_mm3": 816.0000000000002,
+          "reflection_xy": [
+            1,
+            -1
+          ],
+          "winding_reversed": true,
+          "signed_mesh_volume_mm3": 816.0007168032051,
+          "relative_volume_error": 8.784353001340817e-07,
+          "outward_winding_passed": true
+        },
+        {
+          "name": "FR_foot",
+          "first_triangle": 7268,
+          "triangle_count": 12,
+          "model_volume_mm3": 2880.0,
+          "reflection_xy": [
+            1,
+            -1
+          ],
+          "winding_reversed": true,
+          "signed_mesh_volume_mm3": 2880.0008780743933,
+          "relative_volume_error": 3.0488694212256937e-07,
+          "outward_winding_passed": true
+        },
+        {
+          "name": "RL_j1_actuator",
+          "first_triangle": 7280,
+          "triangle_count": 12,
+          "model_volume_mm3": 17680.0,
+          "reflection_xy": [
+            -1,
+            1
+          ],
+          "winding_reversed": true,
+          "signed_mesh_volume_mm3": 17680.0,
+          "relative_volume_error": 0.0,
+          "outward_winding_passed": true
+        },
+        {
+          "name": "RL_j1_actuator_horn",
+          "first_triangle": 7292,
+          "triangle_count": 248,
+          "model_volume_mm3": 226.19467105846508,
+          "reflection_xy": [
+            -1,
+            1
+          ],
+          "winding_reversed": true,
+          "signed_mesh_volume_mm3": 225.819877771708,
+          "relative_volume_error": 0.0016569501173623782,
+          "outward_winding_passed": true
+        },
+        {
+          "name": "RL_j1_actuator_idler",
+          "first_triangle": 7540,
+          "triangle_count": 248,
+          "model_volume_mm3": 226.19467105846508,
+          "reflection_xy": [
+            -1,
+            1
+          ],
+          "winding_reversed": true,
+          "signed_mesh_volume_mm3": 225.81987211548403,
+          "relative_volume_error": 0.001656975123362519,
+          "outward_winding_passed": true
+        },
+        {
+          "name": "RL_j2_actuator",
+          "first_triangle": 7788,
+          "triangle_count": 12,
+          "model_volume_mm3": 17680.0,
+          "reflection_xy": [
+            -1,
+            1
+          ],
+          "winding_reversed": true,
+          "signed_mesh_volume_mm3": 17679.998649900954,
+          "relative_volume_error": 7.636306822675015e-08,
+          "outward_winding_passed": true
+        },
+        {
+          "name": "RL_j2_actuator_horn",
+          "first_triangle": 7800,
+          "triangle_count": 248,
+          "model_volume_mm3": 226.1946710584651,
+          "reflection_xy": [
+            -1,
+            1
+          ],
+          "winding_reversed": true,
+          "signed_mesh_volume_mm3": 225.82004982252508,
+          "relative_volume_error": 0.0016561894857513985,
+          "outward_winding_passed": true
+        },
+        {
+          "name": "RL_j2_actuator_idler",
+          "first_triangle": 8048,
+          "triangle_count": 248,
+          "model_volume_mm3": 226.19467105846513,
+          "reflection_xy": [
+            -1,
+            1
+          ],
+          "winding_reversed": true,
+          "signed_mesh_volume_mm3": 225.8198582820358,
+          "relative_volume_error": 0.00165703628063129,
+          "outward_winding_passed": true
+        },
+        {
+          "name": "RL_carrier_horn_plate",
+          "first_triangle": 8296,
+          "triangle_count": 204,
+          "model_volume_mm3": 3141.703507411168,
+          "reflection_xy": [
+            -1,
+            1
+          ],
+          "winding_reversed": true,
+          "signed_mesh_volume_mm3": 3141.090535663461,
+          "relative_volume_error": 0.00019510808268857966,
+          "outward_winding_passed": true
+        },
+        {
+          "name": "RL_carrier_hub_horn",
+          "first_triangle": 8500,
+          "triangle_count": 248,
+          "model_volume_mm3": 254.46900494077335,
+          "reflection_xy": [
+            -1,
+            1
+          ],
+          "winding_reversed": true,
+          "signed_mesh_volume_mm3": 254.04736374150755,
+          "relative_volume_error": 0.0016569452117122388,
+          "outward_winding_passed": true
+        },
+        {
+          "name": "RL_carrier_idler_plate",
+          "first_triangle": 8748,
+          "triangle_count": 204,
+          "model_volume_mm3": 3141.703507411168,
+          "reflection_xy": [
+            -1,
+            1
+          ],
+          "winding_reversed": true,
+          "signed_mesh_volume_mm3": 3141.090535663464,
+          "relative_volume_error": 0.0001951080826877112,
+          "outward_winding_passed": true
+        },
+        {
+          "name": "RL_carrier_hub_idler",
+          "first_triangle": 8952,
+          "triangle_count": 248,
+          "model_volume_mm3": 254.46900494077335,
+          "reflection_xy": [
+            -1,
+            1
+          ],
+          "winding_reversed": true,
+          "signed_mesh_volume_mm3": 254.0473637415075,
+          "relative_volume_error": 0.0016569452117124624,
+          "outward_winding_passed": true
+        },
+        {
+          "name": "RL_carrier_web",
+          "first_triangle": 9200,
+          "triangle_count": 12,
+          "model_volume_mm3": 1664.0,
+          "reflection_xy": [
+            -1,
+            1
+          ],
+          "winding_reversed": true,
+          "signed_mesh_volume_mm3": 1663.999962029513,
+          "relative_volume_error": 2.2818802300697335e-08,
+          "outward_winding_passed": true
+        },
+        {
+          "name": "RL_knee_actuator",
+          "first_triangle": 9212,
+          "triangle_count": 12,
+          "model_volume_mm3": 17680.0,
+          "reflection_xy": [
+            -1,
+            1
+          ],
+          "winding_reversed": true,
+          "signed_mesh_volume_mm3": 17679.998594055203,
+          "relative_volume_error": 7.952176452011483e-08,
+          "outward_winding_passed": true
+        },
+        {
+          "name": "RL_knee_actuator_horn",
+          "first_triangle": 9224,
+          "triangle_count": 248,
+          "model_volume_mm3": 226.19467105846513,
+          "reflection_xy": [
+            -1,
+            1
+          ],
+          "winding_reversed": true,
+          "signed_mesh_volume_mm3": 225.8198949653347,
+          "relative_volume_error": 0.0016568741048438149,
+          "outward_winding_passed": true
+        },
+        {
+          "name": "RL_knee_actuator_idler",
+          "first_triangle": 9472,
+          "triangle_count": 248,
+          "model_volume_mm3": 226.1946710584651,
+          "reflection_xy": [
+            -1,
+            1
+          ],
+          "winding_reversed": true,
+          "signed_mesh_volume_mm3": 225.81986391208656,
+          "relative_volume_error": 0.001657011390342022,
+          "outward_winding_passed": true
+        },
+        {
+          "name": "RL_upper_horn_plate",
+          "first_triangle": 9720,
+          "triangle_count": 192,
+          "model_volume_mm3": 999.3802041110052,
+          "reflection_xy": [
+            -1,
+            1
+          ],
+          "winding_reversed": true,
+          "signed_mesh_volume_mm3": 998.7999904972198,
+          "relative_volume_error": 0.0005805734508234976,
+          "outward_winding_passed": true
+        },
+        {
+          "name": "RL_upper_idler_plate",
+          "first_triangle": 9912,
+          "triangle_count": 192,
+          "model_volume_mm3": 999.3802041110057,
+          "reflection_xy": [
+            -1,
+            1
+          ],
+          "winding_reversed": true,
+          "signed_mesh_volume_mm3": 998.799072685557,
+          "relative_volume_error": 0.0005814918316954574,
+          "outward_winding_passed": true
+        },
+        {
+          "name": "RL_upper_web",
+          "first_triangle": 10104,
+          "triangle_count": 12,
+          "model_volume_mm3": 815.9999999999999,
+          "reflection_xy": [
+            -1,
+            1
+          ],
+          "winding_reversed": true,
+          "signed_mesh_volume_mm3": 815.9998197052037,
+          "relative_volume_error": 2.2094950517558737e-07,
+          "outward_winding_passed": true
+        },
+        {
+          "name": "RL_upper_channel_plus",
+          "first_triangle": 10116,
+          "triangle_count": 12,
+          "model_volume_mm3": 1185.0000000000005,
+          "reflection_xy": [
+            -1,
+            1
+          ],
+          "winding_reversed": true,
+          "signed_mesh_volume_mm3": 1184.9993144978143,
+          "relative_volume_error": 5.784828574815418e-07,
+          "outward_winding_passed": true
+        },
+        {
+          "name": "RL_upper_channel_minus",
+          "first_triangle": 10128,
+          "triangle_count": 12,
+          "model_volume_mm3": 1185.0000000000005,
+          "reflection_xy": [
+            -1,
+            1
+          ],
+          "winding_reversed": true,
+          "signed_mesh_volume_mm3": 1185.0005359139834,
+          "relative_volume_error": 4.522480868843342e-07,
+          "outward_winding_passed": true
+        },
+        {
+          "name": "RL_lower_horn_plate",
+          "first_triangle": 10140,
+          "triangle_count": 372,
+          "model_volume_mm3": 1410.7604082220214,
+          "reflection_xy": [
+            -1,
+            1
+          ],
+          "winding_reversed": true,
+          "signed_mesh_volume_mm3": 1409.5988893308365,
+          "relative_volume_error": 0.0008233282451190483,
+          "outward_winding_passed": true
+        },
+        {
+          "name": "RL_lower_idler_plate",
+          "first_triangle": 10512,
+          "triangle_count": 372,
+          "model_volume_mm3": 1410.760408222021,
+          "reflection_xy": [
+            -1,
+            1
+          ],
+          "winding_reversed": true,
+          "signed_mesh_volume_mm3": 1409.5975776264454,
+          "relative_volume_error": 0.0008242580304908441,
+          "outward_winding_passed": true
+        },
+        {
+          "name": "RL_lower_web",
+          "first_triangle": 10884,
+          "triangle_count": 12,
+          "model_volume_mm3": 816.0000000000002,
+          "reflection_xy": [
+            -1,
+            1
+          ],
+          "winding_reversed": true,
+          "signed_mesh_volume_mm3": 816.0007168032051,
+          "relative_volume_error": 8.784353001340817e-07,
+          "outward_winding_passed": true
+        },
+        {
+          "name": "RL_foot",
+          "first_triangle": 10896,
+          "triangle_count": 12,
+          "model_volume_mm3": 2880.0,
+          "reflection_xy": [
+            -1,
+            1
+          ],
+          "winding_reversed": true,
+          "signed_mesh_volume_mm3": 2880.0008780743933,
+          "relative_volume_error": 3.0488694212256937e-07,
+          "outward_winding_passed": true
+        },
+        {
+          "name": "RR_j1_actuator",
+          "first_triangle": 10908,
+          "triangle_count": 12,
+          "model_volume_mm3": 17680.0,
+          "reflection_xy": [
+            -1,
+            -1
+          ],
+          "winding_reversed": false,
+          "signed_mesh_volume_mm3": 17680.0,
+          "relative_volume_error": 0.0,
+          "outward_winding_passed": true
+        },
+        {
+          "name": "RR_j1_actuator_horn",
+          "first_triangle": 10920,
+          "triangle_count": 248,
+          "model_volume_mm3": 226.19467105846508,
+          "reflection_xy": [
+            -1,
+            -1
+          ],
+          "winding_reversed": false,
+          "signed_mesh_volume_mm3": 225.819877771708,
+          "relative_volume_error": 0.0016569501173623782,
+          "outward_winding_passed": true
+        },
+        {
+          "name": "RR_j1_actuator_idler",
+          "first_triangle": 11168,
+          "triangle_count": 248,
+          "model_volume_mm3": 226.19467105846508,
+          "reflection_xy": [
+            -1,
+            -1
+          ],
+          "winding_reversed": false,
+          "signed_mesh_volume_mm3": 225.81987211548403,
+          "relative_volume_error": 0.001656975123362519,
+          "outward_winding_passed": true
+        },
+        {
+          "name": "RR_j2_actuator",
+          "first_triangle": 11416,
+          "triangle_count": 12,
+          "model_volume_mm3": 17680.0,
+          "reflection_xy": [
+            -1,
+            -1
+          ],
+          "winding_reversed": false,
+          "signed_mesh_volume_mm3": 17679.998649900954,
+          "relative_volume_error": 7.636306822675015e-08,
+          "outward_winding_passed": true
+        },
+        {
+          "name": "RR_j2_actuator_horn",
+          "first_triangle": 11428,
+          "triangle_count": 248,
+          "model_volume_mm3": 226.1946710584651,
+          "reflection_xy": [
+            -1,
+            -1
+          ],
+          "winding_reversed": false,
+          "signed_mesh_volume_mm3": 225.82004982252508,
+          "relative_volume_error": 0.0016561894857513985,
+          "outward_winding_passed": true
+        },
+        {
+          "name": "RR_j2_actuator_idler",
+          "first_triangle": 11676,
+          "triangle_count": 248,
+          "model_volume_mm3": 226.19467105846513,
+          "reflection_xy": [
+            -1,
+            -1
+          ],
+          "winding_reversed": false,
+          "signed_mesh_volume_mm3": 225.8198582820358,
+          "relative_volume_error": 0.00165703628063129,
+          "outward_winding_passed": true
+        },
+        {
+          "name": "RR_carrier_horn_plate",
+          "first_triangle": 11924,
+          "triangle_count": 204,
+          "model_volume_mm3": 3141.703507411168,
+          "reflection_xy": [
+            -1,
+            -1
+          ],
+          "winding_reversed": false,
+          "signed_mesh_volume_mm3": 3141.090535663461,
+          "relative_volume_error": 0.00019510808268857966,
+          "outward_winding_passed": true
+        },
+        {
+          "name": "RR_carrier_hub_horn",
+          "first_triangle": 12128,
+          "triangle_count": 248,
+          "model_volume_mm3": 254.46900494077335,
+          "reflection_xy": [
+            -1,
+            -1
+          ],
+          "winding_reversed": false,
+          "signed_mesh_volume_mm3": 254.04736374150755,
+          "relative_volume_error": 0.0016569452117122388,
+          "outward_winding_passed": true
+        },
+        {
+          "name": "RR_carrier_idler_plate",
+          "first_triangle": 12376,
+          "triangle_count": 204,
+          "model_volume_mm3": 3141.703507411168,
+          "reflection_xy": [
+            -1,
+            -1
+          ],
+          "winding_reversed": false,
+          "signed_mesh_volume_mm3": 3141.090535663464,
+          "relative_volume_error": 0.0001951080826877112,
+          "outward_winding_passed": true
+        },
+        {
+          "name": "RR_carrier_hub_idler",
+          "first_triangle": 12580,
+          "triangle_count": 248,
+          "model_volume_mm3": 254.46900494077335,
+          "reflection_xy": [
+            -1,
+            -1
+          ],
+          "winding_reversed": false,
+          "signed_mesh_volume_mm3": 254.0473637415075,
+          "relative_volume_error": 0.0016569452117124624,
+          "outward_winding_passed": true
+        },
+        {
+          "name": "RR_carrier_web",
+          "first_triangle": 12828,
+          "triangle_count": 12,
+          "model_volume_mm3": 1664.0,
+          "reflection_xy": [
+            -1,
+            -1
+          ],
+          "winding_reversed": false,
+          "signed_mesh_volume_mm3": 1663.999962029513,
+          "relative_volume_error": 2.2818802300697335e-08,
+          "outward_winding_passed": true
+        },
+        {
+          "name": "RR_knee_actuator",
+          "first_triangle": 12840,
+          "triangle_count": 12,
+          "model_volume_mm3": 17680.0,
+          "reflection_xy": [
+            -1,
+            -1
+          ],
+          "winding_reversed": false,
+          "signed_mesh_volume_mm3": 17679.998594055203,
+          "relative_volume_error": 7.952176452011483e-08,
+          "outward_winding_passed": true
+        },
+        {
+          "name": "RR_knee_actuator_horn",
+          "first_triangle": 12852,
+          "triangle_count": 248,
+          "model_volume_mm3": 226.19467105846513,
+          "reflection_xy": [
+            -1,
+            -1
+          ],
+          "winding_reversed": false,
+          "signed_mesh_volume_mm3": 225.8198949653347,
+          "relative_volume_error": 0.0016568741048438149,
+          "outward_winding_passed": true
+        },
+        {
+          "name": "RR_knee_actuator_idler",
+          "first_triangle": 13100,
+          "triangle_count": 248,
+          "model_volume_mm3": 226.1946710584651,
+          "reflection_xy": [
+            -1,
+            -1
+          ],
+          "winding_reversed": false,
+          "signed_mesh_volume_mm3": 225.81986391208656,
+          "relative_volume_error": 0.001657011390342022,
+          "outward_winding_passed": true
+        },
+        {
+          "name": "RR_upper_horn_plate",
+          "first_triangle": 13348,
+          "triangle_count": 192,
+          "model_volume_mm3": 999.3802041110052,
+          "reflection_xy": [
+            -1,
+            -1
+          ],
+          "winding_reversed": false,
+          "signed_mesh_volume_mm3": 998.7999904972198,
+          "relative_volume_error": 0.0005805734508234976,
+          "outward_winding_passed": true
+        },
+        {
+          "name": "RR_upper_idler_plate",
+          "first_triangle": 13540,
+          "triangle_count": 192,
+          "model_volume_mm3": 999.3802041110057,
+          "reflection_xy": [
+            -1,
+            -1
+          ],
+          "winding_reversed": false,
+          "signed_mesh_volume_mm3": 998.799072685557,
+          "relative_volume_error": 0.0005814918316954574,
+          "outward_winding_passed": true
+        },
+        {
+          "name": "RR_upper_web",
+          "first_triangle": 13732,
+          "triangle_count": 12,
+          "model_volume_mm3": 815.9999999999999,
+          "reflection_xy": [
+            -1,
+            -1
+          ],
+          "winding_reversed": false,
+          "signed_mesh_volume_mm3": 815.9998197052037,
+          "relative_volume_error": 2.2094950517558737e-07,
+          "outward_winding_passed": true
+        },
+        {
+          "name": "RR_upper_channel_plus",
+          "first_triangle": 13744,
+          "triangle_count": 12,
+          "model_volume_mm3": 1185.0000000000005,
+          "reflection_xy": [
+            -1,
+            -1
+          ],
+          "winding_reversed": false,
+          "signed_mesh_volume_mm3": 1184.9993144978143,
+          "relative_volume_error": 5.784828574815418e-07,
+          "outward_winding_passed": true
+        },
+        {
+          "name": "RR_upper_channel_minus",
+          "first_triangle": 13756,
+          "triangle_count": 12,
+          "model_volume_mm3": 1185.0000000000005,
+          "reflection_xy": [
+            -1,
+            -1
+          ],
+          "winding_reversed": false,
+          "signed_mesh_volume_mm3": 1185.0005359139834,
+          "relative_volume_error": 4.522480868843342e-07,
+          "outward_winding_passed": true
+        },
+        {
+          "name": "RR_lower_horn_plate",
+          "first_triangle": 13768,
+          "triangle_count": 372,
+          "model_volume_mm3": 1410.7604082220214,
+          "reflection_xy": [
+            -1,
+            -1
+          ],
+          "winding_reversed": false,
+          "signed_mesh_volume_mm3": 1409.5988893308365,
+          "relative_volume_error": 0.0008233282451190483,
+          "outward_winding_passed": true
+        },
+        {
+          "name": "RR_lower_idler_plate",
+          "first_triangle": 14140,
+          "triangle_count": 372,
+          "model_volume_mm3": 1410.760408222021,
+          "reflection_xy": [
+            -1,
+            -1
+          ],
+          "winding_reversed": false,
+          "signed_mesh_volume_mm3": 1409.5975776264454,
+          "relative_volume_error": 0.0008242580304908441,
+          "outward_winding_passed": true
+        },
+        {
+          "name": "RR_lower_web",
+          "first_triangle": 14512,
+          "triangle_count": 12,
+          "model_volume_mm3": 816.0000000000002,
+          "reflection_xy": [
+            -1,
+            -1
+          ],
+          "winding_reversed": false,
+          "signed_mesh_volume_mm3": 816.0007168032051,
+          "relative_volume_error": 8.784353001340817e-07,
+          "outward_winding_passed": true
+        },
+        {
+          "name": "RR_foot",
+          "first_triangle": 14524,
+          "triangle_count": 12,
+          "model_volume_mm3": 2880.0,
+          "reflection_xy": [
+            -1,
+            -1
+          ],
+          "winding_reversed": false,
+          "signed_mesh_volume_mm3": 2880.0008780743933,
+          "relative_volume_error": 3.0488694212256937e-07,
+          "outward_winding_passed": true
+        }
+      ],
+      "degenerate_triangles": 0,
+      "normal_errors": 0,
+      "checks": {
+        "binary_length": true,
+        "under_5_MB": true,
+        "at_least_200_triangles": true,
+        "finite_triangles": true,
+        "no_zero_area_triangles": true,
+        "normals_match_winding": true,
+        "all_components_outward": true,
+        "stance_bbox_within_0_5_mm": true
+      },
+      "passed": true,
+      "tessellation": {
+        "linear_tolerance_mm": 0.25,
+        "angular_tolerance_rad": 0.2,
+        "deflection_mode": "absolute"
+      }
+    }
+  ],
+  "failures": [],
+  "browser_proof": "UNRUN: models not viewed; repository rendering and mouse interaction belong to caller.",
+  "scope": "Packaging envelopes only; known overlaps retained. No fit, physics, structural or physical testing.",
+  "source_files_unchanged": true,
+  "passed": true
+}

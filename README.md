@@ -28,6 +28,30 @@ The formal designation has the deliberately industrial tone of an old computing 
 
 *Concept rendering, not a photograph of completed hardware. This is the exact image confirmed as the build target on 2026-10-20. Dimensions and mechanisms still require engineering.*
 
+## The leg and joint design, at a glance
+
+**Design study, not hardware.** Nothing below is built, printed or tested yet. Each of Mack's four legs has three powered joints: hip spread, hip swing and knee. The first packaging study (J04-L02) puts a hobby-servo-sized block at every joint to find out what collides and how tall she stands.
+
+![One leg seen from the side and from the front, with hip spread, hip swing and knee labelled.](hardware/joints/figures/leg-axes.svg)
+
+![The same leg with its three actuator spaces drawn dark: each 20 × 34 × 26 mm and 18 g, a size and mass benchmark, not a selected motor.](hardware/joints/figures/actuator-space.svg)
+
+![Direct knee and belt-driven knee side by side with leg mass and standing height. Neither is chosen.](hardware/joints/figures/knee-layouts.svg)
+
+![Animation: one leg moving each joint in turn, then taking one step.](output/social/2026-11-11/animations/leg.gif)
+
+*Kinematic animation from CAD: no physics, nothing built.* This first iteration stands taller than the build target above; shortening the legs is the next design step.
+
+| Look closer | Where |
+| --- | --- |
+| The whole design on one page, by discipline, with open questions | [Technical specification](docs/technical-spec.md) |
+| A candid review of the work so far | [Design review, 2026-11-11](docs/review/design-review-2026-11-11.md) |
+| 3D models to turn with the mouse | [hardware/joints/models](hardware/joints/models/) |
+| The numbers behind the figures | [Leg packaging study](hardware/joints/leg-packaging.md) |
+| Editable CAD sources and STEP files | [hardware/joints/cad](hardware/joints/cad/) |
+
+**Engineers: critique is wanted.** Open an issue with the *Design feedback* template and say what you would change and why.
+
 ## Try Mack on your Mac
 
 **Mack Local AI 0.3 is working.** In Finder, double-click **Start Mack.command** in this repository. It opens Mack at **http://127.0.0.1:9844/**. Keep the launcher window open. Python 3 and a running local Ollama model are required; both are already present on Bill’s Mac.
