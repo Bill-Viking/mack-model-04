@@ -98,6 +98,17 @@ def rectangle(box):
     return [(x0, y0), (x1, y0), (x1, y1), (x0, y1)]
 
 
+def segments_intersect(a, b, c, d):
+    """Include endpoint touches and collinear overlap in the leader crossing gate."""
+    def on(p, q, r):
+        return (abs(cross(p, q, r)) <= EPS
+                and min(p[0], q[0])-EPS <= r[0] <= max(p[0], q[0])+EPS
+                and min(p[1], q[1])-EPS <= r[1] <= max(p[1], q[1])+EPS)
+    if cross(a, b, c)*cross(a, b, d) < -EPS and cross(c, d, a)*cross(c, d, b) < -EPS:
+        return True
+    return on(a, b, c) or on(a, b, d) or on(c, d, a) or on(c, d, b)
+
+
 def darken(color):
     rgb = [int(color[i:i+2], 16) for i in (1, 3, 5)]
     return '#'+''.join(f'{round(c*.67):02x}' for c in rgb)
@@ -182,15 +193,11 @@ class Figure:
                     anchor = (p[0]+(q[0]-p[0])*i/20, p[1]+(q[1]-p[1])*i/20)
                     candidates.append((math.dist(start, anchor), anchor, name))
         for _, anchor, name in sorted(candidates):
-            # The target is touched only at t=1. No leader passes through any solid.
-            blocked = False
-            for part in view.parts.values():
-                interval = segment_inside(start, anchor, part['polygon'])
-                if interval and interval[0] < 1-1e-5 and interval[1] > 1e-5:
-                    blocked = True
-                    break
-            if blocked:
+            # Rerun-1 ruling: geometry may be crossed; text and other leaders may not.
+            if any(segments_intersect(start, anchor, other['start'], other['end'])
+                   for other in self.leaders):
                 continue
+            blocked = False
             for other in self.text_boxes[:-1]:
                 if segment_inside(start, anchor, rectangle(other['box'])):
                     blocked = True
@@ -226,7 +233,7 @@ class Figure:
                 assert not segment_inside(leader['start'], leader['end'], rectangle(text['box'])), 'Leader crosses text'
         for first, second in itertools.combinations(self.leaders, 2):
             a, b, c, d = first['start'], first['end'], second['start'], second['end']
-            assert not (cross(a, b, c)*cross(a, b, d) < 0 and cross(c, d, a)*cross(c, d, b) < 0), 'Leaders cross'
+            assert not segments_intersect(a, b, c, d), 'Leaders cross or touch'
         payload = ET.tostring(self.root, encoding='unicode', xml_declaration=True)+'\n'
         root = ET.fromstring(payload)
         assert root.attrib['viewBox'] == '0 0 1600 1000'
@@ -240,7 +247,8 @@ class Figure:
         return payload, dict(xml_parse=True, footer=True, no_external_references=True,
                              minimum_font_px=24, label_overlap_assertions=True,
                              label_count=len(self.labels), text_box_count=len(self.text_boxes),
-                             leader_count=len(self.leaders), leaders_clear_of_solids_and_text=True,
+                             leader_count=len(self.leaders), leaders_clear_of_text_and_each_other=True,
+                             leaders_may_cross_geometry=True,
                              labels=self.labels, leaders=self.leaders,
                              numbers=self.numbers, views=[v.receipt for v in self.views],
                              dimensions=self.dimensions)
@@ -261,6 +269,11 @@ class View:
             self.parts[name] = dict(polygon=polygon, box=bounds(polygon),
                                     depth=sum(v[depth_axis] for v in vertices)/len(vertices))
         ordered = sorted(self.parts, key=lambda n: self.parts[n]['depth'])
+        overlay = (ACTUATORS if style == 'actuators' else
+                   TRANSMISSION+('knee_actuator',) if style == 'knee' else ())
+        # Keep depth order within each layer. The ruled x-ray layer is always last.
+        ordered = ([n for n in ordered if n not in overlay]
+                   + [n for n in ordered if n in overlay])
         for name in ordered:
             part = self.parts[name]
             fill = model.meta[name]['color']
@@ -280,7 +293,8 @@ class View:
             figure.element('polygon', points=' '.join(f'{x:.6f},{y:.6f}' for x, y in part['polygon']),
                            fill=fill, stroke=stroke, stroke_width=width,
                            data_part=name, data_view=self.name,
-                           data_depth_mm=f'{part["depth"]:.9f}')
+                           data_depth_mm=f'{part["depth"]:.9f}',
+                           data_layer='xray' if name in overlay else 'normal')
             figure.polygons.append(dict(name=name, view=self.name, box=part['box']))
         lo = min(part['box'][0] for part in self.parts.values())-20
         hi = max(part['box'][2] for part in self.parts.values())+20
@@ -288,6 +302,7 @@ class View:
         self.receipt = dict(name=self.name, projection=projection, pixels_per_mm=scale,
                             ground_z_mm=ground, ground_y_px=ground_y,
                             source_solids=len(self.parts), painter_order=ordered,
+                            xray_parts=[n for n in ordered if n in overlay],
                             body='outline', neighbours_drawn=False)
         figure.views.append(self)
 
@@ -425,8 +440,10 @@ def make_figures(models, meshes, reports, palette, brief):
     f = Figure('actuator-space.svg', 'Where the three actuators sit', palette, brief)
     side = View(f, direct, meshes['direct'], 'SIDE', 'SIDE', 230, 742, scale, 475, ground, 'actuators')
     front = View(f, direct, meshes['direct'], 'FRONT', 'FRONT', 1005, 742, scale, 1260, ground, 'actuators')
-    f.text(100, 208, 'SIDE', color=palette['muted'])
-    f.text(900, 208, 'FRONT', color=palette['muted'])
+    disclosure = re.search(r'`(Actuators drawn on top;[^`]+)`', brief).group(1)
+    f.text(48, 192, disclosure, color=palette['muted'])
+    f.text(100, 230, 'SIDE', color=palette['muted'])
+    f.text(900, 230, 'FRONT', color=palette['muted'])
     f.label(side, 'J2 actuator', 'j2_actuator', 570,
             [provenance(HERE/'leg_packaging.py', 'Model.build / j2_actuator', 2)])
     f.label(side, ['J3 actuator', '(knee)'], 'knee_actuator', 660,

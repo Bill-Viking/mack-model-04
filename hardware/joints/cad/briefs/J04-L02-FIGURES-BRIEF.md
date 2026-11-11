@@ -8,6 +8,29 @@ computed from the model or read from its reports; nothing is typed from memory.
 A settled brief with no open ruling. If you meet a decision it does not settle, stop and return
 it under OPEN. One bounded run.
 
+## RULING for rerun 2 (2026-11-11, from the judge after viewing the rendered figures; overrides earlier text where they differ)
+
+The three figures rendered and are truthful, but the leg is too small to read on a phone and
+the link dimensions in figure 1 cross each other. Keep everything that works; change only this:
+1. SCALE. In `leg-axes.svg` and `actuator-space.svg` draw the body CROPPED: only its lowest
+   30 mm, closed at the top by a dashed break line, and scale each view so the leg from the
+   cradle plate to the ground line fills at least 58 % of the canvas height (about 580 px).
+   The body label becomes `Body (clock) 80 × 91 × 112 mm · cropped`. In `knee-layouts.svg`
+   keep the whole body (the height comparison needs it) and scale so the taller layout fills
+   about 68 % of the canvas height.
+2. LINK DIMENSIONS in `leg-axes.svg`: one dimension line per link, parallel to that link,
+   offset 30 px to the side away from the label column, with short perpendicular ticks at its
+   two axis points and its text centred beside the line: `Upper link 50 mm`, `Lower link 30 mm`
+   (values still read from the parameters). The two dimension lines must not cross each other
+   or sit on a label.
+3. Add under the FRONT/SIDE captions of `leg-axes.svg` one small legend line:
+   `ring = joint axis seen end-on · dash-dot = joint axis in the page`.
+4. GROUND LINE stays at the foot's lowest point. In the hand-back, list every solid whose
+   projection extends below that line in any view, with how many millimetres (the belt-knee
+   view shows one); do not hide or clip it.
+5. Leaders in one view must not cross each other (reorder the label column top to bottom by
+   the height of the feature each label points at).
+
 ## RULING for rerun 1 (2026-11-11, from the judge; overrides the LABEL RULE below where they differ)
 
 The first run stopped correctly: the J2 actuator sits inside the carrier plates, so no straight

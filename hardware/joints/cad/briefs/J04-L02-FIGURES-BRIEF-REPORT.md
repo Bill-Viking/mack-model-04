@@ -1,45 +1,64 @@
-# J04-L02-F01 figures build report
+# J04-L02-F01 — figures rerun 1 report
 
-STATE: STOPPED
+STATE: BUILT
 
-The requested build exited 1 at the J2 actuator callout. The required straight leader crosses the carrier geometry. No SVG files were written. The implementation is a partial draft.
+Completed the judge’s rerun-1 ruling from the existing partial generator. Leaders may cross geometry; they cannot intersect each other or any text box. The actuator views use the ruled final x-ray layer, and actuator-space.svg carries the exact disclosure. Leg-axes.svg retains normal far-to-near order with axis marks, arrows and dimensions above the geometry.
+
+The earlier stopped run is superseded by this rerun. No commit or push was made.
 
 ## Files
 
-- `hardware/joints/cad/leg_figures.py` — 26,858 bytes. Partial generator, syntax parsed, build exits non-zero.
-- `hardware/joints/figures/figures-check.json` — 1,946 bytes. STOPPED receipt, error, diagnostic limits, source hashes and script hash.
-- `hardware/joints/cad/briefs/J04-L02-FIGURES-BRIEF-REPORT.md` — 4428 bytes. This hand-back.
+- `hardware/joints/cad/leg_figures.py` — 27878 bytes.
+- `hardware/joints/figures/leg-axes.svg` — 36049 bytes.
+- `hardware/joints/figures/actuator-space.svg` — 32078 bytes.
+- `hardware/joints/figures/knee-layouts.svg` — 47031 bytes.
+- `hardware/joints/figures/figures-check.json` — 25750 bytes.
+- `hardware/joints/cad/briefs/J04-L02-FIGURES-BRIEF-REPORT.md` — 5795 bytes.
 
-## Blocking geometry
+## Numbers used and sources
 
-The FRONT-view convex hull of `j2_actuator` is completely contained in each of `carrier_horn_plate` and `carrier_idler_plate`. Every J2 hull vertex is inside each convex carrier hull, which establishes complete hull containment. A leader reaching J2 in that view must cross a carrier polygon.
+The full per-figure numeric provenance is in `hardware/joints/figures/figures-check.json` under `figures.<filename>.numbers`. Values below are read from the artifacts, not from the study’s expected-value sentence.
 
-A bounded geometric diagnostic also sampled both SIDE and FRONT views, both free margins, leader-start heights from 220 through 778 px in 2 px steps, and 21 points along every J2 hull edge. It found zero unobstructed straight leaders. This is a sampled margin search. The FRONT hull-containment result is exact for the tessellated convex projections.
+Parameter source: `hardware/joints/cad/j04-l02.candidate-A-under.json`. Comparison source: `hardware/joints/cad/exports/l02-comparison.json`.
 
-OPEN: The brief needs a ruling on how to expose and label J2 while retaining its geometry and leader rules. The current views enclose the actuator.
+| Figure / quantity | Printed value | File key |
+| --- | --- | --- |
+| Knee layouts / direct leg mass | 97.1 g | Comparison: `sweeps["A-under-direct · fine"].mass.leg_total_g` |
+| Knee layouts / direct standing height and height dimension | 223.8 mm | Comparison: `sweeps["A-under-direct · fine"].stance.overall_height_mm` |
+| Knee layouts / direct upper link | 50 mm | Parameters: `links.L1_direct` |
+| Knee layouts / proximal leg mass | 117.9 g | Comparison: `sweeps["A-under-proximal · fine"].mass.leg_total_g` |
+| Knee layouts / proximal standing height and height dimension | 207.8 mm | Comparison: `sweeps["A-under-proximal · fine"].stance.overall_height_mm` |
+| Knee layouts / proximal upper link | 30 mm | Parameters: `links.L1_proximal` |
+| Leg axes / body | 80 × 91 × 112 mm | Parameters: `body.width_Y`, `body.depth_X`, `body.height_Z` |
+| Leg axes / links | 50 mm; 30 mm | Parameters: `links.L1_direct`, `links.L2` |
+| Actuator space / block | 20 × 34 × 26 mm · 18 g | Parameters: `actuator.W`, `actuator.H`, `actuator.D`, `actuator.mass_g` |
+| Actuator space / counts | Three per leg · twelve in all | `leg_packaging.py`: `Model.build` actuator blocks; `leg_animation.py`: `LEGS` × actuator count |
+| Leg axes and actuator space / joint numbers | J1, J2, J3 | `leg_packaging.py`: `Model.axes` and `Model.build` named actuators |
+| All / scale bar | 20 mm | `briefs/J04-L02-FIGURES-BRIEF.md`: Drawing method / scale bar |
+| All / identifiers | Model 04; J04-L02 | Same brief: masthead and footer |
 
-## Numbers and sources
+The stance is [12.0, -35.0, 70.0] degrees in a/b/c order, read from `poses.stance`. Each view uses the same 2.2 px/mm projection scale; the 20 mm bar spans 44 px. The titles and scope statements follow the brief. Colours come from `leg-viewer-template.html` and each CAD part’s model metadata.
 
-The two models were rebuilt and posed from `hardware/joints/cad/j04-l02.candidate-A-under.json`, using `poses.stance` in a/b/c order. The values are [12.0, -35.0, 70.0] degrees. Model-report agreement passed within 0.000001, and the rounded study cross-checks agreed.
+## Checks run
 
-- Direct knee — leg mass 97.0542828117 g, displayed value 97.1 g, from `hardware/joints/cad/exports/l02-comparison.json`, `sweeps["A-under-direct · fine"].mass.leg_total_g`. Standing height 223.7882159432 mm, displayed value 223.8 mm, from the same run, `stance.overall_height_mm`. Upper link 50 mm from the parameter file, `links.L1_direct`. These display values were prepared in memory. No figure was emitted.
-- Proximal knee — leg mass 117.8677691009 g, displayed value 117.9 g, from `hardware/joints/cad/exports/l02-comparison.json`, `sweeps["A-under-proximal · fine"].mass.leg_total_g`. Standing height 207.7631838080 mm, displayed value 207.8 mm, from the same run, `stance.overall_height_mm`. Upper link 30 mm from the parameter file, `links.L1_proximal`. These display values were prepared in memory. No figure was emitted.
+- Ran `PYTHONDONTWRITEBYTECODE=1 runtime/cad/venv/bin/python hardware/joints/cad/leg_figures.py`; exit 0. The generator enforces a 180-second alarm.
+- Rebuilt and posed direct and proximal placement A. Tessellated 25 direct and 30 proximal solids (front-left leg, body and cradle only). Both parameter fingerprints match the fine-grid reports. Recomputed mass and standing height agree within 0.000001; all six rounded study cross-check values agree.
+- Each SVG parses as XML, contains the exact footer, uses no external reference, and has no font below 24 px. Titles are 44 px. The background and viewBox match the brief.
+- All text boxes are mutually clear and clear of every drawn polygon bounding box. Feature labels are stacked at least 56 px apart in each margin. Leaders are straight, end in feature dots, and do not cross or touch another leader or pass through any text box. Geometry crossings follow the rerun ruling.
+- `leg-axes.svg`: 5 feature labels, 5 leaders, 14 text boxes; overlap assertions passed.
+- `actuator-space.svg`: 3 feature labels, 3 leaders, 14 text boxes; overlap assertions passed.
+- `knee-layouts.svg`: 3 feature labels, 3 leaders, 18 text boxes; overlap assertions passed.
+- Independently parsed the written SVGs and verified actual polygon order against the receipt: normal depth order in leg-axes; all three actuator blocks last in each actuator-space view; knee actuator and transmission last in the knee views. Equal scales and aligned knee ground lines are recorded in the check file.
+- Recomputed every recorded output and source SHA-256 against disk. The check file records the three SVG hashes and script hash. `git diff --check` passed. The model, animation, parameter, template and comparison source files have no working-tree diff.
 
-- Body 80 × 91 × 112 mm comes from the parameter file, `body.width_Y`, `body.depth_X`, `body.height_Z`.
-- Actuator 20 × 34 × 26 mm and 18 g come from the parameter file, `actuator.W`, `actuator.H`, `actuator.D`, `actuator.mass_g`.
-- Lower link 30 mm comes from the parameter file, `links.L2`.
-- The requested 20 mm scale bar and Model 04 / J04-L02 identifiers are read from `hardware/joints/cad/briefs/J04-L02-FIGURES-BRIEF.md`.
-- The actuator count comes from the three actuator blocks in `leg_packaging.Model.build`. Four leg instances come from `leg_animation.LEGS`. Their product is twelve.
-- Style constants follow the brief. Type and palette colours are read from `leg-viewer-template.html`.
+## Limits
 
-## Verification and limits
+- SVGs were not rendered to pixels. Visual quality at phone size, actual font metrics and raster appearance remain unproved.
+- Browser and GUI proofs are UNRUN here and belong to the caller. No browser or GUI application was launched.
+- Brain freshness is unverified: no supplied evidence established it. No wake pull or heartbeat kick was run.
+- These are rigid packaging-envelope illustrations, preserving the model’s known interferences. No physical testing, load qualification or new collision acceptance is claimed.
+- No network, package installation, commit, push, permission change or safety-check change was performed. Unrelated builder files and the existing loose PNG were not edited. No STATUS, opener or hub file was written.
 
-- Ran the requested Python entry point once. It built both models, tessellated 25 direct and 30 proximal front-left/body/cradle solids, and verified rebuilt mass and standing height against the fine-grid report. It then failed at J2 leader placement.
-- Ran one bounded, read-only geometric diagnostic with a 45-second alarm. It completed in approximately five seconds.
-- Parsed the script with Python AST. Source files `leg_packaging.py`, `leg_animation.py`, the placement-A parameter file, viewer template and comparison report match their HEAD bytes.
-- Complete-figure XML, footer, external-reference, font-size, label-overlap and SVG hash checks remain unrun because the build stopped before SVG output.
-- SVG pixel rendering was unrun. Browser proofs were unrun here and belong to the caller.
-- Brain freshness is unverified. The caller supplied no freshness evidence.
-- The original loose PNG and other builders’ files were preserved. No commit, push, network access, GUI launch or permission change was performed.
+OPEN: none.
 
-FAIL — J2 actuator callout cannot satisfy the prescribed straight-leader clearance rule in the current projected carrier geometry.
+FIGURES BUILD DONE — Three model-derived SVGs and figures-check.json built; headless checks passed; pixel and browser proofs unrun.

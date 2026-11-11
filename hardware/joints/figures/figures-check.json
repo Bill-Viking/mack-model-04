@@ -1,51 +1,918 @@
 {
-  "state": "STOPPED",
+  "state": "BUILT",
   "browser_proof": "UNRUN; caller owned",
   "pixel_render": "UNRUN; SVGs were not rendered to pixels",
   "brain_freshness": "Not established by supplied evidence",
-  "figures": {},
-  "error": "ValueError: No unobstructed straight leader for J2 actuator in SIDE",
-  "sha256": {
-    "hardware/joints/cad/leg_figures.py": "baf9a7616be962584cfa0c527a83ec4f7d46a27098fe5de949cc2f6e0beb3c2c"
+  "figures": {
+    "leg-axes.svg": {
+      "xml_parse": true,
+      "footer": true,
+      "no_external_references": true,
+      "minimum_font_px": 24,
+      "label_overlap_assertions": true,
+      "label_count": 5,
+      "text_box_count": 14,
+      "leader_count": 5,
+      "leaders_clear_of_text_and_each_other": true,
+      "leaders_may_cross_geometry": true,
+      "labels": [
+        {
+          "text": [
+            "J2 hip swing"
+          ],
+          "box": [
+            475,
+            550,
+            636.28,
+            578.8
+          ]
+        },
+        {
+          "text": [
+            "J3 knee"
+          ],
+          "box": [
+            475,
+            626,
+            569.08,
+            654.8
+          ]
+        },
+        {
+          "text": [
+            "Foot"
+          ],
+          "box": [
+            475,
+            714,
+            528.76,
+            742.8
+          ]
+        },
+        {
+          "text": [
+            "J1 hip spread"
+          ],
+          "box": [
+            1260,
+            528,
+            1434.72,
+            556.8
+          ]
+        },
+        {
+          "text": [
+            "Body (clock)",
+            "80 \u00d7 91 \u00d7 112 mm"
+          ],
+          "box": [
+            1260,
+            306,
+            1475.04,
+            366.8
+          ]
+        }
+      ],
+      "leaders": [
+        {
+          "start": [
+            463,
+            566
+          ],
+          "end": [
+            334.19257956134413,
+            615.1185609962297
+          ],
+          "feature": "upper_horn_plate",
+          "view": "SIDE"
+        },
+        {
+          "start": [
+            463,
+            642
+          ],
+          "end": [
+            371.9618003090412,
+            663.4405992103342
+          ],
+          "feature": "lower_horn_plate",
+          "view": "SIDE"
+        },
+        {
+          "start": [
+            463,
+            730
+          ],
+          "end": [
+            330.85657367636804,
+            735.0539731345506
+          ],
+          "feature": "foot",
+          "view": "SIDE"
+        },
+        {
+          "start": [
+            1248,
+            544
+          ],
+          "end": [
+            1140.7219737371963,
+            565.7897413490277
+          ],
+          "feature": "carrier_horn_plate",
+          "view": "FRONT"
+        },
+        {
+          "start": [
+            1248,
+            322
+          ],
+          "end": [
+            1093.0,
+            316.9459249250085
+          ],
+          "feature": "body_envelope",
+          "view": "FRONT"
+        }
+      ],
+      "numbers": [
+        {
+          "text": "M.A.C. MODEL 04 \u00b7 MECHANICAL DEVELOPMENT",
+          "file": "hardware/joints/cad/briefs/J04-L02-FIGURES-BRIEF.md",
+          "key": "Drawing method / masthead",
+          "value": "04",
+          "printed": "04"
+        },
+        {
+          "text": "CAD packaging study J04-L02 \u00b7 example dimensions \u00b7 nothing is built or tested",
+          "file": "hardware/joints/cad/briefs/J04-L02-FIGURES-BRIEF.md",
+          "key": "Drawing method / footer / study identifier",
+          "value": "04",
+          "printed": "04"
+        },
+        {
+          "text": "CAD packaging study J04-L02 \u00b7 example dimensions \u00b7 nothing is built or tested",
+          "file": "hardware/joints/cad/briefs/J04-L02-FIGURES-BRIEF.md",
+          "key": "Drawing method / footer / study identifier",
+          "value": "02",
+          "printed": "02"
+        },
+        {
+          "text": "J2 hip swing",
+          "file": "hardware/joints/cad/leg_packaging.py",
+          "key": "Model.axes[1] / hip swing",
+          "value": 2,
+          "printed": "2"
+        },
+        {
+          "text": "J3 knee",
+          "file": "hardware/joints/cad/leg_packaging.py",
+          "key": "Model.axes[2] / knee",
+          "value": 3,
+          "printed": "3"
+        },
+        {
+          "text": "J1 hip spread",
+          "file": "hardware/joints/cad/leg_packaging.py",
+          "key": "Model.axes[0] / hip spread",
+          "value": 1,
+          "printed": "1"
+        },
+        {
+          "text": "Body (clock) / 80 \u00d7 91 \u00d7 112 mm",
+          "file": "hardware/joints/cad/j04-l02.candidate-A-under.json",
+          "key": "body.width_Y",
+          "value": 80,
+          "printed": "80"
+        },
+        {
+          "text": "Body (clock) / 80 \u00d7 91 \u00d7 112 mm",
+          "file": "hardware/joints/cad/j04-l02.candidate-A-under.json",
+          "key": "body.depth_X",
+          "value": 91,
+          "printed": "91"
+        },
+        {
+          "text": "Body (clock) / 80 \u00d7 91 \u00d7 112 mm",
+          "file": "hardware/joints/cad/j04-l02.candidate-A-under.json",
+          "key": "body.height_Z",
+          "value": 112,
+          "printed": "112"
+        },
+        {
+          "text": "50 mm",
+          "file": "hardware/joints/cad/j04-l02.candidate-A-under.json",
+          "key": "links.L1_direct",
+          "value": 50.0,
+          "printed": "50"
+        },
+        {
+          "text": "30 mm",
+          "file": "hardware/joints/cad/j04-l02.candidate-A-under.json",
+          "key": "links.L2",
+          "value": 30.0,
+          "printed": "30"
+        },
+        {
+          "text": "20 mm",
+          "file": "hardware/joints/cad/briefs/J04-L02-FIGURES-BRIEF.md",
+          "key": "Drawing method / scale bar",
+          "value": 20.0,
+          "printed": "20"
+        }
+      ],
+      "views": [
+        {
+          "name": "SIDE",
+          "projection": "SIDE",
+          "pixels_per_mm": 2.2,
+          "ground_z_mm": -111.78821594317795,
+          "ground_y_px": 760,
+          "source_solids": 25,
+          "painter_order": [
+            "body_envelope",
+            "cradle",
+            "j1_actuator",
+            "carrier_hub_horn",
+            "carrier_hub_idler",
+            "j1_actuator_horn",
+            "j1_actuator_idler",
+            "carrier_horn_plate",
+            "carrier_idler_plate",
+            "upper_idler_plate",
+            "j2_actuator_idler",
+            "knee_actuator_idler",
+            "lower_idler_plate",
+            "upper_web",
+            "j2_actuator",
+            "upper_channel_plus",
+            "carrier_web",
+            "upper_channel_minus",
+            "knee_actuator",
+            "lower_web",
+            "j2_actuator_horn",
+            "foot",
+            "upper_horn_plate",
+            "knee_actuator_horn",
+            "lower_horn_plate"
+          ],
+          "xray_parts": [],
+          "body": "outline",
+          "neighbours_drawn": false
+        },
+        {
+          "name": "FRONT",
+          "projection": "FRONT",
+          "pixels_per_mm": 2.2,
+          "ground_z_mm": -111.78821594317795,
+          "ground_y_px": 760,
+          "source_solids": 25,
+          "painter_order": [
+            "body_envelope",
+            "cradle",
+            "carrier_idler_plate",
+            "carrier_hub_idler",
+            "j1_actuator_idler",
+            "upper_web",
+            "upper_horn_plate",
+            "upper_idler_plate",
+            "j1_actuator",
+            "j2_actuator",
+            "carrier_web",
+            "j2_actuator_horn",
+            "j2_actuator_idler",
+            "foot",
+            "upper_channel_minus",
+            "j1_actuator_horn",
+            "carrier_hub_horn",
+            "carrier_horn_plate",
+            "lower_horn_plate",
+            "lower_idler_plate",
+            "lower_web",
+            "knee_actuator",
+            "knee_actuator_horn",
+            "knee_actuator_idler",
+            "upper_channel_plus"
+          ],
+          "xray_parts": [],
+          "body": "outline",
+          "neighbours_drawn": false
+        }
+      ],
+      "dimensions": [
+        {
+          "kind": "link",
+          "key": "links.L1_direct",
+          "endpoints_mm": [
+            [
+              27.0,
+              50.41047810128316,
+              -32.962896072975624
+            ],
+            [
+              55.678821817552304,
+              58.92604242953058,
+              -73.0254764108491
+            ]
+          ],
+          "nominal_mm": 50.0
+        },
+        {
+          "kind": "link",
+          "key": "links.L2",
+          "endpoints_mm": [
+            [
+              55.678821817552304,
+              58.92604242953058,
+              -73.0254764108491
+            ],
+            [
+              38.471528727020925,
+              64.03538102647903,
+              -97.06302461357318
+            ]
+          ],
+          "nominal_mm": 30.0
+        }
+      ]
+    },
+    "actuator-space.svg": {
+      "xml_parse": true,
+      "footer": true,
+      "no_external_references": true,
+      "minimum_font_px": 24,
+      "label_overlap_assertions": true,
+      "label_count": 3,
+      "text_box_count": 14,
+      "leader_count": 3,
+      "leaders_clear_of_text_and_each_other": true,
+      "leaders_may_cross_geometry": true,
+      "labels": [
+        {
+          "text": [
+            "J2 actuator"
+          ],
+          "box": [
+            475,
+            546,
+            622.84,
+            574.8
+          ]
+        },
+        {
+          "text": [
+            "J3 actuator",
+            "(knee)"
+          ],
+          "box": [
+            475,
+            636,
+            622.84,
+            696.8
+          ]
+        },
+        {
+          "text": [
+            "J1 actuator"
+          ],
+          "box": [
+            1260,
+            516,
+            1407.84,
+            544.8
+          ]
+        }
+      ],
+      "leaders": [
+        {
+          "start": [
+            463,
+            562
+          ],
+          "end": [
+            311.4,
+            560.2313473028249
+          ],
+          "feature": "j2_actuator",
+          "view": "SIDE"
+        },
+        {
+          "start": [
+            463,
+            652
+          ],
+          "end": [
+            384.3953027326682,
+            657.8230544238265
+          ],
+          "feature": "knee_actuator",
+          "view": "SIDE"
+        },
+        {
+          "start": [
+            1248,
+            532
+          ],
+          "end": [
+            1093.0,
+            531.2659249250084
+          ],
+          "feature": "j1_actuator",
+          "view": "FRONT"
+        }
+      ],
+      "numbers": [
+        {
+          "text": "M.A.C. MODEL 04 \u00b7 MECHANICAL DEVELOPMENT",
+          "file": "hardware/joints/cad/briefs/J04-L02-FIGURES-BRIEF.md",
+          "key": "Drawing method / masthead",
+          "value": "04",
+          "printed": "04"
+        },
+        {
+          "text": "CAD packaging study J04-L02 \u00b7 example dimensions \u00b7 nothing is built or tested",
+          "file": "hardware/joints/cad/briefs/J04-L02-FIGURES-BRIEF.md",
+          "key": "Drawing method / footer / study identifier",
+          "value": "04",
+          "printed": "04"
+        },
+        {
+          "text": "CAD packaging study J04-L02 \u00b7 example dimensions \u00b7 nothing is built or tested",
+          "file": "hardware/joints/cad/briefs/J04-L02-FIGURES-BRIEF.md",
+          "key": "Drawing method / footer / study identifier",
+          "value": "02",
+          "printed": "02"
+        },
+        {
+          "text": "J2 actuator",
+          "file": "hardware/joints/cad/leg_packaging.py",
+          "key": "Model.build / j2_actuator",
+          "value": 2,
+          "printed": "2"
+        },
+        {
+          "text": "J3 actuator / (knee)",
+          "file": "hardware/joints/cad/leg_packaging.py",
+          "key": "Model.build / knee_actuator / third axis",
+          "value": 3,
+          "printed": "3"
+        },
+        {
+          "text": "J1 actuator",
+          "file": "hardware/joints/cad/leg_packaging.py",
+          "key": "Model.build / j1_actuator",
+          "value": 1,
+          "printed": "1"
+        },
+        {
+          "text": "Each block: 20 \u00d7 34 \u00d7 26 mm \u00b7 18 g",
+          "file": "hardware/joints/cad/j04-l02.candidate-A-under.json",
+          "key": "actuator.W",
+          "value": 20.0,
+          "printed": "20"
+        },
+        {
+          "text": "Each block: 20 \u00d7 34 \u00d7 26 mm \u00b7 18 g",
+          "file": "hardware/joints/cad/j04-l02.candidate-A-under.json",
+          "key": "actuator.H",
+          "value": 34.0,
+          "printed": "34"
+        },
+        {
+          "text": "Each block: 20 \u00d7 34 \u00d7 26 mm \u00b7 18 g",
+          "file": "hardware/joints/cad/j04-l02.candidate-A-under.json",
+          "key": "actuator.D",
+          "value": 26.0,
+          "printed": "26"
+        },
+        {
+          "text": "Each block: 20 \u00d7 34 \u00d7 26 mm \u00b7 18 g",
+          "file": "hardware/joints/cad/j04-l02.candidate-A-under.json",
+          "key": "actuator.mass_g",
+          "value": 18.0,
+          "printed": "18"
+        },
+        {
+          "file": "hardware/joints/cad/leg_packaging.py",
+          "key": "Model.build / actuator blocks per leg",
+          "value": 3,
+          "printed": "Three"
+        },
+        {
+          "file": "hardware/joints/cad/leg_animation.py",
+          "key": "LEGS \u00d7 Model.build actuator count",
+          "value": 12,
+          "printed": "twelve"
+        },
+        {
+          "text": "20 mm",
+          "file": "hardware/joints/cad/briefs/J04-L02-FIGURES-BRIEF.md",
+          "key": "Drawing method / scale bar",
+          "value": 20.0,
+          "printed": "20"
+        }
+      ],
+      "views": [
+        {
+          "name": "SIDE",
+          "projection": "SIDE",
+          "pixels_per_mm": 2.2,
+          "ground_z_mm": -111.78821594317795,
+          "ground_y_px": 742,
+          "source_solids": 25,
+          "painter_order": [
+            "body_envelope",
+            "cradle",
+            "carrier_hub_horn",
+            "carrier_hub_idler",
+            "j1_actuator_horn",
+            "j1_actuator_idler",
+            "carrier_horn_plate",
+            "carrier_idler_plate",
+            "upper_idler_plate",
+            "j2_actuator_idler",
+            "knee_actuator_idler",
+            "lower_idler_plate",
+            "upper_web",
+            "upper_channel_plus",
+            "carrier_web",
+            "upper_channel_minus",
+            "lower_web",
+            "j2_actuator_horn",
+            "foot",
+            "upper_horn_plate",
+            "knee_actuator_horn",
+            "lower_horn_plate",
+            "j1_actuator",
+            "j2_actuator",
+            "knee_actuator"
+          ],
+          "xray_parts": [
+            "j1_actuator",
+            "j2_actuator",
+            "knee_actuator"
+          ],
+          "body": "outline",
+          "neighbours_drawn": false
+        },
+        {
+          "name": "FRONT",
+          "projection": "FRONT",
+          "pixels_per_mm": 2.2,
+          "ground_z_mm": -111.78821594317795,
+          "ground_y_px": 742,
+          "source_solids": 25,
+          "painter_order": [
+            "body_envelope",
+            "cradle",
+            "carrier_idler_plate",
+            "carrier_hub_idler",
+            "j1_actuator_idler",
+            "upper_web",
+            "upper_horn_plate",
+            "upper_idler_plate",
+            "carrier_web",
+            "j2_actuator_horn",
+            "j2_actuator_idler",
+            "foot",
+            "upper_channel_minus",
+            "j1_actuator_horn",
+            "carrier_hub_horn",
+            "carrier_horn_plate",
+            "lower_horn_plate",
+            "lower_idler_plate",
+            "lower_web",
+            "knee_actuator_horn",
+            "knee_actuator_idler",
+            "upper_channel_plus",
+            "j1_actuator",
+            "j2_actuator",
+            "knee_actuator"
+          ],
+          "xray_parts": [
+            "j1_actuator",
+            "j2_actuator",
+            "knee_actuator"
+          ],
+          "body": "outline",
+          "neighbours_drawn": false
+        }
+      ],
+      "dimensions": []
+    },
+    "knee-layouts.svg": {
+      "xml_parse": true,
+      "footer": true,
+      "no_external_references": true,
+      "minimum_font_px": 24,
+      "label_overlap_assertions": true,
+      "label_count": 3,
+      "text_box_count": 18,
+      "leader_count": 3,
+      "leaders_clear_of_text_and_each_other": true,
+      "leaders_may_cross_geometry": true,
+      "labels": [
+        {
+          "text": [
+            "knee actuator"
+          ],
+          "box": [
+            475,
+            610,
+            649.72,
+            638.8
+          ]
+        },
+        {
+          "text": [
+            "knee actuator"
+          ],
+          "box": [
+            1275,
+            546,
+            1449.72,
+            574.8
+          ]
+        },
+        {
+          "text": [
+            "belt and pulleys"
+          ],
+          "box": [
+            1275,
+            642,
+            1490.04,
+            670.8
+          ]
+        }
+      ],
+      "leaders": [
+        {
+          "start": [
+            463,
+            626
+          ],
+          "end": [
+            384.3953027326682,
+            669.8230544238265
+          ],
+          "feature": "knee_actuator",
+          "view": "direct"
+        },
+        {
+          "start": [
+            1263,
+            562
+          ],
+          "end": [
+            1136.4443126537208,
+            652.730473829801
+          ],
+          "feature": "knee_actuator",
+          "view": "proximal"
+        },
+        {
+          "start": [
+            1263,
+            658
+          ],
+          "end": [
+            1140.2259222458486,
+            687.8196351584992
+          ],
+          "feature": "pulley_knee",
+          "view": "proximal"
+        }
+      ],
+      "numbers": [
+        {
+          "text": "M.A.C. MODEL 04 \u00b7 MECHANICAL DEVELOPMENT",
+          "file": "hardware/joints/cad/briefs/J04-L02-FIGURES-BRIEF.md",
+          "key": "Drawing method / masthead",
+          "value": "04",
+          "printed": "04"
+        },
+        {
+          "text": "CAD packaging study J04-L02 \u00b7 example dimensions \u00b7 nothing is built or tested",
+          "file": "hardware/joints/cad/briefs/J04-L02-FIGURES-BRIEF.md",
+          "key": "Drawing method / footer / study identifier",
+          "value": "04",
+          "printed": "04"
+        },
+        {
+          "text": "CAD packaging study J04-L02 \u00b7 example dimensions \u00b7 nothing is built or tested",
+          "file": "hardware/joints/cad/briefs/J04-L02-FIGURES-BRIEF.md",
+          "key": "Drawing method / footer / study identifier",
+          "value": "02",
+          "printed": "02"
+        },
+        {
+          "text": "223.8 mm",
+          "file": "hardware/joints/cad/exports/l02-comparison.json",
+          "key": "sweeps.A-under-direct \u00b7 fine.stance.overall_height_mm",
+          "value": 223.78821594317793,
+          "printed": "223.8"
+        },
+        {
+          "text": "Leg mass 97.1 g",
+          "file": "hardware/joints/cad/exports/l02-comparison.json",
+          "key": "sweeps.A-under-direct \u00b7 fine.mass.leg_total_g",
+          "value": 97.05428281171241,
+          "printed": "97.1"
+        },
+        {
+          "text": "Standing height 223.8 mm",
+          "file": "hardware/joints/cad/exports/l02-comparison.json",
+          "key": "sweeps.A-under-direct \u00b7 fine.stance.overall_height_mm",
+          "value": 223.78821594317793,
+          "printed": "223.8"
+        },
+        {
+          "text": "Upper link 50 mm",
+          "file": "hardware/joints/cad/j04-l02.candidate-A-under.json",
+          "key": "links.L1_direct",
+          "value": 50.0,
+          "printed": "50"
+        },
+        {
+          "text": "207.8 mm",
+          "file": "hardware/joints/cad/exports/l02-comparison.json",
+          "key": "sweeps.A-under-proximal \u00b7 fine.stance.overall_height_mm",
+          "value": 207.76318380802854,
+          "printed": "207.8"
+        },
+        {
+          "text": "Leg mass 117.9 g",
+          "file": "hardware/joints/cad/exports/l02-comparison.json",
+          "key": "sweeps.A-under-proximal \u00b7 fine.mass.leg_total_g",
+          "value": 117.86776910092131,
+          "printed": "117.9"
+        },
+        {
+          "text": "Standing height 207.8 mm",
+          "file": "hardware/joints/cad/exports/l02-comparison.json",
+          "key": "sweeps.A-under-proximal \u00b7 fine.stance.overall_height_mm",
+          "value": 207.76318380802854,
+          "printed": "207.8"
+        },
+        {
+          "text": "Upper link 30 mm",
+          "file": "hardware/joints/cad/j04-l02.candidate-A-under.json",
+          "key": "links.L1_proximal",
+          "value": 30.0,
+          "printed": "30"
+        },
+        {
+          "text": "20 mm",
+          "file": "hardware/joints/cad/briefs/J04-L02-FIGURES-BRIEF.md",
+          "key": "Drawing method / scale bar",
+          "value": 20.0,
+          "printed": "20"
+        }
+      ],
+      "views": [
+        {
+          "name": "direct",
+          "projection": "SIDE",
+          "pixels_per_mm": 2.2,
+          "ground_z_mm": -111.78821594317795,
+          "ground_y_px": 754,
+          "source_solids": 25,
+          "painter_order": [
+            "body_envelope",
+            "cradle",
+            "j1_actuator",
+            "carrier_hub_horn",
+            "carrier_hub_idler",
+            "j1_actuator_horn",
+            "j1_actuator_idler",
+            "carrier_horn_plate",
+            "carrier_idler_plate",
+            "upper_idler_plate",
+            "j2_actuator_idler",
+            "knee_actuator_idler",
+            "lower_idler_plate",
+            "upper_web",
+            "j2_actuator",
+            "upper_channel_plus",
+            "carrier_web",
+            "upper_channel_minus",
+            "lower_web",
+            "j2_actuator_horn",
+            "foot",
+            "upper_horn_plate",
+            "knee_actuator_horn",
+            "lower_horn_plate",
+            "knee_actuator"
+          ],
+          "xray_parts": [
+            "knee_actuator"
+          ],
+          "body": "outline",
+          "neighbours_drawn": false
+        },
+        {
+          "name": "proximal",
+          "projection": "SIDE",
+          "pixels_per_mm": 2.2,
+          "ground_z_mm": -95.76318380802856,
+          "ground_y_px": 754,
+          "source_solids": 30,
+          "painter_order": [
+            "body_envelope",
+            "cradle",
+            "lower_plate_in",
+            "knee_actuator_horn",
+            "j1_actuator",
+            "knee_mount",
+            "carrier_hub_horn",
+            "carrier_hub_idler",
+            "j1_actuator_horn",
+            "j1_actuator_idler",
+            "carrier_horn_plate",
+            "carrier_idler_plate",
+            "knee_actuator_idler",
+            "j2_actuator_idler",
+            "upper_idler_plate",
+            "knee_bearing_in",
+            "lower_web",
+            "upper_web",
+            "j2_actuator",
+            "carrier_web",
+            "foot",
+            "j2_actuator_horn",
+            "upper_horn_plate",
+            "knee_bearing_out",
+            "lower_plate_out",
+            "pulley_hip",
+            "belt",
+            "pulley_knee",
+            "knee_actuator",
+            "knee_shaft"
+          ],
+          "xray_parts": [
+            "pulley_hip",
+            "belt",
+            "pulley_knee",
+            "knee_actuator",
+            "knee_shaft"
+          ],
+          "body": "outline",
+          "neighbours_drawn": false
+        }
+      ],
+      "dimensions": [
+        {
+          "kind": "height",
+          "ground_z_mm": -111.78821594317795,
+          "clock_top_z_mm": 112,
+          "full_precision_mm": 223.78821594317793,
+          "printed_mm": "223.8"
+        },
+        {
+          "kind": "height",
+          "ground_z_mm": -95.76318380802856,
+          "clock_top_z_mm": 112,
+          "full_precision_mm": 207.76318380802854,
+          "printed_mm": "207.8"
+        }
+      ]
+    }
+  },
+  "method": "Posed solid tessellation \u2192 orthographic 2D convex hull \u2192 far-to-near fill/outline",
+  "pose_source": {
+    "file": "hardware/joints/cad/j04-l02.candidate-A-under.json",
+    "key": "poses.stance",
+    "value": {
+      "a": 12.0,
+      "b": -35.0,
+      "c": 70.0
+    }
+  },
+  "model_cross_checks": {
+    "direct": {
+      "mass": 97.05428281171241,
+      "height": 223.78821594317793,
+      "length": 50.0
+    },
+    "proximal": {
+      "mass": 117.86776910092131,
+      "height": 207.76318380802854,
+      "length": 30.0
+    }
   },
   "source_sha256": {
-    "hardware/joints/cad/leg_packaging.py": "b55fab3a3a05f8df8ca38abacf8306e49de02e2477a15e0272ddda120e3e668e",
-    "hardware/joints/cad/leg_animation.py": "6e651aafd32c6ae118b0603848a1b17e50c8f53c999f3eaed2d0c640b102b2ac",
     "hardware/joints/cad/j04-l02.candidate-A-under.json": "b45ab459000368416e46a16d58dadfe7276c160d6e586f0a864c89e9fda5aac6",
+    "hardware/joints/cad/exports/l02-comparison.json": "a84c29931dbf265d6fa656a5688a34d15e9fc8f57504d1db081594f2a538d2ea",
     "hardware/joints/cad/leg-viewer-template.html": "6309a2c5cf4cd4a746a03fdf1c274c070bf5e9619b442869a90f75d6c70fa412",
-    "hardware/joints/cad/exports/l02-comparison.json": "a84c29931dbf265d6fa656a5688a34d15e9fc8f57504d1db081594f2a538d2ea"
+    "hardware/joints/cad/briefs/J04-L02-FIGURES-BRIEF.md": "083255e6e5bcbc15d7f9404a751f903d9571f4020029ace314237c435f47a9a5",
+    "hardware/joints/cad/leg_packaging.py": "b55fab3a3a05f8df8ca38abacf8306e49de02e2477a15e0272ddda120e3e668e",
+    "hardware/joints/cad/leg_animation.py": "6e651aafd32c6ae118b0603848a1b17e50c8f53c999f3eaed2d0c640b102b2ac"
   },
-  "diagnostic": {
-    "front_J2_hull_completely_contained_in": [
-      "carrier_horn_plate",
-      "carrier_idler_plate"
-    ],
-    "containment_method": "Every vertex of the convex J2 hull is in each convex carrier-plate hull, establishing complete hull containment.",
-    "margin_scan": {
-      "projections": [
-        "SIDE",
-        "FRONT"
-      ],
-      "margins_x_px": [
-        60,
-        463
-      ],
-      "leader_start_y_px": {
-        "min": 220,
-        "max": 778,
-        "step": 2
-      },
-      "target_samples_per_edge": 21,
-      "unobstructed_leaders": 0
-    },
-    "scope": "Bounded geometric diagnosis in memory. No SVG or pixel render was made."
-  },
-  "svg_outputs_created": [],
-  "checks_not_run": [
-    "SVG XML parse, footer and external-reference checks",
-    "Complete-figure font and label-overlap checks",
-    "SVG SHA256 checks",
-    "Pixel rendering",
-    "Browser proof"
-  ]
+  "sha256": {
+    "hardware/joints/cad/leg_figures.py": "1d15def895142c0de631b44390216e325c6869b231818f5b214753e9ee4661f8",
+    "hardware/joints/figures/leg-axes.svg": "0f600464958b3ba54f95aa79140b10b23de02d10a7b68115bc72dc2e10f20e5d",
+    "hardware/joints/figures/actuator-space.svg": "ab0f30973560e7986c6fe34cb0e077af12fbde93ad8799f21034b777b095a163",
+    "hardware/joints/figures/knee-layouts.svg": "d832f48d390759c0afe527a6a4dc382d00893ec70f4ea6ccf315695d2a25588c"
+  }
 }
