@@ -2,6 +2,48 @@
 
 ## Now
 
+HANDOFF CAPTURE (hub button-up 2026-11-11, mechanical — verbatim tail, no model read): claude 4b93cedc-f035-4c83-a147-03c4b152acf5 · last message 2026-11-11T12:37:02-08:00
+  the thread's own title: ARCH — RayCue/Research: short legs judged, 4 rulings filed
+  lane RayCue/Research (the folder's only lane) · FABLE · 142.2 min ago at the capture
+  the repo, read before this capture: 1 untracked, not carried: ChatGPT Image Oct 19, 2026, 11_03_05 AM.png
+  the last exchange, verbatim:
+  --- [2026-11-11T19:37:32.143Z] ASSISTANT
+  **MACK** `MAC · FABLE · HIGH`
+
+  The budget sheet now holds first-pass ranges, drafted by Astra in 7.8 minutes, committed and pushed.
+
+  | | Tethered walker | Complete product |
+  | --- | --- | --- |
+  | Mass | 661 to 699 g | 973 to 1,332 g |
+  | Twelve leg motors, all at their limit | 17.6 A, 88.2 W | same |
+  | Walking draw (assumed 20 to 40 percent of that) | 3.5 to 7.1 A | same |
+  | Battery energy, two cells | not in scope | 21.6 to 36.0 Wh |
+  | Parts with a recorded price | $355.18 | $355.18 |
+
+  - **Check before you place the bench order:** the power supply on `hardware/bench-list.md` tops out at 5 A. That covers one leg on the bench, but not twelve motors walking (7.1 A at the high estimate). I've li …[+777 chars]
+
+  --- [2026-11-11T20:34:55.470Z] USER
+  Keep 55 mm
+
+  --- [2026-11-11T20:36:02.935Z] ASSISTANT
+  Carryover is written and pushed; now releasing the lane, syncing the brain and retitling this window.
+
+  --- [2026-11-11T20:37:02.723Z] ASSISTANT
+  **MACK** `MAC · FABLE · HIGH`
+
+  Buttoned up. Your "Keep 55 mm" ruling is filed, the carryover is written, and everything is committed and pushed (repo at `c362ccf`, brain synced).
+
+  - **Nothing is running.** The Sol build, the Astra review and the Astra budget draft all finished and are committed.
+  - **The lane is free.** Its claim is released and this window is retitled ARCH.
+  - **Waiting on you at pick-up, one at a time:**
+    - [ ] How closely the hips and base must match the picture.
+    - [ ] Which knee to build next (direct or belt).
+    - [ ] The logo and interface-look decision.
+    - [ ] Whether to price a larger bench power supply (the listed one is 5 A; twelve motors walking may draw 7.1 A).
+   …[+650 chars]
+  this block quotes; it does not explain. A session with a model may upgrade it to plain words (`buttonup.py capture --work-order`).
+
+
 2026-11-11 — **BUTTONED UP, 12:3x.** Bill: "let's button this work up for now"; he is moving to his other login because Fable is running low (87 percent of the week at the last reading this window saw). This window (ACT — RayCue/Research: Mack short legs and base) stopped after filing the 55 mm ruling. Nothing of this lane is running: the Sol build, the Astra review and the Astra budget draft all ended and are committed. Everything is pushed. Open with Bill, in this order: (1) the review's second ruling, the appearance goal (pursue about 15 mm of visible base and 100 mm across the hips, the judge's pick, which needs smaller motors, a different arrangement or measured room inside the clock; or accept 27 mm and 158.5 mm); (2) the review's third ruling, the knee layout (direct, the judge's pick, or belt); (3) the design review's last suggestion, a logo and interface-look decision before wider publicity; (4) the bench supply finding (5 A against 7.1 A walking). Then the machine's work: brief J04-L04 on those rulings (clear the thigh/carrier overlap; end the shank channel above the foot floor with at least 1.5 mm; true rim contact point; a weight shift giving about +5 mm three-foot margin), Sol builds, a judge rules from its numbers. The posts are not out (Bill paused them); permalinks to record when the Resonance/Posts window mails them. `OPENER.md` carries the pick-up.
 
 2026-11-11 — **RULING: THE NEXT LEG DESIGN KEEPS 55 MM.** Bill, 12:3x in the Research window, on the question "Which under-shell height should the next leg design aim for?" (the J04-L03 review's first ruling): **"Keep 55 mm"**. As put to him: 55 mm under the shell, allowed 50 to 60, Mack 167 mm overall; the leg works in a deep crouch with the knees about 26 mm in front of the face; the two layout faults (shank channel 1.1 mm below the foot; thigh plate into the carrier plate, 32.8 mm³) are fixed in the next iteration. The alternative he declined: 75 mm, 187 mm overall. Still to put to him from the review: the appearance goal for the hips and base, then the knee layout.
