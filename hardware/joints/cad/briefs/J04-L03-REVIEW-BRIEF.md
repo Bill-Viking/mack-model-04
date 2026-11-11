@@ -68,7 +68,7 @@ minus half the knee bend · belt knee carried over, not redrawn · CoM inputs AS
 
 ## Hand back
 
-Write `hardware/joints/cad/briefs/J04-L03-REVIEW.md`: answers 1 to 9; then `FOR THE OWNER:` at
+Write the verdict file the launcher names, `J04-L03-REVIEW-BRIEF-VERDICT.md` beside this brief: answers 1 to 9; then `FOR THE OWNER:` at
 most 120 plain everyday words with the model's numbers; `RULINGS NEEDED:` each one question a
 stranger could answer, two or three choices, your pick marked, one line of why (you cannot ask;
 the managing window puts them to the owner); `LIMITS:` what you could not check. End with the
